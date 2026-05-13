@@ -1,0 +1,15 @@
+# Core ML / experimentation
+numpy>=2.0.0,<3.0.0
+pandas>=2.2.0,<3.0.0
+scikit-learn>=1.5.0,<2.0.0
+scipy>=1.14.0,<2.0.0
+
+# Notebooks
+jupyter>=1.1.0,<2.0.0
+ipykernel>=6.29.0,<7.0.0
+matplotlib>=3.9.0,<4.0.0
+seaborn>=0.13.0,<1.0.0
+
+# Optional heavier stacks (uncomment as needed)
+# torch>=2.5.0
+# transformers>=4.46.0

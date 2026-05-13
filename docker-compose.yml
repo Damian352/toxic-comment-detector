@@ -1,0 +1,28 @@
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    environment:
+      MODEL_PATH: /models/model.pkl
+    volumes:
+      - ./backend/app:/app/app:ro
+      - ./models:/models:ro
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "5173:5173"
+    environment:
+      VITE_PROXY_TARGET: http://backend:8000
+      VITE_BACKEND_ORIGIN: http://localhost:8000
+    volumes:
+      - ./frontend:/app
+    depends_on:
+      - backend
+    command: ["sh", "-c", "npm install && npm run dev -- --host 0.0.0.0 --port 5173"]
