@@ -1,0 +1,74 @@
+{
+  "trained_at": "2026-05-27T10:49:44.041327+00:00",
+  "labels": [
+    "toxic",
+    "severe_toxic",
+    "obscene",
+    "threat",
+    "insult",
+    "identity_hate"
+  ],
+  "model_path": "I:\\GreatProjects\\toxic-comment-detector\\models\\model.pkl",
+  "hamming_loss": 0.02317614496840566,
+  "f1_macro": 0.6162280435585351,
+  "f1_micro": 0.7329723225030085,
+  "precision_macro": 0.5159769410326367,
+  "precision_micro": 0.6368674194897532,
+  "recall_macro": 0.8024735482996835,
+  "recall_micro": 0.8632369614512472,
+  "per_label": [
+    {
+      "label": "toxic",
+      "precision": 0.7170469798657718,
+      "recall": 0.8731611637790128,
+      "f1": 0.7874410377358491,
+      "support": 3059
+    },
+    {
+      "label": "severe_toxic",
+      "precision": 0.31870967741935485,
+      "recall": 0.7942122186495176,
+      "f1": 0.4548802946593002,
+      "support": 311
+    },
+    {
+      "label": "obscene",
+      "precision": 0.7534653465346535,
+      "recall": 0.8900584795321638,
+      "f1": 0.8160857908847186,
+      "support": 1710
+    },
+    {
+      "label": "threat",
+      "precision": 0.3505747126436782,
+      "recall": 0.6288659793814433,
+      "f1": 0.45018450184501846,
+      "support": 97
+    },
+    {
+      "label": "insult",
+      "precision": 0.6181653863533665,
+      "recall": 0.8603773584905661,
+      "f1": 0.7194320273468314,
+      "support": 1590
+    },
+    {
+      "label": "identity_hate",
+      "precision": 0.3378995433789954,
+      "recall": 0.7681660899653979,
+      "f1": 0.4693446088794926,
+      "support": 289
+    }
+  ],
+  "classification_report": "               precision    recall  f1-score   support\n\n        toxic       0.72      0.87      0.79      3059\n severe_toxic       0.32      0.79      0.45       311\n      obscene       0.75      0.89      0.82      1710\n       threat       0.35      0.63      0.45        97\n       insult       0.62      0.86      0.72      1590\nidentity_hate       0.34      0.77      0.47       289\n\n    micro avg       0.64      0.86      0.73      7056\n    macro avg       0.52      0.80      0.62      7056\n weighted avg       0.67      0.86      0.75      7056\n  samples avg       0.07      0.08      0.07      7056\n",
+  "dataset": {
+    "n_samples": 159571,
+    "n_train": 127656,
+    "n_test": 31915,
+    "test_size": 0.2,
+    "threshold": 0.5,
+    "positive_rate_any_label": 0.10167887648758234
+  },
+  "mode": "jigsaw",
+  "data_path": "I:\\GreatProjects\\toxic-comment-detector\\data\\raw\\train.csv"
+}
