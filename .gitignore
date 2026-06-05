@@ -54,6 +54,8 @@ models/*.joblib
 models/*.pt
 models/*.onnx
 models/*.bin
+models/bert/**
+!models/bert/.gitkeep
 !models/.gitkeep
 data/raw/**
 data/processed/**

@@ -5,26 +5,24 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from app.api.routes import router
 from app.core.config import settings
-from app.services.inference import ToxicInferenceService
+from app.services.registry import InferenceRegistry
 
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    service = ToxicInferenceService(settings.model_path)
-    app.state.inference = service
-    app.state.model_loaded = False
-    try:
-        service.load()
-        app.state.model_loaded = True
-    except FileNotFoundError:
-        app.state.model_loaded = False
+    registry = InferenceRegistry(settings.model_path, settings.bert_model_dir)
+    app.state.registry = registry
+    registry.load_all()
     yield
 
 
 app = FastAPI(
     title="Toxic Comment Detector API",
-    description="Inference API for multi-label toxic comment classification.",
-    version="0.1.0",
+    description=(
+        "Inference API for multi-label toxic comment classification. "
+        "Supports TF-IDF + Logistic Regression and fine-tuned BERT."
+    ),
+    version="0.2.0",
     lifespan=lifespan,
 )
 

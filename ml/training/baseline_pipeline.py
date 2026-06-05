@@ -8,19 +8,8 @@ from sklearn.multiclass import OneVsRestClassifier
 from sklearn.pipeline import FeatureUnion, Pipeline
 from sklearn.preprocessing import FunctionTransformer
 
+from ml.labels import DEFAULT_THRESHOLD, LABELS
 from ml.preprocessing.text import preprocess_batch
-
-# Keep labels in the same order as backend/app/services/inference.py:LABELS
-LABELS: tuple[str, ...] = (
-    "toxic",
-    "severe_toxic",
-    "obscene",
-    "threat",
-    "insult",
-    "identity_hate",
-)
-
-DEFAULT_THRESHOLD = 0.5
 
 
 def build_baseline_pipeline(

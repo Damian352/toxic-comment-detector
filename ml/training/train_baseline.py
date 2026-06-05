@@ -20,7 +20,8 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 
 from ml.evaluation.metrics import multilabel_report
-from ml.training.baseline_pipeline import DEFAULT_THRESHOLD, LABELS, build_baseline_pipeline
+from ml.labels import DEFAULT_THRESHOLD, LABELS
+from ml.training.baseline_pipeline import build_baseline_pipeline
 
 
 def _repo_root() -> Path:

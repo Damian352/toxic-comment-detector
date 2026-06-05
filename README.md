@@ -10,9 +10,9 @@ This repository separates **research/training** (`ml/`), **production-style infe
 
 | Area | Status |
 |------|--------|
-| **ML** | Baseline training script (`ml/training/train_baseline.py`) exports a scikit-learn pipeline to `models/model.pkl`. EDA notebook `ml/notebooks/01_eda.ipynb` expects Kaggle Jigsaw `train.csv` under `data/raw/`. Evaluation helpers live under `ml/evaluation/`. |
-| **Backend** | FastAPI app loads `model.pkl`, serves health/ready and `/api/predict` with per-label probabilities. CORS enabled for local Vite. |
-| **Frontend** | React + Vite + TypeScript: text input, call to `/api/predict`, bar display of scores; link to OpenAPI docs. |
+| **ML** | Two approaches: **TF-IDF + Logistic Regression** (`train_baseline.py` → `models/model.pkl`) and **BERT** (`train_bert.py` → `models/bert/`). NLP report: `ml/reports/02_nlp_models_implementation.md`. |
+| **Backend** | FastAPI loads both artifacts (when present), `/api/models`, `/api/predict` with `model`: `tfidf_lr` or `bert`. |
+| **Frontend** | React UI with model selector, `/api/predict`, per-label probability bars. |
 | **Docker** | `docker-compose.yml` runs backend (port 8000) and frontend dev server (5173) with hot reload and API proxying. |
 
 The default label order matches the **Jigsaw Toxic Comment Classification** challenge:
@@ -79,10 +79,11 @@ From the **repository root**:
 
 ```bash
 python -m pip install -r ml/requirements.txt
-python ml/training/train_baseline.py
+python -m ml.training.train_baseline
+python -m ml.training.train_bert --demo --epochs 3
 ```
 
-This writes **`models/model.pkl`** (gitignored except structure). The script uses a tiny synthetic demo corpus so the stack is runnable without external data; replace with a real trained model when ready.
+This writes **`models/model.pkl`** (TF-IDF + LR) and **`models/bert/`** (transformer). Demo scripts work without Kaggle data; for Jigsaw metrics use `data/raw/train.csv` and drop `--demo`.
 
 ### 2. Backend
 
@@ -102,8 +103,9 @@ Useful endpoints:
 | GET | `/` | Short service info |
 | GET | `/docs` | Swagger UI |
 | GET | `/api/health` | Liveness |
-| GET | `/api/ready` | Whether `model.pkl` was found and loaded |
-| POST | `/api/predict` | JSON `{"text":"..."}` → per-label probabilities |
+| GET | `/api/models` | Available models and load status |
+| GET | `/api/ready` | Load status for TF-IDF and BERT artifacts |
+| POST | `/api/predict` | JSON `{"text":"...","model":"tfidf_lr"}` or `"bert"` → probabilities |
 
 ### 3. Frontend
 

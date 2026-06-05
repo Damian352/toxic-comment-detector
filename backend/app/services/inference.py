@@ -1,18 +1,16 @@
 import pickle
+import sys
 from pathlib import Path
 from typing import Any
 
 import numpy as np
 
-# Multi-label taxonomy aligned with common toxic-comment benchmarks (e.g. Jigsaw).
-LABELS: tuple[str, ...] = (
-    "toxic",
-    "severe_toxic",
-    "obscene",
-    "threat",
-    "insult",
-    "identity_hate",
-)
+_REPO_ROOT = Path(__file__).resolve().parents[3]
+
+if str(_REPO_ROOT) not in sys.path:
+    sys.path.insert(0, str(_REPO_ROOT))
+
+from ml.labels import LABELS  # noqa: E402
 
 
 def _scores_from_predict_proba(proba: Any, n_labels: int) -> np.ndarray:
@@ -54,6 +52,9 @@ class ToxicInferenceService:
                 f"Model file not found: {self._model_path}. "
                 "Train in ml/ and export a pickle, or mount ./models in Docker."
             )
+        repo_root = str(_REPO_ROOT)
+        if repo_root not in sys.path:
+            sys.path.insert(0, repo_root)
         with self._model_path.open("rb") as f:
             self._model = pickle.load(f)
 
