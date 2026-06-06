@@ -132,6 +132,21 @@ python -m ml.training.build_projection_maps
 python -m ml.training.build_projection_maps --lang pl --max-points 400 --max-embed 800
 ```
 
+**BERT weights in Git:** `models/bert/` and `models/bert_pl/` are tracked via **Git LFS** (`*.safetensors`, `*.bin`). After clone:
+
+```bash
+git lfs install
+git lfs pull
+```
+
+After training, add and push artifacts (metrics land in `ml/experiments/bert_multilabel*/` automatically):
+
+```bash
+git add models/bert models/bert_pl ml/experiments/bert_multilabel ml/experiments/bert_multilabel_pl
+git commit -m "Add fine-tuned BERT artifacts"
+git push
+```
+
 ### 2. Backend
 
 ```bash

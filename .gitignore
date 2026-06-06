@@ -48,20 +48,15 @@ pip-log.txt
 # Jupyter
 .ipynb_checkpoints/
 
-# ML / data (keep structure, ignore heavy artifacts)
-# Allow baseline sklearn models (they are small: ~16MB and ~6.4MB)
+# ML / data (keep structure, ignore transient training artifacts)
+# Baseline sklearn pickles are small and tracked explicitly
 !models/*.pkl
 models/*.joblib
 models/*.pt
 models/*.onnx
-models/*.bin
-models/bert/**
-!models/bert/.gitkeep
-models/bert_pl/**
-!models/bert_pl/.gitkeep
-# Exclude heavy model weights (>100MB) from normal Git to prevent push failures
-*.safetensors
-*.bin
+# BERT/HerBERT weights: tracked under models/bert/ and models/bert_pl/ via Git LFS (.gitattributes)
+models/bert/checkpoints/
+models/bert_pl/checkpoints/
 !models/.gitkeep
 data/raw/**
 data/processed/**

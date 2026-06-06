@@ -1,0 +1,19 @@
+{
+  "labels": [
+    "safe",
+    "hate_speech",
+    "violence",
+    "vulgarity"
+  ],
+  "default_threshold": 0.5,
+  "pretrained_name": "allegro/herbert-base-cased",
+  "max_length": 256,
+  "trained_at": "2026-06-05T15:23:02.105604+00:00",
+  "per_label_thresholds": {
+    "safe": 0.45,
+    "hate_speech": 0.4,
+    "violence": 0.25,
+    "vulgarity": 0.45
+  },
+  "threshold_tuned_at": "2026-06-06T11:34:41.844754+00:00"
+}

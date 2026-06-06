@@ -1,0 +1,23 @@
+{
+  "labels": [
+    "toxic",
+    "severe_toxic",
+    "obscene",
+    "threat",
+    "insult",
+    "identity_hate"
+  ],
+  "default_threshold": 0.5,
+  "pretrained_name": "bert-base-uncased",
+  "max_length": 256,
+  "trained_at": "2026-06-04T21:07:02.610305+00:00",
+  "per_label_thresholds": {
+    "toxic": 0.45,
+    "severe_toxic": 0.35,
+    "obscene": 0.55,
+    "threat": 0.6,
+    "insult": 0.5,
+    "identity_hate": 0.4
+  },
+  "threshold_tuned_at": "2026-06-06T11:33:43.700957+00:00"
+}

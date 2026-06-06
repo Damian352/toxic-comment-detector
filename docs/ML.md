@@ -72,6 +72,8 @@ python -m ml.training.train_bert_pl --epochs 3
 
 Each directory stores weights, tokenizer, and `labels.json` (label order, `max_length`).
 
+Weights (`*.safetensors` / `pytorch_model.bin`) are stored in Git via **LFS** — not ignored. Only `models/bert/checkpoints/` and `models/bert_pl/checkpoints/` are excluded (Trainer temp dir). Run `git lfs pull` after clone.
+
 ## Preprocessing
 
 **EN** (`preprocess_text`): HTML unescape → lowercase → strip URLs/HTML → collapse whitespace.
