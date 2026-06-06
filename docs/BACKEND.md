@@ -8,11 +8,13 @@ FastAPI service for **inference** of multi-label toxic comment classifiers. Cont
 backend/app/
 ├── main.py                 # Entry point, CORS, lifespan (model loading)
 ├── core/config.py          # Artifact paths, CORS, language detection threshold
-├── api/routes.py           # REST endpoints, 2D projection, metrics
+├── api/routes.py           # REST endpoints, PCA + anchor maps, metrics
 └── services/
     ├── registry.py         # EN/PL model registry (TF-IDF + BERT)
     ├── inference.py        # Sklearn pipeline → predict_proba
     ├── bert_inference.py   # Hugging Face BERT/HerBERT → sigmoid
+    ├── projection.py       # Offline PCA validation cloud + live user projection
+    ├── anchor_projection.py # Heuristic reference-anchor 2D map
     └── lang_detect.py      # gcld3 / langdetect → EN/PL routing
 ```
 
@@ -39,9 +41,10 @@ backend/app/
 | `MODEL_PATH_PL` | `{repo}/models/model_pl.pkl` | Sklearn pipeline pickle (PL) |
 | `BERT_MODEL_DIR_PL` | `{repo}/models/bert_pl` | Hugging Face directory (PL HerBERT) |
 | `ML_EXPERIMENTS_DIR` | `{repo}/ml/experiments` | Metrics JSON for `/api/metrics` |
+| `PROJECTIONS_DIR` | `{repo}/models/projections` | PCA scatter artifacts (`corpus.json`, `reducer.joblib`) |
 | `LANG_DETECT_MIN_CONFIDENCE` | `0.70` | Minimum gcld3/langdetect confidence |
 
-In Docker Compose, paths are overridden to `/models/...` and `/ml/experiments`.
+In Docker Compose, paths are overridden to `/models/...`, `/ml/experiments`, and `/models/projections`.
 
 ## API
 
@@ -82,12 +85,14 @@ Body:
 {
   "text": "comment to analyze",
   "model": "tfidf_lr | bert | both",
-  "lang": "auto | en | pl"
+  "lang": "auto | en | pl",
+  "include_pca": false
 }
 ```
 
 - **`lang: auto`** — language detected via `lang_detect` (gcld3 in Docker, langdetect fallback on Windows).
 - **`lang: en|pl`** — forced selection; detector is skipped (`lang_source: forced`).
+- **`include_pca: false`** (default) — skip PCA validation scatter (no extra embedding pass). Reference anchor map is still returned. Set `true` for full PCA 2D/3D maps.
 
 Response (main fields):
 
@@ -98,9 +103,29 @@ Response (main fields):
 | `analysis_lang` | Language actually used (`en` / `pl`) |
 | `requested_lang` | Value from the request |
 | `lang_confidence` | Detector confidence (if not forced) |
-| `similarity_projection` | Points for 2D visualization (anchors + active comment) |
+| `pca_included` | Whether PCA maps were computed (`include_pca` request flag) |
+| `similarity_projection` | PCA validation cloud + user point (empty when `include_pca: false`) |
+| `reference_projection` | Heuristic anchor map (always when inference succeeds) |
+| `projection_method` | e.g. `TruncatedSVD(50)+PCA(3)` or `PCA(3)` (PCA only) |
+| `explained_variance_ratio` | Per principal component (PCA only) |
 | `is_dual` | `true` when `model: both` |
 | `probabilities_tfidf` / `probabilities_bert` | Separate scores in dual mode |
+| `similarity_projection_tfidf` / `_bert` | PCA maps in dual mode (if `include_pca`) |
+| `reference_projection_tfidf` / `_bert` | Anchor maps in dual mode |
+
+### `GET /api/projection/corpus`
+
+Validation-set scatter data (built offline):
+
+| Query | Description |
+|-------|-------------|
+| `lang` | `en` \| `pl` |
+| `model` | `tfidf_lr` \| `bert` |
+| `error_filter` | `all` \| `correct` \| `errors` \| `false_positive` \| `false_negative` \| `label_mismatch` |
+
+Each point includes `x`, `y`, `z`, `ground_truth_labels`, `predicted_labels`, `error_type`.
+
+Build artifacts: `python -m ml.training.build_projection_maps` (see `docs/ML.md`).
 
 ### `GET /api/metrics`
 
@@ -138,4 +163,4 @@ Port **8010** is the default for the Vite proxy (`frontend/vite.config.ts`). Doc
 docker compose up --build
 ```
 
-Backend mounts `./models`, `./ml`, and `./backend/app` (hot reload).
+Backend mounts `./models` (including `projections/`), `./ml`, and `./backend/app` (hot reload).

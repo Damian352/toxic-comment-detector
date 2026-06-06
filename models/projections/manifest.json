@@ -1,0 +1,24 @@
+{
+  "built_at": "2026-06-06T16:07:09.461178+00:00",
+  "random_state": 42,
+  "entries": [
+    {
+      "lang": "pl",
+      "model": "tfidf_lr",
+      "method": "TruncatedSVD(50)+PCA(3)",
+      "reducer_path": "I:\\GreatProjects\\toxic-comment-detector\\models\\projections\\pl\\tfidf_lr\\reducer.joblib",
+      "corpus_path": "I:\\GreatProjects\\toxic-comment-detector\\models\\projections\\pl\\tfidf_lr\\corpus.json",
+      "n_total_test": 4797,
+      "n_displayed": 400
+    },
+    {
+      "lang": "pl",
+      "model": "bert",
+      "method": "PCA(3)",
+      "reducer_path": "I:\\GreatProjects\\toxic-comment-detector\\models\\projections\\pl\\bert\\reducer.joblib",
+      "corpus_path": "I:\\GreatProjects\\toxic-comment-detector\\models\\projections\\pl\\bert\\corpus.json",
+      "n_total_test": 4797,
+      "n_displayed": 400
+    }
+  ]
+}

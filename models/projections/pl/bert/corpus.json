@@ -1,0 +1,6897 @@
+{
+  "lang": "pl",
+  "model": "bert",
+  "method": "PCA(3)",
+  "explained_variance_ratio": [
+    0.5582376718521118,
+    0.13267016410827637,
+    0.07897328585386276
+  ],
+  "axes": {
+    "x": "PC1",
+    "y": "PC2",
+    "z": "PC3"
+  },
+  "random_state": 42,
+  "test_size": 0.2,
+  "n_total_test": 4797,
+  "n_embedded": 800,
+  "n_displayed": 400,
+  "error_counts": {
+    "correct": 582,
+    "false_positive": 30,
+    "false_negative": 42,
+    "label_mismatch": 146
+  },
+  "points": [
+    {
+      "id": "val_7159",
+      "text": ": dlaczego korzystasz z wynalazku szurniętych nałkowców?",
+      "x": -21.739566802978516,
+      "y": 26.59026336669922,
+      "z": -47.97768020629883,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_12370",
+      "text": ": zawsze można osiągnąć zaszczyt bycia największym śmieciem w Polsce, a może nawet w europie",
+      "x": -60.25625991821289,
+      "y": 23.429386138916016,
+      "z": -28.644912719726562,
+      "ground_truth_labels": [
+        "vulgarity"
+      ],
+      "predicted_labels": [
+        "hate_speech",
+        "violence"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_1768",
+      "text": ": Do konwojowania się przydadza. Swoja droga to AiP na czas P jest świetne ale na czas W jak zapewnic tankowanie ciek...",
+      "x": 75.22496795654297,
+      "y": 30.709747314453125,
+      "z": 14.466618537902832,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_1156",
+      "text": ": Ale jesteście zjebani :D Bosheee",
+      "x": -68.96623992919922,
+      "y": 11.399323463439941,
+      "z": 34.986839294433594,
+      "ground_truth_labels": [
+        "hate_speech"
+      ],
+      "predicted_labels": [
+        "hate_speech"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_114",
+      "text": "#[surname] i #rosja to szmaty na maksa. Szkoda, że #ukraina i cały świat teraz musi się poświęcać gospodarczo bo jaki...",
+      "x": -69.01754760742188,
+      "y": 69.66452026367188,
+      "z": 39.69087219238281,
+      "ground_truth_labels": [
+        "violence"
+      ],
+      "predicted_labels": [
+        "hate_speech"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_10011",
+      "text": ": parada pedalkow z neuropy z radkiem i anonimkiem na czele ostro pracuje ale cos im nie wychodzi. beda chyba musieli...",
+      "x": -61.08170700073242,
+      "y": 57.03899383544922,
+      "z": -42.893157958984375,
+      "ground_truth_labels": [
+        "hate_speech"
+      ],
+      "predicted_labels": [
+        "hate_speech",
+        "violence"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_12909",
+      "text": "> Od 3 miesięcy na wykop. Jak ja miałem konto to ty nawet nie znałeś tej strony więc po co się kompromitujesz? : To p...",
+      "x": -53.94318771362305,
+      "y": -52.319923400878906,
+      "z": 9.796012878417969,
+      "ground_truth_labels": [
+        "hate_speech"
+      ],
+      "predicted_labels": [
+        "vulgarity"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_13258",
+      "text": "> wytlumaczysz dlaczego idiota kamerzysta zmienil pas bez patrzenia w lusterka i jeszcze zwolnil? : 6 sekund od zmian...",
+      "x": -19.46722412109375,
+      "y": -49.257320404052734,
+      "z": -10.722992897033691,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "vulgarity"
+      ],
+      "error_type": "false_positive",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_20244",
+      "text": "Z czegoś przecież trzeba płacić na Starlinki i kilkadziesiąt samochodów przekazanych Ukrainie od Lasów Państwowych.",
+      "x": 75.87641906738281,
+      "y": 26.96111488342285,
+      "z": 23.19054412841797,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_6919",
+      "text": ": co za kurwy (╯°□°）╯︵ ┻━┻",
+      "x": -66.3905029296875,
+      "y": 49.540016174316406,
+      "z": 66.97863006591797,
+      "ground_truth_labels": [
+        "hate_speech"
+      ],
+      "predicted_labels": [
+        "hate_speech"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_15950",
+      "text": "Ja tam chętnie przeczytałbym informację o samosądzie dokonanym na tym parchu.",
+      "x": -48.07938766479492,
+      "y": 53.272979736328125,
+      "z": -49.91555404663086,
+      "ground_truth_labels": [
+        "violence"
+      ],
+      "predicted_labels": [
+        "hate_speech",
+        "violence"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_867",
+      "text": ": >jesteś dumny z siebie, gdy oglądasz śmierć innych ludzi? Ruskich najeźdźców, a tym daleko do ludzi. Nikt by nie mu...",
+      "x": -57.835182189941406,
+      "y": 42.77370834350586,
+      "z": -39.37568283081055,
+      "ground_truth_labels": [
+        "hate_speech"
+      ],
+      "predicted_labels": [
+        "hate_speech",
+        "violence"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_3698",
+      "text": ": Ofiara ma gorzej niż gdyby zmarła. Był na randce, zaraz miał zaruchać a tu nagle jest warzywem do końca życia. A te...",
+      "x": -14.074966430664062,
+      "y": 59.90524673461914,
+      "z": -70.30013275146484,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "violence"
+      ],
+      "error_type": "false_positive",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_21909",
+      "text": "jeszcze dwa tygodnie, bolzgie śmiecie. mordy w dupy i nie bulgotać ( ͡° ͜ʖ ͡°)",
+      "x": -58.15700149536133,
+      "y": 69.2398910522461,
+      "z": -39.52216720581055,
+      "ground_truth_labels": [
+        "hate_speech"
+      ],
+      "predicted_labels": [
+        "hate_speech",
+        "violence"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_16292",
+      "text": "Jebane zwierzę, powinno się go po prostu oddać innym zwierzętom do zerżnięcia ¯\\\\_(ツ)\\_/¯ Tak na marginesie, żołnierz...",
+      "x": -65.6623306274414,
+      "y": 70.2428970336914,
+      "z": -1.972990870475769,
+      "ground_truth_labels": [
+        "hate_speech"
+      ],
+      "predicted_labels": [
+        "hate_speech",
+        "violence"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_1061",
+      "text": ": A wg mnie lepiej niech wypierdalayą. Mafia, niewolnictwo wzgledem swoich (jak fikasz to ci rodzine w wietkongu zaye...",
+      "x": -67.60401153564453,
+      "y": 63.60187911987305,
+      "z": 2.8816282749176025,
+      "ground_truth_labels": [
+        "hate_speech"
+      ],
+      "predicted_labels": [
+        "hate_speech",
+        "violence"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_7811",
+      "text": ": ja pier*ole, dajcie karabin.( ͡° ͜ʖ ͡°)",
+      "x": -40.563175201416016,
+      "y": 44.220706939697266,
+      "z": -40.94277572631836,
+      "ground_truth_labels": [
+        "violence"
+      ],
+      "predicted_labels": [
+        "hate_speech",
+        "violence"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_15764",
+      "text": "IGA jebać cię",
+      "x": -70.93743896484375,
+      "y": -5.020971298217773,
+      "z": 52.29920959472656,
+      "ground_truth_labels": [
+        "hate_speech"
+      ],
+      "predicted_labels": [
+        "hate_speech"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_304",
+      "text": "**DO [pseudonym]:** **Osoba na zdjęciach jest osobą publiczną. Jest to jutuber, śmieć i wesz ale sam pokazuje swoją p...",
+      "x": -74.3293685913086,
+      "y": 14.583748817443848,
+      "z": 40.44184112548828,
+      "ground_truth_labels": [
+        "vulgarity"
+      ],
+      "predicted_labels": [
+        "hate_speech"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_14932",
+      "text": "Czarnuch w mundurze (nie zesraj się [pseudonym]) miał okazję się wyżyć na białasce. Lata wbijania czarnym do głowy, z...",
+      "x": -51.84593200683594,
+      "y": 62.369869232177734,
+      "z": -27.842397689819336,
+      "ground_truth_labels": [
+        "hate_speech"
+      ],
+      "predicted_labels": [
+        "hate_speech",
+        "violence"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_2900",
+      "text": ": Morda w kubeł przegrywie i do gały",
+      "x": -48.70940017700195,
+      "y": 65.3331069946289,
+      "z": -62.973453521728516,
+      "ground_truth_labels": [
+        "vulgarity"
+      ],
+      "predicted_labels": [
+        "violence"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_7079",
+      "text": ": część maruda, co jeszcze ci przeszkadza?",
+      "x": -25.673547744750977,
+      "y": -74.79060363769531,
+      "z": -17.98798942565918,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "vulgarity"
+      ],
+      "error_type": "false_positive",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_10475",
+      "text": ": przykład wspaniałej inicjatywy która wyrosła na sprzeciwie wobec POwskiego kłamstwa smoleńskiego jest Marsz Niepodl...",
+      "x": 75.76667022705078,
+      "y": 22.437545776367188,
+      "z": 22.80552101135254,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_8318",
+      "text": ": już o nic xD W sensie wiedziałem że musi być coś nie tak typu jakiś artykuł nacechowany ideologicznie (co zresztą p...",
+      "x": 9.678811073303223,
+      "y": 1.0335931777954102,
+      "z": -4.427438735961914,
+      "ground_truth_labels": [
+        "hate_speech"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "false_negative",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_6114",
+      "text": ": a z czego chcecie opłacić 500+ dla upadlińców ? Właśnie zrzucacie się na te miliony banderowców, które najechały na...",
+      "x": 20.950414657592773,
+      "y": 49.966670989990234,
+      "z": -44.33823013305664,
+      "ground_truth_labels": [
+        "violence"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "false_negative",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_1608",
+      "text": ": Cześć ludzie. Chcę z kimś rozmawiać nieprzyzwoicie. Napisz do mnie tutaj - Mój profil tutaj",
+      "x": 46.747772216796875,
+      "y": -4.089763641357422,
+      "z": -3.3776073455810547,
+      "ground_truth_labels": [
+        "hate_speech"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "false_negative",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_15211",
+      "text": "Do powiedzenia mam dużo, ale nie dla zakolaka, nie dla psa kiełbasa",
+      "x": 18.800886154174805,
+      "y": 52.70486831665039,
+      "z": -42.585296630859375,
+      "ground_truth_labels": [
+        "vulgarity"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "false_negative",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_6583",
+      "text": ": boże jak ja tobą gardze co za kurwa jebany spermiarz XDDD Beka z ciebie pyta ale nie martw się stulejka jest uleczalna",
+      "x": -69.57783508300781,
+      "y": -33.8519287109375,
+      "z": 32.08089828491211,
+      "ground_truth_labels": [
+        "vulgarity"
+      ],
+      "predicted_labels": [
+        "hate_speech"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_20514",
+      "text": "Zrobią zbiórkę i zapłacą. ( ͡° ͜ʖ ͡°)",
+      "x": 58.886680603027344,
+      "y": 49.407379150390625,
+      "z": -0.3609696328639984,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_3357",
+      "text": ": Niemcy się tych baz niepozbędą, bo w gruncie rzeczy są cały czas pod okupacją amerykańska. Jak to było w memach: On...",
+      "x": 67.71343231201172,
+      "y": 42.9699592590332,
+      "z": 4.852337837219238,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_18159",
+      "text": "Paradoks 21 wieku pedały nie mogą się rozmnażać a jest ich coraz więcej #zwiazki",
+      "x": -62.33146667480469,
+      "y": 58.60853576660156,
+      "z": 0.18796126544475555,
+      "ground_truth_labels": [
+        "violence"
+      ],
+      "predicted_labels": [
+        "hate_speech"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_14028",
+      "text": "A ch#! mnie tam kawał się podoba ヽ( ͠°෴ °)ﾉ",
+      "x": 43.414405822753906,
+      "y": 39.66608428955078,
+      "z": 17.533615112304688,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_18109",
+      "text": "PIERDOLONY INTERNECIE NIENAWIDZE CIE",
+      "x": -70.9496078491211,
+      "y": 38.39278793334961,
+      "z": 58.97480773925781,
+      "ground_truth_labels": [
+        "hate_speech"
+      ],
+      "predicted_labels": [
+        "hate_speech"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_5988",
+      "text": ": a myślisz ośle że jakie mięso jest w normalnym döner kebabie?",
+      "x": 15.633750915527344,
+      "y": -40.20809555053711,
+      "z": -20.784988403320312,
+      "ground_truth_labels": [
+        "vulgarity"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "false_negative",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_2291",
+      "text": ": Jak tam te twoje \"brudasy\" z iraku? Znaleziono jakieś nowe truchło czy ptactwo rozdziobało.",
+      "x": -64.83621978759766,
+      "y": -17.648221969604492,
+      "z": -17.362634658813477,
+      "ground_truth_labels": [
+        "violence"
+      ],
+      "predicted_labels": [
+        "hate_speech"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_8866",
+      "text": ": mógł, jeśli pas był wolny. Pierwsze słyszę, że kierowca zmieniający pas ma pierwszeństwo nad pojazdem poruszającym ...",
+      "x": 74.00341796875,
+      "y": 23.11447525024414,
+      "z": 20.256113052368164,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_11417",
+      "text": ": tutaj jeden tam jeden, w mojej okolicy też kilku było. Nie każdy strażak jest podpalaczem ale większość podpalaczy ...",
+      "x": 71.2994613647461,
+      "y": 30.995943069458008,
+      "z": 9.472452163696289,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_1581",
+      "text": ": Cwel to twój stary, a w reklamówce mieliśmy prowiant :)",
+      "x": -18.195051193237305,
+      "y": -73.44832611083984,
+      "z": -20.404035568237305,
+      "ground_truth_labels": [
+        "hate_speech"
+      ],
+      "predicted_labels": [
+        "vulgarity"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_7917",
+      "text": ": jak masz problemy z czytaniem to faktycznie możesz mieć wrażenie, że o niczym nie informują xd wpisz sb w wyszukiwa...",
+      "x": -44.95371627807617,
+      "y": -72.39852142333984,
+      "z": -2.8163466453552246,
+      "ground_truth_labels": [
+        "vulgarity"
+      ],
+      "predicted_labels": [
+        "vulgarity"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_3154",
+      "text": ": Nie jesteś jedynym debilem na świecie.Przy takim myśleniu to ciebie kiedyś powieszą na gałęzi",
+      "x": -46.276554107666016,
+      "y": -64.13470458984375,
+      "z": -27.066978454589844,
+      "ground_truth_labels": [
+        "violence"
+      ],
+      "predicted_labels": [
+        "vulgarity"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_22957",
+      "text": "prą do katastrofy, by potem powiedzieć że to wina kryzysu energetycznego (do którego sami doprowadzili) źródło: pbs.t...",
+      "x": 68.73302459716797,
+      "y": 34.187896728515625,
+      "z": 13.422260284423828,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_12443",
+      "text": ": zmień prace, weż kredyt...",
+      "x": 64.7927017211914,
+      "y": 2.3373146057128906,
+      "z": 8.341079711914062,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_9941",
+      "text": ": oni robią cyrk raz na rok a pedały jakby mogły to codziennie by z golymi anusami po ulicach łazili",
+      "x": -56.2829704284668,
+      "y": 60.55610656738281,
+      "z": -35.899925231933594,
+      "ground_truth_labels": [
+        "hate_speech"
+      ],
+      "predicted_labels": [
+        "hate_speech",
+        "violence"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_3192",
+      "text": ": Nie napisałem, że nie ma w Polsce broni, tylko że jej posiadacze są osobnikami rzadkimi. 100k+ - weźmy nawet 200k, ...",
+      "x": 73.12364959716797,
+      "y": 20.978544235229492,
+      "z": 18.15458869934082,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_1026",
+      "text": ": A teraz będzie cię ruchał, jebał i na tobie zarabiał",
+      "x": -76.0155258178711,
+      "y": 7.559247016906738,
+      "z": 5.536892890930176,
+      "ground_truth_labels": [
+        "hate_speech"
+      ],
+      "predicted_labels": [
+        "hate_speech"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_23257",
+      "text": "teraz kundle milczą bo wiedzą że [surname] rozdepcze ich jak gówno",
+      "x": -46.696510314941406,
+      "y": 65.44324493408203,
+      "z": -66.1679458618164,
+      "ground_truth_labels": [
+        "hate_speech"
+      ],
+      "predicted_labels": [
+        "violence"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_15685",
+      "text": "I dobrze. Powinni jeszcze spałować tych dewiantów",
+      "x": -51.133453369140625,
+      "y": 63.73793029785156,
+      "z": -49.72121047973633,
+      "ground_truth_labels": [
+        "violence"
+      ],
+      "predicted_labels": [
+        "violence"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_6047",
+      "text": ": a tam pałować, od razu przerobić na kompost",
+      "x": -15.478754043579102,
+      "y": 62.93019485473633,
+      "z": -71.7892837524414,
+      "ground_truth_labels": [
+        "hate_speech"
+      ],
+      "predicted_labels": [
+        "violence"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_12751",
+      "text": "> Czemu bronisz patologii? Pewnie jesteś taką samą patologią jak ci policjanci lubiący sobie ponap%%$%@%ać **ludzi**w...",
+      "x": -4.146595001220703,
+      "y": -14.838102340698242,
+      "z": -1.9187499284744263,
+      "ground_truth_labels": [
+        "vulgarity"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "false_negative",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_16220",
+      "text": "Japierdole, takich zjebów to pomimo wszystko powinni wjebać na dożywocie, robactwo które tylko krzywdzi zwykłych ludz...",
+      "x": -60.1634407043457,
+      "y": 67.21981811523438,
+      "z": -9.686279296875,
+      "ground_truth_labels": [
+        "hate_speech"
+      ],
+      "predicted_labels": [
+        "hate_speech",
+        "violence"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_7747",
+      "text": ": inspiracja? Cwelu tu są smocze kule, typowy pomarańczowy kolor,jedynie delikatnie zmienił linie w logo. perfidna kr...",
+      "x": -71.94471740722656,
+      "y": -21.120929718017578,
+      "z": 21.298412322998047,
+      "ground_truth_labels": [
+        "vulgarity"
+      ],
+      "predicted_labels": [
+        "hate_speech"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_12003",
+      "text": ": wtedy minister zero by wyszedł i #!$%@?ł cos o zaostrzeniu kar i innych gównach żeby plebs to łykał",
+      "x": 72.30813598632812,
+      "y": 23.304655075073242,
+      "z": 25.000322341918945,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_8399",
+      "text": ": kolejne kacapskie zwierze na czarno",
+      "x": -58.53206253051758,
+      "y": 40.49201583862305,
+      "z": -40.57599639892578,
+      "ground_truth_labels": [
+        "hate_speech"
+      ],
+      "predicted_labels": [
+        "hate_speech",
+        "violence"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_12879",
+      "text": "> Nic nie ma złego w fladze : Oczywiście, że nic nie ma o ile za nią nie stoi pogarda i nie jest sztandarem pedałów. ...",
+      "x": -36.68777084350586,
+      "y": 37.87825393676758,
+      "z": -36.50277328491211,
+      "ground_truth_labels": [
+        "hate_speech"
+      ],
+      "predicted_labels": [
+        "hate_speech",
+        "violence"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_23042",
+      "text": "skończył ci się związek i próbowałeś się zabić jeszcze po roku nie doszedłeś do siebie ponieważ zniszczyła cię kobiet...",
+      "x": -73.00447082519531,
+      "y": -22.509279251098633,
+      "z": 16.751388549804688,
+      "ground_truth_labels": [
+        "violence"
+      ],
+      "predicted_labels": [
+        "hate_speech"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_4644",
+      "text": ": Tak, ważne że był pod wpływem, bo zdechło gówno, a sądzili jak za człowieka. I nie przyszło ci na myśl, że jakby ni...",
+      "x": 1.824337124824524,
+      "y": 53.95751190185547,
+      "z": -69.07080841064453,
+      "ground_truth_labels": [
+        "hate_speech"
+      ],
+      "predicted_labels": [
+        "violence"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_2679",
+      "text": ": Kurka wodna, nie wiem.",
+      "x": 39.36491775512695,
+      "y": 19.688289642333984,
+      "z": 12.013811111450195,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_13675",
+      "text": ">W Przewodów walnęła ukraińska rakieta, która miała symulować rosyjski atak na państwo NATO : Ale to była rakieta sys...",
+      "x": 69.34388732910156,
+      "y": 30.075382232666016,
+      "z": 10.799492835998535,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_14953",
+      "text": "Czekam aż wujek [surname] w nich wjedzie i trupy będą się spały gęsto. Bezrobotne czarnuchy i lewactwo powinno trafić...",
+      "x": -52.92900466918945,
+      "y": 72.46363067626953,
+      "z": -45.05909729003906,
+      "ground_truth_labels": [
+        "violence"
+      ],
+      "predicted_labels": [
+        "hate_speech",
+        "violence"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_10237",
+      "text": ": polski smieciu fantazja cie ponosi",
+      "x": -54.122989654541016,
+      "y": -63.0782356262207,
+      "z": 0.40293583273887634,
+      "ground_truth_labels": [
+        "hate_speech"
+      ],
+      "predicted_labels": [
+        "vulgarity"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_22148",
+      "text": "ma zakola i zachowuje się jak pizda, to prędzej jakiś neuropek. Postawa tej Pani bardzo ładna. Miejmy nadzieję, że go...",
+      "x": -70.21572875976562,
+      "y": 38.503990173339844,
+      "z": -9.089430809020996,
+      "ground_truth_labels": [
+        "violence"
+      ],
+      "predicted_labels": [
+        "hate_speech"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_21805",
+      "text": "jebana maFIA już próbuje przekręcić Maxa, ha tfu #f1",
+      "x": -61.81730270385742,
+      "y": 63.92949295043945,
+      "z": 77.97107696533203,
+      "ground_truth_labels": [
+        "hate_speech"
+      ],
+      "predicted_labels": [
+        "hate_speech"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_15774",
+      "text": "Idiotów nie sieją",
+      "x": 10.29062271118164,
+      "y": 60.060646057128906,
+      "z": -36.411888122558594,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_21291",
+      "text": "czarnoskórzy to gorsza rasa i zawsze będzie gorszą rasą względem białych ludzi. Nie wybieraj tych motywów, bo czarnos...",
+      "x": 5.652944087982178,
+      "y": 59.346900939941406,
+      "z": -56.53778839111328,
+      "ground_truth_labels": [
+        "hate_speech"
+      ],
+      "predicted_labels": [
+        "violence"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_23000",
+      "text": "rozstrzelać",
+      "x": -39.7863655090332,
+      "y": 60.959007263183594,
+      "z": -50.799861907958984,
+      "ground_truth_labels": [
+        "hate_speech"
+      ],
+      "predicted_labels": [
+        "violence"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_20333",
+      "text": "Zaje@# bym gnoja na miejscu. Dzieciarnię która to nagrywała i niereagowala, relegacja ze szkoły w trybie natychmiasto...",
+      "x": -3.141777753829956,
+      "y": 64.91377258300781,
+      "z": -29.618253707885742,
+      "ground_truth_labels": [
+        "violence"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "false_negative",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_10988",
+      "text": ": tak,dokładnie dlatego mam zablokowany tag \"ukraina\" i \"rosja\", debilu. \"nie chcesz obcinać piersi nastolatkom, pewn...",
+      "x": -42.498260498046875,
+      "y": -72.08177185058594,
+      "z": -10.722009658813477,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "vulgarity"
+      ],
+      "error_type": "false_positive",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_18780",
+      "text": "Rozpierdoli się ten świat przez tą spierdoline lewacka mówię wam",
+      "x": -73.09925079345703,
+      "y": 52.5330924987793,
+      "z": 32.02878952026367,
+      "ground_truth_labels": [
+        "violence"
+      ],
+      "predicted_labels": [
+        "hate_speech"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_11894",
+      "text": ": wiesz co jebany pasozycie społeczny wypierdalaj z tego kraju skoro wysnówasz wnioski z dupy i oskarżasz kogoś bezpo...",
+      "x": -69.77586364746094,
+      "y": -31.732664108276367,
+      "z": 24.193805694580078,
+      "ground_truth_labels": [
+        "vulgarity"
+      ],
+      "predicted_labels": [
+        "hate_speech"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_23480",
+      "text": "usuń to konfidencie jebany",
+      "x": -71.47307586669922,
+      "y": 0.780173122882843,
+      "z": 53.857765197753906,
+      "ground_truth_labels": [
+        "vulgarity"
+      ],
+      "predicted_labels": [
+        "hate_speech"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_20095",
+      "text": "Wy polscy idioci, wy jebani debile bo innych slow nie potrafie znalezc, wy pierdolone ameby umysłowe, jebią was bez z...",
+      "x": -71.4655990600586,
+      "y": 53.23064041137695,
+      "z": 46.00906753540039,
+      "ground_truth_labels": [
+        "vulgarity"
+      ],
+      "predicted_labels": [
+        "hate_speech"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_12479",
+      "text": ": zwykle jaraja sie tym ludzie, ktorych ojcowie czy dziadkowie stworzyli obozy koncetracyjne i doprowadzili do dwoch ...",
+      "x": 72.11299896240234,
+      "y": 32.4101676940918,
+      "z": 11.275485038757324,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_23518",
+      "text": "w dyskusji postawiłeś jakieś twierdzenie , po czym ktoś zapytał cie o źródło, ponieważ w to nie wierzy. zamiast je po...",
+      "x": 71.56087493896484,
+      "y": 4.852100849151611,
+      "z": 15.330499649047852,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_10557",
+      "text": ": ruski pomiocie, zdążyliście sobie na to zasłużyć od kilkuset lat ( ͡° ͜ʖ ͡°)",
+      "x": -47.352294921875,
+      "y": -62.735084533691406,
+      "z": -14.156805038452148,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "vulgarity"
+      ],
+      "error_type": "false_positive",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_22553",
+      "text": "no to wypierdalaj oglądać zwierzęta lamusie",
+      "x": -68.89788818359375,
+      "y": -33.08413314819336,
+      "z": 25.15315055847168,
+      "ground_truth_labels": [
+        "vulgarity"
+      ],
+      "predicted_labels": [
+        "hate_speech"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_17000",
+      "text": "Mam nadzieje ze młodzież bandycka będzie wymierzać sprawiedliwość bydlakowi ze szkolnej do końca jego zasranych dni. ...",
+      "x": -61.83083724975586,
+      "y": 62.2280387878418,
+      "z": -32.28070831298828,
+      "ground_truth_labels": [
+        "violence"
+      ],
+      "predicted_labels": [
+        "hate_speech",
+        "violence"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_7927",
+      "text": ": jak na razie to twoje wykopowe wysrywy są świetnym przykładem choroby psychicznej. siedzisz tu cały dzień i postuje...",
+      "x": 32.580753326416016,
+      "y": -47.45551681518555,
+      "z": -10.057607650756836,
+      "ground_truth_labels": [
+        "vulgarity"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "false_negative",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_20683",
+      "text": "[surname] napisał NIGDY, i chuj. Proszę się odpierdolić ( ͡° ͜ʖ ͡°) #tvpis",
+      "x": -70.42131805419922,
+      "y": 55.74599075317383,
+      "z": 61.09756088256836,
+      "ground_truth_labels": [
+        "hate_speech"
+      ],
+      "predicted_labels": [
+        "hate_speech"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_20907",
+      "text": "a to konsument ma wyrażać zgodę, a podniesienie ceny przez np. producenta lub sklep? XD : Widzisz, w teorii nawet kom...",
+      "x": 76.4924545288086,
+      "y": 19.325908660888672,
+      "z": 23.611032485961914,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_928",
+      "text": ": A fagoty juz minusuja. ( ͡° ͜ʖ ͡°)",
+      "x": 75.09700012207031,
+      "y": 23.385793685913086,
+      "z": 26.766794204711914,
+      "ground_truth_labels": [
+        "violence"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "false_negative",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_17956",
+      "text": "Od kiedy Spółki skarbu państwa dbają o dobro obywateli?",
+      "x": 74.66291809082031,
+      "y": 21.946008682250977,
+      "z": 25.42300796508789,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_8674",
+      "text": ": masz rację, hołota nie chce, co innego zwykli ciężko pracujący Polacy.",
+      "x": 55.668575286865234,
+      "y": 42.18799591064453,
+      "z": -10.384411811828613,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_4615",
+      "text": ": Tak, a potem przeciał ci matkę, równocześnie krzycząc na ciebie żebyś prosto trzymał kamere",
+      "x": -27.00971794128418,
+      "y": 4.324668884277344,
+      "z": -63.131248474121094,
+      "ground_truth_labels": [
+        "vulgarity"
+      ],
+      "predicted_labels": [
+        "violence"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_22941",
+      "text": "przez większość świata dzieci wychowywały kobiety faceci ginęli w wojnach krótko żyli, to nie takie prosto",
+      "x": 61.19688415527344,
+      "y": 38.69906997680664,
+      "z": 0.08289483934640884,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_9979",
+      "text": ": otóż tak samo jak zielone ludziki które nie miały flag na mundurach a latały ruskimi samolotami, i [surname] mówił,...",
+      "x": 69.05790710449219,
+      "y": 26.23756217956543,
+      "z": 16.77031707763672,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_14322",
+      "text": "Ale może właśnie o to chodzi, koncerny paliwowe płacące takim protestującym durniom, którzy bardzo szybko zrażą wszys...",
+      "x": 22.513967514038086,
+      "y": 54.19911575317383,
+      "z": -29.007978439331055,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_21760",
+      "text": "jaki % pozostał by ruskie śmiecie użyły grzyba atomowego? #ukraina",
+      "x": -58.281494140625,
+      "y": 67.390625,
+      "z": -37.42971420288086,
+      "ground_truth_labels": [
+        "hate_speech"
+      ],
+      "predicted_labels": [
+        "hate_speech",
+        "violence"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_996",
+      "text": ": A niech się idzie jebać z tym rudym gejem",
+      "x": -77.22345733642578,
+      "y": 30.21529769897461,
+      "z": 36.382022857666016,
+      "ground_truth_labels": [
+        "hate_speech"
+      ],
+      "predicted_labels": [
+        "hate_speech"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_18024",
+      "text": "Określenie \"Transpłciowa\" wydaje mi się negatywnie nacechowywać bo wszyscy jesteśmy równi :) Ktoś wygrał i stanął na ...",
+      "x": 64.75965881347656,
+      "y": 27.776378631591797,
+      "z": 8.878008842468262,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_8243",
+      "text": ": jesteś shitposterem?",
+      "x": 2.1920933723449707,
+      "y": -52.593814849853516,
+      "z": -19.156600952148438,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "vulgarity"
+      ],
+      "error_type": "false_positive",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_18187",
+      "text": "Pedalarski rak na pełnej...",
+      "x": -45.50074768066406,
+      "y": 45.799888610839844,
+      "z": -35.95071029663086,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "hate_speech",
+        "violence"
+      ],
+      "error_type": "false_positive",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_17274",
+      "text": "Na jakiej podstawie Pantone ma prawa do jakichś kolorów? : na takiej samej jak mc donalds ma prawo do nazwy big mac i...",
+      "x": 76.21763610839844,
+      "y": 18.748653411865234,
+      "z": 26.45455551147461,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_17602",
+      "text": "Niech im pedalow wysla i transsss buehhehehe",
+      "x": -62.677734375,
+      "y": 73.47608184814453,
+      "z": -4.541653633117676,
+      "ground_truth_labels": [
+        "violence"
+      ],
+      "predicted_labels": [
+        "hate_speech",
+        "violence"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_21691",
+      "text": "jak #kuriercwel nie przyjedzie w ciągu 5 minut to bede zły #kurier",
+      "x": -64.87108612060547,
+      "y": 62.8173828125,
+      "z": 63.78093719482422,
+      "ground_truth_labels": [
+        "hate_speech"
+      ],
+      "predicted_labels": [
+        "hate_speech"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_19344",
+      "text": "Teraz jeszcze tylko nakaz robienia świateł na przejściach przez >3 pasy ruchu, potem bezwzględne więzienie dla każdeg...",
+      "x": 55.80356216430664,
+      "y": 44.42866134643555,
+      "z": -10.877574920654297,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_4083",
+      "text": ": Prawo niby zabrania dyskryminacji, ale jakoś zakup ziemi rolnej jest sztucznie ograniczony i nikt nam nie pogroził,...",
+      "x": 76.81946563720703,
+      "y": 19.310922622680664,
+      "z": 26.97121238708496,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_4068",
+      "text": ": Pośmiać się z idiotów?",
+      "x": -52.211524963378906,
+      "y": -19.30299186706543,
+      "z": -14.145485877990723,
+      "ground_truth_labels": [
+        "hate_speech"
+      ],
+      "predicted_labels": [
+        "hate_speech",
+        "vulgarity"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_19834",
+      "text": "W praktyce dotyczyć to będzie działalności strzelnic. Bo broń głownie nosi się na strzelnice i z powrotem. Myśliwi co...",
+      "x": 53.45716857910156,
+      "y": 53.84442138671875,
+      "z": -21.557649612426758,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_19678",
+      "text": "Tęczowe małpy z brzytwą które dorwały się do [pseudonym] na vikop.ru zaraz zablokują.",
+      "x": -58.00931930541992,
+      "y": 67.59906768798828,
+      "z": -25.48478126525879,
+      "ground_truth_labels": [
+        "violence"
+      ],
+      "predicted_labels": [
+        "hate_speech",
+        "violence"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_23443",
+      "text": "tymbardziej, że [surname] to pisowiec, tylko się wyłamuje bo jest tam jakaś gra interesów. Jak trzeba to zrobi szum, ...",
+      "x": 74.99760437011719,
+      "y": 22.427701950073242,
+      "z": 27.267065048217773,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_18161",
+      "text": "Parch piedrolony...",
+      "x": -63.80232620239258,
+      "y": 69.88098907470703,
+      "z": 44.4085693359375,
+      "ground_truth_labels": [
+        "violence"
+      ],
+      "predicted_labels": [
+        "hate_speech"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_9582",
+      "text": ": no tak marszałek [surname] też nie został skazany więc wg 60000 takich jak ty super było na niego oddać głos , to n...",
+      "x": -49.65449523925781,
+      "y": -63.74047088623047,
+      "z": -8.855432510375977,
+      "ground_truth_labels": [
+        "vulgarity"
+      ],
+      "predicted_labels": [
+        "vulgarity"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_15843",
+      "text": "JE8AĆ taki \"nie\"-rząd który nie potrafi przeprowadzić restrukturyzacji górnictwa !!! JE8AĆ pis !!!",
+      "x": -35.371070861816406,
+      "y": 68.36540985107422,
+      "z": 13.374089241027832,
+      "ground_truth_labels": [
+        "hate_speech"
+      ],
+      "predicted_labels": [
+        "hate_speech"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_13111",
+      "text": "> ikt ci nie broni wejść do tej windy czy iść na ten przystanek i z niego skorzystać. A miejsce postojowe będzie zaję...",
+      "x": -45.68113708496094,
+      "y": -69.9604263305664,
+      "z": -14.118228912353516,
+      "ground_truth_labels": [
+        "vulgarity"
+      ],
+      "predicted_labels": [
+        "vulgarity"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_9483",
+      "text": ": no i ? XD ma wypierdalać bo wykopek się zesrał ?",
+      "x": -74.01907348632812,
+      "y": 35.25188446044922,
+      "z": 38.77116394042969,
+      "ground_truth_labels": [
+        "vulgarity"
+      ],
+      "predicted_labels": [
+        "hate_speech"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_22752",
+      "text": "pierdolone zwierze, jak spora część o tym kolorze skó...",
+      "x": -69.13361358642578,
+      "y": 65.489501953125,
+      "z": 35.56527328491211,
+      "ground_truth_labels": [
+        "violence"
+      ],
+      "predicted_labels": [
+        "hate_speech"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_13389",
+      "text": ">Czlowiek grubo zamieszany w korupcję : rozumiem, że mówisz o naszym parlamencie?",
+      "x": 50.09322738647461,
+      "y": 2.572118043899536,
+      "z": 3.328521251678467,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_7256",
+      "text": ": dobrze ale dla ciebie śmieciu",
+      "x": -52.767276763916016,
+      "y": -65.9893569946289,
+      "z": 0.6875899434089661,
+      "ground_truth_labels": [
+        "vulgarity"
+      ],
+      "predicted_labels": [
+        "vulgarity"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_1093",
+      "text": ": Acta2 i RODO skuhwysynu",
+      "x": -47.18326187133789,
+      "y": -67.86023712158203,
+      "z": 3.9350991249084473,
+      "ground_truth_labels": [
+        "vulgarity"
+      ],
+      "predicted_labels": [
+        "vulgarity"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_6289",
+      "text": ": ale po co ci te żale? film obejrzy sobie ten kto będzie zainteresowany, jeśli go zaciekawi będzie drążył dalej.",
+      "x": 74.06520080566406,
+      "y": 14.57528305053711,
+      "z": 19.077289581298828,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_16588",
+      "text": "Karyńsko dodało mnie na czarno bardzo dziękuję cieszę się że takie coś ma mnie na czarno bo byłby wstyd gdyby miał mn...",
+      "x": -70.36582946777344,
+      "y": 52.23190689086914,
+      "z": 49.53400802612305,
+      "ground_truth_labels": [
+        "vulgarity"
+      ],
+      "predicted_labels": [
+        "hate_speech"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_9398",
+      "text": ": niestety nie mamy takich zabaweczek więc policjant musiał inaczej wyrwać chwasta",
+      "x": -7.312078475952148,
+      "y": 52.8154296875,
+      "z": -69.0672378540039,
+      "ground_truth_labels": [
+        "violence"
+      ],
+      "predicted_labels": [
+        "violence"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_804",
+      "text": ": > co te ciarupy będą robić? Dojeżdżać twoją starą ( ͡° ͜ʖ ͡°)",
+      "x": -54.54133224487305,
+      "y": -47.953773498535156,
+      "z": -23.632728576660156,
+      "ground_truth_labels": [
+        "vulgarity"
+      ],
+      "predicted_labels": [
+        "vulgarity"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_21625",
+      "text": "ile za godzine? powtarzam pytsnie bo usunrlas ostatnio",
+      "x": 62.66476821899414,
+      "y": 9.708112716674805,
+      "z": 12.989580154418945,
+      "ground_truth_labels": [
+        "violence"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "false_negative",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_3942",
+      "text": ": Po reakcji na twój komętarz widzę że wykop opanowany przez wyznawców pisorów.",
+      "x": 61.10752868652344,
+      "y": -18.052762985229492,
+      "z": 10.191841125488281,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_14998",
+      "text": "Czy Belgia i Kanada są krajami afrykańskimi? Dlaczego w ich zespołach biegają czarne małpy? #mecz",
+      "x": -57.24452590942383,
+      "y": 69.60855865478516,
+      "z": -16.974323272705078,
+      "ground_truth_labels": [
+        "violence"
+      ],
+      "predicted_labels": [
+        "hate_speech",
+        "violence"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_18222",
+      "text": "PiS - PO jedno zło : symetrysta się znalazł, to kogo proponujesz w zamian? Niech zgadnę katotaliban i nazioli z konfe...",
+      "x": -9.235441207885742,
+      "y": 65.35822296142578,
+      "z": -60.79825973510742,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "violence"
+      ],
+      "error_type": "false_positive",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_3528",
+      "text": ": No to jeszcze ściany od środka ociepl.",
+      "x": 68.7523422241211,
+      "y": 27.107681274414062,
+      "z": 11.443821907043457,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_18408",
+      "text": "Polki zaplanowały mieć dzieci akurat po wprowadzeniu 500+. Przesunęły decyzję o posiadaniu dziecka akurat na ten czas...",
+      "x": 76.85292053222656,
+      "y": 23.085493087768555,
+      "z": 27.203174591064453,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_6953",
+      "text": ": cywilizacja nie jest potrzebna do szczęścia tylko czy ktoś by chciał z obecnej perspektywy ją zostawić dla seksu i ...",
+      "x": 65.50468444824219,
+      "y": 37.911624908447266,
+      "z": 1.3954529762268066,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_16528",
+      "text": "Jutro kończe 23 lata, rodzice do pracy, będę sam w domu. Idealny dzień na samobója, urodzić się i umrzeć tego samego ...",
+      "x": -32.443946838378906,
+      "y": 49.57306671142578,
+      "z": -44.557777404785156,
+      "ground_truth_labels": [
+        "violence"
+      ],
+      "predicted_labels": [
+        "hate_speech",
+        "violence"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_5287",
+      "text": ": Weź wypierdalaj być debilem gdzie indziej, ok?",
+      "x": -63.61572265625,
+      "y": -47.19910430908203,
+      "z": 16.665180206298828,
+      "ground_truth_labels": [
+        "vulgarity"
+      ],
+      "predicted_labels": [
+        "vulgarity"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_14493",
+      "text": "Beda ruchac w dupsko smiecia, dobrze mu tak",
+      "x": -60.59090805053711,
+      "y": 62.18247604370117,
+      "z": -31.614154815673828,
+      "ground_truth_labels": [
+        "hate_speech"
+      ],
+      "predicted_labels": [
+        "hate_speech",
+        "violence"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_6156",
+      "text": ": akurat na 2 maja to ludzie biorą urlopy, też mogłeś wziąć a nie masz pretensje do przedszkolanek.",
+      "x": 73.72943115234375,
+      "y": 11.303618431091309,
+      "z": 19.46985626220703,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_10295",
+      "text": ": powinien ten cały zdziczały motłoch tam ostrzelać na opamiętanie. Banda pojebów.",
+      "x": -65.00688171386719,
+      "y": 57.813045501708984,
+      "z": -25.717132568359375,
+      "ground_truth_labels": [
+        "hate_speech"
+      ],
+      "predicted_labels": [
+        "hate_speech",
+        "violence"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_12249",
+      "text": ": zab** k*wa tych ludzi",
+      "x": -44.74919128417969,
+      "y": 44.17361068725586,
+      "z": -0.7823238968849182,
+      "ground_truth_labels": [
+        "hate_speech"
+      ],
+      "predicted_labels": [
+        "hate_speech"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_12854",
+      "text": "> Może Iran, Uganda czy Rosja mają wolne miejsca? : Uuuu pięknie, co masz do innych krajów, segregujesz je tak samo j...",
+      "x": 19.81614112854004,
+      "y": -47.33772659301758,
+      "z": -18.6680908203125,
+      "ground_truth_labels": [
+        "vulgarity"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "false_negative",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_9648",
+      "text": ": no własnie czemu? Czemu rząd RP reprezentuje interesy Ukraińców a Polaków traktuje jak obywateli 2 kategorii. Wg mn...",
+      "x": 69.81352233886719,
+      "y": 20.643043518066406,
+      "z": 16.44636344909668,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_13401",
+      "text": ">Dlaczego? : pewnie idiota mysli ze z prawej nie mozna wyprzedzac xD",
+      "x": -36.2054328918457,
+      "y": -66.62007904052734,
+      "z": -8.908608436584473,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "vulgarity"
+      ],
+      "error_type": "false_positive",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_6905",
+      "text": ": co ty synek pierdolisz XD do meczu dodajesz religie i polityke. No człowiek gowno xD #mecz",
+      "x": -65.43180847167969,
+      "y": -44.9564323425293,
+      "z": 17.79695701599121,
+      "ground_truth_labels": [
+        "vulgarity"
+      ],
+      "predicted_labels": [
+        "hate_speech",
+        "vulgarity"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_1678",
+      "text": ": Człowiek to tylko trochę mięsa ulepionego przez dwie góry mięsa. Pojedź na warszawską Pragę Północ albo Grochów to ...",
+      "x": 75.30517578125,
+      "y": 27.876968383789062,
+      "z": 15.919358253479004,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_6229",
+      "text": ": ale im się nie spieszy, tylko jego booooli że ktoś przed nim jedzie a to on musi być z przodu",
+      "x": 70.15238952636719,
+      "y": 24.759504318237305,
+      "z": 15.922563552856445,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_16948",
+      "text": "Liczę na jakiegoś naprutego Ukraińca w ciężarówce.",
+      "x": 23.291004180908203,
+      "y": 58.52384948730469,
+      "z": -49.383399963378906,
+      "ground_truth_labels": [
+        "violence"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "false_negative",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_6218",
+      "text": ": ale czytales artykul? najprawdopodobniej kupili domy jako \"domy na zboczu\". w mojej okolicy jest mnóstwo takich pos...",
+      "x": 75.89786529541016,
+      "y": 17.01157569885254,
+      "z": 25.36492156982422,
+      "ground_truth_labels": [
+        "violence"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "false_negative",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_18435",
+      "text": "Poprawne spier@%$@dolenie... > Znana celebrytka [surname] została... **Znany z patologicznych zachowań dewiant, przeb...",
+      "x": 50.784759521484375,
+      "y": 27.75188446044922,
+      "z": 13.334094047546387,
+      "ground_truth_labels": [
+        "hate_speech"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "false_negative",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_9410",
+      "text": ": niezle niedojebany jestes :D",
+      "x": -59.98896408081055,
+      "y": -54.71900939941406,
+      "z": 19.0368709564209,
+      "ground_truth_labels": [
+        "hate_speech"
+      ],
+      "predicted_labels": [
+        "vulgarity"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_3327",
+      "text": ": Nie. Gówna nie jadam, tylko sprzątam.",
+      "x": -46.77759552001953,
+      "y": 1.858407735824585,
+      "z": -35.69498062133789,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "hate_speech"
+      ],
+      "error_type": "false_positive",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_1201",
+      "text": ": Ale to ty masz problem po covidzie a nie ja XD więc wycierać to sobie możesz gila jak ci się na uchu zawinie wątły ...",
+      "x": -14.012518882751465,
+      "y": -52.57823181152344,
+      "z": -36.543663024902344,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "vulgarity"
+      ],
+      "error_type": "false_positive",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_18365",
+      "text": "Podsumujmy: Cwel [address] Czechowice-Dziedzice, Paweł [surname] [address] Sokołów Podlaski, Cwel Michau kopalnia w Ż...",
+      "x": -53.086181640625,
+      "y": 60.11360549926758,
+      "z": 12.58691120147705,
+      "ground_truth_labels": [
+        "vulgarity"
+      ],
+      "predicted_labels": [
+        "hate_speech"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_9387",
+      "text": ": niepełnosprawny psychicznie człowiek dorwał sie internetu i nagrywa takie filmiki",
+      "x": 44.35527801513672,
+      "y": 18.504959106445312,
+      "z": -14.617568969726562,
+      "ground_truth_labels": [
+        "vulgarity"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "false_negative",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_12866",
+      "text": "> Na głupotę nie ma lekarstwa Jest lekarstwo. Mierzy się je w mm. Taki AK-47 ma lekarstwo w rozmiarze 7,62 mm.",
+      "x": 59.34111404418945,
+      "y": 48.3311767578125,
+      "z": -10.258560180664062,
+      "ground_truth_labels": [
+        "violence"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "false_negative",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_18714",
+      "text": "Pytania z ciekawości. Czy gdyby Jan Paweł II zmarł w środku nocy, np. o 2:20, to ludzie wstawaliby w środku nocy tylk...",
+      "x": -46.341087341308594,
+      "y": 51.368629455566406,
+      "z": -13.597357749938965,
+      "ground_truth_labels": [
+        "hate_speech"
+      ],
+      "predicted_labels": [
+        "hate_speech",
+        "violence"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_9549",
+      "text": ": no nie wiem, tam jest sporo huraganów ¯\\_(ツ)_/¯",
+      "x": 66.88977813720703,
+      "y": 29.309511184692383,
+      "z": 13.04216480255127,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_10590",
+      "text": ": sam sie zaorales debilu, az sam się zastanawiam czy konta nie usunac, przez takie zera intelektualne jak ty",
+      "x": -36.53017044067383,
+      "y": -78.26087188720703,
+      "z": -4.960434913635254,
+      "ground_truth_labels": [
+        "vulgarity"
+      ],
+      "predicted_labels": [
+        "vulgarity"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_6503",
+      "text": ": bo Ukriancy nie chcą już ginąć za swój kraj",
+      "x": 4.085279941558838,
+      "y": 61.06071853637695,
+      "z": -60.37246322631836,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "violence"
+      ],
+      "error_type": "false_positive",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_14402",
+      "text": "Alkohol to straszne gUwno, które prowadzi do spustoszenia w społeczeństwie. Choroby, przedwczesne zgony, wypadki, pob...",
+      "x": 38.132232666015625,
+      "y": 55.137611389160156,
+      "z": -34.64790725708008,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_13666",
+      "text": ">Uczciwy jak Polak? : Polacy to złodzieje",
+      "x": -2.8354718685150146,
+      "y": 18.91018295288086,
+      "z": -34.59561538696289,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_22520",
+      "text": "no info jak na screenie z portalu trakt.tv. Wiem, że dostał 2 sezon, ale zakładam, że nie jest to niezmienna decyzja ...",
+      "x": -74.4481201171875,
+      "y": 13.149924278259277,
+      "z": 54.750404357910156,
+      "ground_truth_labels": [
+        "vulgarity"
+      ],
+      "predicted_labels": [
+        "hate_speech"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_18693",
+      "text": "Przypominam katodebilom, że Kościół płaci nie dlatego, że jest jakaś odpowiedzialność zbiorowa szefa za to co prywatn...",
+      "x": -30.96926498413086,
+      "y": 43.640602111816406,
+      "z": -45.68446350097656,
+      "ground_truth_labels": [
+        "hate_speech"
+      ],
+      "predicted_labels": [
+        "hate_speech",
+        "violence"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_10121",
+      "text": ": plusujac konkretny wpis zgadzam się na wołanie od tej jednej osoby, chcesz zrobić coś dobrego to zrób dobre znalezi...",
+      "x": -42.65385818481445,
+      "y": -71.83140563964844,
+      "z": -9.725406646728516,
+      "ground_truth_labels": [
+        "vulgarity"
+      ],
+      "predicted_labels": [
+        "vulgarity"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_23523",
+      "text": "w izraelu ludzie sa bardzo dobrze wyedukowani, zamozni, a maja sporo dzieci (ponad 3 na kobiete) : owszem, ale powodó...",
+      "x": 67.66166687011719,
+      "y": 34.46550369262695,
+      "z": 9.707388877868652,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_3307",
+      "text": ": Nie zwracają się do mnie jak go swojej mamy. Przecież nawet durczok przyznał się do wypadku. Boomer nie kompromituj...",
+      "x": 42.152103424072266,
+      "y": 6.826619625091553,
+      "z": -11.814841270446777,
+      "ground_truth_labels": [
+        "vulgarity"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "false_negative",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_19388",
+      "text": "To co opowiada [surname] jest jednocześnie dość sensowne i bezczelnie oderwane od rzeczywistości, dzięki temu w ideal...",
+      "x": 61.7172966003418,
+      "y": 20.97215461730957,
+      "z": 13.999650001525879,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_8012",
+      "text": ": jaki agresywny anon xD, spokojnie kolego jeszcze polecisz przez komin",
+      "x": 45.69668960571289,
+      "y": -11.137223243713379,
+      "z": -13.28464126586914,
+      "ground_truth_labels": [
+        "violence"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "false_negative",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_17537",
+      "text": "Nie rozumiem co tu zaszło. Dlaczego nikt tej dziewczynie nie przywalił w szczękę a następnie nie wezwał policji?",
+      "x": -18.445728302001953,
+      "y": 59.835636138916016,
+      "z": -68.3359375,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "violence"
+      ],
+      "error_type": "false_positive",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_22205",
+      "text": "mnie bardziej wk!$$ia jak właściciel psa ma na jego szkolenie wyj!#@ne, a micha i posłanie to wszystko czego pies ma ...",
+      "x": 68.07196044921875,
+      "y": 29.65611457824707,
+      "z": 25.1696834564209,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_20553",
+      "text": "[pseudonym] TY KURWO JEBANA ODDAWAJ PIENIEDZE !!!!!!!!!!!!!!! CZARNY EKRAN KURWA WYLOGOWALO MNIE I NIE MA HASLA NA SK...",
+      "x": -64.64006042480469,
+      "y": 53.774009704589844,
+      "z": 76.36146545410156,
+      "ground_truth_labels": [
+        "hate_speech"
+      ],
+      "predicted_labels": [
+        "hate_speech"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_22570",
+      "text": "no z knagi dżem biały możesz mi zrobić su...",
+      "x": 10.261115074157715,
+      "y": -1.81429123878479,
+      "z": -36.585121154785156,
+      "ground_truth_labels": [
+        "hate_speech"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "false_negative",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_22615",
+      "text": "oby tylko pedalstwa nie było i czarnuchów",
+      "x": -62.4206657409668,
+      "y": 70.5474624633789,
+      "z": -23.219852447509766,
+      "ground_truth_labels": [
+        "violence"
+      ],
+      "predicted_labels": [
+        "hate_speech",
+        "violence"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_13575",
+      "text": ">Po co im samoloty, przecież Ukraina wygrywa? : żeby nie wygrywała tylko wygrała.",
+      "x": 67.93464660644531,
+      "y": 38.2320442199707,
+      "z": 4.8773674964904785,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_4863",
+      "text": ": To powinno być karane natychmiastowym rozstrzelaniem w miejscu popełnienia przestępstwa.",
+      "x": -33.703819274902344,
+      "y": 58.63091278076172,
+      "z": -62.83985900878906,
+      "ground_truth_labels": [
+        "violence"
+      ],
+      "predicted_labels": [
+        "violence"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_10940",
+      "text": ": tak tak, tak to sobie tłumacz xDDDDDDDDDD wypierdalaj, juz.",
+      "x": -62.723243713378906,
+      "y": -43.89592361450195,
+      "z": 20.111913681030273,
+      "ground_truth_labels": [
+        "vulgarity"
+      ],
+      "predicted_labels": [
+        "hate_speech",
+        "vulgarity"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_21835",
+      "text": "jebać biedronki",
+      "x": -65.37345123291016,
+      "y": 65.36902618408203,
+      "z": 62.48493576049805,
+      "ground_truth_labels": [
+        "hate_speech"
+      ],
+      "predicted_labels": [
+        "hate_speech"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_5965",
+      "text": ": a marzeniem jest aby Polska była rolniczym krajem roboli. Polaczki to takie żałosne i zawistne zwierzęta że nawet m...",
+      "x": -76.4838638305664,
+      "y": 37.44725799560547,
+      "z": 24.54457664489746,
+      "ground_truth_labels": [
+        "violence"
+      ],
+      "predicted_labels": [
+        "hate_speech"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_20779",
+      "text": "[surname], największa prowokacja rosyjskich służb wobec narodu polskiego, postanowił się wypowiedzieć. A pluję na kar...",
+      "x": -41.849185943603516,
+      "y": 61.527427673339844,
+      "z": -67.0149154663086,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "violence"
+      ],
+      "error_type": "false_positive",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_12209",
+      "text": ": z tym, ze cukier trzcinowy ma w czasie produkcji mniej spotkań z chemią.",
+      "x": 73.22987365722656,
+      "y": 20.288570404052734,
+      "z": 20.78643226623535,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_3031",
+      "text": ": Nadstawmy policzek do bicia po chrześcijańsku i w nic się nie mieszajmy. Tak rzecze religia katolicka. Banda pajacó...",
+      "x": -68.82485961914062,
+      "y": 67.77223205566406,
+      "z": 37.51777648925781,
+      "ground_truth_labels": [
+        "violence"
+      ],
+      "predicted_labels": [
+        "hate_speech"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_15312",
+      "text": "Drogi notatniku, w dniu dzisiejszym tj. 17. sierpnia 2020 roku, w wieku 30 lat stałem się rasistą wobec czarnych krym...",
+      "x": -68.32525634765625,
+      "y": 66.98439025878906,
+      "z": 43.37176513671875,
+      "ground_truth_labels": [
+        "violence"
+      ],
+      "predicted_labels": [
+        "hate_speech"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_10970",
+      "text": ": tak, polaki robaki sypia zmiotki do torebek łyżką, bo tak taniej ( ͡° ͜ʖ ͡°)",
+      "x": -52.10067367553711,
+      "y": 53.37934494018555,
+      "z": -49.230445861816406,
+      "ground_truth_labels": [
+        "hate_speech"
+      ],
+      "predicted_labels": [
+        "hate_speech",
+        "violence"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_637",
+      "text": ": : Czego wy się kirwa boicie? Ile wy macie lat serio pytam? 15? Ze wstydzicie sie przed swoim partnerem rozmawiac o ...",
+      "x": -67.38018798828125,
+      "y": 16.175243377685547,
+      "z": 18.72977066040039,
+      "ground_truth_labels": [
+        "vulgarity"
+      ],
+      "predicted_labels": [
+        "hate_speech"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_11416",
+      "text": ": tu właśnie powinni jakiś gruby atak zajebać. statystyki od razu w górę",
+      "x": -55.41427993774414,
+      "y": 67.77618408203125,
+      "z": -40.23621368408203,
+      "ground_truth_labels": [
+        "violence"
+      ],
+      "predicted_labels": [
+        "hate_speech",
+        "violence"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_8752",
+      "text": ": mogą odwalić podobny numer jak z paliwami, niby obniżyli cenę brutto dla Kowalskiego przez obniżkę VAT, a netto pod...",
+      "x": 76.55279541015625,
+      "y": 21.78804588317871,
+      "z": 25.330488204956055,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_16163",
+      "text": "Jaki żart jebany XDD #mecz",
+      "x": -65.19668579101562,
+      "y": 52.798377990722656,
+      "z": 78.26087188720703,
+      "ground_truth_labels": [
+        "hate_speech"
+      ],
+      "predicted_labels": [
+        "hate_speech"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_8138",
+      "text": ": jebnij sie w łeb, powiadomilem ziomkow z 81;) mokotow zapraszam",
+      "x": -39.264183044433594,
+      "y": -63.21863555908203,
+      "z": -27.7889461517334,
+      "ground_truth_labels": [
+        "hate_speech"
+      ],
+      "predicted_labels": [
+        "vulgarity"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_17869",
+      "text": "O co chodzi z tym banerem? Jarku, ty jebać piś przestań mi moje ciało prześladować. Chwilę pomyślałem i widzę że gwia...",
+      "x": -74.82466125488281,
+      "y": 37.820926666259766,
+      "z": 47.027687072753906,
+      "ground_truth_labels": [
+        "hate_speech"
+      ],
+      "predicted_labels": [
+        "hate_speech"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_17827",
+      "text": "No to teraz każdy który ma mieszkanie obok powinien go pozwać o opłaty.Byly takie przypadki że sąsiad nie ogrzewający...",
+      "x": 75.0262222290039,
+      "y": 25.159896850585938,
+      "z": 19.890920639038086,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_18785",
+      "text": "Rozumiem jednym, ale jak pięcioma odjechać? To akrobata musiał byc",
+      "x": -16.093955993652344,
+      "y": 55.67324447631836,
+      "z": -75.75576782226562,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "violence"
+      ],
+      "error_type": "false_positive",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_9314",
+      "text": ": nie, lecisz na czarno bo jesteś głupia cipa",
+      "x": -57.06590270996094,
+      "y": -60.57117462158203,
+      "z": -6.46439790725708,
+      "ground_truth_labels": [
+        "hate_speech"
+      ],
+      "predicted_labels": [
+        "vulgarity"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_1565",
+      "text": ": Co za ruska onuca wrzuca takie rzeczy. To nie może być prawda.",
+      "x": 70.81736755371094,
+      "y": 27.40823745727539,
+      "z": 14.016904830932617,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_3654",
+      "text": ": Och, jak bym cię kurwo we własne ręce dopadł...",
+      "x": -72.0227279663086,
+      "y": -20.836881637573242,
+      "z": 22.60053825378418,
+      "ground_truth_labels": [
+        "violence"
+      ],
+      "predicted_labels": [
+        "hate_speech"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_21403",
+      "text": "dobrze ze to bydle i morderca nie żyje, to żaden bohater, to morderca polskich lasów i zwierząt",
+      "x": -59.24427032470703,
+      "y": 62.32815170288086,
+      "z": -37.41292953491211,
+      "ground_truth_labels": [
+        "hate_speech"
+      ],
+      "predicted_labels": [
+        "hate_speech",
+        "violence"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_865",
+      "text": ": >i szpiegowania zachodu, czemu bym miał instalować to i dawać się szpiegować? po zeby s nie musial mnie pytac o lin...",
+      "x": -3.1918773651123047,
+      "y": 11.946914672851562,
+      "z": -31.341156005859375,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_14513",
+      "text": "Biedne murzyniątko zagonione do rogu, nawet nie nawiązuje kontaktu wzrokowego ze swoimi oprawcami #f1",
+      "x": -54.954559326171875,
+      "y": 57.652069091796875,
+      "z": -18.2476806640625,
+      "ground_truth_labels": [
+        "hate_speech"
+      ],
+      "predicted_labels": [
+        "hate_speech",
+        "violence"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_9934",
+      "text": ": one lubią jak im facet regularnie spuści wpierdol, powyzywa itd. Zapewni wrażenia. Nie lubią spokojnych chłopów bo ...",
+      "x": 32.47221374511719,
+      "y": 54.05228805541992,
+      "z": -41.47810363769531,
+      "ground_truth_labels": [
+        "hate_speech"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "false_negative",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_8635",
+      "text": ": mam nadzieje, ze was policja potraktuje tak jak przedsiębiorców. Moje marzenie to zobaczyć rozjebana mordę nieprzyt...",
+      "x": -71.41425323486328,
+      "y": 36.768733978271484,
+      "z": -20.048398971557617,
+      "ground_truth_labels": [
+        "vulgarity"
+      ],
+      "predicted_labels": [
+        "hate_speech",
+        "violence"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_13894",
+      "text": ">pokaż przepis mówiący o tym. : Art. 51 PoRD",
+      "x": 74.96340942382812,
+      "y": 13.729410171508789,
+      "z": 25.692922592163086,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_550",
+      "text": ": 2 lata przerwy. ( ͡° ͜ʖ ͡°) Dla marudy - za 12 lat. Chodziło o to, że po dekadzie każdy juz zapomni o dzisiejszych ...",
+      "x": 74.27290344238281,
+      "y": 26.89148712158203,
+      "z": 18.999935150146484,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_187",
+      "text": "#ksw Szkoda gadac, grube gowno nie stawilo zadnego oporu i staremu mariuszkowi dalej ego podbilo. Znow znaleźli jakie...",
+      "x": -65.85769653320312,
+      "y": 67.16419982910156,
+      "z": -13.698969841003418,
+      "ground_truth_labels": [
+        "violence"
+      ],
+      "predicted_labels": [
+        "hate_speech",
+        "violence"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_16404",
+      "text": "Jednak izrael to jest dzikie pustynne plemię obsrane gównem #mecz",
+      "x": -55.2961311340332,
+      "y": 70.0638427734375,
+      "z": -27.917308807373047,
+      "ground_truth_labels": [
+        "violence"
+      ],
+      "predicted_labels": [
+        "hate_speech",
+        "violence"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_6159",
+      "text": ": akurat ten gośc to wyjątkowy skurwiel, bezczelny, arogancki i pisowski do bólu.",
+      "x": -76.20240020751953,
+      "y": 24.744295120239258,
+      "z": 28.021728515625,
+      "ground_truth_labels": [
+        "hate_speech"
+      ],
+      "predicted_labels": [
+        "hate_speech"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_7937",
+      "text": ": jak pod kijowem? lataja ci rakiety nad glowa, ruski zjebie?",
+      "x": -64.13150787353516,
+      "y": -49.11948013305664,
+      "z": 1.2556551694869995,
+      "ground_truth_labels": [
+        "hate_speech"
+      ],
+      "predicted_labels": [
+        "vulgarity"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_18728",
+      "text": "Qrva qrvie łba nie urvie!",
+      "x": -67.4350814819336,
+      "y": 62.98171615600586,
+      "z": 47.09189224243164,
+      "ground_truth_labels": [
+        "hate_speech"
+      ],
+      "predicted_labels": [
+        "hate_speech"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_18510",
+      "text": "Poznaje tego kaczora",
+      "x": -36.26018142700195,
+      "y": 59.60260772705078,
+      "z": -68.50936889648438,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "violence"
+      ],
+      "error_type": "false_positive",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_13209",
+      "text": "> przetłumacz to Tam jest napisane \"znowu nie umiesz przeczytać jebany plebie\"",
+      "x": -62.837467193603516,
+      "y": -43.77680587768555,
+      "z": 26.888450622558594,
+      "ground_truth_labels": [
+        "hate_speech"
+      ],
+      "predicted_labels": [
+        "hate_speech",
+        "vulgarity"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_774",
+      "text": ": > Konfiarze, sympatyzują ze zwolennikami [surname]. Dobrze wiedzieć( ͡° ͜ʖ ͡°) W sumie wiadomo, to było od początku...",
+      "x": 7.358471870422363,
+      "y": -9.088571548461914,
+      "z": -10.725380897521973,
+      "ground_truth_labels": [
+        "vulgarity"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "false_negative",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_14950",
+      "text": "Czego oczekujecie od kierowcy zgruzowanej hondy ( ͡° ͜ʖ ͡°)",
+      "x": 58.803932189941406,
+      "y": 30.65562629699707,
+      "z": -1.6944433450698853,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_1711",
+      "text": ": Debile to nie rozumieją, że mówić a robić to co innego. Gdyby Lenin był taki pro-pracowniczy to nie zrównywałby zar...",
+      "x": 66.40665435791016,
+      "y": 30.881420135498047,
+      "z": 6.388946533203125,
+      "ground_truth_labels": [
+        "hate_speech"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "false_negative",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_21074",
+      "text": "blokuje cie jak masz pisać komentarz i zaraz go usuwać. usuwam śmieci z Mirko.",
+      "x": -15.1368989944458,
+      "y": 6.4125471115112305,
+      "z": -44.47519302368164,
+      "ground_truth_labels": [
+        "vulgarity"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "false_negative",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_5038",
+      "text": ": Ty wiesz kto to Joanna [surname]?",
+      "x": 65.16776275634766,
+      "y": 11.130507469177246,
+      "z": 19.262596130371094,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_2830",
+      "text": ": Małpy pozostaną małpami",
+      "x": -47.85711669921875,
+      "y": 62.005104064941406,
+      "z": -52.235313415527344,
+      "ground_truth_labels": [
+        "hate_speech"
+      ],
+      "predicted_labels": [
+        "violence"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_2308",
+      "text": ": Jak zaczną dostawać mandaty i opłaty za wytrzeźwiałki to może by się zreflektowali że nie warto. Ale wiadomo, w pod...",
+      "x": 57.96025085449219,
+      "y": 45.087066650390625,
+      "z": -13.965518951416016,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_8434",
+      "text": ": kota sie nie trzyma, na smyczy, jebany idioto, przepraszam ze tak powiezdialem",
+      "x": -65.61460876464844,
+      "y": -42.36384201049805,
+      "z": 20.307893753051758,
+      "ground_truth_labels": [
+        "hate_speech"
+      ],
+      "predicted_labels": [
+        "hate_speech",
+        "vulgarity"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_19704",
+      "text": "Ukrainskie bydło?",
+      "x": -62.46487808227539,
+      "y": 63.555641174316406,
+      "z": -18.619089126586914,
+      "ground_truth_labels": [
+        "hate_speech"
+      ],
+      "predicted_labels": [
+        "hate_speech",
+        "violence"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_19638",
+      "text": "Tylko Gumball ( ͡° ͜ʖ ͡°)",
+      "x": -30.444660186767578,
+      "y": 47.28267288208008,
+      "z": -41.27679443359375,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "hate_speech",
+        "violence"
+      ],
+      "error_type": "false_positive",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_2541",
+      "text": ": Już ci wychodku brakuje argumentów? Jedyne gale sportowe jakie w życiu oglądałeś to famemma i zgrywasz znawce. [sur...",
+      "x": -57.3651237487793,
+      "y": -60.4677619934082,
+      "z": 4.65208625793457,
+      "ground_truth_labels": [
+        "vulgarity"
+      ],
+      "predicted_labels": [
+        "vulgarity"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_6796",
+      "text": ": ciebie stary usunął wyrzucając kondoma przez okno, no ale niestety przeżyłes...",
+      "x": 17.91514778137207,
+      "y": -26.178510665893555,
+      "z": -30.729909896850586,
+      "ground_truth_labels": [
+        "vulgarity"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "false_negative",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_13110",
+      "text": "> i teraz prawica mówi ojej jaka super pani : sorry, ale dla prawicowca lewa kurwa zawsze będzie lewą kurwą.",
+      "x": -75.01139831542969,
+      "y": 38.74786376953125,
+      "z": 46.095863342285156,
+      "ground_truth_labels": [
+        "violence"
+      ],
+      "predicted_labels": [
+        "hate_speech"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_11495",
+      "text": ": ty pi zd o lewacka sama byś pewnie nie chciała mieszkać wśród murzynów przyznaj się",
+      "x": -58.173866271972656,
+      "y": -50.664459228515625,
+      "z": -12.952420234680176,
+      "ground_truth_labels": [
+        "hate_speech"
+      ],
+      "predicted_labels": [
+        "vulgarity"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_8807",
+      "text": ": może jakbym był ślepy to bym to kupił. Kolejna zielona wyspa ( ͡° ͜ʖ ͡°)",
+      "x": 50.68878173828125,
+      "y": 43.82819747924805,
+      "z": -28.781469345092773,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_23009",
+      "text": "rutor.info",
+      "x": 30.597759246826172,
+      "y": 44.297996520996094,
+      "z": 9.740108489990234,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_1311",
+      "text": ": Bezczelni NAZIOLE z PiS i ich sympatycy co wprowadzają sowieckie ustawy. Antypolskie świnie.",
+      "x": -51.922245025634766,
+      "y": 54.81904983520508,
+      "z": -25.39422035217285,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "hate_speech",
+        "violence"
+      ],
+      "error_type": "false_positive",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_21033",
+      "text": "alez ten koles jest irytujacy!!! zajebal bym mu lepe na ryj za to pierdolenie!!!",
+      "x": -62.35099411010742,
+      "y": 59.33815383911133,
+      "z": -23.258298873901367,
+      "ground_truth_labels": [
+        "hate_speech"
+      ],
+      "predicted_labels": [
+        "hate_speech",
+        "violence"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_5036",
+      "text": ": Ty weź się zastanów lepiej kto Ci będzie po jesieni płacić za komentarze. Akurat jeden [surname] i Gazeta Polska ni...",
+      "x": 53.60649108886719,
+      "y": 14.285826683044434,
+      "z": -3.8453567028045654,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_16758",
+      "text": "Krzyczą \"jebac psy\", więc to o to im chodzi cały czas",
+      "x": -65.67974090576172,
+      "y": 68.56511688232422,
+      "z": 52.86005783081055,
+      "ground_truth_labels": [
+        "hate_speech"
+      ],
+      "predicted_labels": [
+        "hate_speech"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_2984",
+      "text": ": NIE JESTEM HOMOFOBEM AAAAAALE PEDAŁY SCHOWAJCIE SIĘ XDDDDDD ZA KAŻDYM RAZEM XDDDDDDDD ! Wypierdalaj, ukryty symetrysto",
+      "x": -77.6718978881836,
+      "y": 0.1485517919063568,
+      "z": 32.81697463989258,
+      "ground_truth_labels": [
+        "hate_speech"
+      ],
+      "predicted_labels": [
+        "hate_speech"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_5070",
+      "text": ": Tylko to ziarno...",
+      "x": 64.57522583007812,
+      "y": 34.17987823486328,
+      "z": -5.1404008865356445,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_15828",
+      "text": "J*BAĆ k0NFEDERACJE, MACIE K*RWY KREW NA RĘKACH, NIE PIERWSZY I NIE OSTATNI RAZ.",
+      "x": -62.46453857421875,
+      "y": 68.42220306396484,
+      "z": 42.18140411376953,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "hate_speech"
+      ],
+      "error_type": "false_positive",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_5530",
+      "text": ": XDDD idź być idiotą gdzie indziej",
+      "x": -47.5474967956543,
+      "y": -69.20956420898438,
+      "z": -3.711911678314209,
+      "ground_truth_labels": [
+        "vulgarity"
+      ],
+      "predicted_labels": [
+        "vulgarity"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_12577",
+      "text": ": Żebyś się nie zdziwił… temu śmieciowi w poniedziałek ustawiono kaucję na pół miliona dollarów. Chyba najniższą za b...",
+      "x": -56.26162338256836,
+      "y": 42.298648834228516,
+      "z": -45.412105560302734,
+      "ground_truth_labels": [
+        "violence"
+      ],
+      "predicted_labels": [
+        "hate_speech",
+        "violence"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_6143",
+      "text": ": aha to tak zaczynamy..., od idiotów to w rodzinie sobie wyzywaj ok? A ja tez ci wytłumaczę jak największemu kretyno...",
+      "x": -45.36903381347656,
+      "y": -67.56756591796875,
+      "z": -16.673603057861328,
+      "ground_truth_labels": [
+        "vulgarity"
+      ],
+      "predicted_labels": [
+        "vulgarity"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_16792",
+      "text": "Ku*wa ku*wie łba nie urwie. Kasta mu krzywdy nie zrobi",
+      "x": -48.0066032409668,
+      "y": 61.322994232177734,
+      "z": -16.673892974853516,
+      "ground_truth_labels": [
+        "hate_speech"
+      ],
+      "predicted_labels": [
+        "hate_speech",
+        "violence"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_8990",
+      "text": ": nasraj se do ryja XD",
+      "x": -46.46541213989258,
+      "y": -16.727676391601562,
+      "z": -45.03575134277344,
+      "ground_truth_labels": [
+        "hate_speech"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "false_negative",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_10385",
+      "text": ": przeciez mowie o corce",
+      "x": 51.96160888671875,
+      "y": 11.765628814697266,
+      "z": -3.034606695175171,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_3690",
+      "text": ": Od tego to jest szkoła do której wswzyscy są zmuszani a ty się hipokryto burzysz że rodzic dobrowolnie wychowuje dz...",
+      "x": 21.891529083251953,
+      "y": -60.30056381225586,
+      "z": -5.108738899230957,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_8001",
+      "text": ": jakby nie ten film to by ją nadal, latami bezkarnie nap?#??%@ał w domowym zaciszu, a tak to jest szansa, że dziewcz...",
+      "x": 73.47160339355469,
+      "y": 26.387266159057617,
+      "z": 23.102224349975586,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_22472",
+      "text": "nigger",
+      "x": -31.023107528686523,
+      "y": 50.55896759033203,
+      "z": -7.453502655029297,
+      "ground_truth_labels": [
+        "violence"
+      ],
+      "predicted_labels": [
+        "hate_speech"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_14192",
+      "text": "A wiesz że na tym portalu to polega że jak coś mi się nie podoba to mogę zakopać? Usrałeś się siebie jak by na tobie ...",
+      "x": -48.86418151855469,
+      "y": -58.083152770996094,
+      "z": -32.1938591003418,
+      "ground_truth_labels": [
+        "vulgarity"
+      ],
+      "predicted_labels": [
+        "vulgarity"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_5304",
+      "text": ": Widze neobolszewika z czasow PRLu w interpretacji prawa w Polin :) Potomek Borowskiego aka Bermana, kata Polakow? x...",
+      "x": 31.734018325805664,
+      "y": 23.690486907958984,
+      "z": -29.51995277404785,
+      "ground_truth_labels": [
+        "vulgarity"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "false_negative",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_11226",
+      "text": ": to miasto to jebane gowno i nic sie tu nie dzieje, nie znajdziesz tu pracy po ktorej nie bedziesz albo wyjebany fiz...",
+      "x": -77.7930679321289,
+      "y": 20.128705978393555,
+      "z": 37.0919075012207,
+      "ground_truth_labels": [
+        "hate_speech"
+      ],
+      "predicted_labels": [
+        "hate_speech"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_22093",
+      "text": "kuuurwa smiecie pisowskie 100 osob na weselach? zajebiscie! jeszcze bardziej dojebcie branze, ktora i tak ledwo zipie...",
+      "x": -68.20367431640625,
+      "y": 58.71627426147461,
+      "z": 42.65805435180664,
+      "ground_truth_labels": [
+        "violence"
+      ],
+      "predicted_labels": [
+        "hate_speech"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_7147",
+      "text": ": dla mnie możesz się wyhuśtać od razu ( ͡° ͜ʖ ͡°)",
+      "x": -41.227352142333984,
+      "y": -3.968214988708496,
+      "z": -59.915531158447266,
+      "ground_truth_labels": [
+        "vulgarity"
+      ],
+      "predicted_labels": [
+        "violence"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_17732",
+      "text": "No i [surname] ma 100% racji pisowska parówo od [surname] xd najpierw [surname] jako przewodniczący Parlamentu Europe...",
+      "x": 70.69865417480469,
+      "y": 20.916584014892578,
+      "z": 23.143268585205078,
+      "ground_truth_labels": [
+        "hate_speech"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "false_negative",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_12654",
+      "text": "> , ktory ma wlasnie potwierdzona schizofrenie : MIAŁ, bo już na szczęście nie żyje.",
+      "x": 67.10498046875,
+      "y": 19.49894905090332,
+      "z": 12.592035293579102,
+      "ground_truth_labels": [
+        "violence"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "false_negative",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_23934",
+      "text": "Że też się tak cackają z tymi czubkami. Pała , armatki wodne , dwie godzi i jest spokój ( ͡° ͜ʖ ͡°)",
+      "x": 32.83494567871094,
+      "y": 63.25870132446289,
+      "z": -37.10160446166992,
+      "ground_truth_labels": [
+        "violence"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "false_negative",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_18656",
+      "text": "Przepytali kilkaset osób aby takie odpowiedzi niepełnosprytnych wyciągnąć, czy po prostu podstawione osoby?",
+      "x": 69.8565444946289,
+      "y": 26.623382568359375,
+      "z": 17.47584342956543,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_11314",
+      "text": ": to ta kurwa jeszcze się udziela?",
+      "x": -67.13842010498047,
+      "y": 18.232715606689453,
+      "z": 43.39199447631836,
+      "ground_truth_labels": [
+        "hate_speech"
+      ],
+      "predicted_labels": [
+        "hate_speech"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_22686",
+      "text": "optopedal",
+      "x": -50.68781280517578,
+      "y": 9.37746810913086,
+      "z": -19.70165252685547,
+      "ground_truth_labels": [
+        "hate_speech"
+      ],
+      "predicted_labels": [
+        "hate_speech"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_6778",
+      "text": ": chłop zaczął wyzywać innego gościa samemu brnąć w debilizm no to teraz się z nim bawię bo rozmowa z głupkami jest d...",
+      "x": -16.58194923400879,
+      "y": 13.52460765838623,
+      "z": -30.695938110351562,
+      "ground_truth_labels": [
+        "vulgarity"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "false_negative",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_4575",
+      "text": ": Tak jest, tak jest. Nie ma co sie przejmowac stadem baranow. Jak im lekarz powie ze gowno w pigulce leczy to beda r...",
+      "x": -48.02494812011719,
+      "y": 36.7175407409668,
+      "z": -50.284332275390625,
+      "ground_truth_labels": [
+        "hate_speech"
+      ],
+      "predicted_labels": [
+        "hate_speech",
+        "violence"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_3987",
+      "text": ": Polacy to zwierzęta? Stare, znałem.",
+      "x": -43.73823928833008,
+      "y": 60.07574462890625,
+      "z": -56.45539855957031,
+      "ground_truth_labels": [
+        "violence"
+      ],
+      "predicted_labels": [
+        "hate_speech",
+        "violence"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_3451",
+      "text": ": No i prawidłowo. Kurestwo jak i kurwiarzy należy zlikwidować jak szczury.",
+      "x": -67.04100799560547,
+      "y": 67.3048095703125,
+      "z": 10.745438575744629,
+      "ground_truth_labels": [
+        "hate_speech"
+      ],
+      "predicted_labels": [
+        "hate_speech",
+        "violence"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_4091",
+      "text": ": Problem się rozwiąże? Chyba polityka, wtedy policja będzie mogła usunąć karalucha z mieszkania, niech idzie i okupu...",
+      "x": 10.212116241455078,
+      "y": 55.5897102355957,
+      "z": -55.464778900146484,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "violence"
+      ],
+      "error_type": "false_positive",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_22408",
+      "text": "nie tvn a sam [surname] jest za to odpowiedzialny. Dzis aby stac za [surname] trzeba byc tepym zjebem albo kurwa ktor...",
+      "x": -71.31499481201172,
+      "y": 57.05753707885742,
+      "z": 12.135329246520996,
+      "ground_truth_labels": [
+        "hate_speech"
+      ],
+      "predicted_labels": [
+        "hate_speech"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_21295",
+      "text": "czego wy się spodziewacie po debacie? wizja obu panów jest jasna: kupowanie głosów nierozgarniętego motłochu a dla re...",
+      "x": -68.26453399658203,
+      "y": 55.83353805541992,
+      "z": 0.20165687799453735,
+      "ground_truth_labels": [
+        "hate_speech"
+      ],
+      "predicted_labels": [
+        "hate_speech",
+        "violence"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_1662",
+      "text": ": Czyli winni są prywaciarze, a ni co zawsze są winni. ( ͡° ͜ʖ ͡°)",
+      "x": 71.54644775390625,
+      "y": 23.796701431274414,
+      "z": 20.292905807495117,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_10987",
+      "text": ": tak, zawsze przyjemnie jest defekować w takie miejsca",
+      "x": -10.490459442138672,
+      "y": 60.95878219604492,
+      "z": -78.26087188720703,
+      "ground_truth_labels": [
+        "vulgarity"
+      ],
+      "predicted_labels": [
+        "violence"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_11973",
+      "text": ": wspaniałe rozwiązanie ładują w faderlandcie i im chodnik układają jak fachowcy z Polski oczywiście za darmo",
+      "x": 71.28670501708984,
+      "y": 32.971046447753906,
+      "z": 9.662978172302246,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_8180",
+      "text": ": jesli na tych statkach byli katolicy, toze zostali wymordowani teczowy tolerasto, ktory krzyczysz by ratowac dzikic...",
+      "x": -51.99661636352539,
+      "y": -60.06705856323242,
+      "z": -20.08905601501465,
+      "ground_truth_labels": [
+        "violence"
+      ],
+      "predicted_labels": [
+        "vulgarity"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_2063",
+      "text": ": I po co dzbanie dalej promujesz ten ludzki sciek?",
+      "x": 35.61449432373047,
+      "y": 19.382572174072266,
+      "z": -37.33008575439453,
+      "ground_truth_labels": [
+        "hate_speech"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "false_negative",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_2311",
+      "text": ": Jaka patola? W tym zjebanym kraju areszt jest nadużywany i każdy, kto nie jest debilem wie o tym doskonale, więc ni...",
+      "x": -65.54019927978516,
+      "y": 0.7371429204940796,
+      "z": 21.709653854370117,
+      "ground_truth_labels": [
+        "hate_speech"
+      ],
+      "predicted_labels": [
+        "hate_speech"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_23461",
+      "text": "udowadniają realność działania : jedyne co udowodniły póki co - to że za pomocą ogromnego wydatku energii jesteśmy w ...",
+      "x": 72.01419830322266,
+      "y": 28.61452865600586,
+      "z": 18.520715713500977,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_13245",
+      "text": "> w 2014 pis, [surname] konkretnie apelował o embargo na ruski węgiel Wiesz, lewacki przygłupie, co wtedy zrobił twój...",
+      "x": -7.484570503234863,
+      "y": -67.2826156616211,
+      "z": -6.78476619720459,
+      "ground_truth_labels": [
+        "hate_speech"
+      ],
+      "predicted_labels": [
+        "vulgarity"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_23698",
+      "text": "wystarczy, że politycy wprowadzą podatki od swoich gigantycznych pensji i bonusów i wszystkich pociotkach w państwowy...",
+      "x": 72.55806732177734,
+      "y": 30.288862228393555,
+      "z": 17.231935501098633,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_1267",
+      "text": ": Artykuł na poziomie wysrywu z mirko.",
+      "x": 71.96975708007812,
+      "y": 22.56729507446289,
+      "z": 15.330198287963867,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_7412",
+      "text": ": fajnie, a teraz spierdalaj z tymi swoimi urojeniami",
+      "x": -63.765628814697266,
+      "y": -45.67966079711914,
+      "z": 19.569604873657227,
+      "ground_truth_labels": [
+        "vulgarity"
+      ],
+      "predicted_labels": [
+        "hate_speech",
+        "vulgarity"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_1702",
+      "text": ": Dasz mi link do tego o tym testowaniu?",
+      "x": 71.1111068725586,
+      "y": 6.942732334136963,
+      "z": 12.560914039611816,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_22399",
+      "text": "nie płaczę po szmacie, chyba, że szmata ma logo versace",
+      "x": -57.71609878540039,
+      "y": 53.240196228027344,
+      "z": -10.91016674041748,
+      "ground_truth_labels": [
+        "hate_speech"
+      ],
+      "predicted_labels": [
+        "hate_speech"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_11477",
+      "text": ": ty jesteś jebniety na leb ze ja jeszcze nie wypierdoliłles xd",
+      "x": -60.79557418823242,
+      "y": -53.27422332763672,
+      "z": 15.220958709716797,
+      "ground_truth_labels": [
+        "hate_speech"
+      ],
+      "predicted_labels": [
+        "vulgarity"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_16162",
+      "text": "Jaki śmieć",
+      "x": -70.27654266357422,
+      "y": 58.539649963378906,
+      "z": 31.517309188842773,
+      "ground_truth_labels": [
+        "vulgarity"
+      ],
+      "predicted_labels": [
+        "hate_speech"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_22813",
+      "text": "pokaż mi choć jeden przypadek gdzie ta prokuratura [surname] podjęła choćby próbę działania o którym piszesz. : Iza z...",
+      "x": 47.98098373413086,
+      "y": 42.60429000854492,
+      "z": -17.92449378967285,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_11584",
+      "text": ": tęczową kretynką",
+      "x": -62.62251281738281,
+      "y": -38.57884979248047,
+      "z": 5.597560405731201,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "hate_speech",
+        "vulgarity"
+      ],
+      "error_type": "false_positive",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_8322",
+      "text": ": już teraz jest, dodajesz nonfree firmware przy instalacji debiana 12 i debian instaluje sterowniki sam",
+      "x": -25.18536376953125,
+      "y": -45.50238800048828,
+      "z": -14.266763687133789,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "vulgarity"
+      ],
+      "error_type": "false_positive",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_9047",
+      "text": ": nie było tyle tylko 125 max, nie prędkość ale brak myślenia na ekspresówkach jedzie nawet 110 a typ się #!$%@? na T...",
+      "x": 77.41416931152344,
+      "y": 14.826519012451172,
+      "z": 28.203542709350586,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_12016",
+      "text": ": wygeneruje ci idioto napięcia społeczne i konflikty to ci wygeneruje jak janusz zwolni twoją starą z mycia kibli bo...",
+      "x": -57.79402542114258,
+      "y": -59.60292434692383,
+      "z": -8.953721046447754,
+      "ground_truth_labels": [
+        "hate_speech"
+      ],
+      "predicted_labels": [
+        "vulgarity"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_23636",
+      "text": "wszystko zgodnie z nauką ( ͡° ͜ʖ ͡°) : i co najlepsze to masz rację.",
+      "x": 73.56395721435547,
+      "y": 8.048421859741211,
+      "z": 20.230161666870117,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_23418",
+      "text": "ty kurwa jebany białkozjebie wez to gowno doprowadz do porzadku, bo juz lepiej wp.pl dziala, ty pało niemyta, pieniąd...",
+      "x": -73.88072204589844,
+      "y": 13.574471473693848,
+      "z": 51.67475509643555,
+      "ground_truth_labels": [
+        "hate_speech"
+      ],
+      "predicted_labels": [
+        "hate_speech"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_20141",
+      "text": "Wymagania jakiś wymagania, nic szokującego. Ale moim zdaniem jeśli czegoś wymagasz, to musisz to samo dać od siebie. ...",
+      "x": -72.35249328613281,
+      "y": -19.01592445373535,
+      "z": 38.2690544128418,
+      "ground_truth_labels": [
+        "vulgarity"
+      ],
+      "predicted_labels": [
+        "hate_speech"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_18400",
+      "text": "Polecam książkę \"Misja\" Michela Desmarqueta. Francuz - zwykły prosty człowiek został wybrany żeby odbyć podróż na ple...",
+      "x": 69.25871276855469,
+      "y": 31.54581069946289,
+      "z": 5.1516594886779785,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_6967",
+      "text": ": czekaj bo jakis naplet do mnie sie spierdala xd",
+      "x": -69.81228637695312,
+      "y": -35.47323989868164,
+      "z": 2.5419921875,
+      "ground_truth_labels": [
+        "hate_speech"
+      ],
+      "predicted_labels": [
+        "hate_speech",
+        "vulgarity"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_13856",
+      "text": ">nie martw się o mój głos. Ależ ja się zupełnie nie martwię. > Pójdzie tam gdzie powinien To tak samo jak mói.",
+      "x": 40.059329986572266,
+      "y": 25.35637855529785,
+      "z": -26.110137939453125,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_1470",
+      "text": ": Chuj Ci w matkę",
+      "x": -56.80177688598633,
+      "y": -17.73773765563965,
+      "z": -3.6255245208740234,
+      "ground_truth_labels": [
+        "hate_speech"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "false_negative",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_6976",
+      "text": ": czemu ludzie wierzą w miłość chociaż nie istnieje?",
+      "x": 70.06629943847656,
+      "y": 21.853464126586914,
+      "z": 13.870987892150879,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_9552",
+      "text": ": no nie, bo zabezpieczając się na wszystkie bazy i spółki xD : nie, w mailu zaznaczyłam że nie wyrażam zgody na prze...",
+      "x": 75.91642761230469,
+      "y": 15.97446346282959,
+      "z": 26.149755477905273,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_3051",
+      "text": ": Najzabawniejsze że taki ultraprawicowiec czy ksiądz, sam poleci z kobietą do kliniki robić aborcję, jak tylko wpadk...",
+      "x": 53.75883865356445,
+      "y": 31.888206481933594,
+      "z": -15.508788108825684,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_14187",
+      "text": "A w tym czasie organizatorzy zawodów siatkarskich, trenerzy, szkoły w których są dedykowane zajęcia promujące siatków...",
+      "x": -59.72888946533203,
+      "y": -41.485191345214844,
+      "z": 3.9964370727539062,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "vulgarity"
+      ],
+      "error_type": "false_positive",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_18098",
+      "text": "P R Z E R A Ż A J Ą C Ę - BORDO WYKOPEK PRZECZYTAŁ W INTERNECIE, ŻE AKTORZY BRONIĄ SWOJEGO KOLEGI DZBANA I TERAZ SIED...",
+      "x": -43.59748077392578,
+      "y": 54.57259750366211,
+      "z": 23.323028564453125,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "hate_speech"
+      ],
+      "error_type": "false_positive",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_16250",
+      "text": "Jebac górników",
+      "x": -62.875911712646484,
+      "y": 67.02751159667969,
+      "z": 61.67539978027344,
+      "ground_truth_labels": [
+        "violence"
+      ],
+      "predicted_labels": [
+        "hate_speech"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_9233",
+      "text": ": nie w Polsce ( ͡° ͜ʖ ͡°) Janusz jakby miał wydać 50k na robota który się zwróci w pół roku albo zatrudnić 10 Ukraiń...",
+      "x": 71.5553970336914,
+      "y": 29.45473861694336,
+      "z": 13.779523849487305,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_22229",
+      "text": "moze trzeba odbudowac szwadron i zaczac skurywysynom zamawiac wszystko na chate?",
+      "x": -35.38806915283203,
+      "y": 71.27497100830078,
+      "z": -38.43041229248047,
+      "ground_truth_labels": [
+        "hate_speech"
+      ],
+      "predicted_labels": [
+        "hate_speech",
+        "violence"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_19816",
+      "text": "W miastach robi się przejścia nawet co 50 m, a to jest środek miasta. : oczywiście o tych 50m mówiłem trollu XD ten w...",
+      "x": 64.92081451416016,
+      "y": -10.654512405395508,
+      "z": 13.24974250793457,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_17739",
+      "text": "No i co pajace którzy mowiliscie ze matka polaka pracuje w banku? Miras na tagu roksa wrzucil audio ze spotkania z be...",
+      "x": -76.85768127441406,
+      "y": 27.867822647094727,
+      "z": 55.37831115722656,
+      "ground_truth_labels": [
+        "violence"
+      ],
+      "predicted_labels": [
+        "hate_speech"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_16153",
+      "text": "Jaki numer pokazał struś? [phonenumber] czyj to telefon? #[surname]",
+      "x": -34.17560577392578,
+      "y": 45.8884162902832,
+      "z": 7.580246448516846,
+      "ground_truth_labels": [
+        "hate_speech"
+      ],
+      "predicted_labels": [
+        "hate_speech"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_11358",
+      "text": ": to, że ma ładny głos nie zwalnia go od gadania z sensem. Słucham co się do mnie mówi, a od [surname] już podskórnej...",
+      "x": 73.894775390625,
+      "y": 19.53559112548828,
+      "z": 29.718027114868164,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_8656",
+      "text": ": masz Ci. Temat ciekawy, w zasadzie to istna nauka. A komentarze? Polityka… kurwa ale ten naród to pierdolone dno",
+      "x": -72.96638488769531,
+      "y": 12.27269172668457,
+      "z": 46.152957916259766,
+      "ground_truth_labels": [
+        "hate_speech"
+      ],
+      "predicted_labels": [
+        "hate_speech"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_10742",
+      "text": ": sram na grób twojej matki",
+      "x": -46.41368865966797,
+      "y": -27.428970336914062,
+      "z": -36.01659393310547,
+      "ground_truth_labels": [
+        "hate_speech"
+      ],
+      "predicted_labels": [
+        "vulgarity"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_14188",
+      "text": "A wiecie co jest najgorsze? Że dziecka nie wydali tylko z tego powodu, ze zaczęło płakać. 4 latek mógłby swobodnie wy...",
+      "x": 68.80281066894531,
+      "y": 28.9854679107666,
+      "z": 9.43120288848877,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_5356",
+      "text": ": Wieśniaku ? ogarnij się...",
+      "x": 16.006214141845703,
+      "y": -58.16000747680664,
+      "z": -15.9583158493042,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_22877",
+      "text": "prawidłowo sebe. Nie dosc ze lazisz do \"pracy\" jak niewolnik to jeszcze ci kurewka \"pracodawca\" wpierdala jakies zaba...",
+      "x": -72.16291046142578,
+      "y": 53.70928955078125,
+      "z": 52.23216247558594,
+      "ground_truth_labels": [
+        "violence"
+      ],
+      "predicted_labels": [
+        "hate_speech"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_16769",
+      "text": "Kto kolwiek tego nie zrobił i na ilu grobach to wkońcu tylko żydowskie groby... Wielka mi afera.",
+      "x": 58.41654586791992,
+      "y": 45.350181579589844,
+      "z": -13.413036346435547,
+      "ground_truth_labels": [
+        "violence"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "false_negative",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_1573",
+      "text": ": Cos jeszcze kondomie bo ja wole pisac z bledami jak pierdolic od rzeczy tak jak to wlasnie teraz robisz a jak chces...",
+      "x": -63.366600036621094,
+      "y": -49.621395111083984,
+      "z": 2.005117416381836,
+      "ground_truth_labels": [
+        "hate_speech"
+      ],
+      "predicted_labels": [
+        "vulgarity"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_10487",
+      "text": ": pszeprarzam, czyrzbym zrobił błont?",
+      "x": 34.23817443847656,
+      "y": 27.474328994750977,
+      "z": -41.10306167602539,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_16131",
+      "text": "Jaka pomóc, kogo? Urzędnicy przyjadą z wnioskami o azyl...Tyle że nie do Niemiec a Polski i będziemy sie jebac z nimi...",
+      "x": -52.44625473022461,
+      "y": 74.98567962646484,
+      "z": -4.3716888427734375,
+      "ground_truth_labels": [
+        "hate_speech"
+      ],
+      "predicted_labels": [
+        "hate_speech",
+        "violence"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_12096",
+      "text": ": wystarczy przesledzic ile w polsce syfiastego prawa wprowadzono pod pozorem pandemii. Klniemy na chiny a u nas wiel...",
+      "x": 74.54054260253906,
+      "y": 25.94953727722168,
+      "z": 19.822223663330078,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_16492",
+      "text": "Jeśli chodzi o względy ekonomiczne i gospodarcze, francuzi są dwulicowymi szujami które z dobrym uśmiechem na twarzy ...",
+      "x": 73.77572631835938,
+      "y": 27.140291213989258,
+      "z": 21.567312240600586,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_18955",
+      "text": "Spierdalac lewackie szmaty Jest coś takiego jak wartości, wiem że gówno wam to mówi. Tfu",
+      "x": -69.4596939086914,
+      "y": 52.778533935546875,
+      "z": 35.22515869140625,
+      "ground_truth_labels": [
+        "hate_speech"
+      ],
+      "predicted_labels": [
+        "hate_speech"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_1505",
+      "text": ": Ciekawe czy jakby im się do samochodu przykleili to też by klaskali? ależ koleżanko to jest dokładnie ten powód dla...",
+      "x": -61.44041442871094,
+      "y": 45.13547134399414,
+      "z": -4.9096527099609375,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "hate_speech"
+      ],
+      "error_type": "false_positive",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_14400",
+      "text": "Ależ zlot pisowskiego kurewstwa, po 6 latach dalej ich popieracie, naprawdę?",
+      "x": -68.8346176147461,
+      "y": 53.79274368286133,
+      "z": 55.06039810180664,
+      "ground_truth_labels": [
+        "violence"
+      ],
+      "predicted_labels": [
+        "hate_speech"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_7669",
+      "text": ": i ogladaja ich zegarki",
+      "x": 68.70933532714844,
+      "y": 25.796039581298828,
+      "z": 14.32242202758789,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_6771",
+      "text": ": chyba znam tego cwela",
+      "x": -76.46959686279297,
+      "y": 15.226144790649414,
+      "z": 30.296770095825195,
+      "ground_truth_labels": [
+        "vulgarity"
+      ],
+      "predicted_labels": [
+        "hate_speech"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_4347",
+      "text": ": Skandynawka? dies of cringe śmierć Aryjczykom tylko Słowianie i Brazylijczycy ( ͡° ͜ʖ ͡°)",
+      "x": 23.663911819458008,
+      "y": 52.49311447143555,
+      "z": -42.8772087097168,
+      "ground_truth_labels": [
+        "violence"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "false_negative",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_12552",
+      "text": ": świat popierdolony bo facet se coś w dupę włożył xD chyba ty jesteś p...",
+      "x": -63.59530258178711,
+      "y": -43.78419876098633,
+      "z": 27.508256912231445,
+      "ground_truth_labels": [
+        "hate_speech"
+      ],
+      "predicted_labels": [
+        "hate_speech",
+        "vulgarity"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_15140",
+      "text": "Dawno nie została zgwałcona",
+      "x": -22.5850772857666,
+      "y": 44.122535705566406,
+      "z": -60.562347412109375,
+      "ground_truth_labels": [
+        "violence"
+      ],
+      "predicted_labels": [
+        "violence"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_10553",
+      "text": ": rozważałeś petle na szyje?",
+      "x": -25.10795783996582,
+      "y": 24.231674194335938,
+      "z": -56.417381286621094,
+      "ground_truth_labels": [
+        "hate_speech"
+      ],
+      "predicted_labels": [
+        "violence"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_16796",
+      "text": "Kult pracy vs kult socjalu.",
+      "x": 68.8011703491211,
+      "y": 30.64881706237793,
+      "z": 17.532133102416992,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_18743",
+      "text": "Raczej nie będzie żadnych komisji. Nawet jeśli będą to nie będą transmitowane na żywo. Jak będzie retransmisja to mat...",
+      "x": 75.74830627441406,
+      "y": 26.880069732666016,
+      "z": 23.25588035583496,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_17065",
+      "text": "Matrix pierdnął w Chorwacji?",
+      "x": 53.372520446777344,
+      "y": 35.151588439941406,
+      "z": 2.382655382156372,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_17520",
+      "text": "Nie obchodzi mnie czy jesteś homo, ale jeśli bronisz LGBT, to znaczy, że jesteś jednym z idiotów, którzy dają się nab...",
+      "x": -46.15642166137695,
+      "y": -27.540910720825195,
+      "z": -35.77734375,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "vulgarity"
+      ],
+      "error_type": "false_positive",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_20922",
+      "text": "a wystarczyło nie atakować sąsiada.",
+      "x": 51.210079193115234,
+      "y": 45.92887878417969,
+      "z": -24.37153434753418,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_3861",
+      "text": ": PiS to arcy gówno",
+      "x": -11.249811172485352,
+      "y": 30.603195190429688,
+      "z": -22.27016258239746,
+      "ground_truth_labels": [
+        "violence"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "false_negative",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_13021",
+      "text": "> XDDDD : pojebało Cię?",
+      "x": -68.28067016601562,
+      "y": -24.237977981567383,
+      "z": 43.43772888183594,
+      "ground_truth_labels": [
+        "vulgarity"
+      ],
+      "predicted_labels": [
+        "hate_speech"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_18195",
+      "text": "Pedererererere (putinistic screeching). #prawicowizdrajcy ! Ha tfu na przyszły grób [surname], za wpuszczenie do Sejm...",
+      "x": -50.299461364746094,
+      "y": 55.02509307861328,
+      "z": -40.65744400024414,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "hate_speech",
+        "violence"
+      ],
+      "error_type": "false_positive",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_22041",
+      "text": "ktoś was zmusza kupować onucowskie nintendo? XDDDDD tumany niedługo będą narzekać, że Rosjanie oddychają tym samym po...",
+      "x": 58.34459686279297,
+      "y": 46.384376525878906,
+      "z": -5.904402732849121,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_14929",
+      "text": "Czarne zdziry.",
+      "x": -52.89384078979492,
+      "y": 57.04024124145508,
+      "z": -10.77910041809082,
+      "ground_truth_labels": [
+        "violence"
+      ],
+      "predicted_labels": [
+        "hate_speech"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_12982",
+      "text": "> To propagandowe wytyczne, według których ma zostać zbudowana narracja o Polakach-antysemitach, którzy występują prz...",
+      "x": -68.67240905761719,
+      "y": 62.6391487121582,
+      "z": 3.854450225830078,
+      "ground_truth_labels": [
+        "hate_speech"
+      ],
+      "predicted_labels": [
+        "hate_speech",
+        "violence"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_23501",
+      "text": "w Kanadzie mieszka duża mniejszość ukraińska.",
+      "x": 59.16873550415039,
+      "y": 36.75034713745117,
+      "z": 2.7004919052124023,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_3657",
+      "text": ": Oczywiscie ze nie byloby, bo ja brodze w szambie jakim jest rozmowa z takimi oszolomami jak ty, tego po prostu norm...",
+      "x": -61.376564025878906,
+      "y": -51.4647216796875,
+      "z": -7.064255714416504,
+      "ground_truth_labels": [
+        "vulgarity"
+      ],
+      "predicted_labels": [
+        "vulgarity"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_21817",
+      "text": "jebaniutki",
+      "x": -75.76111602783203,
+      "y": 20.650718688964844,
+      "z": 50.17405700683594,
+      "ground_truth_labels": [
+        "hate_speech"
+      ],
+      "predicted_labels": [
+        "hate_speech"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_2137",
+      "text": ": Inwazja lądowa nie jest konieczna, można ich unieszkodliwić atakami z powietrza jak Jugosławię w 1999. Śmierć Islam...",
+      "x": 17.359079360961914,
+      "y": 68.07698822021484,
+      "z": -45.1168098449707,
+      "ground_truth_labels": [
+        "violence"
+      ],
+      "predicted_labels": [
+        "violence"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_6878",
+      "text": ": co to waifuozm?",
+      "x": 70.3276596069336,
+      "y": 17.720157623291016,
+      "z": 21.279699325561523,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_23454",
+      "text": "tęczowy degeneracie,takich jak ty powinno się wysyłać na Syberię",
+      "x": -49.94017791748047,
+      "y": -57.6657829284668,
+      "z": -17.418739318847656,
+      "ground_truth_labels": [
+        "hate_speech"
+      ],
+      "predicted_labels": [
+        "vulgarity"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_3981",
+      "text": ": Polacy ośmieszyli się swoją małostkowością. Cały świat rży ze śmiechu z Polaków ;-)",
+      "x": 73.88375854492188,
+      "y": 22.194482803344727,
+      "z": 20.736068725585938,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_3441",
+      "text": ": No i ile to basenów olimpijskich.",
+      "x": 72.11358642578125,
+      "y": 24.476665496826172,
+      "z": 15.618900299072266,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_10108",
+      "text": ": pisz normalnie. Smoluchy",
+      "x": -50.32538604736328,
+      "y": 20.30657196044922,
+      "z": -35.47327423095703,
+      "ground_truth_labels": [
+        "violence"
+      ],
+      "predicted_labels": [
+        "hate_speech"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_11920",
+      "text": ": większość nowych skuterów 50cc to czterosuwy",
+      "x": 69.63343811035156,
+      "y": 27.693931579589844,
+      "z": 15.943243980407715,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_12705",
+      "text": "> : Łach to twój stary co cię robił po kresce na tyłach remizy. : potwierdzam, cala okolica o tym mowila",
+      "x": 16.731836318969727,
+      "y": -44.318172454833984,
+      "z": -21.172208786010742,
+      "ground_truth_labels": [
+        "vulgarity"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "false_negative",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_10806",
+      "text": ": szczególnie, że wypięcie się sworznia to nie jest jakaś tragedia jeśli chodzi o następstwa - co mogło się stać? - j...",
+      "x": 77.59893035888672,
+      "y": 21.0344181060791,
+      "z": 23.286296844482422,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_8483",
+      "text": ": kurde, jakby był covid to by pewnie też powiązał xD",
+      "x": 61.67445373535156,
+      "y": 21.487049102783203,
+      "z": 28.030466079711914,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_10460",
+      "text": ": przetlumaczysz po polsku odpowiedz Augustyna? :)",
+      "x": 73.56107330322266,
+      "y": 13.08404541015625,
+      "z": 18.2528076171875,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_5620",
+      "text": ": Zależy jaki papier, jaka maszyna i jaki drukarz. Ale drukowanie czegoś takiego to jest jazda po bandzie - wyjdzie l...",
+      "x": 61.0251350402832,
+      "y": 23.726760864257812,
+      "z": 9.652593612670898,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_22070",
+      "text": "kurwa już wolałbym byc prawiczkiem niż wyruchać małpiszona xD",
+      "x": -66.14787292480469,
+      "y": 58.85438919067383,
+      "z": 5.533827781677246,
+      "ground_truth_labels": [
+        "violence"
+      ],
+      "predicted_labels": [
+        "hate_speech"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_5591",
+      "text": ": Za źle użyte _fuck the nygga_ myślę jest szansa ( ͡° ͜ʖ ͡°)",
+      "x": 30.282438278198242,
+      "y": 14.735833168029785,
+      "z": 1.8864874839782715,
+      "ground_truth_labels": [
+        "hate_speech"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "false_negative",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_23855",
+      "text": "zrób coś pożytecznego dla świata i umrzyj",
+      "x": -36.386512756347656,
+      "y": 18.132675170898438,
+      "z": -47.112918853759766,
+      "ground_truth_labels": [
+        "hate_speech"
+      ],
+      "predicted_labels": [
+        "violence"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_8625",
+      "text": ": mam dla ciebie złą wiadomość. Głupiś jak but :} myhyhyh gość kupił kartę której nie ma w sprzedaży i płacze, że na ...",
+      "x": 2.453625202178955,
+      "y": -61.08563232421875,
+      "z": -15.108662605285645,
+      "ground_truth_labels": [
+        "vulgarity"
+      ],
+      "predicted_labels": [
+        "vulgarity"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_12263",
+      "text": ": zacofanego **? Koleś społeczeństwo nie jest zacofane to wlasnie pedal***zm stara się na sile wcisnąć swoje ideologi...",
+      "x": -46.132266998291016,
+      "y": 20.921173095703125,
+      "z": -10.478940963745117,
+      "ground_truth_labels": [
+        "violence"
+      ],
+      "predicted_labels": [
+        "hate_speech"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_9586",
+      "text": ": no tak szerloku, wyjdz i zrob ( ͡° ͜ʖ ͡°) wystarczy ze jakas polska branza sie wybije to na forum UE trzeba od razu...",
+      "x": 9.97135066986084,
+      "y": 14.467768669128418,
+      "z": -34.83665466308594,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_11084",
+      "text": ": tez mam z tak dlugo, wiecej zycia z PJ niz bez ( ͡° ʖ̯ ͡°) ale ok nie wpuscil ale tuz przed uderzeniem to koles nic...",
+      "x": 55.71665954589844,
+      "y": 34.0915641784668,
+      "z": 0.7497062683105469,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_17162",
+      "text": "Może dodam, że nie dziwi tym bardziej, że cała konfederacja to zbiorowisko degeneratów seksualnych: [surname] tasując...",
+      "x": -22.024747848510742,
+      "y": 34.33958435058594,
+      "z": -35.65916061401367,
+      "ground_truth_labels": [
+        "hate_speech"
+      ],
+      "predicted_labels": [
+        "hate_speech"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_3429",
+      "text": ": No dobra, ale jak niby to będzie wyżej od konstytucji? To nie wymaga wtedy zmiany konstytucji właśnie?",
+      "x": 76.89446258544922,
+      "y": 16.950698852539062,
+      "z": 28.257816314697266,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_6422",
+      "text": ": argument taki sam jak twój. Broń czarnoprochową może posiadać każdy dorosły. Pozwolenie sportowe łatwiej zrobić niż...",
+      "x": -16.630155563354492,
+      "y": -60.59817886352539,
+      "z": -21.85882568359375,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "vulgarity"
+      ],
+      "error_type": "false_positive",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_8781",
+      "text": ": morda zbrodniarza",
+      "x": -14.79393482208252,
+      "y": 51.736881256103516,
+      "z": -68.85752868652344,
+      "ground_truth_labels": [
+        "hate_speech"
+      ],
+      "predicted_labels": [
+        "violence"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_21521",
+      "text": "hahaha państowe gówno, jestem w domu, a przygłup śmieć listonosz nie przynosi listu tylko od razu awizo. To nie karto...",
+      "x": -26.00372314453125,
+      "y": 20.482267379760742,
+      "z": -14.700758934020996,
+      "ground_truth_labels": [
+        "hate_speech"
+      ],
+      "predicted_labels": [
+        "hate_speech"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_18796",
+      "text": "Rozłożyła nogi i teraz zgrywa ofiarę.",
+      "x": -22.23221206665039,
+      "y": 68.96456909179688,
+      "z": -70.51062774658203,
+      "ground_truth_labels": [
+        "hate_speech"
+      ],
+      "predicted_labels": [
+        "violence"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_9278",
+      "text": ": nie zapomnij usunąć konta",
+      "x": 45.58413314819336,
+      "y": -2.176680326461792,
+      "z": -8.006027221679688,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_23429",
+      "text": "ty za to spierdolino wolisz siedziec na wykopie i pasjonowac sie jakas gierka dla dzieci z adhd XDDDDDD",
+      "x": -66.11681365966797,
+      "y": -38.73642349243164,
+      "z": 22.6724796295166,
+      "ground_truth_labels": [
+        "hate_speech"
+      ],
+      "predicted_labels": [
+        "hate_speech",
+        "vulgarity"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_22497",
+      "text": "no faktycznie przyjeb, z takim to się dawno nie spotkałem, i cyk na czarno",
+      "x": -38.37520980834961,
+      "y": 21.419918060302734,
+      "z": -24.441226959228516,
+      "ground_truth_labels": [
+        "vulgarity"
+      ],
+      "predicted_labels": [
+        "hate_speech"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_9905",
+      "text": ": ok. Wedlug tej definicji stalin byl lewicowcem czy prawicowcem? A lenin? Masz moze jakies informacje dotyczace wyzn...",
+      "x": 69.32669067382812,
+      "y": 15.050519943237305,
+      "z": 11.31808853149414,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_15713",
+      "text": "I prawidlowo",
+      "x": 25.675390243530273,
+      "y": 48.927467346191406,
+      "z": -38.526031494140625,
+      "ground_truth_labels": [
+        "violence"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "false_negative",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_11365",
+      "text": ": topie",
+      "x": 9.018312454223633,
+      "y": -4.426525592803955,
+      "z": -16.05955696105957,
+      "ground_truth_labels": [
+        "violence"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "false_negative",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_20743",
+      "text": "[surname] ty kurr...wo. Kto na tego łajzę głosował?",
+      "x": -70.15872955322266,
+      "y": 26.22040557861328,
+      "z": 24.322784423828125,
+      "ground_truth_labels": [
+        "hate_speech"
+      ],
+      "predicted_labels": [
+        "hate_speech"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_626",
+      "text": ": : :D prywatne firmy nachalnie wydzwaniają żeby coś zarobić i to nie jest wolny rynek :D na prawdziwym by tak nie ro...",
+      "x": -69.41572570800781,
+      "y": 45.47443771362305,
+      "z": 51.56941223144531,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "hate_speech"
+      ],
+      "error_type": "false_positive",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_11328",
+      "text": ": to tylko żart spierdolino a nie krytyka kapitalizmu",
+      "x": -63.14458465576172,
+      "y": -46.37348556518555,
+      "z": 20.69709014892578,
+      "ground_truth_labels": [
+        "hate_speech"
+      ],
+      "predicted_labels": [
+        "hate_speech",
+        "vulgarity"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_7814",
+      "text": ": ja pierdole piszesz do mnie od rzeczy, wiec pytam grzecznie co masz na mysli i to ja wkurwiam ciebie? na czarna, ko...",
+      "x": -64.10939025878906,
+      "y": -45.73021697998047,
+      "z": 17.87984275817871,
+      "ground_truth_labels": [
+        "violence"
+      ],
+      "predicted_labels": [
+        "vulgarity"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_15570",
+      "text": "Ha, ha, ha...kocham ten kraj..",
+      "x": 64.65237426757812,
+      "y": 39.46685028076172,
+      "z": 8.68449878692627,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_13982",
+      "text": ">wybielanie: nauczyciele widzieli, pracownicy mopsu przychodzili gdy dzieci nie było w domu, sąd totalnie pojechał od...",
+      "x": 60.442745208740234,
+      "y": 14.5697603225708,
+      "z": 23.639570236206055,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_14711",
+      "text": "Chuj ci w dziąsło onuco",
+      "x": -71.99365997314453,
+      "y": 0.092685267329216,
+      "z": 43.073944091796875,
+      "ground_truth_labels": [
+        "vulgarity"
+      ],
+      "predicted_labels": [
+        "hate_speech"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_12410",
+      "text": ": zgadza sie i coraz wiecej przestepstw popelniaja, a co gorsza powiedzec o tym to sludzy nazywaja kogos onuca XD pam...",
+      "x": 55.29625701904297,
+      "y": 39.95360565185547,
+      "z": -7.358593940734863,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_17594",
+      "text": "Nie, nie piszę fejków. Podałem Ci dane ogólne. Pisałeś, że 3060 jest więcej. No nie, to nie jest. Laptopowa wersja to...",
+      "x": 76.68265533447266,
+      "y": 14.899873733520508,
+      "z": 27.164419174194336,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_23488",
+      "text": "uważaj na stateczniki przy wyjmowaniu!",
+      "x": 56.002769470214844,
+      "y": 22.943317413330078,
+      "z": -2.769192695617676,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_21766",
+      "text": "jakich spermiarzy cw.3lu",
+      "x": 3.886113405227661,
+      "y": 21.1720027923584,
+      "z": -11.367842674255371,
+      "ground_truth_labels": [
+        "hate_speech"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "false_negative",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_4699",
+      "text": ": Ten gnój zgwałcił moją kobietę, więc póki wystarczy materiału będę grillował tego śmiecia. Chętnie przyjmę na priv ...",
+      "x": -62.66227722167969,
+      "y": 46.18668746948242,
+      "z": -12.960954666137695,
+      "ground_truth_labels": [
+        "hate_speech"
+      ],
+      "predicted_labels": [
+        "hate_speech",
+        "violence"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_17341",
+      "text": "Najlepsze, że obrończy pedofili i bez mózgi co chodzą do kościoła wspierać pedofili minusują. To jest straszne, niedł...",
+      "x": -28.353029251098633,
+      "y": 55.45259094238281,
+      "z": -61.109825134277344,
+      "ground_truth_labels": [
+        "hate_speech"
+      ],
+      "predicted_labels": [
+        "violence"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_1396",
+      "text": ": Boli to ciebie dupa po stosunku ze stulejmanem.",
+      "x": -41.8765869140625,
+      "y": -42.665245056152344,
+      "z": -46.959495544433594,
+      "ground_truth_labels": [
+        "vulgarity"
+      ],
+      "predicted_labels": [
+        "vulgarity"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_23247",
+      "text": "ten to musi być troll",
+      "x": -13.082797050476074,
+      "y": 27.43393325805664,
+      "z": -40.622127532958984,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_17695",
+      "text": "Nieźle mają w tej Ameryce. I to tylko z powodu rzekomo sfałszowanych wyborów. Tymczasem w tym w narodzie kundli rząd ...",
+      "x": -0.8622339963912964,
+      "y": 51.042633056640625,
+      "z": -49.91058349609375,
+      "ground_truth_labels": [
+        "hate_speech"
+      ],
+      "predicted_labels": [
+        "violence"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_13409",
+      "text": ">Dzieci są wychowywane przez rodziców : Ale nie są ich własnością, a o tym wielu fanatyków religijnych zapomina.",
+      "x": 70.85516357421875,
+      "y": 33.94953536987305,
+      "z": 11.500102043151855,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_3581",
+      "text": ": Noe tyle stary co zupełnie bez pomysłu, oferujący od lat nie zmienne dosyć ubogie menu.Świat poszedł do przodu",
+      "x": 74.8414535522461,
+      "y": 17.965396881103516,
+      "z": 23.877735137939453,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_18022",
+      "text": "Oko za oko ( ͡° ͜ʖ ͡°) #ukraina #wojna #rosja",
+      "x": -49.21061325073242,
+      "y": 69.50025939941406,
+      "z": -14.90588092803955,
+      "ground_truth_labels": [
+        "hate_speech"
+      ],
+      "predicted_labels": [
+        "hate_speech",
+        "violence"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_7415",
+      "text": ": fajny kubeł na spermę.",
+      "x": -51.62049865722656,
+      "y": 30.138267517089844,
+      "z": -41.69997787475586,
+      "ground_truth_labels": [
+        "violence"
+      ],
+      "predicted_labels": [
+        "hate_speech",
+        "violence"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_20924",
+      "text": "a za 5 miesiecy powie ze nie pamietał co robił i komu pożyczył samochód (Emil od fotoradarów - tutaj dziękujemy tobie...",
+      "x": 68.3438949584961,
+      "y": -8.572409629821777,
+      "z": 10.218633651733398,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_16976",
+      "text": "MUCHOMOR SROMOTNIKOWY, SAMA NATURA 100%, BEZ DODATKU CHEMII, BEZ KONSERWANTÓW. Marzy mi się tak sprzedawać niewykszta...",
+      "x": -39.16624069213867,
+      "y": 71.7352294921875,
+      "z": -44.14955139160156,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "hate_speech",
+        "violence"
+      ],
+      "error_type": "false_positive",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_9385",
+      "text": ": niemiaszki to wytresowane, niewolnicze pizdy",
+      "x": -66.54202270507812,
+      "y": 58.10017013549805,
+      "z": -10.100236892700195,
+      "ground_truth_labels": [
+        "hate_speech"
+      ],
+      "predicted_labels": [
+        "hate_speech",
+        "violence"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_15143",
+      "text": "Debil z ciebie.",
+      "x": -56.047027587890625,
+      "y": -56.133941650390625,
+      "z": 6.698527812957764,
+      "ground_truth_labels": [
+        "vulgarity"
+      ],
+      "predicted_labels": [
+        "vulgarity"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_1472",
+      "text": ": Chuja tam pamiętają Konfederaści. Jakoś trzy, cztery lata temu siedzieli cicho, dzisiaj kurwa wielce pamiętają, jeb...",
+      "x": -69.71917724609375,
+      "y": 64.73950958251953,
+      "z": 53.27550506591797,
+      "ground_truth_labels": [
+        "violence"
+      ],
+      "predicted_labels": [
+        "hate_speech"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_3902",
+      "text": ": Piękne 180 stopni w relacjach z Polską bo nagle jebanych czarnych nasrało.",
+      "x": -68.6939697265625,
+      "y": 60.48069381713867,
+      "z": 50.75541305541992,
+      "ground_truth_labels": [
+        "violence"
+      ],
+      "predicted_labels": [
+        "hate_speech"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_19829",
+      "text": "W pizde se wsadźcie jakieś ochłapy, zjebany rząd na zjebane czasy",
+      "x": -70.43425750732422,
+      "y": 60.72727584838867,
+      "z": 32.86245346069336,
+      "ground_truth_labels": [
+        "violence"
+      ],
+      "predicted_labels": [
+        "hate_speech"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_4688",
+      "text": ": Te zwierzęta z TVP należy izolować, taka jest prawda. Przestań sadzić słodkie pierdy o „wolnych mediach” - TVP to p...",
+      "x": -57.62551498413086,
+      "y": 23.07476234436035,
+      "z": -29.021207809448242,
+      "ground_truth_labels": [
+        "violence"
+      ],
+      "predicted_labels": [
+        "hate_speech",
+        "violence"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_6106",
+      "text": ": a więc to jest twój problem (╭☞σ ͜ʖσ)╭☞",
+      "x": 48.38945007324219,
+      "y": -21.649520874023438,
+      "z": -1.78854501247406,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_10193",
+      "text": ": podobno prawica też jest za tym aby każde przedsiębiorstwo wprowadzało własne zasady . Prawo do wygłaszania swoich ...",
+      "x": 76.05619812011719,
+      "y": 25.080961227416992,
+      "z": 22.42770767211914,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_22039",
+      "text": "ktoś kto ma tęczę na awatarze wie doskonale co to być upośledzonym",
+      "x": -3.993743658065796,
+      "y": 18.253129959106445,
+      "z": -47.49521255493164,
+      "ground_truth_labels": [
+        "vulgarity"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "false_negative",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_22317",
+      "text": "naród frajerów i tchórzy",
+      "x": -49.126895904541016,
+      "y": 47.87298583984375,
+      "z": -23.87075424194336,
+      "ground_truth_labels": [
+        "violence"
+      ],
+      "predicted_labels": [
+        "hate_speech",
+        "violence"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_8044",
+      "text": ": jakiś tam projekt farmy mam w Polsce niedługo. Aż zerknę ile to MW.",
+      "x": 75.69287872314453,
+      "y": 22.555606842041016,
+      "z": 24.083269119262695,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_316",
+      "text": "**Szczę na jezuska**! A teraz katole, do kościółka i modlić się w intencji przeprosin za moje bluźnierstwa! Pieniędzy...",
+      "x": -14.852088928222656,
+      "y": 40.906551361083984,
+      "z": -22.157468795776367,
+      "ground_truth_labels": [
+        "violence"
+      ],
+      "predicted_labels": [
+        "hate_speech"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_11440",
+      "text": ": twoje zdanie ma wartosc mojej wczorajszej kupy, lewacki manipulancie. Wypierdalaj",
+      "x": -55.3010139465332,
+      "y": -61.200374603271484,
+      "z": 6.23417854309082,
+      "ground_truth_labels": [
+        "vulgarity"
+      ],
+      "predicted_labels": [
+        "vulgarity"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_8708",
+      "text": ": mieliscie za nieznajomosc prawa, ja to nawet obiegowki pod koniec szkoly sredniej jako jedyny nie oddalem bo prawo ...",
+      "x": 73.51686096191406,
+      "y": 8.542786598205566,
+      "z": 24.204421997070312,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_14515",
+      "text": "Biedne świnki, ludzie to jebane zwierzęta",
+      "x": -67.30402374267578,
+      "y": 69.51797485351562,
+      "z": 46.62727737426758,
+      "ground_truth_labels": [
+        "hate_speech"
+      ],
+      "predicted_labels": [
+        "hate_speech"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_5295",
+      "text": ": Widać lubusz być ruchany/ruchana w d00pe ale nie wszy lubią tego typu zabawy (－‸ლ)",
+      "x": -27.403564453125,
+      "y": -6.95255184173584,
+      "z": -42.74268341064453,
+      "ground_truth_labels": [
+        "hate_speech"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "false_negative",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_9452",
+      "text": ": no bo jak tłumaczyć demontaż kraju i klaskanie [surname]? może to nowy rodzaj wojny, gdzie opinia publiczna jest ka...",
+      "x": 50.264495849609375,
+      "y": 40.12159729003906,
+      "z": -11.34329605102539,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_814",
+      "text": ": > przecież w agbedzir WEF to ejst jasno napisane. Czytałeś ją w ogóle? Tam jest o zatrzymaniu WZROSTU liczby aut w ...",
+      "x": 77.28266143798828,
+      "y": 14.353428840637207,
+      "z": 30.977079391479492,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_10624",
+      "text": ": siorbaj tam lepiej osyfiały śledzik swego spoconego spasionego pana, przecież lubisz takie owłosione stonki śmierdz...",
+      "x": -32.468875885009766,
+      "y": -29.20920753479004,
+      "z": -37.31968307495117,
+      "ground_truth_labels": [
+        "hate_speech"
+      ],
+      "predicted_labels": [
+        "vulgarity"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_248",
+      "text": "#sen #wkurw #jebanymalypies #jachcekurwaspac Kurwa jak ja nienawidzę małych jebanych piszczących kundli, wróciłem po ...",
+      "x": -64.6727066040039,
+      "y": 65.40576171875,
+      "z": 59.893585205078125,
+      "ground_truth_labels": [
+        "hate_speech"
+      ],
+      "predicted_labels": [
+        "hate_speech"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_16768",
+      "text": "Kto jest za ty żeby pedofilów neutralizować.",
+      "x": -44.44818115234375,
+      "y": 45.94902801513672,
+      "z": -45.49120330810547,
+      "ground_truth_labels": [
+        "violence"
+      ],
+      "predicted_labels": [
+        "hate_speech",
+        "violence"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_14429",
+      "text": "Astrologowie oglaszaja populacja zjebanych obrazkow anime na wykopie zmniejsza sie. ! Bohater jakiego mamy a na ktore...",
+      "x": -67.76769256591797,
+      "y": 62.094078063964844,
+      "z": 49.46017074584961,
+      "ground_truth_labels": [
+        "violence"
+      ],
+      "predicted_labels": [
+        "hate_speech"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_15644",
+      "text": "I bardzo kurwa dobrze. Całe to \"miasto\" powinni wytruć. Otoczyć murem 8 zalać wodą.",
+      "x": -54.89361572265625,
+      "y": 78.26087188720703,
+      "z": -23.499889373779297,
+      "ground_truth_labels": [
+        "violence"
+      ],
+      "predicted_labels": [
+        "hate_speech",
+        "violence"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_8981",
+      "text": ": napisze jeszcze raz moze ta pizda nie usunie , nie ma co sie dziwic ze po nogach mu kal leci skoro on w wiezeniu by...",
+      "x": -73.58609008789062,
+      "y": 49.53173065185547,
+      "z": -7.612081050872803,
+      "ground_truth_labels": [
+        "hate_speech"
+      ],
+      "predicted_labels": [
+        "hate_speech",
+        "violence"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_23727",
+      "text": "z Twej wypowiedzi wynika bardziej że to stara Europa zrobiła regres a nie my niesamowity progres",
+      "x": 68.90470886230469,
+      "y": 16.358814239501953,
+      "z": 15.758953094482422,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_23416",
+      "text": "ty jesteś srogo #!$%@?ęty, ale w sumie nie dziwię się. ¯\\_(ツ)_/¯",
+      "x": 73.1699447631836,
+      "y": 11.749385833740234,
+      "z": 30.277856826782227,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_22658",
+      "text": "oj chyba komus dupa zapiekła xD tez fryzjera od roku nie widziales przyjebie?",
+      "x": -46.30670928955078,
+      "y": -56.87104415893555,
+      "z": -9.912680625915527,
+      "ground_truth_labels": [
+        "hate_speech"
+      ],
+      "predicted_labels": [
+        "vulgarity"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_4784",
+      "text": ": To dwa zwoje mózgowe więcej niż polski katolik.",
+      "x": 62.325714111328125,
+      "y": 19.52279281616211,
+      "z": 1.688995122909546,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_10652",
+      "text": ": skurwysyna zajebie huligana",
+      "x": -65.48385620117188,
+      "y": -40.61124801635742,
+      "z": 26.881547927856445,
+      "ground_truth_labels": [
+        "hate_speech"
+      ],
+      "predicted_labels": [
+        "hate_speech",
+        "vulgarity"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_3582",
+      "text": ": Nom, na jakiś wioskach gdzie nikt nie chce leczyć stawki dla lekarza rodzinnego to 100zl/h i w górę. A lekarzami ro...",
+      "x": 72.44060516357422,
+      "y": 18.387147903442383,
+      "z": 23.187273025512695,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    }
+  ]
+}

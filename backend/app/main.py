@@ -14,6 +14,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from app.api.routes import router
 from app.core.config import settings
+from app.services.projection import ProjectionService
 from app.services.registry import InferenceRegistry
 
 
@@ -27,6 +28,7 @@ async def lifespan(app: FastAPI):
         settings.bert_model_dir_pl,
     )
     app.state.registry = registry
+    app.state.projection = ProjectionService(settings.projections_dir)
     registry.load_all()
     yield
 

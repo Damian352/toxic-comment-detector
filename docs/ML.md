@@ -18,7 +18,10 @@ ml/
 │   ├── bert_multilabel.py       # Dataset, sigmoid, artifact save/load
 │   ├── train_bert.py            # Fine-tune BERT → models/bert/
 │   ├── train_bert_pl.py         # Fine-tune HerBERT → models/bert_pl/
-│   └── tune_thresholds.py       # Tune thresholds for all 4 models
+│   ├── tune_thresholds.py       # Tune thresholds for all 4 models
+│   └── build_projection_maps.py # Hold-out PCA scatter → models/projections/
+├── visualization/
+│   └── embedding_projection.py  # Embeddings, PCA/SVD, error tagging, display norm
 ├── experiments/                 # metrics.json, thresholds.json per model
 ├── notebooks/01_eda.ipynb       # Jigsaw EDA
 └── reports/                     # Stage reports
@@ -135,9 +138,29 @@ python -m ml.training.train_bert_pl --epochs 2
 # 3. Thresholds
 python -m ml.training.tune_thresholds
 
-# 4. Backend
+# 4. PCA scatter maps (validation set → models/projections/)
+python -m ml.training.build_projection_maps
+python -m ml.training.build_projection_maps --lang pl --max-points 400 --max-embed 800
+# Demo fallback when CSV is missing (EN only):
+python -m ml.training.build_projection_maps --demo
+
+# 5. Backend
 cd backend && uvicorn app.main:app --port 8010
 ```
+
+## Embedding projections (PCA scatter)
+
+`ml/visualization/embedding_projection.py` builds **2D/3D PCA maps** from the **same hold-out test split** as training (`random_state=42`, `test_size=0.2`):
+
+1. Extract embeddings — TF-IDF sparse features (TruncatedSVD → PCA) or BERT `[CLS]` vectors (PCA).
+2. Run model inference on the test split; tag each point: `correct`, `false_positive`, `false_negative`, `label_mismatch`.
+3. Save to `models/projections/{lang}/{model}/`:
+   - `reducer.joblib` — fitted reducer + display normalization
+   - `corpus.json` — sampled validation points for the UI scatter plot
+
+The FastAPI backend (`projection.py`) projects **live user comments** with the same reducer and overlays them on the validation cloud. A separate **reference-anchor** map (`anchor_projection.py`) uses fixed benchmark comments and model probabilities — no offline artifacts required.
+
+UI/API: `include_pca: false` (default) skips live PCA embedding; anchor map is still returned. Filters on the corpus endpoint: `correct`, `errors`, `false_positive`, `false_negative`, `label_mismatch`.
 
 ## Experiments
 

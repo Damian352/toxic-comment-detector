@@ -25,7 +25,8 @@ Multi-component project for **multi-label toxic comment classification** in Engl
 | **API** | `/api/predict` with `model`: `tfidf_lr` \| `bert` \| `both` |
 | **Language** | `lang`: `auto` (gcld3/langdetect), `en`, `pl` |
 | **Thresholds** | Per-label from `models/thresholds.json` (no retraining) |
-| **UI** | Radar chart, 2D projection, dual mode, metrics tab |
+| **UI** | Radar chart, interactive 3D PCA scatter, reference-anchor map, error-type filters, fast mode (`include_pca: false`), dual mode, metrics |
+| **PCA maps** | Hold-out validation cloud (`build_projection_maps`); optional at inference to save GPU/CPU |
 
 ### Labels
 
@@ -48,15 +49,17 @@ Demo captures from the React UI (`images/demo/`). Run the [quick start](#quick-s
 
 ![English dual comparison — threat](<images/demo/2-dual comparison english.png>)
 
-### Semantic space mapping
+### Reference anchor map (heuristic 2D)
 
-**2D vector alignment and nearest-neighbor references (dual mode, English):**
+Fixed benchmark comments; your text is placed from model probabilities. Toggle **Reference anchors** in the map panel.
 
-![Semantic space mapping — English overview](<images/demo/3-Semantic Space Mapping And Similarities 1.png>)
+**Dual mode — TF-IDF vs BERT alignment (English):**
 
-**Interactive tooltip on the active comment (TF-IDF projection):**
+![Reference anchor map — English dual mode](<images/demo/3-Semantic Space Mapping And Similarities 1.png>)
 
-![Semantic space mapping — active comment tooltip](<images/demo/4-Semantic Space Mapping And Similarities 2.png>)
+**Tooltip on the active comment:**
+
+![Reference anchor map — active comment tooltip](<images/demo/4-Semantic Space Mapping And Similarities 2.png>)
 
 ### Analysis (Polish)
 
@@ -64,9 +67,35 @@ Demo captures from the React UI (`images/demo/`). Run the [quick start](#quick-s
 
 ![Polish dual comparison](<images/demo/5-dual comparison polish.png>)
 
-**Semantic space mapping for the Polish corpus:**
+**Reference anchor map — Polish:**
 
-![Semantic space mapping — Polish](<images/demo/6-Semantic Space Mapping And Similarities 3 Polish.png>)
+![Reference anchor map — Polish](<images/demo/6-Semantic Space Mapping And Similarities 3 Polish.png>)
+
+### PCA validation maps
+
+Built offline from the hold-out test set (`python -m ml.training.build_projection_maps`). Enable at analysis time via **Include PCA validation map** (checkbox) or `"include_pca": true` in the API.
+
+**Polish — 2D PCA, hate-speech comment, error-type colors (FN / label mismatch):**
+
+![PCA validation — Polish 2D hate speech](<images/demo/9-pca-validation-pl-2d-hate-speech.png>)
+
+**Polish — interactive 3D PCA (rotate + zoom):**
+
+![PCA validation — Polish 3D interactive](<images/demo/10-pca-validation-pl-3d-interactive.png>)
+
+**Polish — 3D tooltip on a correctly classified validation point:**
+
+![PCA validation — Polish 3D correct tooltip](<images/demo/11-pca-validation-pl-3d-tooltip-correct.png>)
+
+**English — 2D PCA (TF-IDF embeddings, `TruncatedSVD+PCA`):**
+
+![PCA validation — English 2D TF-IDF](<images/demo/12-pca-validation-en-2d-tfidf.png>)
+
+**English — 2D tooltip on a label-mismatch validation point:**
+
+![PCA validation — English label mismatch tooltip](<images/demo/13-pca-validation-en-2d-label-mismatch-tooltip.png>)
+
+Map controls: **PCA validation** vs **Reference anchors**, **2D / 3D (rotate)**, filters (`All`, `Correct only`, `FP`, `FN`, …).
 
 ### Model metrics dashboard
 
@@ -97,6 +126,10 @@ python -m ml.training.train_bert_pl --epochs 3
 
 # Threshold tuning (optional)
 python -m ml.training.tune_thresholds
+
+# PCA validation scatter maps for the UI (requires trained models)
+python -m ml.training.build_projection_maps
+python -m ml.training.build_projection_maps --lang pl --max-points 400 --max-embed 800
 ```
 
 ### 2. Backend
@@ -144,6 +177,7 @@ All routes are prefixed with `/api`. The frontend dev server proxies `/api/*` to
 | GET | `/api/ready` | Which model artifacts are loaded (EN/PL) |
 | GET | `/api/models` | Available backends and artifact paths |
 | GET | `/api/metrics` | Training/evaluation metrics for the UI dashboard |
+| GET | `/api/projection/corpus` | Precomputed PCA validation scatter (offline artifacts) |
 | POST | `/api/detect-lang` | Language detection only (no inference) |
 | POST | `/api/predict` | Multi-label toxicity inference |
 
@@ -249,9 +283,11 @@ Main inference endpoint.
 | `text` | string | — | Comment to classify (1–8000 chars) |
 | `model` | string | `tfidf_lr` | `tfidf_lr`, `bert`, or `both` |
 | `lang` | string | `auto` | `auto` (detect), `en`, or `pl` |
+| `include_pca` | boolean | `false` | `true` = build PCA validation map (extra embeddings; slower). Anchor map is always included. |
 
 - **`lang: auto`** — routes to EN or PL models using gcld3 (Docker) or langdetect (local fallback).
 - **`lang: en` / `pl`** — skips detection; `lang_source` in the response is `forced`.
+- **`include_pca: false`** — default fast path: probabilities + reference-anchor map only.
 
 ```bash
 curl -X POST http://127.0.0.1:8010/api/predict \
@@ -282,7 +318,9 @@ curl -X POST http://127.0.0.1:8010/api/predict \
   "lang_confidence": 0.86,
   "lang_source": "gcld3",
   "is_dual": false,
-  "similarity_projection": [
+  "pca_included": false,
+  "similarity_projection": [],
+  "reference_projection": [
     {
       "id": "anchor_7",
       "text": "I will kill you...",
@@ -305,6 +343,8 @@ curl -X POST http://127.0.0.1:8010/api/predict \
 }
 ```
 
+With `"include_pca": true`, `similarity_projection` contains the validation PCA cloud + your projected point; `projection_method` and `explained_variance_ratio` are set.
+
 **Response extras when `model: both`:**
 
 | Field | Description |
@@ -313,10 +353,16 @@ curl -X POST http://127.0.0.1:8010/api/predict \
 | `probabilities` | BERT/HerBERT scores (primary display) |
 | `probabilities_tfidf` | TF-IDF scores |
 | `probabilities_bert` | BERT/HerBERT scores |
-| `similarity_projection_tfidf` | 2D map points for TF-IDF |
-| `similarity_projection_bert` | 2D map points for BERT |
+| `similarity_projection_tfidf` | PCA map for TF-IDF (if `include_pca`) |
+| `similarity_projection_bert` | PCA map for BERT (if `include_pca`) |
+| `reference_projection` | Heuristic anchor map (always, when inference succeeds) |
+| `pca_included` | Whether PCA maps were computed for this request |
 
 Polish (`analysis_lang: pl`) uses labels `safe`, `hate_speech`, `violence`, `vulgarity` instead of the six Jigsaw classes.
+
+### `GET /api/projection/corpus`
+
+Offline PCA validation points for `lang` + `model` (`tfidf_lr` | `bert`). Query `error_filter`: `all`, `correct`, `errors`, `false_positive`, `false_negative`, `label_mismatch`.
 
 **HTTP errors:**
 
@@ -354,6 +400,7 @@ Full backend notes: [docs/BACKEND.md](docs/BACKEND.md).
 | `MODEL_PATH_PL` | PL TF-IDF pickle |
 | `BERT_MODEL_DIR_PL` | PL HerBERT directory |
 | `ML_EXPERIMENTS_DIR` | Path to `ml/experiments` |
+| `PROJECTIONS_DIR` | Path to `models/projections` (PCA scatter artifacts) |
 | `LANG_DETECT_MIN_CONFIDENCE` | Auto language detection threshold |
 | `VITE_PROXY_TARGET` | Backend URL for Vite (Docker) |
 
@@ -366,8 +413,9 @@ toxic-comment-detector/
 ├── backend/app/          # FastAPI (see docs/BACKEND.md)
 ├── frontend/src/         # React UI
 ├── ml/                   # Training (see docs/ML.md)
-├── models/               # Artifacts + thresholds.json
+├── models/               # Artifacts, thresholds.json, projections/
 ├── data/raw/             # Jigsaw train.csv (not in git)
+├── BAN-PL_2/             # Polish BAN-PL.csv (not in git)
 ├── docs/                 # BACKEND.md, ML.md
 ├── images/demo/          # UI screenshots for README
 └── docker-compose.yml

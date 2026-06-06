@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
+import ProjectionPlot3D from "./components/ProjectionPlot3D";
 
 type ModelId = "tfidf_lr" | "bert" | "both";
 
@@ -10,14 +11,26 @@ type ModelInfo = {
   artifact_path: string;
 };
 
+type ProjectionErrorType =
+  | "correct"
+  | "false_positive"
+  | "false_negative"
+  | "label_mismatch"
+  | null;
+
 type ProjectionPoint = {
   id: string;
   text: string;
   labels: string[];
   x: number;
   y: number;
+  z?: number;
   similarity: number;
   is_active: boolean;
+  is_validation?: boolean;
+  ground_truth_labels?: string[];
+  predicted_labels?: string[];
+  error_type?: ProjectionErrorType;
 };
 
 type AnalysisLang = "auto" | "en" | "pl";
@@ -38,7 +51,19 @@ type PredictResponse = {
   probabilities_bert?: Record<string, number>;
   similarity_projection_tfidf?: ProjectionPoint[];
   similarity_projection_bert?: ProjectionPoint[];
+  projection_method?: string | null;
+  projection_axes?: Record<string, string> | null;
+  explained_variance_ratio?: number[] | null;
+
+  reference_projection?: ProjectionPoint[];
+  reference_projection_tfidf?: ProjectionPoint[];
+  reference_projection_bert?: ProjectionPoint[];
+
+  pca_included?: boolean;
 };
+
+type MapVisualizationMode = "pca" | "anchors";
+type ProjectionErrorFilter = "all" | "correct" | "errors" | "false_positive" | "false_negative" | "label_mismatch";
 
 type MetricLabelInfo = {
   label: string;
@@ -249,6 +274,12 @@ export default function App() {
   // Nearest Neighbor Toggled Model in Dual Mode
   const [closestMatchesModel, setClosestMatchesModel] = useState<"tfidf" | "bert">("bert");
 
+  // Scatter map controls
+  const [includePca, setIncludePca] = useState(false);
+  const [mapVisualizationMode, setMapVisualizationMode] = useState<MapVisualizationMode>("anchors");
+  const [projectionDim, setProjectionDim] = useState<2 | 3>(2);
+  const [errorFilter, setErrorFilter] = useState<ProjectionErrorFilter>("all");
+
   const effectiveAnalysisLang = useMemo((): "en" | "pl" => {
     if (result?.analysis_lang === "en" || result?.analysis_lang === "pl") {
       return result.analysis_lang;
@@ -348,23 +379,46 @@ export default function App() {
   const selectedModelInfo = models?.find((m) => m.id === model);
 
   // Extract closest similar comments from projection
-  const closestMatches = useMemo(() => {
-    if (!result) return [];
+  const activeProjectionSource = useMemo(() => {
+    if (!result) return [] as ProjectionPoint[];
+    const useAnchors = mapVisualizationMode === "anchors";
     if (result.is_dual) {
-      const proj = closestMatchesModel === "bert" ? result.similarity_projection_bert : result.similarity_projection_tfidf;
-      if (!proj) return [];
-      return proj
-        .filter((pt) => !pt.is_active)
-        .sort((a, b) => b.similarity - a.similarity)
-        .slice(0, 3);
-    } else {
-      if (!result.similarity_projection) return [];
-      return result.similarity_projection
-        .filter((pt) => !pt.is_active)
-        .sort((a, b) => b.similarity - a.similarity)
-        .slice(0, 3);
+      if (useAnchors) {
+        return closestMatchesModel === "bert"
+          ? result.reference_projection_bert ?? []
+          : result.reference_projection_tfidf ?? [];
+      }
+      return closestMatchesModel === "bert"
+        ? result.similarity_projection_bert ?? []
+        : result.similarity_projection_tfidf ?? [];
     }
-  }, [result, closestMatchesModel]);
+    if (useAnchors) return result.reference_projection ?? [];
+    return result.similarity_projection ?? [];
+  }, [result, closestMatchesModel, mapVisualizationMode]);
+
+  const closestMatches = useMemo(() => {
+    if (!activeProjectionSource.length) return [];
+    return activeProjectionSource
+      .filter((pt) => !pt.is_active)
+      .sort((a, b) => b.similarity - a.similarity)
+      .slice(0, 3);
+  }, [activeProjectionSource]);
+
+  const primaryProjectionPoints = activeProjectionSource;
+
+  const displayedProjectionPoints = useMemo(() => {
+    return primaryProjectionPoints.filter((pt) => {
+      if (pt.is_active) return true;
+      if (mapVisualizationMode === "anchors") return true;
+      if (errorFilter === "all") return true;
+      if (errorFilter === "errors") return pt.error_type != null && pt.error_type !== "correct";
+      return pt.error_type === errorFilter;
+    });
+  }, [primaryProjectionPoints, errorFilter, mapVisualizationMode]);
+
+  const axisLabelX = result?.projection_axes?.x ?? "PC1";
+  const axisLabelY = result?.projection_axes?.y ?? "PC2";
+  const axisLabelZ = result?.projection_axes?.z ?? "PC3";
 
   async function analyze() {
     if (text.trim().length === 0) return;
@@ -375,7 +429,7 @@ export default function App() {
       const res = await fetch("/api/predict", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ text, model, lang: analysisLang }),
+        body: JSON.stringify({ text, model, lang: analysisLang, include_pca: includePca }),
       });
       
       let body: any = {};
@@ -402,7 +456,11 @@ export default function App() {
         }
         throw new Error(detail || `Request failed (${res.status})`);
       }
-      setResult(body as PredictResponse);
+      const parsed = body as PredictResponse;
+      setResult(parsed);
+      if (!parsed.pca_included) {
+        setMapVisualizationMode("anchors");
+      }
       if (!metrics) {
         void loadMetrics(true);
       }
@@ -506,7 +564,12 @@ export default function App() {
     }
   };
 
-  // --- 2D Space Projection Coordinate Mapping ---
+  // --- PCA projection coordinate mapping ---
+  const getDisplayCoords = (pt: ProjectionPoint): { x: number; y: number } => ({
+    x: pt.x,
+    y: pt.y,
+  });
+
   const getProjectionSVGCoords = (x: number, y: number) => {
     const center = 160;
     const scale = 1.35;
@@ -522,8 +585,24 @@ export default function App() {
   const getActiveUserColor = (pt: ProjectionPoint) =>
     isProjectionPointSafe(pt) ? "#10b981" : "#ef4444";
 
+  const getErrorTypeColor = (errorType: ProjectionErrorType | undefined) => {
+    switch (errorType) {
+      case "false_positive":
+        return "#ef4444";
+      case "false_negative":
+        return "#f97316";
+      case "label_mismatch":
+        return "#a855f7";
+      case "correct":
+        return "#94a3b8";
+      default:
+        return "#64748b";
+    }
+  };
+
   const getPointColor = (pt: ProjectionPoint) => {
     if (pt.is_active) return getActiveUserColor(pt);
+    if (pt.is_validation && pt.error_type) return getErrorTypeColor(pt.error_type);
     const primaryLabel = pt.labels[0] || "safe";
     switch (primaryLabel) {
       case "safe":
@@ -542,6 +621,8 @@ export default function App() {
         return "#ef4444";
     }
   };
+
+  const plot3DColor = (pt: ProjectionPoint) => getPointColor(pt);
 
   // --- Global Styles ---
   const styles = {
@@ -940,7 +1021,32 @@ export default function App() {
                   </div>
                 </div>
 
-                <div style={{ display: "flex", gap: 12, alignItems: "center" }}>
+                <label
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: 8,
+                    marginBottom: 12,
+                    fontSize: 13,
+                    color: "#475569",
+                    cursor: "pointer",
+                    userSelect: "none",
+                  }}
+                >
+                  <input
+                    type="checkbox"
+                    checked={includePca}
+                    onChange={(e) => setIncludePca(e.target.checked)}
+                    style={{ width: 16, height: 16, accentColor: "#4338ca" }}
+                  />
+                  <span>
+                    {uiLang === "pl"
+                      ? "Dołącz mapę PCA (wolniejsze — dodatkowe embeddingi BERT/TF-IDF)"
+                      : "Include PCA validation map (slower — extra BERT/TF-IDF embeddings)"}
+                  </span>
+                </label>
+
+                <div style={{ display: "flex", gap: 12, alignItems: "center", flexWrap: "wrap" }}>
                   <button
                     type="button"
                     onClick={() => void analyze()}
@@ -1501,44 +1607,170 @@ export default function App() {
             </div>
           </div>
 
-          {/* SECTION: 2D Embedding Projection & Closest Matches */}
+          {/* SECTION: Semantic space maps (PCA validation or reference anchors) */}
           {result && (
             <div style={{ ...styles.card, marginTop: 24 }}>
               <div style={{ borderBottom: "1px solid #e2e8f0", paddingBottom: 12, marginBottom: 20 }}>
                 <h3 style={{ margin: 0, fontSize: 20, fontWeight: 700, display: "flex", alignItems: "center", gap: 8 }}>
-                  🌐 {uiLang === "pl" ? "Wykres przestrzeni semantycznej i podobne teksty" : "Semantic Space Mapping & Nearest Neighbors"}
+                  {mapVisualizationMode === "pca" ? "📊" : "🌐"}{" "}
+                  {mapVisualizationMode === "pca"
+                    ? (uiLang === "pl" ? "PCA — zbiór walidacyjny" : "PCA Validation Map")
+                    : (uiLang === "pl" ? "Mapa referencyjna (kotwice)" : "Reference Anchor Map")}
                 </h3>
                 <p style={{ margin: "4px 0 0", color: "#64748b", fontSize: 14 }}>
-                  {uiLang === "pl" ? "Porównaj, gdzie znajduje się Twój komentarz w przestrzeni 2D względem polskiego korpusu BAN-PL." : "Compare where this comment lies in 2D space relative to typical clean and toxic benchmarks in our corpus."}
+                  {mapVisualizationMode === "pca"
+                    ? (uiLang === "pl"
+                      ? "Prawdziwy scatter PCA/3D ze zbioru testowego. Kolor = poprawna klasyfikacja lub błąd (FP/FN)."
+                      : "Real PCA scatter from the hold-out test set. Colors mark correct vs misclassified validation comments.")
+                    : (uiLang === "pl"
+                      ? "Klasyczna mapa z ustalonymi przykładami (safe / threat / hate). Pozycja Twojego tekstu z profilu prawdopodobieństw modelu."
+                      : "Classic map with fixed benchmark comments. Your text is placed from the model's probability profile.")}
                 </p>
+                {mapVisualizationMode === "pca" && result.projection_method && (
+                  <p style={{ margin: "6px 0 0", color: "#475569", fontSize: 12 }}>
+                    {uiLang === "pl" ? "Metoda" : "Method"}: <strong>{result.projection_method}</strong>
+                    {result.explained_variance_ratio && result.explained_variance_ratio.length >= 2 && (
+                      <> · PC1+PC2 = {(100 * (result.explained_variance_ratio[0] + result.explained_variance_ratio[1])).toFixed(1)}% {uiLang === "pl" ? "wariancji" : "variance"}</>
+                    )}
+                  </p>
+                )}
+              </div>
+
+              <div style={{ display: "flex", flexWrap: "wrap", gap: 8, marginBottom: 16, alignItems: "center" }}>
+                <div style={{ display: "flex", gap: 4, backgroundColor: "#e0e7ff", padding: 2, borderRadius: 6 }}>
+                  <button
+                    type="button"
+                    disabled={!result.pca_included}
+                    title={
+                      result.pca_included
+                        ? undefined
+                        : uiLang === "pl"
+                          ? "Włącz mapę PCA przy analizie (checkbox nad przyciskiem)"
+                          : "Enable PCA map when analyzing (checkbox above Analyze button)"
+                    }
+                    style={{
+                      padding: "4px 12px",
+                      fontSize: 11,
+                      fontWeight: "bold",
+                      border: "none",
+                      borderRadius: 4,
+                      cursor: result.pca_included ? "pointer" : "not-allowed",
+                      opacity: result.pca_included ? 1 : 0.45,
+                      backgroundColor: mapVisualizationMode === "pca" ? "#4338ca" : "transparent",
+                      color: mapVisualizationMode === "pca" ? "#fff" : "#475569",
+                    }}
+                    onClick={() => result.pca_included && setMapVisualizationMode("pca")}
+                  >
+                    PCA {uiLang === "pl" ? "walidacja" : "validation"}
+                  </button>
+                  <button
+                    type="button"
+                    style={{
+                      padding: "4px 12px",
+                      fontSize: 11,
+                      fontWeight: "bold",
+                      border: "none",
+                      borderRadius: 4,
+                      cursor: "pointer",
+                      backgroundColor: mapVisualizationMode === "anchors" ? "#4338ca" : "transparent",
+                      color: mapVisualizationMode === "anchors" ? "#fff" : "#475569",
+                    }}
+                    onClick={() => {
+                      setMapVisualizationMode("anchors");
+                      setProjectionDim(2);
+                    }}
+                  >
+                    {uiLang === "pl" ? "Kotwice referencyjne" : "Reference anchors"}
+                  </button>
+                </div>
+                {mapVisualizationMode === "pca" && (
+                  <div style={{ display: "flex", gap: 4, backgroundColor: "#f1f5f9", padding: 2, borderRadius: 6 }}>
+                    {([2, 3] as const).map((d) => (
+                      <button
+                        key={d}
+                        type="button"
+                        style={{
+                          padding: "4px 10px",
+                          fontSize: 11,
+                          fontWeight: "bold",
+                          border: "none",
+                          borderRadius: 4,
+                          cursor: "pointer",
+                          backgroundColor: projectionDim === d ? "#0f172a" : "transparent",
+                          color: projectionDim === d ? "#fff" : "#475569",
+                        }}
+                        onClick={() => setProjectionDim(d)}
+                      >
+                        {d === 3 ? (uiLang === "pl" ? "3D (obracaj)" : "3D (rotate)") : "2D"}
+                      </button>
+                    ))}
+                  </div>
+                )}
+                {mapVisualizationMode === "pca" && (
+                  <select
+                    value={errorFilter}
+                    onChange={(e) => setErrorFilter(e.target.value as ProjectionErrorFilter)}
+                    style={{ fontSize: 12, padding: "4px 8px", borderRadius: 6, border: "1px solid #cbd5e1" }}
+                  >
+                    <option value="all">{uiLang === "pl" ? "Wszystkie punkty" : "All validation points"}</option>
+                    <option value="correct">{uiLang === "pl" ? "Tylko poprawne" : "Correct only"}</option>
+                    <option value="errors">{uiLang === "pl" ? "Tylko błędy" : "Misclassifications only"}</option>
+                    <option value="false_positive">False Positive</option>
+                    <option value="false_negative">False Negative</option>
+                    <option value="label_mismatch">{uiLang === "pl" ? "Zła etykieta" : "Label mismatch"}</option>
+                  </select>
+                )}
               </div>
 
               <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", gap: 24 }}>
-                {/* 2D Projection Chart Column */}
-                <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+                {/* PCA scatter plot */}
+                <div style={{ display: "flex", flexDirection: "column", alignItems: "center", width: "100%" }}>
                   <span style={styles.label}>
-                    {result.is_dual ? (uiLang === "pl" ? "Wyrównanie przestrzeni modeli" : "Dual Model Vector Alignment") : (uiLang === "pl" ? "Rzutowanie przestrzeni wektorowej" : "2D Vector Projection Space")}
+                    {mapVisualizationMode === "anchors"
+                      ? (uiLang === "pl" ? "Mapa 2D z kotwicami" : "2D anchor map")
+                      : projectionDim === 3
+                        ? (uiLang === "pl" ? "Interaktywny wykres 3D PCA" : "Interactive 3D PCA plot")
+                        : (uiLang === "pl" ? "Wykres 2D PCA" : "2D PCA scatter")}
                   </span>
+
+                  {mapVisualizationMode === "pca" && projectionDim === 3 ? (
+                    <div style={{ width: "100%", maxWidth: 520, border: "1px solid #cbd5e1", borderRadius: 12, overflow: "hidden" }}>
+                      <ProjectionPlot3D
+                        points={displayedProjectionPoints}
+                        axisLabels={{ x: axisLabelX, y: axisLabelY, z: axisLabelZ }}
+                        getColor={plot3DColor}
+                        uiLang={uiLang}
+                        height={420}
+                      />
+                    </div>
+                  ) : (
                   <div style={{ position: "relative", width: 320, height: 320, border: "1px solid #cbd5e1", borderRadius: 12, backgroundColor: "#f8fafc", overflow: "visible" }}>
-                    
-                    {/* SVG Canvas for scatter plot */}
                     <svg width="320" height="320" style={{ overflow: "visible" }}>
-                      {/* Quadrant backgrounds/axis */}
                       <line x1="160" y1="0" x2="160" y2="320" stroke="#cbd5e1" strokeWidth="1" strokeDasharray="3 3" />
                       <line x1="0" y1="160" x2="320" y2="160" stroke="#cbd5e1" strokeWidth="1" strokeDasharray="3 3" />
+                      {mapVisualizationMode === "anchors" ? (
+                        <>
+                          <text x="20" y="30" fill="#94a3b8" fontSize="9" fontWeight="bold">{uiLang === "pl" ? "🛡️ Bezpieczne" : "🛡️ Clean"}</text>
+                          <text x="300" y="30" fill="#94a3b8" fontSize="9" fontWeight="bold" textAnchor="end">{uiLang === "pl" ? "⚠️ Przemoc/Hejt" : "⚠️ Threats & Hate"}</text>
+                          <text x="300" y="300" fill="#94a3b8" fontSize="9" fontWeight="bold" textAnchor="end">{uiLang === "pl" ? "🤬 Wulgaryzmy" : "🤬 Insults & Obscene"}</text>
+                        </>
+                      ) : (
+                        <>
+                          <text x="8" y="312" fill="#64748b" fontSize="9" fontWeight="bold">{axisLabelX}</text>
+                          <text x="8" y="14" fill="#64748b" fontSize="9" fontWeight="bold" transform="rotate(-90 8 14)">{axisLabelY}</text>
+                        </>
+                      )}
 
-                      {/* Quadrant labels */}
-                      <text x="20" y="30" fill="#94a3b8" fontSize="9" fontWeight="bold">{uiLang === "pl" ? "🛡️ Bezpieczne wypowiedzi" : "🛡️ Clean Discussion"}</text>
-                      <text x="300" y="30" fill="#94a3b8" fontSize="9" fontWeight="bold" textAnchor="end">{uiLang === "pl" ? "⚠️ Przemoc i Hejt" : "⚠️ Threats & Hate"}</text>
-                      <text x="300" y="300" fill="#94a3b8" fontSize="9" fontWeight="bold" textAnchor="end">{uiLang === "pl" ? "🤬 Wulgaryzmy i Ataki" : "🤬 Insults & Obscenity"}</text>
-
-                      {/* Connection Line in Dual Mode */}
-                      {result.is_dual && result.similarity_projection_tfidf && result.similarity_projection_bert && (() => {
-                        const tfActive = result.similarity_projection_tfidf.find(p => p.is_active);
-                        const bertActive = result.similarity_projection_bert.find(p => p.is_active);
+                      {result.is_dual && (() => {
+                        const tfList = mapVisualizationMode === "anchors" ? result.reference_projection_tfidf : result.similarity_projection_tfidf;
+                        const bertList = mapVisualizationMode === "anchors" ? result.reference_projection_bert : result.similarity_projection_bert;
+                        const tfActive = tfList?.find(p => p.is_active);
+                        const bertActive = bertList?.find(p => p.is_active);
                         if (tfActive && bertActive) {
-                          const coordTf = getProjectionSVGCoords(tfActive.x, tfActive.y);
-                          const coordBert = getProjectionSVGCoords(bertActive.x, bertActive.y);
+                          const tfD = getDisplayCoords(tfActive);
+                          const bertD = getDisplayCoords(bertActive);
+                          const coordTf = getProjectionSVGCoords(tfD.x, tfD.y);
+                          const coordBert = getProjectionSVGCoords(bertD.x, bertD.y);
                           return (
                             <line
                               x1={coordTf.cx}
@@ -1554,11 +1786,10 @@ export default function App() {
                         return null;
                       })()}
 
-                      {/* Render corpus anchor reference points (using BERT's projection points as anchors) */}
-                      {(result.is_dual ? result.similarity_projection_bert : result.similarity_projection)?.map((pt) => {
-                        if (pt.is_active) return null; // handle active user dots separately below
-                        
-                        const { cx, cy } = getProjectionSVGCoords(pt.x, pt.y);
+                      {displayedProjectionPoints.map((pt) => {
+                        if (pt.is_active) return null;
+                        const disp = getDisplayCoords(pt);
+                        const { cx, cy } = getProjectionSVGCoords(disp.x, disp.y);
                         const isHovered = hoveredProjectionId === pt.id;
                         const color = getPointColor(pt);
 
@@ -1567,11 +1798,11 @@ export default function App() {
                             key={pt.id}
                             cx={cx}
                             cy={cy}
-                            r={isHovered ? 9 : 5.5}
+                            r={isHovered ? (mapVisualizationMode === "anchors" ? 9 : 6) : (mapVisualizationMode === "anchors" ? 5.5 : 3.5)}
                             fill={color}
                             stroke="#fff"
-                            strokeWidth={isHovered ? 2 : 1.5}
-                            opacity={hoveredProjectionId && !isHovered ? 0.35 : 0.85}
+                            strokeWidth={isHovered ? 1.5 : 0.75}
+                            opacity={hoveredProjectionId && !isHovered ? 0.25 : 0.7}
                             style={{ cursor: "pointer", transition: "all 0.15s ease" }}
                             onMouseEnter={(e) => {
                               setHoveredProjectionId(pt.id);
@@ -1598,9 +1829,10 @@ export default function App() {
                         <>
                           {/* 1. TF-IDF Active user dot */}
                           {(() => {
-                            const tfActive = result.similarity_projection_tfidf?.find(p => p.is_active);
+                            const tfActive = (mapVisualizationMode === "anchors" ? result.reference_projection_tfidf : result.similarity_projection_tfidf)?.find(p => p.is_active);
                             if (!tfActive) return null;
-                            const { cx, cy } = getProjectionSVGCoords(tfActive.x, tfActive.y);
+                            const tfD = getDisplayCoords(tfActive);
+                            const { cx, cy } = getProjectionSVGCoords(tfD.x, tfD.y);
                             const tfColor = getActiveUserColor(tfActive);
                             return (
                               <g key="active_user_tfidf">
@@ -1639,9 +1871,10 @@ export default function App() {
 
                           {/* 2. BERT Active user dot */}
                           {(() => {
-                            const bertActive = result.similarity_projection_bert?.find(p => p.is_active);
+                            const bertActive = (mapVisualizationMode === "anchors" ? result.reference_projection_bert : result.similarity_projection_bert)?.find(p => p.is_active);
                             if (!bertActive) return null;
-                            const { cx, cy } = getProjectionSVGCoords(bertActive.x, bertActive.y);
+                            const bertD = getDisplayCoords(bertActive);
+                            const { cx, cy } = getProjectionSVGCoords(bertD.x, bertD.y);
                             const bertColor = getActiveUserColor(bertActive);
                             return (
                               <g key="active_user_bert">
@@ -1681,9 +1914,10 @@ export default function App() {
                       ) : (
                         /* Standard Single Active user dot */
                         (() => {
-                          const activePt = result.similarity_projection?.find(p => p.is_active);
+                          const activePt = (mapVisualizationMode === "anchors" ? result.reference_projection : result.similarity_projection)?.find(p => p.is_active);
                           if (!activePt) return null;
-                          const { cx, cy } = getProjectionSVGCoords(activePt.x, activePt.y);
+                          const activeD = getDisplayCoords(activePt);
+                          const { cx, cy } = getProjectionSVGCoords(activeD.x, activeD.y);
                           const activeColor = getActiveUserColor(activePt);
                           return (
                             <g key="active_user_single">
@@ -1744,20 +1978,27 @@ export default function App() {
                       >
                         <div style={{ display: "flex", justifyContent: "space-between", borderBottom: "1px solid #334155", paddingBottom: 4, marginBottom: 6 }}>
                           <span style={{ fontWeight: 800, color: projectionTooltip.point.is_active ? "#eab308" : "#94a3b8" }}>
-                            {projectionTooltip.point.is_active 
-                              ? (projectionTooltip.modelType === "tfidf" ? "🔵 ACTIVE (TF-IDF)" : projectionTooltip.modelType === "bert" ? "🟣 ACTIVE (BERT)" : "⭐ ACTIVE TEXT") 
-                              : "📌 REFERENCE"
-                            }
+                            {projectionTooltip.point.is_active
+                              ? (projectionTooltip.modelType === "tfidf" ? "🔵 YOUR TEXT (TF-IDF)" : projectionTooltip.modelType === "bert" ? "🟣 YOUR TEXT (BERT)" : "⭐ YOUR TEXT")
+                              : projectionTooltip.point.is_validation
+                                ? `📍 VALIDATION · ${projectionTooltip.point.error_type ?? "—"}`
+                                : "📌 POINT"}
                           </span>
-                          {!projectionTooltip.point.is_active && (
+                          {!projectionTooltip.point.is_active && projectionTooltip.point.similarity > 0 && (
                             <span style={{ fontWeight: 800, color: "#60a5fa" }}>
-                              Match: {(projectionTooltip.point.similarity * 100).toFixed(1)}%
+                              sim: {(projectionTooltip.point.similarity * 100).toFixed(1)}%
                             </span>
                           )}
                         </div>
                         <p style={{ margin: "0 0 6px", fontStyle: "italic", color: "#e2e8f0", fontSize: 11 }}>
                           "{projectionTooltip.point.text.length > 90 ? `${projectionTooltip.point.text.substring(0, 87)}...` : projectionTooltip.point.text}"
                         </p>
+                        {projectionTooltip.point.is_validation && (
+                          <div style={{ fontSize: 10, color: "#cbd5e1", marginBottom: 6 }}>
+                            <div>GT: {(projectionTooltip.point.ground_truth_labels ?? []).join(", ") || "safe"}</div>
+                            <div>Pred: {(projectionTooltip.point.predicted_labels ?? projectionTooltip.point.labels).join(", ")}</div>
+                          </div>
+                        )}
                         <div style={{ display: "flex", flexWrap: "wrap", gap: 4, marginTop: 4 }}>
                           {projectionTooltip.point.labels.map((lbl: string) => (
                             <span
@@ -1779,56 +2020,60 @@ export default function App() {
                       </div>
                     )}
                   </div>
+                  )}
 
                   {/* Legend */}
                   <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: 10, marginTop: 12, fontSize: 11, fontWeight: 600 }}>
-                    {result.is_dual ? (
+                    <div style={{ display: "flex", alignItems: "center", gap: 4 }}>
+                      <div style={{ width: 10, height: 10, borderRadius: "50%", backgroundColor: commentIsSafe ? "#10b981" : "#ef4444", border: "2px solid #fff", boxShadow: "0 0 0 1px #cbd5e1" }} />
+                      <span>{uiLang === "pl" ? "Twój komentarz" : "Your comment"}</span>
+                    </div>
+                    {mapVisualizationMode === "pca" ? (
                       <>
                         <div style={{ display: "flex", alignItems: "center", gap: 4 }}>
-                          <div style={{ width: 10, height: 10, borderRadius: "50%", backgroundColor: "#3b82f6" }} />
-                          <span>You (TF-IDF)</span>
+                          <div style={{ width: 8, height: 8, borderRadius: "50%", backgroundColor: "#94a3b8" }} />
+                          <span>{uiLang === "pl" ? "Poprawne" : "Correct"}</span>
                         </div>
                         <div style={{ display: "flex", alignItems: "center", gap: 4 }}>
-                          <div style={{ width: 10, height: 10, borderRadius: "50%", backgroundColor: "#8b5cf6" }} />
-                          <span>{uiLang === "pl" ? "Ty" : "You"} ({effectiveAnalysisLang === "pl" ? "HerBERT" : "BERT"})</span>
+                          <div style={{ width: 8, height: 8, borderRadius: "50%", backgroundColor: "#ef4444" }} />
+                          <span>FP</span>
+                        </div>
+                        <div style={{ display: "flex", alignItems: "center", gap: 4 }}>
+                          <div style={{ width: 8, height: 8, borderRadius: "50%", backgroundColor: "#f97316" }} />
+                          <span>FN</span>
+                        </div>
+                        <div style={{ display: "flex", alignItems: "center", gap: 4 }}>
+                          <div style={{ width: 8, height: 8, borderRadius: "50%", backgroundColor: "#a855f7" }} />
+                          <span>{uiLang === "pl" ? "Zła etykieta" : "Label err."}</span>
                         </div>
                       </>
                     ) : (
-                      <div style={{ display: "flex", alignItems: "center", gap: 4 }}>
-                        <div
-                          style={{
-                            width: 10,
-                            height: 10,
-                            borderRadius: "50%",
-                            backgroundColor: commentIsSafe ? "#10b981" : "#ef4444",
-                          }}
-                        />
-                        <span>{uiLang === "pl" ? "Ty" : "You"}</span>
-                      </div>
+                      <>
+                        <div style={{ display: "flex", alignItems: "center", gap: 4 }}>
+                          <div style={{ width: 8, height: 8, borderRadius: "50%", backgroundColor: "#10b981" }} />
+                          <span>{uiLang === "pl" ? "Bezpieczne" : "Clean"}</span>
+                        </div>
+                        <div style={{ display: "flex", alignItems: "center", gap: 4 }}>
+                          <div style={{ width: 8, height: 8, borderRadius: "50%", backgroundColor: "#f97316" }} />
+                          <span>{uiLang === "pl" ? "Przemoc" : "Threat"}</span>
+                        </div>
+                        <div style={{ display: "flex", alignItems: "center", gap: 4 }}>
+                          <div style={{ width: 8, height: 8, borderRadius: "50%", backgroundColor: "#ec4899" }} />
+                          <span>{uiLang === "pl" ? "Wulgaryzmy" : "Obscene"}</span>
+                        </div>
+                      </>
                     )}
-                    <div style={{ display: "flex", alignItems: "center", gap: 4 }}>
-                      <div style={{ width: 10, height: 10, borderRadius: "50%", backgroundColor: "#10b981" }} />
-                      <span>{uiLang === "pl" ? "Bezpieczny" : "Clean"}</span>
-                    </div>
-                    <div style={{ display: "flex", alignItems: "center", gap: 4 }}>
-                      <div style={{ width: 10, height: 10, borderRadius: "50%", backgroundColor: "#ef4444" }} />
-                      <span>{uiLang === "pl" ? "Atak/Hejt" : "Toxic"}</span>
-                    </div>
-                    <div style={{ display: "flex", alignItems: "center", gap: 4 }}>
-                      <div style={{ width: 10, height: 10, borderRadius: "50%", backgroundColor: "#f97316" }} />
-                      <span>{uiLang === "pl" ? "Przemoc" : "Threat"}</span>
-                    </div>
-                    <div style={{ display: "flex", alignItems: "center", gap: 4 }}>
-                      <div style={{ width: 10, height: 10, borderRadius: "50%", backgroundColor: "#ec4899" }} />
-                      <span>{uiLang === "pl" ? "Wulgaryzmy" : "Obscene"}</span>
-                    </div>
                   </div>
                 </div>
 
                 {/* Closest Matches Card List Column */}
                 <div>
                   <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 12 }}>
-                    <span style={styles.label}>{uiLang === "pl" ? "Najbardziej podobne wzorce" : "Closest Reference Comments"}</span>
+                    <span style={styles.label}>
+                      {mapVisualizationMode === "anchors"
+                        ? (uiLang === "pl" ? "Najbardziej podobne wzorce" : "Closest Reference Comments")
+                        : (uiLang === "pl" ? "Najbliższe ze zbioru walidacyjnego" : "Nearest Validation Comments")}
+                    </span>
                     
                     {/* Toggler in Dual Mode */}
                     {result.is_dual && (

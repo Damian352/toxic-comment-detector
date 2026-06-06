@@ -1,0 +1,6996 @@
+{
+  "lang": "en",
+  "model": "tfidf_lr",
+  "method": "TruncatedSVD(50)+PCA(3)",
+  "explained_variance_ratio": [
+    0.05842793077416424,
+    0.05463580236671643,
+    0.032257062583057904
+  ],
+  "axes": {
+    "x": "PC1",
+    "y": "PC2",
+    "z": "PC3"
+  },
+  "random_state": 42,
+  "test_size": 0.2,
+  "n_total_test": 31915,
+  "n_embedded": 800,
+  "n_displayed": 400,
+  "error_counts": {
+    "correct": 738,
+    "false_positive": 13,
+    "false_negative": 16,
+    "label_mismatch": 33
+  },
+  "points": [
+    {
+      "id": "val_43468",
+      "text": "Unfortunately, it's not. Apparently 楊威利 was used in the official Chinese translation for the animated series (how the...",
+      "x": -35.53629684448242,
+      "y": -58.653587341308594,
+      "z": 3.5441737174987793,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_122786",
+      "text": "\"   General problem with naming conventions for WP page address links   In \"\"http://en.wikipedia.org/wiki/Progressive...",
+      "x": -18.99947738647461,
+      "y": -59.70686721801758,
+      "z": -6.608824729919434,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_143775",
+      "text": "\"The \"\"hint\"\" that Wiki wants to remain \"\"STUPID\"\" about 2012. It's gloriously clear. What I've been hinting at is wa...",
+      "x": -46.6378288269043,
+      "y": -47.748680114746094,
+      "z": 26.1110782623291,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_33786",
+      "text": "AfD warning   It looks as if other people trying to show you were you are going wrong haven't had any success, so I'l...",
+      "x": 28.798349380493164,
+      "y": -60.23005676269531,
+      "z": 17.604570388793945,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_29098",
+      "text": "Paradise   What's wrong with my edit? 85.202.40.145",
+      "x": -55.31507110595703,
+      "y": -34.893653869628906,
+      "z": 25.495113372802734,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_11739",
+      "text": "Two different headings   The merging of this article would have to be done very carefully if it is to be done correct...",
+      "x": -23.830015182495117,
+      "y": -65.05424499511719,
+      "z": -12.194921493530273,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_55799",
+      "text": "Fish - ref desk  See your question on the ref desk - the fish may be chromis abyssus, however have you tried Wikipedi...",
+      "x": -40.90479278564453,
+      "y": -39.407012939453125,
+      "z": 3.3517181873321533,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_84697",
+      "text": "{rm offensive jibber jabber}",
+      "x": -60.79948043823242,
+      "y": -36.074180603027344,
+      "z": 13.535574913024902,
+      "ground_truth_labels": [
+        "toxic"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "false_negative",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_2188",
+      "text": "People like you 359 take he virtual world way too seriously. You are obviously trying to make up for a lack of achiev...",
+      "x": -11.621200561523438,
+      "y": -70.57781219482422,
+      "z": 88.08283233642578,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "toxic"
+      ],
+      "error_type": "false_positive",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_104577",
+      "text": "To me, the title chosen should be the one most recognisable in a Google search. While Woolwich murder and Woolwich at...",
+      "x": -12.741181373596191,
+      "y": -74.8944091796875,
+      "z": 1.6690574884414673,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_26354",
+      "text": "Screw my Butt   Screw my Butt",
+      "x": -63.324947357177734,
+      "y": -34.60685348510742,
+      "z": 13.240665435791016,
+      "ground_truth_labels": [
+        "toxic",
+        "obscene",
+        "insult"
+      ],
+      "predicted_labels": [
+        "toxic",
+        "obscene"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_41013",
+      "text": "bearly anybody in the usa has even heard of dr. slump, prolly not even otaku but constant reverts to a redirect of Dr...",
+      "x": -36.95405960083008,
+      "y": -33.44526290893555,
+      "z": 4.52102518081665,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_46344",
+      "text": "This incident has been reported to the Biographies of living persons/Noticeboard.  Here I simply note that the thrust...",
+      "x": -20.746049880981445,
+      "y": -60.2178955078125,
+      "z": -6.949102878570557,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_115290",
+      "text": "The criticism section is silly and contains no criticism.  If this guy was threatening to others, let's please have s...",
+      "x": -24.189847946166992,
+      "y": -56.74081802368164,
+      "z": -24.43517303466797,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_378",
+      "text": "Are they the anderthals?   Are they the anderthals? the same discription as in quran? has anybody thought of this?",
+      "x": -50.46329879760742,
+      "y": -51.923919677734375,
+      "z": -1.0693529844284058,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_9222",
+      "text": "Can't take full credit... check out  ;-)",
+      "x": -53.58481216430664,
+      "y": -36.32575607299805,
+      "z": 33.67677688598633,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_58181",
+      "text": "FUK-U DANIEL CASE AND KATIE DUM BICH",
+      "x": -62.49702835083008,
+      "y": -34.57910919189453,
+      "z": 10.0308837890625,
+      "ground_truth_labels": [
+        "toxic",
+        "obscene",
+        "insult"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "false_negative",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_29615",
+      "text": "\"   List of Methodist churches   Hi, i've noticed you started many of the articles now indexed in new List of Methodi...",
+      "x": -30.33910369873047,
+      "y": -51.48847579956055,
+      "z": 10.733423233032227,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_58968",
+      "text": "There is not Terry Annany.",
+      "x": -53.97019958496094,
+      "y": -44.92245101928711,
+      "z": 3.7868072986602783,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_141562",
+      "text": "Regarding edits made during August 16 2007 (UTC) Thank you for experimenting with  Wikipedia. Your test worked, and i...",
+      "x": 22.100360870361328,
+      "y": -34.4870719909668,
+      "z": 15.91645336151123,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_84470",
+      "text": "Hey !!   Sorry friend, I'm a new in Wikipedia, but the user  is bothering me for days and my work (contributions) too...",
+      "x": -12.007404327392578,
+      "y": -41.9837646484375,
+      "z": 18.738609313964844,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_122017",
+      "text": "Sallary controversy The president of the Peabody Essex Museum Dan Monroe makes $578,254.00 a year with full benefits ...",
+      "x": -43.954647064208984,
+      "y": -43.43247604370117,
+      "z": 76.44430541992188,
+      "ground_truth_labels": [
+        "toxic"
+      ],
+      "predicted_labels": [
+        "toxic",
+        "obscene",
+        "insult",
+        "identity_hate"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_102155",
+      "text": "\" I agree with him, slopping tags over articles and expecting others to do all of the cleanup is utterly lazy. Clive ...",
+      "x": -39.35177993774414,
+      "y": -51.14030838012695,
+      "z": 7.67961311340332,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_156449",
+      "text": "This small section of the talk page cleared things out for me. Aye, Wikipedia should loosen up its guidelines a tad b...",
+      "x": -22.896137237548828,
+      "y": -55.88911819458008,
+      "z": -29.39898681640625,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_131950",
+      "text": "And for the record, the reason I do not edit evolution articles is because it is not my area.  I could care less what...",
+      "x": -14.100079536437988,
+      "y": -72.11832427978516,
+      "z": 28.863801956176758,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_13359",
+      "text": "\"   O'Brien, Argentina   Hi. I have rescued your article, which was in danger of being deleted as a hoax. The first b...",
+      "x": -11.66461181640625,
+      "y": -69.70069122314453,
+      "z": 26.32559585571289,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_95595",
+      "text": "Thanks for your clarification. Though I still feel that your addition is problematic. One problem is the missing deta...",
+      "x": -14.404335975646973,
+      "y": -73.1145248413086,
+      "z": -3.4270896911621094,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_17590",
+      "text": "Your page Penny university is a blatant copyright violation. Please take some time to learn how Wikipedia works. You ...",
+      "x": 22.442996978759766,
+      "y": -24.09691619873047,
+      "z": 4.159508228302002,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_9542",
+      "text": "Gilles Tréhin  I have listed this article at WP:DRV for possible undeletion based on information I have received rega...",
+      "x": 6.916721343994141,
+      "y": -84.88739776611328,
+      "z": -10.427648544311523,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_42346",
+      "text": "\"   Not notable   \"\"Man meets paedophile-abler\"\" is not a notable event in any way, shape or form, and lying about th...",
+      "x": -30.217065811157227,
+      "y": -56.68583679199219,
+      "z": 17.715816497802734,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_93791",
+      "text": "Hey You're a fucking cunt. Go kill yourself.",
+      "x": -69.43175506591797,
+      "y": -21.205286026000977,
+      "z": 90.0,
+      "ground_truth_labels": [
+        "toxic",
+        "severe_toxic",
+        "obscene",
+        "insult"
+      ],
+      "predicted_labels": [
+        "toxic",
+        "severe_toxic",
+        "obscene",
+        "threat",
+        "insult"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_65105",
+      "text": "Pedro is a fucking dumbass.  Probably just was bullied as a kid & now, as an admin, tries to get back by being an ass...",
+      "x": -54.94044876098633,
+      "y": -36.85298156738281,
+      "z": 54.11113357543945,
+      "ground_truth_labels": [
+        "toxic",
+        "severe_toxic",
+        "obscene",
+        "insult"
+      ],
+      "predicted_labels": [
+        "toxic",
+        "obscene",
+        "insult"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_138563",
+      "text": "\"   Exciting news   So I have some very exciting news to tell you! Take a guess first! Smalls \"",
+      "x": -45.19755935668945,
+      "y": -38.05803680419922,
+      "z": 40.32588195800781,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_89815",
+      "text": "\" Don't all video game articles need a development section?  TALK! \"",
+      "x": -46.72031784057617,
+      "y": -46.87382125854492,
+      "z": -20.207592010498047,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_80219",
+      "text": "\" LOST does redirect here.  (T | C | #) \"",
+      "x": -72.21299743652344,
+      "y": -28.448516845703125,
+      "z": -39.57931137084961,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_22114",
+      "text": "SES   I have removed excess links in accordance with WP:CONTEXT & WP:LINKS. Do not add them again.",
+      "x": -36.91372299194336,
+      "y": -43.55604934692383,
+      "z": 9.089229583740234,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_34899",
+      "text": "The whole Bionicle matter   Oh, I did not know that wasn't alowed, and sorry for any inconviniance.  But please, don'...",
+      "x": -20.385334014892578,
+      "y": -49.7723388671875,
+      "z": 59.01383972167969,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_112385",
+      "text": "\"   \"\"Nigger\"\" was not exactly my choice of words   If you bother to read the article on Mark Fuhrman, and you have a...",
+      "x": -24.45103645324707,
+      "y": -63.66068649291992,
+      "z": 19.906198501586914,
+      "ground_truth_labels": [
+        "toxic",
+        "identity_hate"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "false_negative",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_94755",
+      "text": "for this, just paste the material in the new location",
+      "x": -50.45421600341797,
+      "y": -50.504432678222656,
+      "z": -28.520526885986328,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_69625",
+      "text": "\"  Agree to disagree I fully appreciate the sentiments you've expressed at Outline of Iraq, but still do see the need...",
+      "x": -12.97977066040039,
+      "y": -57.8529167175293,
+      "z": 44.875831604003906,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_15644",
+      "text": "is taking care of it and he's a good reviewer so best leave him to it.",
+      "x": -49.615169525146484,
+      "y": -47.47749710083008,
+      "z": 29.395246505737305,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_78387",
+      "text": "Speedy deletion contested: Shai Bernstein   Hello Aviados, and thanks for your work patrolling new changes. I am just...",
+      "x": 4.731653213500977,
+      "y": -47.394195556640625,
+      "z": -33.13554000854492,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_16700",
+      "text": "BOW BEFORE SAXON FOOLS!!   Australia, in 2007 you know who to vote for.  But why vote Saxon?  Well let's say he can f...",
+      "x": -25.85188865661621,
+      "y": -56.45134353637695,
+      "z": 37.16541290283203,
+      "ground_truth_labels": [
+        "toxic"
+      ],
+      "predicted_labels": [
+        "toxic"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_125901",
+      "text": "Dont bother Sending any messages here since I have access to any IP and I will not read any more crap from criminals ...",
+      "x": -14.87134838104248,
+      "y": -53.37815856933594,
+      "z": 67.42170715332031,
+      "ground_truth_labels": [
+        "toxic"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "false_negative",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_32120",
+      "text": "Help   Hi Jeanne, I am bored at the moment. I was wondering if you had noticed any articles I could help create or ex...",
+      "x": -31.76230812072754,
+      "y": -48.88977813720703,
+      "z": 2.229912281036377,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_31234",
+      "text": "\"   NW Railways   Thanks! I've fixed the template.  \"",
+      "x": -62.30658721923828,
+      "y": -38.54763412475586,
+      "z": -4.299738883972168,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_3314",
+      "text": "\"  Request for help An unregistered editor from a single static IP address is repeatedly trying to remove a section c...",
+      "x": -17.531957626342773,
+      "y": -63.584625244140625,
+      "z": 1.4729334115982056,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_132188",
+      "text": "Split is complete, all the information in this article is now in the Diet of Hungary. This article may be deleted/red...",
+      "x": -36.34245681762695,
+      "y": -59.986446380615234,
+      "z": -83.90090942382812,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_158749",
+      "text": "Merge - Pseudoscience and references in GetBackers  Comments It was proposed on 8 June 2006 to merge into this articl...",
+      "x": -48.20789337158203,
+      "y": -51.55374526977539,
+      "z": -23.152374267578125,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_115904",
+      "text": "\" has existed on all continents. And because it is a general name, it should reflect general details rather than anyt...",
+      "x": 21.901945114135742,
+      "y": -82.81888580322266,
+      "z": 42.47248458862305,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_43784",
+      "text": "\", 27 December 2015 (UTC) ,  is there much point in discussing \"\"who is in the right\"\"? That is something that will p...",
+      "x": -29.71765899658203,
+      "y": -58.51669692993164,
+      "z": 18.340322494506836,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_34437",
+      "text": "Oh, yeah. I should make new sections for update requests. There's a consolation admin task at WT:DYK )",
+      "x": -49.875877380371094,
+      "y": -48.20287322998047,
+      "z": -6.884278774261475,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_157086",
+      "text": "\"==talk:Kongregate==  \"\"It works fine\"\" thanks for responding· Lygophile has spoken \"",
+      "x": -60.64458084106445,
+      "y": -37.276790618896484,
+      "z": 1.1847776174545288,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_46627",
+      "text": "Well then thank you. You can disregard my previous statement and do whatever you want. If you think you will change t...",
+      "x": -18.897573471069336,
+      "y": -50.33036804199219,
+      "z": 63.99748611450195,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_82192",
+      "text": "Finally, I have to point out that Oreskes admitted to a much larger error, in misdescribing both her search terms and...",
+      "x": -38.05989456176758,
+      "y": -58.78932571411133,
+      "z": 31.922042846679688,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_115094",
+      "text": "\"  Rhett Butler  \"\"Frankly my dear, I don't give a damn.\"\".  I have no respect for 98% of all Wikipedians I have enou...",
+      "x": -45.145633697509766,
+      "y": -44.3619270324707,
+      "z": 25.2343807220459,
+      "ground_truth_labels": [
+        "toxic"
+      ],
+      "predicted_labels": [
+        "toxic"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_150139",
+      "text": "Just thought I'd update this old, old comment: Leanne Hinton got deleted a long time ago for the same reason.",
+      "x": -49.9312858581543,
+      "y": -50.4550666809082,
+      "z": -5.297026634216309,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_31609",
+      "text": "Skookum1, I know zero to nothing about Salish religion, so can't really contribute anything useful to the discussion....",
+      "x": -29.87619972229004,
+      "y": -52.50423812866211,
+      "z": 35.89512634277344,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_12233",
+      "text": "Piss off if you dont like it!",
+      "x": -43.73435592651367,
+      "y": -29.819225311279297,
+      "z": 60.769065856933594,
+      "ground_truth_labels": [
+        "toxic"
+      ],
+      "predicted_labels": [
+        "toxic",
+        "obscene",
+        "insult"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_103948",
+      "text": "(UTC)  Actually, the rationale referenced above was in the pages of the Argus in an extended commentary at the time. ...",
+      "x": -39.58497619628906,
+      "y": -60.76339340209961,
+      "z": -1.4098279476165771,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_142277",
+      "text": "Beijing map history   Map of Beijing's previous cities overlaid each other from the Jin, Yuan, Ming, and Qing dynasti...",
+      "x": -51.908145904541016,
+      "y": -40.98649215698242,
+      "z": 8.320124626159668,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_8641",
+      "text": "harmony between people of this village, or maybe vice versa ... .. / Blerim Shabani. /",
+      "x": -50.9863395690918,
+      "y": -43.55072784423828,
+      "z": 11.82470417022705,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_111922",
+      "text": "\" {| style=\"\"background-color:#F5FFFA; padding:0;\"\" cellpadding=\"\"0\"\" |style=\"\"border:1px solid #084080; background-c...",
+      "x": -0.9057430624961853,
+      "y": -50.02555847167969,
+      "z": -6.607696533203125,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_105861",
+      "text": "White Plains logo   The White Plains logo has already been uploaded by someone other than myself and is being used in...",
+      "x": -23.499855041503906,
+      "y": -61.745948791503906,
+      "z": 24.972766876220703,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_61577",
+      "text": "\", 12 April 2006 (UTC)   Another nice note is the Young Left's comments on a TV-show about two years ago, when they s...",
+      "x": -56.674232482910156,
+      "y": -46.26217269897461,
+      "z": 2.6027164459228516,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_82905",
+      "text": "Whoa there   Take it easy. There is no need to leave Wikipedia because someone (me) called you a nigger. It's the Int...",
+      "x": -33.96466827392578,
+      "y": -49.223487854003906,
+      "z": 32.60948944091797,
+      "ground_truth_labels": [
+        "toxic"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "false_negative",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_80658",
+      "text": "MensActivism.org is an information source.  Given the above, I see no reason not to include it  it is where intereste...",
+      "x": -21.78533935546875,
+      "y": -74.94145202636719,
+      "z": -24.570934295654297,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_120632",
+      "text": "Wow...funny how i can harass other users by calling them cocksuckers on my own talk page.  The concept of Wikipedia i...",
+      "x": -19.128955841064453,
+      "y": -48.63398361206055,
+      "z": 61.964012145996094,
+      "ground_truth_labels": [
+        "toxic",
+        "obscene",
+        "insult"
+      ],
+      "predicted_labels": [
+        "toxic",
+        "severe_toxic",
+        "obscene",
+        "insult"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_150480",
+      "text": "Hey Kevin  D   You like weird music. And why don't I have any classes with you this term, what the hell are you takin...",
+      "x": -31.852418899536133,
+      "y": -46.16828918457031,
+      "z": 59.31705093383789,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "toxic"
+      ],
+      "error_type": "false_positive",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_94303",
+      "text": "TfD nomination of Template:  Template: has been nominated for deletion. You are invited to comment on the discussion ...",
+      "x": -25.625883102416992,
+      "y": -56.34038162231445,
+      "z": -34.53166198730469,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_117421",
+      "text": "Jeff Phelps   I have been trying to get references and external links for Jeff Phelps. I've tried and tried, and I ma...",
+      "x": -41.454776763916016,
+      "y": -50.66522979736328,
+      "z": 37.94820785522461,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_57043",
+      "text": "\"  This is your comment found above \"\". Even if one accepted your crackpot notion that the regional Fed banks are pri...",
+      "x": -37.93049621582031,
+      "y": -53.115234375,
+      "z": 31.40552520751953,
+      "ground_truth_labels": [
+        "toxic"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "false_negative",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_46783",
+      "text": "@Indian pov pushers seems like some tag teaming is going on well I guess this idiotic child is recieving orders from ...",
+      "x": -43.92433547973633,
+      "y": -38.98540496826172,
+      "z": 20.11431312561035,
+      "ground_truth_labels": [
+        "toxic",
+        "insult"
+      ],
+      "predicted_labels": [
+        "toxic"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_123613",
+      "text": "It's not clear if is scientifically proven that mirroring makes its effects, and there are no references to any kind ...",
+      "x": -34.95140075683594,
+      "y": -59.77912521362305,
+      "z": 11.676530838012695,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_142297",
+      "text": "\"== F-14 aircraft ==  The Stennis probably doesn't have any 14's attached to her anymore, unless I am mistaken. ... a...",
+      "x": -51.35026931762695,
+      "y": -42.46651077270508,
+      "z": 13.64845085144043,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_56597",
+      "text": "\" Fine. Then why did you delete all recent sourced edits, including even categorization of this article as a \"\"conspi...",
+      "x": -29.24599266052246,
+      "y": -51.55248260498047,
+      "z": -22.396860122680664,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_49279",
+      "text": "\"Hi Colossos. Re your edit to Sylvia Plath - New Perspectives, I agree that reflecting new trends in Plath scholarshi...",
+      "x": -17.93115997314453,
+      "y": -68.98151397705078,
+      "z": -7.679077625274658,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_85656",
+      "text": "AM link   Thank you for bringing this to my attention.  I am a newbie and every bit of advice helps )  Cheers, Di",
+      "x": -46.265201568603516,
+      "y": -43.69866943359375,
+      "z": 15.996914863586426,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_24976",
+      "text": "Thankyou, retaL ihinnA, No need for you to call me Mr. Cenandor. Lol.",
+      "x": -55.825645446777344,
+      "y": -34.338191986083984,
+      "z": 34.579017639160156,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_77181",
+      "text": "\"  Images All images uploaded to Wikipedia must have an image tag (See Wikipedia:Image copyright tags) and be linked ...",
+      "x": -2.0005569458007812,
+      "y": -57.17677688598633,
+      "z": -24.80855369567871,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_6216",
+      "text": "People trying to delete this article obviously haven't been following the election. Their obtuseness shouldn't even b...",
+      "x": -22.16526222229004,
+      "y": -66.17644500732422,
+      "z": -1.4455007314682007,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_101652",
+      "text": "BABAK   Babak himself would have laughed at your comment, Babak was an IRANIAN, His name is purely Iranian, and he wa...",
+      "x": -50.8271369934082,
+      "y": -48.03472900390625,
+      "z": 15.590054512023926,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_139183",
+      "text": "Thank you for taking the time to do it, Deskana; it's appreciated. Unless you've already deleted it, should I move th...",
+      "x": -17.528745651245117,
+      "y": -59.618526458740234,
+      "z": 20.891454696655273,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_34787",
+      "text": "\" To answer both of your queries, no, never. baa! radda \"",
+      "x": -48.435359954833984,
+      "y": -40.06590270996094,
+      "z": 26.140567779541016,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_126388",
+      "text": "Romanesque architecture   Hi WLU,  Thanks much for working with me on the changes to the Romanesque architecture arti...",
+      "x": -30.981908798217773,
+      "y": -61.162471771240234,
+      "z": -5.655524730682373,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_38633",
+      "text": "Also agreed here - I am a Circuit City associate, and our City Advantage Protection Plan is actually well worth the m...",
+      "x": -33.5059700012207,
+      "y": -59.39419937133789,
+      "z": -13.983546257019043,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_76841",
+      "text": "\"  Template removal {{POV|date=July 2009}}   I removed the {{POV|date=July 2009}} template because it does not meet t...",
+      "x": 0.25404372811317444,
+      "y": -66.63387298583984,
+      "z": -24.71898651123047,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_118412",
+      "text": "\" I made a good faith edit.  You demonstrated bad faith by reverting it without explanation.  Two other people revert...",
+      "x": -8.337854385375977,
+      "y": -58.04709243774414,
+      "z": 36.876007080078125,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_82092",
+      "text": "you will be reported as a racist    you are obviously a bigoted racist, as you have not removed the page for Gordon (...",
+      "x": 15.166102409362793,
+      "y": -71.68497467041016,
+      "z": 31.118221282958984,
+      "ground_truth_labels": [
+        "toxic"
+      ],
+      "predicted_labels": [
+        "toxic"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_54711",
+      "text": "DUST FILTER AND CALTLAS, IF YOU RVV IT AGAIN! I WILL FUCKIN KILL YOU! I WILL BLOCK YOU, I WILL BLANK YOUR TALK PAGE, ...",
+      "x": -40.57014465332031,
+      "y": -16.985393524169922,
+      "z": 51.384700775146484,
+      "ground_truth_labels": [
+        "toxic",
+        "severe_toxic",
+        "obscene",
+        "threat",
+        "insult"
+      ],
+      "predicted_labels": [
+        "toxic",
+        "severe_toxic",
+        "obscene",
+        "threat",
+        "insult"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_106925",
+      "text": "\" The sentence you deleted says\"\"dog is NOT AS WIDELY consumed as beef, chicken, and pork\"\" Although the fact that do...",
+      "x": -16.23145866394043,
+      "y": -66.25444793701172,
+      "z": 4.5908308029174805,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_42613",
+      "text": "\"   Mandy Blank, Marzia Prince?  Ill be happy to start a page on both of these two, but every time i create a full pa...",
+      "x": -28.77947235107422,
+      "y": -55.27752685546875,
+      "z": 34.87386703491211,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_10895",
+      "text": "I think it should have its own section and not part of supporters because Rivalries has its own characteristics and o...",
+      "x": -29.96835708618164,
+      "y": -66.08910369873047,
+      "z": -2.2709765434265137,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_141703",
+      "text": "Nothing personal Rod, but you really are a stupid turd",
+      "x": -40.97245788574219,
+      "y": -45.1839485168457,
+      "z": 56.37047576904297,
+      "ground_truth_labels": [
+        "toxic",
+        "insult"
+      ],
+      "predicted_labels": [
+        "toxic",
+        "obscene",
+        "insult"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_36569",
+      "text": "\"  On WP:PUI you wrote of gettign permission from the trademark (and presumably copyright) owners. Make sure the \"\"pe...",
+      "x": -17.095409393310547,
+      "y": -50.562374114990234,
+      "z": -4.3105974197387695,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_152794",
+      "text": "\" I'm noting here just for the record that  creation protected the page. tion9 \"",
+      "x": -38.76787185668945,
+      "y": -51.55766296386719,
+      "z": -8.531725883483887,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_92076",
+      "text": "You have been told repeatedly...   ....that your edits on any Howard Stern Show related article are the product of yo...",
+      "x": -15.460894584655762,
+      "y": -55.90060806274414,
+      "z": 24.906757354736328,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_9412",
+      "text": "The only problem is that you moved the name to Backstreet Boys (1996 album) instead of moving it to Backstreet Boys (...",
+      "x": -53.46149826049805,
+      "y": -42.401912689208984,
+      "z": 12.824101448059082,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_103226",
+      "text": "\" Sort of dumb to have elimination numbers for the division if all teams have been eliminated.  So why does it matter...",
+      "x": -31.49398422241211,
+      "y": -60.305442810058594,
+      "z": 40.11439514160156,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_2422",
+      "text": "\"   WP:AIV   Hi Dan,  I've blocked the two you listed. When using the vandal template you don't need to put the angle...",
+      "x": -21.650005340576172,
+      "y": -32.273189544677734,
+      "z": 38.09076690673828,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_137844",
+      "text": "Yes I do, I am trying to find it. Its on Flight International and I am going through their archives.",
+      "x": -42.77320098876953,
+      "y": -55.71649169921875,
+      "z": 25.058320999145508,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_81184",
+      "text": "Epithelium   All of that can be found in any introductory anatomy text. An article on epthelia is pretty useless with...",
+      "x": -36.393714904785156,
+      "y": -55.20003128051758,
+      "z": -8.268970489501953,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_156785",
+      "text": "ONLY A FASCIST WOULD TAKE AWAY THE ABILITY OF A PERSON TO EDIT THEIR OWN TALK PAGE FOR NO GOOD REASON.  STOP SUPPORTI...",
+      "x": -13.89576244354248,
+      "y": -56.24734878540039,
+      "z": 37.48013687133789,
+      "ground_truth_labels": [
+        "toxic"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "false_negative",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_110578",
+      "text": "\"  Fair use rationale for Image:Foxddset.jpg  Thanks for uploading or contributing to Image:Foxddset.jpg. I notice th...",
+      "x": 45.84398651123047,
+      "y": -72.12281036376953,
+      "z": -68.07149505615234,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_6915",
+      "text": "Error   Kem, on my article (Operation Dawn 6), you said that the Iraqis only 'tried' to invade Iran again in 1988.  T...",
+      "x": -28.87333106994629,
+      "y": -44.21784973144531,
+      "z": 9.882820129394531,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_113964",
+      "text": "\"  You can twist and bend it all you want. Doesn't change the facts bub ;)    See where I'm getting? Now, I will edit...",
+      "x": -10.468063354492188,
+      "y": -63.85714340209961,
+      "z": 45.82482147216797,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_87164",
+      "text": "I will mention your name in acknowledgment, I hope you won't mind!",
+      "x": -38.33951187133789,
+      "y": -36.639339447021484,
+      "z": 41.009361267089844,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_45169",
+      "text": "Please do not add unsourced or original content. Doing so violates Wikipedia's verifiability policy. If you continue ...",
+      "x": 54.26490020751953,
+      "y": 25.848630905151367,
+      "z": 1.4804608821868896,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_55288",
+      "text": "Yes...   You wouldn't know what's right...",
+      "x": -53.438316345214844,
+      "y": -38.501319885253906,
+      "z": 64.93620300292969,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_120920",
+      "text": "I would like to sign up",
+      "x": -45.652923583984375,
+      "y": -42.15574264526367,
+      "z": 52.796207427978516,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_6568",
+      "text": "\" Well, let's try again (one more time). Re \"\"\"\"commonsenual\"\" = WP:OR. Regardless of sui generis it has all the char...",
+      "x": 3.374480962753296,
+      "y": -82.50682830810547,
+      "z": 27.39103889465332,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_120726",
+      "text": "\":I also just looked this over at Steve Crossin's request, and have a few comments (both in response to the above and...",
+      "x": -1.0603588819503784,
+      "y": -87.14937591552734,
+      "z": -3.0184085369110107,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_75838",
+      "text": "CSS Naked Day   It is not a blatent advertisement it is an event that has happened for the last 4 years. It is to pro...",
+      "x": -27.058298110961914,
+      "y": -49.599056243896484,
+      "z": -0.9766474962234497,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_89428",
+      "text": "Congratulations, well done...",
+      "x": -57.89312744140625,
+      "y": -39.025169372558594,
+      "z": 5.7343668937683105,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_49792",
+      "text": "\"  WP:BURDEN is with you. '''''' Dick Laurent is dead \"",
+      "x": -56.510643005371094,
+      "y": -31.72715950012207,
+      "z": 23.536582946777344,
+      "ground_truth_labels": [
+        "toxic"
+      ],
+      "predicted_labels": [
+        "toxic"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_145693",
+      "text": "Ok, i didn't say nazi is a good thing, but if a person's behaviour is like a nazi, in this case what can i call it? I...",
+      "x": -25.61167335510254,
+      "y": -45.556480407714844,
+      "z": 52.519596099853516,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "toxic"
+      ],
+      "error_type": "false_positive",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_18173",
+      "text": "Says it was published in 2002. This may be true, but I read a nicely bound copy in 2001.",
+      "x": -54.41256332397461,
+      "y": -42.20451354980469,
+      "z": -0.5448749661445618,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_73388",
+      "text": "What? How is that edit not a good one? And how can you justify a moronic 2 day block?!? 212.23.28.149",
+      "x": -45.184669494628906,
+      "y": -33.46270751953125,
+      "z": 38.018150329589844,
+      "ground_truth_labels": [
+        "toxic"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "false_negative",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_37156",
+      "text": "I have taken off the footnote regarding Tanolis as no one else bothered to do this given my comment posted on 3rd Mar...",
+      "x": -49.865570068359375,
+      "y": -39.57328414916992,
+      "z": 4.325385093688965,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_61018",
+      "text": "\"   Please do not vandalize pages, as you did with this edit to Recurring enemies in the Mario series. If you continu...",
+      "x": 74.85250091552734,
+      "y": 72.91858673095703,
+      "z": 17.454235076904297,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_5769",
+      "text": "==Tablighi Jamaat and allegations of terrorism==  I have added it in article and this is most relevant article on the...",
+      "x": -40.81688690185547,
+      "y": -60.303489685058594,
+      "z": -43.52739334106445,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_13705",
+      "text": "HOCKEY STICK UP YOUR ASS   HOW DARE YOU ACCUSE THE AUTHOR OF THE ERIC GOERTZ ARTICLE OF WANTING WORLDWIDE FAME? Fucki...",
+      "x": -26.49871826171875,
+      "y": -54.174320220947266,
+      "z": 78.41638946533203,
+      "ground_truth_labels": [
+        "toxic",
+        "severe_toxic",
+        "obscene",
+        "insult"
+      ],
+      "predicted_labels": [
+        "toxic",
+        "obscene",
+        "insult"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_126444",
+      "text": "Thanks, in this case (now I can see the content) it turns out that this is not the Chris Greene I was thinking of. I'...",
+      "x": -38.845855712890625,
+      "y": -52.61471176147461,
+      "z": 5.015315055847168,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_115828",
+      "text": "Request for help on deletion page  Stalwart, I am sorry for bothering you about this again. But despite my reading, m...",
+      "x": -8.83482551574707,
+      "y": -58.23103713989258,
+      "z": 0.4408804774284363,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_152146",
+      "text": "Personal attacks because you pieces of shit jewniggers change the truth? I'm going to get 100 of my friends to remove...",
+      "x": -38.56132125854492,
+      "y": -36.76063919067383,
+      "z": 66.83633422851562,
+      "ground_truth_labels": [
+        "toxic",
+        "obscene",
+        "insult"
+      ],
+      "predicted_labels": [
+        "toxic",
+        "obscene",
+        "insult",
+        "identity_hate"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_137114",
+      "text": "\"  Then again you idiots screw up most of gaming history already. There's no point, go on andhave your \"\"Dreamcast pi...",
+      "x": -18.219619750976562,
+      "y": -62.254547119140625,
+      "z": 36.21302795410156,
+      "ground_truth_labels": [
+        "toxic"
+      ],
+      "predicted_labels": [
+        "toxic",
+        "insult"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_76066",
+      "text": "Thanks for the restore!  Am fixing/adding refs!  (ǝɹʎℲxoɯ | contrib)",
+      "x": -54.9073600769043,
+      "y": -36.16815948486328,
+      "z": -10.903908729553223,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_87201",
+      "text": "Personal Attacks?  I made no personal attacks.  The fact of the matter is that you concealed your identity as the sub...",
+      "x": -17.950729370117188,
+      "y": -62.54667282104492,
+      "z": 20.824018478393555,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_6480",
+      "text": "\"You can't steal copyrighted images from here, crop them, and upload them to Flickr with a spurious licence in an att...",
+      "x": -24.212011337280273,
+      "y": -41.06793975830078,
+      "z": 18.28400230407715,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_157096",
+      "text": "Sysop  Congratulations! After getting 100% support on RfA, you are now an administrator. You should read the relevant...",
+      "x": -8.174968719482422,
+      "y": -49.88705062866211,
+      "z": -1.8772213459014893,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_74377",
+      "text": "Your under my talk and discussion and your posting a violation about me to benefit your personal interest for a guild...",
+      "x": -18.83210563659668,
+      "y": -56.52107238769531,
+      "z": 40.28636932373047,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_85945",
+      "text": "Ooh, tricky question. It sounds a bit like St Michael's Mount in Cornwall which is very impressive. There are a few c...",
+      "x": -41.20947265625,
+      "y": -56.524112701416016,
+      "z": 21.402095794677734,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_86246",
+      "text": "What next - PALOMA-2 - EU   When is PALOMA-2 due to report data ? Is it needed for an EU application ? When is an EU ...",
+      "x": -51.77114486694336,
+      "y": -47.04557800292969,
+      "z": -2.2883615493774414,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_31325",
+      "text": "\"   This article desperately needs an update   It was last updated over a year ago.   There is also an excess of refe...",
+      "x": -32.39215850830078,
+      "y": -59.57065963745117,
+      "z": 7.796861171722412,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_41124",
+      "text": "\"All of this like \"\"socksomania\"\". \"",
+      "x": -57.86323165893555,
+      "y": -40.124114990234375,
+      "z": 8.463382720947266,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_150697",
+      "text": "See   You soon, loser.",
+      "x": -53.945220947265625,
+      "y": -31.449554443359375,
+      "z": 27.559255599975586,
+      "ground_truth_labels": [
+        "toxic",
+        "insult"
+      ],
+      "predicted_labels": [
+        "toxic",
+        "insult"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_79366",
+      "text": "Purpose of This article (Off Topic)",
+      "x": -47.12260818481445,
+      "y": -51.30486297607422,
+      "z": -45.55205535888672,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_127394",
+      "text": "AS-1 Kennel  Hi. Didn't realise you created this article before I edited it! Recognise the picture?   foetus high fiv...",
+      "x": -24.69902801513672,
+      "y": -55.25830841064453,
+      "z": 21.89345359802246,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_91927",
+      "text": "\"Also if you look up Wikipedia's own article on Consensus_decision-making, \"\"consensus\"\" isn't the same thing as the ...",
+      "x": -26.220502853393555,
+      "y": -50.494998931884766,
+      "z": -4.545814514160156,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_21283",
+      "text": "\" Yeah that's not very many. I see \"\"searchFocus\"\", \"\"Twinkle\"\", \"\"HideFundraisingNotice\"\", \"\"ReferenceTooltips\"\", \"\"...",
+      "x": -26.621644973754883,
+      "y": -53.77527618408203,
+      "z": 29.070371627807617,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_126628",
+      "text": "Eupator is right; the article is leading towards coverage of Turkic culture in Armenia and not specifically to Azeris...",
+      "x": -24.65394401550293,
+      "y": -71.67521667480469,
+      "z": 20.16269874572754,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_135758",
+      "text": "Remove interim managers   Interim managers are nothing special i dont think people are interested in the person who t...",
+      "x": -32.21198272705078,
+      "y": -53.109092712402344,
+      "z": 24.302669525146484,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_147419",
+      "text": "I made a contribution to ROSALIA DE CASTRO Also to SPANISH INQUISITION     ello",
+      "x": -46.313541412353516,
+      "y": -39.4952278137207,
+      "z": -0.7726319432258606,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_127327",
+      "text": ". Neither would I consider it a lie because I heard them from Hagin. This is the way of the Spirit. We are to hear th...",
+      "x": -36.60927200317383,
+      "y": -56.013954162597656,
+      "z": 19.740718841552734,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_157008",
+      "text": "To quote Malcolm Reynolds: That's what makes us special.  Peachy.  00:21, 25 Mar 2005 (UTC)",
+      "x": -62.726646423339844,
+      "y": -38.27384948730469,
+      "z": 8.24323844909668,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_38743",
+      "text": "in violation of NPOV",
+      "x": -52.26768493652344,
+      "y": -44.501243591308594,
+      "z": -13.9243803024292,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_69",
+      "text": "\"  Parzival418, you are trying to scare ThAtSo. How can you say that the comments of ThAtSo are \"\"insulting\"\"? ThAtSo...",
+      "x": -23.69916534423828,
+      "y": -55.62580490112305,
+      "z": 29.753337860107422,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_19341",
+      "text": "Thank you for clarifyling Matt Smoral!",
+      "x": -52.717315673828125,
+      "y": -32.27323532104492,
+      "z": 29.15253448486328,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_61109",
+      "text": "\"  Please do, I second your suggestion.  It has enough relevance to justify its inclusion, and no harm done.  I suppo...",
+      "x": -32.57960891723633,
+      "y": -44.59939956665039,
+      "z": 3.0198988914489746,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_90120",
+      "text": "Hand at the end of 7 days a skeptic  At the end, the player see's a final glimpse of a hand emerging from the box, ev...",
+      "x": -38.037628173828125,
+      "y": -56.64963150024414,
+      "z": 14.79708194732666,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_154980",
+      "text": "for new username requests.   }} Oh, and are you interested in editing anything else besides this?",
+      "x": -34.50672912597656,
+      "y": -38.46149444580078,
+      "z": 20.727825164794922,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_146684",
+      "text": "Actually the original definition was there long ago, and was not my invention. As for the ongoing observation that Ch...",
+      "x": -5.104790210723877,
+      "y": -73.63378143310547,
+      "z": 35.40081787109375,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_149406",
+      "text": "fuck all wikipedians...(and sinneed)...ah yes i have returned",
+      "x": -57.91169357299805,
+      "y": -32.006736755371094,
+      "z": 31.772300720214844,
+      "ground_truth_labels": [
+        "toxic",
+        "obscene"
+      ],
+      "predicted_labels": [
+        "toxic",
+        "obscene"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_46413",
+      "text": "New article Is this good now?",
+      "x": -50.65859603881836,
+      "y": -48.09891128540039,
+      "z": -53.27792739868164,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_34739",
+      "text": "\"Please refrain from adding nonsense to Wikipedia, as you did to Merle Allin. It is considered vandalism. If you woul...",
+      "x": 78.23932647705078,
+      "y": 55.35569763183594,
+      "z": 4.470287322998047,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_75812",
+      "text": "\"  Another thing to note, all site titles refer to the site as TVbytheNumbers. Whisternefet (talk | contribs) \"",
+      "x": -35.4012451171875,
+      "y": -37.38529586791992,
+      "z": 2.4614081382751465,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_44800",
+      "text": "Please do not remove my input again... it violates WP:PRESERVE WP:VANDALISM and WP:NOTCENSORED also please stop being...",
+      "x": -17.769412994384766,
+      "y": -39.07112503051758,
+      "z": 6.260022163391113,
+      "ground_truth_labels": [
+        "insult",
+        "identity_hate"
+      ],
+      "predicted_labels": [
+        "toxic",
+        "insult"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_86740",
+      "text": "revert and ask for this page to be protected from vandals like you",
+      "x": -18.129318237304688,
+      "y": -24.617338180541992,
+      "z": 11.01539421081543,
+      "ground_truth_labels": [
+        "toxic"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "false_negative",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_26631",
+      "text": "I respectfully disagree. Chapter 7 in Ferling's, Setting the World Ablaze, contains 88 footnotes; many of them combin...",
+      "x": -36.73786544799805,
+      "y": -52.46100997924805,
+      "z": 8.6830472946167,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_94162",
+      "text": "Trouted   For constantly harrassing another editor and then being reprimanded for it by no less than three other user...",
+      "x": -38.04861068725586,
+      "y": -43.31293487548828,
+      "z": 38.977657318115234,
+      "ground_truth_labels": [
+        "toxic"
+      ],
+      "predicted_labels": [
+        "toxic"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_131915",
+      "text": "Oh, it's worse than rants, it's a rampage of irrational, delusional, sniping, an onslaught of deranged behavior by so...",
+      "x": -24.494916915893555,
+      "y": -55.01769256591797,
+      "z": 13.532536506652832,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_91079",
+      "text": ", 14 March 2007 (UTC)  See Invertible matrix. In the future please add new comments at the end of the talk page. 15:50",
+      "x": -44.028255462646484,
+      "y": -33.63530349731445,
+      "z": -42.520572662353516,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_67427",
+      "text": "Oh, I did not mean to give off the impression that you offended me. That's not what I was going for at all. My messag...",
+      "x": 6.996104717254639,
+      "y": -76.20535278320312,
+      "z": 54.40952682495117,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_69730",
+      "text": "|decline= Misleading edit summaries are a very small part of the overall problem with your editing, and in this conte...",
+      "x": -8.966383934020996,
+      "y": -37.89411926269531,
+      "z": 36.08515167236328,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_89733",
+      "text": "Well done, u pussbag! Have a cookie! I bet you people won't add his next reign if he wins at night of champions, will...",
+      "x": -32.65882110595703,
+      "y": -46.62877655029297,
+      "z": 21.827735900878906,
+      "ground_truth_labels": [
+        "toxic",
+        "obscene",
+        "insult"
+      ],
+      "predicted_labels": [
+        "toxic"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_57875",
+      "text": "Fuck u gogo dogo and cluebot!",
+      "x": -74.8260269165039,
+      "y": -27.738374710083008,
+      "z": 38.79275131225586,
+      "ground_truth_labels": [
+        "toxic",
+        "severe_toxic",
+        "obscene",
+        "insult"
+      ],
+      "predicted_labels": [
+        "toxic",
+        "obscene",
+        "insult"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_13708",
+      "text": "thinkbich mother fuckin asshole",
+      "x": -90.0,
+      "y": -22.323530197143555,
+      "z": 63.14397430419922,
+      "ground_truth_labels": [
+        "toxic",
+        "obscene",
+        "insult"
+      ],
+      "predicted_labels": [
+        "toxic",
+        "severe_toxic",
+        "obscene",
+        "insult"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_57733",
+      "text": "These messages keep getting censored by the notorious Steinskly, a Sustrans employee deseperate to conceal the realit...",
+      "x": -35.702247619628906,
+      "y": -47.032833099365234,
+      "z": 12.754525184631348,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_69982",
+      "text": "Should we wait for people to come and express their opinions or go look for them on other video-game related articles...",
+      "x": -29.018539428710938,
+      "y": -64.53556060791016,
+      "z": 9.894824981689453,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_7468",
+      "text": "Excuse me, whoever the Fuck you are   SPUI says on his talk page that he likes vandalism, and doesn't want it reverte...",
+      "x": -25.44540023803711,
+      "y": -33.66811752319336,
+      "z": 36.00522232055664,
+      "ground_truth_labels": [
+        "toxic",
+        "obscene",
+        "insult"
+      ],
+      "predicted_labels": [
+        "toxic",
+        "obscene"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_49089",
+      "text": "It would be a good idea to not vandalize pages here. Firstly, junk will be removed and you will be blocked if you con...",
+      "x": 32.88700866699219,
+      "y": 42.20146560668945,
+      "z": 19.904266357421875,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_87438",
+      "text": "With billions being spent on the effort, there should be a separate section about the ongoing research in that area. ...",
+      "x": -30.07602310180664,
+      "y": -68.88745880126953,
+      "z": -19.896697998046875,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_2023",
+      "text": "REDIRECT Talk:List of Lyon Metro stations",
+      "x": -70.30961608886719,
+      "y": -30.630708694458008,
+      "z": -60.49479293823242,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_118556",
+      "text": "Are you kidding? Which comment can't be verified? That was my comment. That God can't be verified and therefore doesn...",
+      "x": -40.107425689697266,
+      "y": -50.78727722167969,
+      "z": 30.092525482177734,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_90439",
+      "text": "what's up asshole bitch",
+      "x": -86.99638366699219,
+      "y": -27.157346725463867,
+      "z": 69.42525482177734,
+      "ground_truth_labels": [
+        "toxic",
+        "obscene",
+        "insult"
+      ],
+      "predicted_labels": [
+        "toxic",
+        "severe_toxic",
+        "obscene",
+        "insult"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_126285",
+      "text": "\"::::::A public medium of communication can be anything. A roadside sign falls into this category. \"\"A means of mass ...",
+      "x": -18.78099250793457,
+      "y": -63.58712387084961,
+      "z": 25.145273208618164,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_67863",
+      "text": "Agreed. That was the most tastless gag ever. It may have been a decent episode, if it were in season 11. Or the repea...",
+      "x": -38.113643646240234,
+      "y": -58.19021987915039,
+      "z": 16.343202590942383,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_41953",
+      "text": "What's the Deal? you say i'm harrassing, but your doing everything u can do to get rid of to page AFTER theres proof....",
+      "x": -12.794489860534668,
+      "y": -61.411048889160156,
+      "z": 84.87541961669922,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_96110",
+      "text": "BTW, I think this should say something about that.",
+      "x": -38.40125274658203,
+      "y": -59.973392486572266,
+      "z": 41.584266662597656,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_51761",
+      "text": "Hi Cmelbye - I'm still in the process of getting the basics in place, thanks for asking. I'm looking forward to actua...",
+      "x": -2.4140987396240234,
+      "y": -69.66356658935547,
+      "z": 10.713237762451172,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_113933",
+      "text": "Well then, the only thing left me to do is wait for you to get bored with Wikipedia. I'll be around for a while; you,...",
+      "x": -15.474493026733398,
+      "y": -55.3065185546875,
+      "z": 76.84760284423828,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_92793",
+      "text": "FUCK THE CRIMINAL PARTY OF CHINA ALSO KNOWN AS CPC  AND FUCK YOU, STUPID BASTARD....YOU FOREIGNERS SUCK DICK. WHAT HA...",
+      "x": -50.84638977050781,
+      "y": -42.86345672607422,
+      "z": 68.30348205566406,
+      "ground_truth_labels": [
+        "toxic",
+        "obscene",
+        "insult",
+        "identity_hate"
+      ],
+      "predicted_labels": [
+        "toxic",
+        "severe_toxic",
+        "obscene",
+        "insult",
+        "identity_hate"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_87028",
+      "text": "\" In this context, yes. Ansturm, for instance, is \"\"assault\"\" (noun), and stürmen usually means assault (verb). Sturm...",
+      "x": -49.678531646728516,
+      "y": -39.89251708984375,
+      "z": 9.794869422912598,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_29526",
+      "text": "\" Can I get some diffs? I had some trouble finding more bad-faith edits than good. 64 \"",
+      "x": -49.51469802856445,
+      "y": -42.23193359375,
+      "z": 36.95762634277344,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_134862",
+      "text": "\"::::::I'd certainly support a split of the detailed summaries of each (obviously notable) test flights into a separa...",
+      "x": -29.971677780151367,
+      "y": -67.9904556274414,
+      "z": -3.565904378890991,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_53662",
+      "text": "2012 (UTC)   The reasons I dont contribute to Wikipedia anymore  Reversions like the one you just executed on the psy...",
+      "x": 3.9004318714141846,
+      "y": -70.06156921386719,
+      "z": 20.62778091430664,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_73624",
+      "text": "- Thursday, August 17, 2006 6:34 PM",
+      "x": -66.7138442993164,
+      "y": -30.817941665649414,
+      "z": 1.7991358041763306,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_137525",
+      "text": "Yes, I am Russell Noftsker.  I had noticed over the years that the errors and loss of detail were compounding concern...",
+      "x": -9.83984661102295,
+      "y": -78.61711883544922,
+      "z": 14.05132007598877,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_137886",
+      "text": "\", but you should read the guide to appealing blocks first. Materialscientist (talk)  An admin can block you again no...",
+      "x": 52.04779815673828,
+      "y": -56.91635513305664,
+      "z": 18.37978744506836,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_91095",
+      "text": "\"Holy longest hatnote ever batman! – (talk)  \"",
+      "x": -58.59486770629883,
+      "y": -30.897544860839844,
+      "z": 5.6273040771484375,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_69645",
+      "text": "2Clix Question about editing out spam, On 2Clix page … the support group is a non commercial entity and adds to the d...",
+      "x": -21.2066707611084,
+      "y": -61.915679931640625,
+      "z": -0.8173244595527649,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_72425",
+      "text": "The BBC report  123 people were on the plane. The Times of India confirms this and reports that there were two pilots...",
+      "x": -45.63558578491211,
+      "y": -53.48196792602539,
+      "z": 11.739782333374023,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_64368",
+      "text": "Guys, ignoring him NEVER makes him go away. I Wikilinked 100% clear policy when I deleted an off-topic irrelevant thr...",
+      "x": -9.603931427001953,
+      "y": -52.868125915527344,
+      "z": 53.98125457763672,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_50372",
+      "text": "FUCK YOU   YOU ARE THE BIGGEST PIG ON THE PLANET.  DIE IN HELL ASSHOLE!",
+      "x": -72.90953826904297,
+      "y": -25.91559600830078,
+      "z": 60.45549392700195,
+      "ground_truth_labels": [
+        "toxic",
+        "severe_toxic",
+        "obscene",
+        "threat",
+        "insult"
+      ],
+      "predicted_labels": [
+        "toxic",
+        "severe_toxic",
+        "obscene",
+        "threat",
+        "insult"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_81704",
+      "text": "What is the ACTUAL subject here?  Wing Planforms or Planforms in general? ==  If it is intended to be about wings (as...",
+      "x": -22.937833786010742,
+      "y": -66.38689422607422,
+      "z": 15.291626930236816,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_100083",
+      "text": "I believe this controvery should be added to the article. The verichip has been discontinued due such controversies. ...",
+      "x": -20.587644577026367,
+      "y": -55.66120147705078,
+      "z": -53.317420959472656,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_62201",
+      "text": "I have just take a  look at the situation above, and you edited through full protection on an article you had been in...",
+      "x": -8.955567359924316,
+      "y": -63.16509246826172,
+      "z": 32.752262115478516,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_28381",
+      "text": "Note de Cazenave died today. I have removed him from the list.",
+      "x": -48.21623229980469,
+      "y": -40.88399887084961,
+      "z": -1.0168049335479736,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_132328",
+      "text": ".  To not state it would be very odd.  Apple may do it too (as stated in the proposed change) but Android does not",
+      "x": -32.30121994018555,
+      "y": -52.57732009887695,
+      "z": 14.605952262878418,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_106710",
+      "text": "\"  I am somewhat confused by your statement that Astynax continues to promote Landmark as a religion. First, the use ...",
+      "x": 11.182619094848633,
+      "y": -87.46919250488281,
+      "z": 13.006644248962402,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_99683",
+      "text": "OK, if you approve the text, we'll let it stand.",
+      "x": -46.43388748168945,
+      "y": -35.87721633911133,
+      "z": 32.48206329345703,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_148181",
+      "text": "WELL HERE THIS WIKIPEDIANS: I MADE THE FLAGS GO ON, IT WENT UP TO A GOOD STANDARD. i WILL NOT ALLOW FOOLS RUIN MY CRE...",
+      "x": -6.286552429199219,
+      "y": -63.8767204284668,
+      "z": 57.66426467895508,
+      "ground_truth_labels": [
+        "obscene"
+      ],
+      "predicted_labels": [
+        "toxic",
+        "obscene",
+        "insult"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_9148",
+      "text": "\" Oh, and again, wild claims with no backing from Salmaan bhai.The phrases \"\"Kar\"\" and \"\"Sevak\"\" are both Sanskrit. L...",
+      "x": -46.88139343261719,
+      "y": -43.21345901489258,
+      "z": 25.030792236328125,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_37853",
+      "text": "\"What I was saying was that South Africa was never a \"\"black\"\" country. The indigenous people were the Khoikhoi and t...",
+      "x": -16.753665924072266,
+      "y": -76.54225158691406,
+      "z": 38.39730453491211,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_22810",
+      "text": "Yes, but it wasn't called oPt during the Egyptian and Jordanian occupations. The oPt concept was born after the Israe...",
+      "x": -54.160736083984375,
+      "y": -45.76249313354492,
+      "z": 10.776569366455078,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_106782",
+      "text": "~  my talk my contribs",
+      "x": -45.40790557861328,
+      "y": -21.998889923095703,
+      "z": -13.913922309875488,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_14695",
+      "text": "\"   \"\"Weblinks\"\"  Make a point of typing 'External links' as opposed to 'Weblinks'. You did this on the page Gaisburg...",
+      "x": -30.867143630981445,
+      "y": -45.53814697265625,
+      "z": 20.784320831298828,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_114060",
+      "text": "Dear, idiot. The talk page is not a place for comments. Wikipedia is not a forum or a chatroom. The talk page is for ...",
+      "x": -16.513439178466797,
+      "y": -50.5224494934082,
+      "z": -63.21759033203125,
+      "ground_truth_labels": [
+        "toxic",
+        "insult"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "false_negative",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_15522",
+      "text": "\"  I don't want you to take sides but I wanted you to know exactly what's going on here. Your suggestion is much appr...",
+      "x": -33.15388488769531,
+      "y": -44.27407455444336,
+      "z": 65.82926940917969,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_34312",
+      "text": "Batley Bulldogs|size=16}} [[Template:Batley Bulldogs squad",
+      "x": -61.44709777832031,
+      "y": -32.58513259887695,
+      "z": -2.201246738433838,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_18064",
+      "text": "There's an additional funkiness too: There are only about four or so regular WikiProject TV editors (including myself...",
+      "x": -13.031554222106934,
+      "y": -63.18437194824219,
+      "z": 4.134627819061279,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_20013",
+      "text": "\"   Chola Navy sandbox, contd.   Hi Ramkumar,  Sure, no problems.. I'll take a look and do spell check as well.   P.S...",
+      "x": -15.755683898925781,
+      "y": -52.156673431396484,
+      "z": 17.984474182128906,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_143256",
+      "text": "Also they act like they own the article and that nobody can edit without their consent. I really need your help becau...",
+      "x": -19.41232681274414,
+      "y": -57.398582458496094,
+      "z": 13.567587852478027,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_75273",
+      "text": "Hey asshole, nice try with the speedy deletion.",
+      "x": -54.477447509765625,
+      "y": -42.220272064208984,
+      "z": -8.352377891540527,
+      "ground_truth_labels": [
+        "toxic",
+        "obscene",
+        "insult"
+      ],
+      "predicted_labels": [
+        "toxic",
+        "obscene",
+        "insult"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_22917",
+      "text": "Today's articles for improvement weekly vote    Hello Evad37:  This week's voting for TAFI's upcoming weekly collabor...",
+      "x": -43.9908332824707,
+      "y": -49.59260177612305,
+      "z": -15.920575141906738,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_36576",
+      "text": "I'm not sure just what an arbitration appeal involves. I would assume that you file an WP:RFAR and see if they accept...",
+      "x": 7.411680698394775,
+      "y": -67.71965026855469,
+      "z": 44.539031982421875,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_147036",
+      "text": "Saw III   I think you were a bit hasty reverting the last couple of edits to this article. I've been keeping an eye o...",
+      "x": -19.69572639465332,
+      "y": -51.135311126708984,
+      "z": 26.64341163635254,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_76479",
+      "text": "Thank you, Giano! I just needed someone to be so kind and reasonable!",
+      "x": -48.46284484863281,
+      "y": -41.49889373779297,
+      "z": 42.63596725463867,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_8328",
+      "text": "GoAnimate article need full protection...    GoAnimate    indefinite full protection From semi-protection to full ind...",
+      "x": -45.981937408447266,
+      "y": -43.90497589111328,
+      "z": -11.322471618652344,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_138686",
+      "text": "WikiNation is Dead  You have lost your position. Or have you.....",
+      "x": -40.7382698059082,
+      "y": -41.210872650146484,
+      "z": 26.015625,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "toxic"
+      ],
+      "error_type": "false_positive",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_101529",
+      "text": "Nothing vain about identifying the co-author of a study that is being discussed in an article.",
+      "x": -35.817012786865234,
+      "y": -59.69926452636719,
+      "z": -2.0535757541656494,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_63785",
+      "text": "Suck. My. Dick 24.153.216.129",
+      "x": -69.23777770996094,
+      "y": -30.23831558227539,
+      "z": 15.692317962646484,
+      "ground_truth_labels": [
+        "toxic",
+        "obscene"
+      ],
+      "predicted_labels": [
+        "toxic",
+        "obscene",
+        "insult"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_55120",
+      "text": "\"::I was about to say, but some edit-conflict thing happened, was that I only posted that message because I didn't kn...",
+      "x": -25.013574600219727,
+      "y": -49.511688232421875,
+      "z": 41.803985595703125,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_98144",
+      "text": "Semi-protected edit request on 24 April 2014   64.45.255.134   They are currently on tour with the British boy band t...",
+      "x": -54.19686508178711,
+      "y": -39.23210525512695,
+      "z": 2.264533281326294,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_138653",
+      "text": "\"change my perception toward your edit. Freaking is so civil language? I don't think so. You ERASED the valid informa...",
+      "x": 30.050567626953125,
+      "y": -79.1541519165039,
+      "z": 60.00281524658203,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_128668",
+      "text": "\":::::::::::And I really don't think \"\"Islamic empire\"\" was ever meant to be anything but a kind of dabpage. As a his...",
+      "x": -37.54631805419922,
+      "y": -59.75375747680664,
+      "z": 37.35842514038086,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_55581",
+      "text": "Are you going to remain a complete wanker ALL oyur life, or do you think its time to give up bullying other editors?",
+      "x": -33.93306350708008,
+      "y": -44.734291076660156,
+      "z": 59.508975982666016,
+      "ground_truth_labels": [
+        "toxic"
+      ],
+      "predicted_labels": [
+        "toxic",
+        "insult"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_3791",
+      "text": "Thanks Moonriddengirl. Wikidea, I'm sure you're an excellent lawyer, and I admire your goal to turn Wikipedia into a ...",
+      "x": -10.358537673950195,
+      "y": -68.87480926513672,
+      "z": 18.045625686645508,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_7352",
+      "text": "Cleon has added some remarks on this on my talk page.  Perhaps we can sort this out, but Cleon does have some odd vie...",
+      "x": -32.582801818847656,
+      "y": -60.905643463134766,
+      "z": -1.2247681617736816,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_137794",
+      "text": "\" Everyone who doesn't think that what I did was a good idea is a fucking retard.  Go fuck yourself in the asshole wh...",
+      "x": -68.04258728027344,
+      "y": -35.52883529663086,
+      "z": 82.91230010986328,
+      "ground_truth_labels": [
+        "toxic",
+        "obscene",
+        "insult"
+      ],
+      "predicted_labels": [
+        "toxic",
+        "severe_toxic",
+        "obscene",
+        "insult"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_67027",
+      "text": "in Wikipedia:Non-free content",
+      "x": -31.011064529418945,
+      "y": -34.997039794921875,
+      "z": -17.469755172729492,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_137482",
+      "text": "\" Fine your loss I was going to finish my edits to Thimphu later to help it pass GA. Glad you are happy with this.   ...",
+      "x": -38.973880767822266,
+      "y": -37.40065383911133,
+      "z": 40.63658905029297,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_155558",
+      "text": "Carlo Forlivesi   You mention Google News? A search on the guy returns a measly 8 results from the archives.  Say wha...",
+      "x": -11.710978507995605,
+      "y": -59.7511100769043,
+      "z": 25.46355438232422,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "toxic"
+      ],
+      "error_type": "false_positive",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_151072",
+      "text": "For a March 2005 deletion debate over this page see Wikipedia:Votes for deletion/H.C. Ørsted and August Krogh Institutes",
+      "x": -30.80116081237793,
+      "y": -45.61905288696289,
+      "z": -48.28024673461914,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_143858",
+      "text": "\"   Anna Song   You got the {{db-move}} template magic correct. The temporary \"\"backwards\"\" redirect was my fault. ) ...",
+      "x": -62.35106658935547,
+      "y": -35.44541931152344,
+      "z": -16.15123176574707,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_39704",
+      "text": "Lame duck presidencies and premierships, as frustrating as they are, have to be respected in an encyclopedia which fo...",
+      "x": -29.917129516601562,
+      "y": -55.973968505859375,
+      "z": 36.15778732299805,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_14398",
+      "text": "Help! Hey, Will where be 'ya? Haven't heard from yo in a while. I made a signature but still don't understand how to ...",
+      "x": -27.26263999938965,
+      "y": -51.690185546875,
+      "z": 57.078392028808594,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_3308",
+      "text": "\"  The link directly above says where it's copied from.  talk \"",
+      "x": -51.86024856567383,
+      "y": -37.84321975708008,
+      "z": -18.514707565307617,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_36525",
+      "text": "But you are master of putting words into people's mouth, i always always source and prove things, but argying with mo...",
+      "x": -31.76898193359375,
+      "y": -52.26359939575195,
+      "z": 63.067325592041016,
+      "ground_truth_labels": [
+        "toxic",
+        "insult"
+      ],
+      "predicted_labels": [
+        "toxic",
+        "insult"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_30054",
+      "text": "\"     I don't know what you mean by \"\"bias\"\", but the Criticism secton was added in Sept by IP 202.126.98.210, and un...",
+      "x": -32.40983581542969,
+      "y": -46.441673278808594,
+      "z": 21.44166374206543,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_108627",
+      "text": "Hi   Why did you delete my page called Tryhards Fc, as it is an important club in the gaming industry.",
+      "x": -36.938629150390625,
+      "y": -46.54166030883789,
+      "z": 3.4138975143432617,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_4231",
+      "text": "\" \"\"I've used the method I proposed for handling the naming before on Hey Jude, but I'll admit that it's not always t...",
+      "x": -17.18828582763672,
+      "y": -54.54772186279297,
+      "z": 49.518314361572266,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_150291",
+      "text": "\"  Lifespan Possibly this entry at the SSDI - born August 6, 1899, died January 1983.  Paul \"",
+      "x": -60.520835876464844,
+      "y": -37.9587287902832,
+      "z": -7.647212982177734,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_10761",
+      "text": "\"  I appreciate the offer, Valley.  I don't think an RfA would pass at this time.  Over 90% of my edits are automated...",
+      "x": -23.374521255493164,
+      "y": -56.569332122802734,
+      "z": 25.55548095703125,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_98176",
+      "text": "Shared IP Unblock   One of my students just received the message informing us of the unblock.  As I told Steel359, I ...",
+      "x": -20.794647216796875,
+      "y": -52.98825454711914,
+      "z": 50.4348258972168,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_95818",
+      "text": "Hi, would you please provide a proper reference for the IPM you refer to.",
+      "x": -30.166494369506836,
+      "y": -35.6922492980957,
+      "z": 10.912671089172363,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_16895",
+      "text": "One thing I hate is people who talk about other people behind their backs because they are too gutless to confront th...",
+      "x": -28.0988712310791,
+      "y": -59.06011962890625,
+      "z": 71.30597686767578,
+      "ground_truth_labels": [
+        "toxic"
+      ],
+      "predicted_labels": [
+        "toxic"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_109812",
+      "text": "Edit war is happening because of blind reverts by Harjk. Calling something POV does not make it POV. It is a well cit...",
+      "x": 2.854999303817749,
+      "y": -71.19290924072266,
+      "z": 27.016645431518555,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_45212",
+      "text": "That's fine.  I just won't do any of the CheckUsers I was going to do this evening.  Have a nice day.",
+      "x": -40.93879699707031,
+      "y": -48.515663146972656,
+      "z": 37.961334228515625,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_93491",
+      "text": "\" Here is paper that makes this distinction, entitled, \"\"Bleeding the \"\"Red\"\" out of Mao and the (Ivory) White Terror...",
+      "x": -31.006168365478516,
+      "y": -64.38764953613281,
+      "z": 2.485905885696411,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_148434",
+      "text": "\"  Black Liberation Theology  Why is WIkipedia, on a macro level, going out of its way to baste up Palin's religious ...",
+      "x": -18.878299713134766,
+      "y": -63.687984466552734,
+      "z": 10.926534652709961,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_71895",
+      "text": "San Antonio task force Hi! I started the Wikipedia:WikiProject Texas/San Antonio on here to help improve San Antonio ...",
+      "x": -37.11217498779297,
+      "y": -41.43085861206055,
+      "z": -0.460636705160141,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_139625",
+      "text": "\"  I was referring to  Moni3's \"\"ANI-like\"\" page; not so much Sandy's comments. A one-stop shopping page for your men...",
+      "x": -45.962154388427734,
+      "y": -38.80836868286133,
+      "z": 15.899288177490234,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_123754",
+      "text": "\":YOU may \"\"regard\"\" HGB however you like, but *I* regarde her as a sexuality ooozing lava hot pussy wagon. WORD. 132...",
+      "x": -51.3886833190918,
+      "y": -36.76201629638672,
+      "z": 28.919116973876953,
+      "ground_truth_labels": [
+        "toxic"
+      ],
+      "predicted_labels": [
+        "toxic"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_119039",
+      "text": "Philosophy lecturer sub-section under Career",
+      "x": -59.59788131713867,
+      "y": -42.170223236083984,
+      "z": -3.3652524948120117,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_92909",
+      "text": "Bulleted list  Bulleted list  Numbered List  Numbered List",
+      "x": -54.93434524536133,
+      "y": -39.42856216430664,
+      "z": -5.6672797203063965,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_76108",
+      "text": "rat...http://en.wikipedia.org/wiki/Wikipedia:Requests_for_adminship/Khoikhoi Cockkhoi to be mop )))) lol",
+      "x": -56.65040588378906,
+      "y": -32.13203430175781,
+      "z": 15.827800750732422,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "toxic"
+      ],
+      "error_type": "false_positive",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_159247",
+      "text": "Dear Cirt I wish to answer you here as well as on the Afd where I have replaced my comment. My comment was in no way ...",
+      "x": -7.5106635093688965,
+      "y": -68.61103057861328,
+      "z": 30.31476402282715,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_86940",
+      "text": "YOU LIKE COCK 8==========D - - - - -   NIGGER NIGGER NIGGER NIGGER NIGGER NIGGER NIGGER NIGGER NIGGER NIGGER NIGGER N...",
+      "x": -65.39683532714844,
+      "y": -30.864702224731445,
+      "z": 17.612865447998047,
+      "ground_truth_labels": [
+        "toxic",
+        "obscene",
+        "insult"
+      ],
+      "predicted_labels": [
+        "toxic",
+        "severe_toxic",
+        "obscene",
+        "insult",
+        "identity_hate"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_698",
+      "text": "I did not intend to be disruptive, I was genuineley upset by the word constantly. I only tried to make it look like a...",
+      "x": -34.84303283691406,
+      "y": -47.82743835449219,
+      "z": 37.556983947753906,
+      "ground_truth_labels": [
+        "toxic"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "false_negative",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_106795",
+      "text": "You're STILL confusing the policy statement with the policy itself when I just explained it to you? read my posts BEF...",
+      "x": -30.26380729675293,
+      "y": -53.15658950805664,
+      "z": 23.138845443725586,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_58658",
+      "text": "Answer  Not Paleszuk and not Poleszuk. It's wrong names. Right name is Poleshuk, cause it's endonym, and not polish o...",
+      "x": -46.00733184814453,
+      "y": -49.91380310058594,
+      "z": 20.826757431030273,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_74320",
+      "text": "Why are you so anti-muslim?   Yo broham, why can't you just let muslims kick it in peace?  Why you gotta be harassin ...",
+      "x": -43.966285705566406,
+      "y": -43.37028503417969,
+      "z": 62.043800354003906,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "toxic",
+        "identity_hate"
+      ],
+      "error_type": "false_positive",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_78444",
+      "text": "The League of Ireland (official website) refers to the club as Cork City Foras Co-op and states that it was founded i...",
+      "x": -29.75590705871582,
+      "y": -60.682090759277344,
+      "z": -14.655810356140137,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_109268",
+      "text": "You are not following wikipedia rules, which go by published sources, with no source to contradict Winterberg (2004) ...",
+      "x": -19.000680923461914,
+      "y": -51.26957702636719,
+      "z": 30.11756134033203,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_48533",
+      "text": "It's 'cos there's some kid that thinks he knows everything about theme parks insisting that it's called Saw: The Ride...",
+      "x": -40.116302490234375,
+      "y": -53.8603630065918,
+      "z": 38.200862884521484,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_56981",
+      "text": "adding twitter spam?   Maybe it is interesting to add a paragraph on twitter spam? Im not so familiar with it, but we...",
+      "x": -48.42079162597656,
+      "y": -45.504276275634766,
+      "z": 26.90167999267578,
+      "ground_truth_labels": [
+        "toxic",
+        "obscene"
+      ],
+      "predicted_labels": [
+        "toxic",
+        "obscene",
+        "insult"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_63647",
+      "text": "I am not taking orders from a Turkish muslim extremist I am afraid. Get me a Westerner that grew up in a democratic s...",
+      "x": -27.681427001953125,
+      "y": -51.68735122680664,
+      "z": 12.364636421203613,
+      "ground_truth_labels": [
+        "toxic"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "false_negative",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_113617",
+      "text": "I reverted your change because I was not sure you were going to reply. Sorry about that. I don't want to mess things ...",
+      "x": -4.957481384277344,
+      "y": -65.39967346191406,
+      "z": 78.36177062988281,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_27880",
+      "text": "\"  Fair enough & thanks for your views.  I'm not so hardened as to ignore the views of others though I hope &, while ...",
+      "x": -38.20515441894531,
+      "y": -57.255916595458984,
+      "z": 31.544057846069336,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_32451",
+      "text": "Could not agree more, its hard to take someone serious with the name 'multiculturalist', and viewing his/her history ...",
+      "x": -29.995237350463867,
+      "y": -50.74611282348633,
+      "z": 23.33783531188965,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_137690",
+      "text": "how much money ASALA and PKK paid to you? i offer you more. slave.",
+      "x": -52.85686111450195,
+      "y": -35.91755676269531,
+      "z": 35.54219055175781,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "toxic"
+      ],
+      "error_type": "false_positive",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_44841",
+      "text": "However, lets say we keep the current name, should the article only be talking about Assyrians and not mentioning Ara...",
+      "x": -42.08891296386719,
+      "y": -54.824398040771484,
+      "z": -2.4071366786956787,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_31410",
+      "text": "The restaurant is filled with raptors?  Don't want to eat there I guess.",
+      "x": -48.019710540771484,
+      "y": -43.922752380371094,
+      "z": 31.48099708557129,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "toxic"
+      ],
+      "error_type": "false_positive",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_65590",
+      "text": "Sergecross73 you're a deuchebag that has no life but being here 24/7 and harass users for having a more creative and ...",
+      "x": -5.540597915649414,
+      "y": -74.41109466552734,
+      "z": 86.9000015258789,
+      "ground_truth_labels": [
+        "toxic"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "false_negative",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_61462",
+      "text": "Russian transliteration Dear Nixer.  I am sorry, but I had to revert your changes back.  Unfortunately, they look (an...",
+      "x": 16.346694946289062,
+      "y": -60.519412994384766,
+      "z": 20.99254608154297,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_22726",
+      "text": "Wow! Your a good persuader. You can have the option of talking to me now and then if you use correct words. You shoul...",
+      "x": -29.902360916137695,
+      "y": -45.30485534667969,
+      "z": 49.33296585083008,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_84297",
+      "text": "beligerents   something is DEFINETLY SCREWED UP with the belligerents section, the mahdi army and al qaeda are NOT AL...",
+      "x": -38.86671829223633,
+      "y": -57.32431411743164,
+      "z": 18.67178726196289,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_115445",
+      "text": "BBB is an information nazi",
+      "x": -53.849998474121094,
+      "y": -48.528480529785156,
+      "z": -29.551820755004883,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "toxic"
+      ],
+      "error_type": "false_positive",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_57909",
+      "text": "DON'T COME TO MY ARTICLE TELLING ME TO DISCUSS  Don't come to my article telling me to discuss anything. When there w...",
+      "x": -3.2257003784179688,
+      "y": -68.74714660644531,
+      "z": 22.271867752075195,
+      "ground_truth_labels": [
+        "toxic"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "false_negative",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_138330",
+      "text": "Oh of fuck you asshole die im going to kill you  96.244.254.20",
+      "x": -76.88829040527344,
+      "y": -18.559101104736328,
+      "z": 73.82592010498047,
+      "ground_truth_labels": [
+        "toxic",
+        "severe_toxic",
+        "obscene",
+        "threat",
+        "insult"
+      ],
+      "predicted_labels": [
+        "toxic",
+        "severe_toxic",
+        "obscene",
+        "threat",
+        "insult"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_138355",
+      "text": "\"   see http://rexcurry.net/wikipedialies.html exposing Wikipedia's lying liars & their lies   There are some regular...",
+      "x": -11.426180839538574,
+      "y": -74.83586120605469,
+      "z": 9.828916549682617,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_120599",
+      "text": "Yes, that sounds good.",
+      "x": -58.970252990722656,
+      "y": -39.391265869140625,
+      "z": 24.492130279541016,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_155763",
+      "text": "Please help  this  article     https://en.wikipedia.org/wiki/The_Return_of_the_King_Middleweight_Tournament_2015",
+      "x": -18.361570358276367,
+      "y": -37.414615631103516,
+      "z": -90.0,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_462",
+      "text": "Support Lets protect and save this page from User:Balagonj786. This page has full of errors and invalid references.",
+      "x": -42.13429641723633,
+      "y": -43.51026153564453,
+      "z": -14.569156646728516,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_19494",
+      "text": ")\\  Wikipedia is collapsing under its own weight. There are too many users, too much public acess and too many dummie...",
+      "x": -15.160813331604004,
+      "y": -70.28604125976562,
+      "z": 20.32849884033203,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_159491",
+      "text": "\"   I've provided a citation that doesn't include Albert (or any other corps commander) in the list of principal comm...",
+      "x": -18.89486312866211,
+      "y": -65.1534194946289,
+      "z": 42.09897232055664,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_50839",
+      "text": "Page Triage newsletter Hey all. Some quick but important updates on what we've been up to and what's coming up next )...",
+      "x": -10.215155601501465,
+      "y": -62.2828254699707,
+      "z": 51.03450012207031,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_69514",
+      "text": "HAPPY NEW YEAR NUFY8!!!!!  HAPPY NEW YEAR NUFY8!!!!!  N",
+      "x": -66.36701965332031,
+      "y": -33.605167388916016,
+      "z": 4.843161106109619,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_8209",
+      "text": "\"   A barnstar for you!     The Technical Barnstar For solving the malfunction of my script. — ChatLimited Access \"",
+      "x": -53.475528717041016,
+      "y": -42.52254867553711,
+      "z": 8.731491088867188,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_23662",
+      "text": "Blocked for six months   . See also this, here.",
+      "x": -37.15793228149414,
+      "y": -17.487762451171875,
+      "z": -0.6536158323287964,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_150739",
+      "text": "July 2009    Please do not add hoaxes to Wikipedia. Hoaxes are caught and marked for deletion shortly after they are ...",
+      "x": 12.81099796295166,
+      "y": -54.83973693847656,
+      "z": 2.120002269744873,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_108873",
+      "text": "\"   Oi Mark Arsten   Donkey raping shit eater is \"\"Grossly insulting, degrading, or offensive material\"\" not knob. Gr...",
+      "x": -51.28660202026367,
+      "y": -42.81698989868164,
+      "z": 19.071744918823242,
+      "ground_truth_labels": [
+        "toxic",
+        "obscene",
+        "insult"
+      ],
+      "predicted_labels": [
+        "toxic",
+        "obscene"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_96650",
+      "text": "Move to Jewish blogosphere?   Would it be ok to move this to Jewish blogosphere?",
+      "x": -54.85515594482422,
+      "y": -33.96992111206055,
+      "z": 14.282719612121582,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_39656",
+      "text": "September 2006 (UTC)  does greek letter make it a fraternity ?  or the definition of fraternity itself? http://dictio...",
+      "x": -37.1911735534668,
+      "y": -56.8394660949707,
+      "z": -0.6928820013999939,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_102916",
+      "text": "\"   Peter Blaise says: As of 2007-01-15, http://www.simplica.eu/ seems to be gone, with no tool download, only last r...",
+      "x": -30.422517776489258,
+      "y": -51.93163299560547,
+      "z": -10.332769393920898,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_19997",
+      "text": "Notability of Dem 704 Boyz A tag has been placed on Dem 704 Boyz, requesting that it be speedily deleted from Wikiped...",
+      "x": 42.1092414855957,
+      "y": -78.10529327392578,
+      "z": -61.832557678222656,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_156577",
+      "text": ")   It would be nice to add Kaspersky to the Linux list. As far as I remember it was one among the first to release t...",
+      "x": -36.79361343383789,
+      "y": -52.9461784362793,
+      "z": -1.370253562927246,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_5432",
+      "text": "If only I could somehow get a new IP address. Sigh. I guess I'll just have to continue being blocked from your retard...",
+      "x": -6.125324249267578,
+      "y": -9.356147766113281,
+      "z": 37.69034194946289,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_109536",
+      "text": "Barotrauma refs: Diving -  Spontaneous PTX as contraindication to diving -   AND  Not absolute contraindication -  Su...",
+      "x": -40.53261947631836,
+      "y": -43.26824951171875,
+      "z": 4.6964240074157715,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_98242",
+      "text": "... Never known an acedemic who would devote such huge amounts of time and determined effort to benzo articles",
+      "x": -42.85444641113281,
+      "y": -52.701690673828125,
+      "z": 8.962616920471191,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_143244",
+      "text": "\"   I'm BUMED !!!!!!!!!!!   Danny, I'M PISSED, that your NOT on Adam Crolla show any longer.  I feel that the \"\"AC sh...",
+      "x": -28.87649154663086,
+      "y": -49.53507995605469,
+      "z": 37.57142639160156,
+      "ground_truth_labels": [
+        "toxic"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "false_negative",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_21620",
+      "text": "Well, we'll just have to try a little harder, won't we?  One ought not hurl the CopyVio flag about the place without ...",
+      "x": -34.27787399291992,
+      "y": -59.7349967956543,
+      "z": 40.52948760986328,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_2279",
+      "text": "Image:Amin_takes_oath.jpg listed for deletion  An image or media file that you uploaded or altered, Image:Amin_takes_...",
+      "x": 0.4773760139942169,
+      "y": -60.206390380859375,
+      "z": -40.24442672729492,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_8056",
+      "text": "Oh, okay. Fair enough, then. Thanks for making the effort to explain, to fill in my curiosity.",
+      "x": -52.49540710449219,
+      "y": -44.076744079589844,
+      "z": 6.520516395568848,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_112636",
+      "text": "Thank you. Your suggestions are good ones, as I said; we'll see what Drove thinks. I didn't know it got noticed somep...",
+      "x": -9.165745735168457,
+      "y": -72.22576141357422,
+      "z": 38.26274871826172,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_53627",
+      "text": "We Fuckum Arab Babiesum",
+      "x": -68.23014831542969,
+      "y": -32.53212356567383,
+      "z": 30.142499923706055,
+      "ground_truth_labels": [
+        "toxic",
+        "obscene",
+        "insult"
+      ],
+      "predicted_labels": [
+        "toxic",
+        "obscene"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_61893",
+      "text": "\"  What do you call everything you do FeloniousMonk? That is, if it's not a political campaign on your part, what is?...",
+      "x": 5.991412162780762,
+      "y": -84.0403823852539,
+      "z": 65.09587097167969,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_37300",
+      "text": "\"   Please do not vandalize pages, as you did with this edit to Talk:Barack Obama. If you continue to do so, you will...",
+      "x": 72.14142608642578,
+      "y": 80.85224151611328,
+      "z": 8.306905746459961,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_24760",
+      "text": "Please to not tamper with the television schedules.  You shall be Blocked!!198.236.192.210",
+      "x": -32.43867492675781,
+      "y": -15.734102249145508,
+      "z": 8.96655559539795,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_48461",
+      "text": "\"   1864 Executive Order of the President fixing the point of commencement of the Pacific Railroad (Original Document...",
+      "x": -26.34645652770996,
+      "y": -63.819278717041016,
+      "z": -11.586708068847656,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_127504",
+      "text": "I'm not a fan of advertisement articles [which this is] and/or controversy sections swaying articles into attack page...",
+      "x": -9.8944730758667,
+      "y": -68.08535766601562,
+      "z": -19.79863739013672,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_109537",
+      "text": "If anyone is to take part as an intermediary in any discussion here, i want it to be also a Polish contributor. Not j...",
+      "x": -24.003894805908203,
+      "y": -51.47625732421875,
+      "z": 26.173112869262695,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_35615",
+      "text": "There was a request to remove it.  Fatuorum",
+      "x": -55.7684440612793,
+      "y": -42.263832092285156,
+      "z": 11.123174667358398,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_32693",
+      "text": "I fixed it; you can do a diff and see what I did.  I also took out the quotes around the ref name  you can use quotes...",
+      "x": -30.153167724609375,
+      "y": -41.639427185058594,
+      "z": 38.375030517578125,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_97587",
+      "text": "\"   How to deal with the page User:Siguroardottir?   The page appears to have been copied from Jóhanna Sigurðardóttir...",
+      "x": -19.10028839111328,
+      "y": -55.78996658325195,
+      "z": -1.0274913311004639,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_22408",
+      "text": "bitches like donner60 like to feed on souls-bitch",
+      "x": -63.592628479003906,
+      "y": -33.63982391357422,
+      "z": 41.55276870727539,
+      "ground_truth_labels": [
+        "toxic",
+        "obscene",
+        "insult"
+      ],
+      "predicted_labels": [
+        "toxic",
+        "obscene",
+        "insult"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_5502",
+      "text": "Please stop   I am a bit alarmed at seeing a brand new user charging around different articles issuing orders about n...",
+      "x": 0.7989533543586731,
+      "y": -64.50882720947266,
+      "z": 40.6121711730957,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_86286",
+      "text": "He just got pwned by the wikipedia police.",
+      "x": -38.472999572753906,
+      "y": -39.46294403076172,
+      "z": -2.073620319366455,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_21230",
+      "text": "CR/CNN There is a discussion going on, on the talk page, you really should not just engage in an edit war without at ...",
+      "x": 1.9990664720535278,
+      "y": -59.169490814208984,
+      "z": 7.422713756561279,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_104155",
+      "text": "RE: Notability of Simon Cormie  Is there any way in which Simon Cormie could be remade?",
+      "x": -43.67123031616211,
+      "y": -49.48991775512695,
+      "z": 8.395389556884766,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_81756",
+      "text": "Anne Frank   How about you and you're hook nosed family can go and take a 'shower' together. muhahahahahahahahahahaha...",
+      "x": -51.31372833251953,
+      "y": -37.74004364013672,
+      "z": 49.04865646362305,
+      "ground_truth_labels": [
+        "toxic"
+      ],
+      "predicted_labels": [
+        "toxic",
+        "insult"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_52770",
+      "text": "I had to take a time-out, but I'm back and watching. And say, if you have a chance to see it, it's a pretty clever an...",
+      "x": -35.455108642578125,
+      "y": -46.33587646484375,
+      "z": 56.61495590209961,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_62099",
+      "text": "Diacritics Name needs diacritics.",
+      "x": -60.03512954711914,
+      "y": -36.64189910888672,
+      "z": 1.7371681928634644,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_114455",
+      "text": "Please refrain from adding nonsense to Wikipedia, as you did to November Rain. It is considered vandalism. If you wou...",
+      "x": 18.938438415527344,
+      "y": -6.245655536651611,
+      "z": 11.643033027648926,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_128735",
+      "text": "Loser Unlike lazy academic know-nothing geek-parasites like LK, I've been too busy servicing my clients in the 'real'...",
+      "x": -4.448401927947998,
+      "y": -66.0597915649414,
+      "z": 65.2176284790039,
+      "ground_truth_labels": [
+        "toxic",
+        "insult"
+      ],
+      "predicted_labels": [
+        "toxic",
+        "insult"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_16092",
+      "text": "\"  Placenames in Kosovo  Please, before making or discussing changes to the names used in all Kosovo-related topics, ...",
+      "x": -10.056811332702637,
+      "y": -63.12305450439453,
+      "z": 10.228876113891602,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_22629",
+      "text": "\"  Please stop. If you continue to vandalize pages, as you did to Saint-Victor, you will be blocked from editing Wiki...",
+      "x": 72.21167755126953,
+      "y": 48.242210388183594,
+      "z": 11.783744812011719,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_111369",
+      "text": "Mom of Ivy Blue Carter",
+      "x": -60.480567932128906,
+      "y": -34.627479553222656,
+      "z": 8.038485527038574,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_95979",
+      "text": "The context here, is that the authorities cited are themselves guilty of dumbing down the material to a lumin oozing ...",
+      "x": -26.379297256469727,
+      "y": -60.72752380371094,
+      "z": 23.513492584228516,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_36928",
+      "text": "Puzzled Your clean-up of Astronomy's archives puzzled me. Doesn't it risk confusing bots to leave an archiveurl= entr...",
+      "x": -44.79133224487305,
+      "y": -52.92628479003906,
+      "z": 29.513731002807617,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_142834",
+      "text": "\"   GraemeMcRae     GraemeMcRae Have some respect for your british ancestors   \"",
+      "x": -53.8918342590332,
+      "y": -41.564090728759766,
+      "z": 25.824424743652344,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_28280",
+      "text": "You started it.   LOL, there would not have been an edit war' if there were no participants, that includes you and yo...",
+      "x": -21.594785690307617,
+      "y": -50.15671920776367,
+      "z": 40.58011245727539,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_140298",
+      "text": "I kid you not, cunt.",
+      "x": -60.59457015991211,
+      "y": -24.116586685180664,
+      "z": 53.80055236816406,
+      "ground_truth_labels": [
+        "toxic",
+        "obscene"
+      ],
+      "predicted_labels": [
+        "toxic",
+        "obscene",
+        "insult"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_100518",
+      "text": "If you continue to vandalize articles you will be blocked",
+      "x": 73.20055389404297,
+      "y": 76.78964233398438,
+      "z": 13.802692413330078,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_81619",
+      "text": "Hi Drmies. I added the note to my edit summary because attribution there is recommended when translating. I'll see wh...",
+      "x": -14.76995849609375,
+      "y": -61.719608306884766,
+      "z": 0.6604046821594238,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_30300",
+      "text": "Thanks, James! That all looks like good advice. I'll act on it in the fullness of time.",
+      "x": -55.273765563964844,
+      "y": -48.90767288208008,
+      "z": 28.179519653320312,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_149092",
+      "text": "It was a military victory, but a strategic defeat. The infobox reflects this.",
+      "x": -54.494049072265625,
+      "y": -45.45143127441406,
+      "z": 3.3434572219848633,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_82681",
+      "text": "\"  '''''' 2010/2013 \"",
+      "x": -65.10697174072266,
+      "y": -27.71955108642578,
+      "z": 5.789664268493652,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_79558",
+      "text": "\"   'Interpretations of Biblical kinds' section   This section appears to be WP:SYNTH. It takes a series of Bible quo...",
+      "x": -40.68419647216797,
+      "y": -55.57154846191406,
+      "z": -6.261718273162842,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_118830",
+      "text": "(UTC)   07:20, 27 February 2012",
+      "x": -71.60930633544922,
+      "y": -28.917919158935547,
+      "z": -0.06324904412031174,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_94438",
+      "text": "Your last few blocks accomplished that rather nicely, and that will continue to happen so long as you persist in this...",
+      "x": -14.28515911102295,
+      "y": -21.801069259643555,
+      "z": 31.05743980407715,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_94264",
+      "text": "\"   Larklight trilogy   Hi,  Re. Larklight trilogy  I did loads of work on these articles yesterday; I fully agree th...",
+      "x": -8.103340148925781,
+      "y": -75.53227233886719,
+      "z": 13.103560447692871,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_117867",
+      "text": "\"   deanostrodamus   don't try to threaten me just because you can't fit through the doors of your favorite comic boo...",
+      "x": 7.884361267089844,
+      "y": -52.15355682373047,
+      "z": 68.47212219238281,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "toxic"
+      ],
+      "error_type": "false_positive",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_149553",
+      "text": "you bunch of cock cucking, toilet scrubbing, tit licking, fanny kissing, arse wanking BASTARDS I HOPE YOU ALL ROT IN ...",
+      "x": -54.39762878417969,
+      "y": -36.93090057373047,
+      "z": 38.83366012573242,
+      "ground_truth_labels": [
+        "toxic",
+        "severe_toxic",
+        "obscene"
+      ],
+      "predicted_labels": [
+        "toxic",
+        "severe_toxic",
+        "obscene",
+        "insult"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_7810",
+      "text": "Hello, I apologize. I will be creating a personal account. Will the TowerMadness article still be active when I chang...",
+      "x": -21.469032287597656,
+      "y": -39.365726470947266,
+      "z": 11.370527267456055,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_91218",
+      "text": "The Corset and the Crinoline. A Book of Modes and Costumes from Remote Periods to the Present Time. By W.B.L. Lord, W...",
+      "x": -36.338905334472656,
+      "y": -57.796058654785156,
+      "z": -8.61971378326416,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_94103",
+      "text": "Just a friendly suggestion   I noticed you struggling as a new user to fit into the Wikipedia. I personally feel that...",
+      "x": 4.288125038146973,
+      "y": -61.22091293334961,
+      "z": 7.450357913970947,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_132497",
+      "text": "It wouldn't have anything to do with the fact that you are not British would it?",
+      "x": -23.64069175720215,
+      "y": -54.13642883300781,
+      "z": 73.7973861694336,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_93157",
+      "text": "Clarification   1. The Myrtle Beach Thunderboltz was a proposed team that never saw the light of day.  The Conway tea...",
+      "x": -43.95050048828125,
+      "y": -40.64358901977539,
+      "z": -3.986052989959717,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_131220",
+      "text": "\" Thanks for the input!  (of the Occult) \"",
+      "x": -63.6511344909668,
+      "y": -41.94792938232422,
+      "z": -8.775185585021973,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_107160",
+      "text": "Who are you? == Who are you to boss me GUNOTTO, the king around!?!?!?!?  ==",
+      "x": -54.796302795410156,
+      "y": -35.461578369140625,
+      "z": 46.17433166503906,
+      "ground_truth_labels": [
+        "toxic"
+      ],
+      "predicted_labels": [
+        "toxic"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_140995",
+      "text": "dick face   go fuck your dick",
+      "x": -75.02801513671875,
+      "y": -23.112388610839844,
+      "z": 68.39917755126953,
+      "ground_truth_labels": [
+        "toxic",
+        "obscene",
+        "insult"
+      ],
+      "predicted_labels": [
+        "toxic",
+        "severe_toxic",
+        "obscene",
+        "insult"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_122102",
+      "text": "\" Lupin's Anti-vandal tool flagged the word \"\"freak\"\" in this edit. I'm usually dealing with absolutely ridiculous ed...",
+      "x": -20.415172576904297,
+      "y": -56.17965316772461,
+      "z": 54.77702331542969,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_94468",
+      "text": "To Gamaliel  I see Wyss has now deleted all my recent posts on his page - without (he claims) even reading them. One ...",
+      "x": -4.444669246673584,
+      "y": -58.29256820678711,
+      "z": 21.13267707824707,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_25908",
+      "text": "Hi 3gg5amp1e.  The CAPTCHA message appears for users who are not yet autoconfirmed.  Autoconfirmed accounts have over...",
+      "x": -15.854776382446289,
+      "y": -50.05470657348633,
+      "z": 39.97500228881836,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_110215",
+      "text": "\":::Cool, thanks for the research.  I've added the tag back, though somebody should probably rewrite the intro to cla...",
+      "x": -34.50950622558594,
+      "y": -64.45735931396484,
+      "z": 15.497843742370605,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_62343",
+      "text": "The link is what I call 'lying with the truth' in that it is an attempt to give people the belief that homeopaths sup...",
+      "x": -35.91033935546875,
+      "y": -59.49297332763672,
+      "z": 23.482595443725586,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_67999",
+      "text": "\"== Hello ==  Category:WelcomeBotResearch Hello, and welcome to Wikipedia. Thank you for writing the article . Unfort...",
+      "x": 42.51603698730469,
+      "y": -57.18699645996094,
+      "z": -50.80365753173828,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_125597",
+      "text": "\"  Disruptive editing Can i get you to double check User talk:User931 and make sure i'm handling this appropriately. ...",
+      "x": -35.44729232788086,
+      "y": -32.96345520019531,
+      "z": 30.327768325805664,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_69145",
+      "text": "What does it matter if you are so gay?",
+      "x": -37.62062454223633,
+      "y": -39.16416931152344,
+      "z": 58.329532623291016,
+      "ground_truth_labels": [
+        "toxic",
+        "insult",
+        "identity_hate"
+      ],
+      "predicted_labels": [
+        "toxic",
+        "identity_hate"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_24863",
+      "text": "\"  You have the medicated gaul Mr.  to the say that considering stuff like this when in the past you have said nice s...",
+      "x": -9.887985229492188,
+      "y": -74.25594329833984,
+      "z": 42.58305358886719,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_96359",
+      "text": "\":I wish you had done as I asked, when I said, \"\"...please just go ahead and block me for a week or two now\"\".  Thank...",
+      "x": -10.24410629272461,
+      "y": -51.49847412109375,
+      "z": 56.92689895629883,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_111890",
+      "text": "Whatever, you pïece of cr@p!",
+      "x": -47.03890609741211,
+      "y": -36.833377838134766,
+      "z": 44.09379196166992,
+      "ground_truth_labels": [
+        "toxic"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "false_negative",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_11806",
+      "text": "Are you monitoring me?   How did you notice my edit so quickly? The content is true, I just haven't found a reliable ...",
+      "x": -30.71617889404297,
+      "y": -47.910064697265625,
+      "z": 40.20319747924805,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_93410",
+      "text": "LIVE FREE OR DIE TRYING!",
+      "x": -56.13252258300781,
+      "y": -38.5327033996582,
+      "z": 21.531362533569336,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "toxic",
+        "threat"
+      ],
+      "error_type": "false_positive",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_40055",
+      "text": "the latest Dodona sock ==   .  Then there is this other     ==",
+      "x": -52.727333068847656,
+      "y": -45.16910171508789,
+      "z": -0.7013713717460632,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_23971",
+      "text": "\"   This is wrong   \"\"Change in playoff format  The play-off system was slightly altered - the fourth-bottom team in ...",
+      "x": -36.360572814941406,
+      "y": -59.254783630371094,
+      "z": 17.26995849609375,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_80250",
+      "text": "\"December 7 2008: To quote from Wikipedia policy:  \"\"This article must adhere to the policy on biographies of living ...",
+      "x": -8.131146430969238,
+      "y": -54.49913787841797,
+      "z": -18.5964298248291,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_11304",
+      "text": "\" Arbcom knows, but given his odd nature about some stuff I'm not surprised he didn't announce it in public. I was ki...",
+      "x": -41.41367721557617,
+      "y": -54.02276611328125,
+      "z": 31.921628952026367,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_65496",
+      "text": "\" Ah! Only just found out. No problem, given I didn't know about it and it's now expired.   Talk  \"",
+      "x": -42.15647888183594,
+      "y": -49.7761116027832,
+      "z": 35.9841194152832,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_110986",
+      "text": "This is quite sensible.",
+      "x": -54.44719696044922,
+      "y": -42.96303939819336,
+      "z": -13.530492782592773,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_3836",
+      "text": "As this is in rural North County should the article be moved to Garristown, County Dublin?",
+      "x": -43.3228645324707,
+      "y": -48.64542770385742,
+      "z": -26.93037986755371,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_28288",
+      "text": "\"  Image Tagging Image:Destroyer.JPG   This media may be deleted.  Thanks for uploading Image:Destroyer.JPG. I notice...",
+      "x": 27.837493896484375,
+      "y": -64.42098236083984,
+      "z": -37.821475982666016,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_153744",
+      "text": "\"   Robert Palmer   Re your message about my \"\"perpetuating a hoax about Robert Palmer\"\"...first, it was a talk page....",
+      "x": -26.69233512878418,
+      "y": -55.35737609863281,
+      "z": -1.8735859394073486,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_156893",
+      "text": "FUD, FUD, and FUD. You  only exist to keep Astroturfing the ODF and OOXML pages. Get the facts, you are a retard.",
+      "x": -44.09666061401367,
+      "y": -35.2443962097168,
+      "z": 37.99558639526367,
+      "ground_truth_labels": [
+        "toxic",
+        "insult"
+      ],
+      "predicted_labels": [
+        "toxic",
+        "insult"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_136365",
+      "text": "Hello and thank you for helping me better the content on Techniche, and for adding a redirect to it from the original...",
+      "x": -28.717262268066406,
+      "y": -51.66628646850586,
+      "z": -12.658759117126465,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_126990",
+      "text": "Easily:  Dnepriada:The Black Hole re: nuclides in the reservoirs; draining them  Not Sure how to translate Re: possib...",
+      "x": -26.74381446838379,
+      "y": -56.87079620361328,
+      "z": 44.458988189697266,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_43240",
+      "text": "I understand what you are sayin' mate, but the picture ain't copyrighted.",
+      "x": -46.36090087890625,
+      "y": -44.97504806518555,
+      "z": 42.04253005981445,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_91532",
+      "text": "\"Here's another nice quote from Li from the Essentials:  Most fundamentally, you all still need to establish your gre...",
+      "x": -5.3584184646606445,
+      "y": -67.92671966552734,
+      "z": 37.107635498046875,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_39773",
+      "text": "\"  Cleanup Tag The page seems to follow the same set up as the other Simpsons Halloween pages.  What on the page need...",
+      "x": -10.026927947998047,
+      "y": -57.93378829956055,
+      "z": -6.391186237335205,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_13343",
+      "text": "Whats your problem?   I have recently read your talk page and I don’t agree with the way you approach other Wikipedia...",
+      "x": -18.92008399963379,
+      "y": -52.65116500854492,
+      "z": 54.7869987487793,
+      "ground_truth_labels": [
+        "toxic",
+        "insult"
+      ],
+      "predicted_labels": [
+        "toxic"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_138871",
+      "text": "REDIRECT Talk:Fox Island River-Point au Mal",
+      "x": -73.62303924560547,
+      "y": -24.19955062866211,
+      "z": -46.05837631225586,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_13969",
+      "text": "\" Nice try at telling me to \"\"shuffle along, boy\"\"... Tell your friends at your next Klan meeting about your latest f...",
+      "x": -47.381221771240234,
+      "y": -47.18899917602539,
+      "z": 32.419830322265625,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_26888",
+      "text": "\"  Why wikipedia's mod system does not work ;)  http://www.usatoday.com/tech/columnist/kevinmaney/2006-09-12-wisdom-o...",
+      "x": 11.375611305236816,
+      "y": -85.3111572265625,
+      "z": 48.198272705078125,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_140141",
+      "text": "I wasnt talking to u   When i said who the hell are u, i was talking to this denny guy who sent me a message about wh...",
+      "x": -31.43666648864746,
+      "y": -48.54065704345703,
+      "z": 19.199193954467773,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "toxic"
+      ],
+      "error_type": "false_positive",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_52138",
+      "text": "\"   Henry Morgan   While I agree with your addition of the words \"\"and a pirate\"\", it probably would be good for you ...",
+      "x": -22.48391342163086,
+      "y": -56.00627136230469,
+      "z": 17.957406997680664,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_55672",
+      "text": "Semi-protected edit request on 19 January 2015   please permit me to add Gautam Gulati's pic image=",
+      "x": -47.24570846557617,
+      "y": -29.569931030273438,
+      "z": -16.39634132385254,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_148740",
+      "text": "\"to the word \"\"officially\"\"...  \"",
+      "x": -59.13236618041992,
+      "y": -41.033599853515625,
+      "z": 8.698212623596191,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_71131",
+      "text": "Go fuck yourself bitch",
+      "x": -82.29712677001953,
+      "y": -17.273115158081055,
+      "z": 88.5209732055664,
+      "ground_truth_labels": [
+        "toxic",
+        "severe_toxic",
+        "obscene",
+        "insult"
+      ],
+      "predicted_labels": [
+        "toxic",
+        "severe_toxic",
+        "obscene",
+        "insult"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_31366",
+      "text": ".  Do not remove other users' comments from Talk pages... Thanx.",
+      "x": -34.80016326904297,
+      "y": -27.741615295410156,
+      "z": -6.144260406494141,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_66827",
+      "text": "I wanted to thank you for looking at my unblock request.  It honestly was just a space that I wanted to put things si...",
+      "x": 10.982544898986816,
+      "y": -59.038543701171875,
+      "z": 53.762508392333984,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_90141",
+      "text": "Thanks, nice to have you with us in the team.",
+      "x": -50.412010192871094,
+      "y": -38.94605255126953,
+      "z": 23.663116455078125,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_131846",
+      "text": "(mine has a good local studies collection)",
+      "x": -60.40911102294922,
+      "y": -39.25893783569336,
+      "z": -0.9417577385902405,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_143663",
+      "text": "Cleaning   Due to various issues noted in the header, I am planning to delete any information in this article without...",
+      "x": -19.650367736816406,
+      "y": -57.3655891418457,
+      "z": -19.133024215698242,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_58451",
+      "text": "Thanks!   Thank you so much, Rlevse, for offering me my special day, it was very kind of you!",
+      "x": -51.67572021484375,
+      "y": -41.81287384033203,
+      "z": 38.78704833984375,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_98041",
+      "text": "Should be called Crash Medieval   This game just crashes thats all it does its virtually unplayable in any mode fulls...",
+      "x": -32.56076431274414,
+      "y": -64.6019287109375,
+      "z": 20.774520874023438,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_148944",
+      "text": "\" Sorry I didn't have much time to craft a response as I was in between a few assignments, but another avenue to expl...",
+      "x": -21.20884132385254,
+      "y": -62.76936340332031,
+      "z": 35.012386322021484,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_152516",
+      "text": "\"  Potty mouth by gay men who don't care Redvers, I noticed that in the discussion regarding Youknowbest on the notic...",
+      "x": -1.7731624841690063,
+      "y": -71.05545043945312,
+      "z": 67.38029479980469,
+      "ground_truth_labels": [
+        "toxic"
+      ],
+      "predicted_labels": [
+        "toxic",
+        "obscene"
+      ],
+      "error_type": "label_mismatch",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    },
+    {
+      "id": "val_18776",
+      "text": "\"  IMHO, \"\"Movable Type\"\" is not OSS, because it requires a fee for commercial use    Why is CityDesk in the Heavywei...",
+      "x": -39.699031829833984,
+      "y": -51.844017028808594,
+      "z": 2.2692205905914307,
+      "ground_truth_labels": [
+        "safe"
+      ],
+      "predicted_labels": [
+        "safe"
+      ],
+      "error_type": "correct",
+      "is_active": false,
+      "is_validation": true,
+      "similarity": 0.0
+    }
+  ]
+}

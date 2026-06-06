@@ -85,3 +85,10 @@ class ToxicInferenceService:
                 f"Model output size {scores.shape[0]} does not match labels ({len(self.labels)})."
             )
         return {label: float(score) for label, score in zip(self.labels, scores, strict=True)}
+
+    def embed(self, text: str):
+        """Return TF-IDF feature vector for one comment (sparse matrix, 1 × n_features)."""
+        self.ensure_loaded()
+        assert self._model is not None
+        preprocessed = self._model.named_steps["preprocess"].transform([text])
+        return self._model.named_steps["features"].transform(preprocessed)
