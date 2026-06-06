@@ -10,7 +10,12 @@ from app.services.registry import InferenceRegistry
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    registry = InferenceRegistry(settings.model_path, settings.bert_model_dir)
+    registry = InferenceRegistry(
+        settings.model_path,
+        settings.bert_model_dir,
+        settings.model_path_pl,
+        settings.bert_model_dir_pl,
+    )
     app.state.registry = registry
     registry.load_all()
     yield

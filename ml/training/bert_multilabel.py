@@ -93,3 +93,16 @@ def logits_to_probabilities(logits: np.ndarray) -> np.ndarray:
 def probabilities_to_predictions(proba: np.ndarray, threshold: float = DEFAULT_THRESHOLD) -> np.ndarray:
     """Threshold sigmoid probabilities into binary multi-label predictions."""
     return (np.asarray(proba) >= threshold).astype(np.int32)
+
+
+def probabilities_to_predictions_per_label(
+    proba: np.ndarray,
+    thresholds: dict[str, float],
+    label_names: list[str] | tuple[str, ...],
+) -> np.ndarray:
+    """Apply a separate decision threshold for each label."""
+    arr = np.asarray(proba, dtype=np.float64)
+    tvec = np.array([thresholds[label] for label in label_names], dtype=np.float64)
+    if arr.ndim == 1:
+        return (arr >= tvec).astype(np.int32)
+    return (arr >= tvec).astype(np.int32)

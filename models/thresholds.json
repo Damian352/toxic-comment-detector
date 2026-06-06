@@ -1,0 +1,36 @@
+{
+  "tuned_at": "2026-06-06T11:34:41.847849+00:00",
+  "method": "per_label_max_f1",
+  "en": {
+    "tfidf_lr": {
+      "toxic": 0.7,
+      "severe_toxic": 0.9,
+      "obscene": 0.7,
+      "threat": 0.95,
+      "insult": 0.75,
+      "identity_hate": 0.9
+    },
+    "bert": {
+      "toxic": 0.45,
+      "severe_toxic": 0.35,
+      "obscene": 0.55,
+      "threat": 0.6,
+      "insult": 0.5,
+      "identity_hate": 0.4
+    }
+  },
+  "pl": {
+    "tfidf_lr": {
+      "safe": 0.55,
+      "hate_speech": 0.5,
+      "violence": 0.65,
+      "vulgarity": 0.65
+    },
+    "bert": {
+      "safe": 0.45,
+      "hate_speech": 0.4,
+      "violence": 0.25,
+      "vulgarity": 0.45
+    }
+  }
+}

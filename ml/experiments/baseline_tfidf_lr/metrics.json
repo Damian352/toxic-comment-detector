@@ -1,5 +1,5 @@
 {
-  "trained_at": "2026-06-04T19:43:02.830642+00:00",
+  "trained_at": "2026-06-06T11:20:50.004619+00:00",
   "labels": [
     "toxic",
     "severe_toxic",
@@ -9,66 +9,119 @@
     "identity_hate"
   ],
   "model_path": "I:\\GreatProjects\\toxic-comment-detector\\models\\model.pkl",
-  "hamming_loss": 0.02317614496840566,
-  "f1_macro": 0.6162280435585351,
-  "f1_micro": 0.7329723225030085,
-  "precision_macro": 0.5159769410326367,
-  "precision_micro": 0.6368674194897532,
-  "recall_macro": 0.8024735482996835,
-  "recall_micro": 0.8632369614512472,
+  "threshold": {
+    "toxic": 0.7,
+    "severe_toxic": 0.9,
+    "obscene": 0.7,
+    "threat": 0.95,
+    "insult": 0.75,
+    "identity_hate": 0.9
+  },
+  "threshold_mode": "per_label",
+  "hamming_loss": 0.016825943913520287,
+  "f1_macro": 0.6385290252986139,
+  "f1_micro": 0.7709044368600683,
+  "precision_macro": 0.657551041876862,
+  "precision_micro": 0.7735445205479452,
+  "recall_macro": 0.631205776653348,
+  "recall_micro": 0.76828231292517,
   "per_label": [
     {
       "label": "toxic",
-      "precision": 0.7170469798657718,
-      "recall": 0.8731611637790128,
-      "f1": 0.7874410377358491,
+      "precision": 0.8355647099210436,
+      "recall": 0.7956848643347499,
+      "f1": 0.8151373074346953,
       "support": 3059
     },
     {
       "label": "severe_toxic",
-      "precision": 0.31870967741935485,
-      "recall": 0.7942122186495176,
-      "f1": 0.4548802946593002,
+      "precision": 0.44776119402985076,
+      "recall": 0.5787781350482315,
+      "f1": 0.5049088359046283,
       "support": 311
     },
     {
       "label": "obscene",
-      "precision": 0.7534653465346535,
-      "recall": 0.8900584795321638,
-      "f1": 0.8160857908847186,
+      "precision": 0.8215935334872979,
+      "recall": 0.8321637426900584,
+      "f1": 0.8268448576409064,
       "support": 1710
     },
     {
       "label": "threat",
-      "precision": 0.3505747126436782,
-      "recall": 0.6288659793814433,
-      "f1": 0.45018450184501846,
+      "precision": 0.532258064516129,
+      "recall": 0.3402061855670103,
+      "f1": 0.41509433962264153,
       "support": 97
     },
     {
       "label": "insult",
-      "precision": 0.6181653863533665,
-      "recall": 0.8603773584905661,
-      "f1": 0.7194320273468314,
+      "precision": 0.730722891566265,
+      "recall": 0.7628930817610063,
+      "f1": 0.7464615384615385,
       "support": 1590
     },
     {
       "label": "identity_hate",
-      "precision": 0.3378995433789954,
-      "recall": 0.7681660899653979,
-      "f1": 0.4693446088794926,
+      "precision": 0.5774058577405857,
+      "recall": 0.47750865051903113,
+      "f1": 0.5227272727272727,
       "support": 289
     }
   ],
-  "classification_report": "               precision    recall  f1-score   support\n\n        toxic       0.72      0.87      0.79      3059\n severe_toxic       0.32      0.79      0.45       311\n      obscene       0.75      0.89      0.82      1710\n       threat       0.35      0.63      0.45        97\n       insult       0.62      0.86      0.72      1590\nidentity_hate       0.34      0.77      0.47       289\n\n    micro avg       0.64      0.86      0.73      7056\n    macro avg       0.52      0.80      0.62      7056\n weighted avg       0.67      0.86      0.75      7056\n  samples avg       0.07      0.08      0.07      7056\n",
+  "classification_report": "               precision    recall  f1-score   support\n\n        toxic       0.84      0.80      0.82      3059\n severe_toxic       0.45      0.58      0.50       311\n      obscene       0.82      0.83      0.83      1710\n       threat       0.53      0.34      0.42        97\n       insult       0.73      0.76      0.75      1590\nidentity_hate       0.58      0.48      0.52       289\n\n    micro avg       0.77      0.77      0.77      7056\n    macro avg       0.66      0.63      0.64      7056\n weighted avg       0.78      0.77      0.77      7056\n  samples avg       0.07      0.07      0.07      7056\n",
   "dataset": {
-    "n_samples": 159571,
-    "n_train": 127656,
     "n_test": 31915,
     "test_size": 0.2,
-    "threshold": 0.5,
-    "positive_rate_any_label": 0.10167887648758234
+    "baseline_f1_macro": 0.6162280435585351,
+    "baseline_f1_micro": 0.7329723225030085
   },
-  "mode": "jigsaw",
-  "data_path": "I:\\GreatProjects\\toxic-comment-detector\\data\\raw\\train.csv"
+  "baseline_at_0.5": {
+    "f1_macro": 0.6162280435585351,
+    "f1_micro": 0.7329723225030085,
+    "per_label": [
+      {
+        "label": "toxic",
+        "precision": 0.7170469798657718,
+        "recall": 0.8731611637790128,
+        "f1": 0.7874410377358491,
+        "support": 3059
+      },
+      {
+        "label": "severe_toxic",
+        "precision": 0.31870967741935485,
+        "recall": 0.7942122186495176,
+        "f1": 0.4548802946593002,
+        "support": 311
+      },
+      {
+        "label": "obscene",
+        "precision": 0.7534653465346535,
+        "recall": 0.8900584795321638,
+        "f1": 0.8160857908847186,
+        "support": 1710
+      },
+      {
+        "label": "threat",
+        "precision": 0.3505747126436782,
+        "recall": 0.6288659793814433,
+        "f1": 0.45018450184501846,
+        "support": 97
+      },
+      {
+        "label": "insult",
+        "precision": 0.6181653863533665,
+        "recall": 0.8603773584905661,
+        "f1": 0.7194320273468314,
+        "support": 1590
+      },
+      {
+        "label": "identity_hate",
+        "precision": 0.3378995433789954,
+        "recall": 0.7681660899653979,
+        "f1": 0.4693446088794926,
+        "support": 289
+      }
+    ]
+  }
 }

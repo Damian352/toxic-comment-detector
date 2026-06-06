@@ -10,7 +10,7 @@ _REPO_ROOT = Path(__file__).resolve().parents[3]
 if str(_REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(_REPO_ROOT))
 
-from ml.labels import LABELS  # noqa: E402
+from ml.labels import LABELS, PL_LABELS  # noqa: E402
 
 
 def _scores_from_predict_proba(proba: Any, n_labels: int) -> np.ndarray:
@@ -38,13 +38,14 @@ def _scores_from_predict_proba(proba: Any, n_labels: int) -> np.ndarray:
 class ToxicInferenceService:
     """Loads a serialized sklearn Pipeline (or compatible) and runs predict_proba."""
 
-    def __init__(self, model_path: Path) -> None:
+    def __init__(self, model_path: Path, lang: str = "en") -> None:
         self._model_path = model_path
         self._model: Any | None = None
+        self._lang = lang
 
     @property
     def labels(self) -> tuple[str, ...]:
-        return LABELS
+        return PL_LABELS if self._lang == "pl" else LABELS
 
     def load(self) -> None:
         if not self._model_path.is_file():
@@ -66,9 +67,9 @@ class ToxicInferenceService:
         self.ensure_loaded()
         assert self._model is not None
         raw = self._model.predict_proba([text])
-        scores = _scores_from_predict_proba(raw, len(LABELS))
-        if scores.shape[0] != len(LABELS):
+        scores = _scores_from_predict_proba(raw, len(self.labels))
+        if scores.shape[0] != len(self.labels):
             raise ValueError(
-                f"Model output size {scores.shape[0]} does not match LABELS ({len(LABELS)})."
+                f"Model output size {scores.shape[0]} does not match labels ({len(self.labels)})."
             )
-        return {label: float(score) for label, score in zip(LABELS, scores, strict=True)}
+        return {label: float(score) for label, score in zip(self.labels, scores, strict=True)}

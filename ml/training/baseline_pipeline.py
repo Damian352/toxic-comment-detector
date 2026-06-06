@@ -23,6 +23,7 @@ def build_baseline_pipeline(
     C: float = 1.0,
     max_iter: int = 2000,
     random_state: int = 42,
+    preprocess_func=preprocess_batch,
 ) -> Pipeline:
     """
     Build a multi-label baseline: preprocess -> word TF-IDF + char TF-IDF -> OvR LR.
@@ -61,7 +62,7 @@ def build_baseline_pipeline(
             (
                 "preprocess",
                 FunctionTransformer(
-                    preprocess_batch,
+                    preprocess_func,
                     validate=False,
                     feature_names_out="one-to-one",
                 ),

@@ -1,0 +1,129 @@
+{
+  "model": "pl_tfidf_lr",
+  "model_path": "I:\\GreatProjects\\toxic-comment-detector\\models\\model_pl.pkl",
+  "labels": [
+    "safe",
+    "hate_speech",
+    "violence",
+    "vulgarity"
+  ],
+  "tuned_at": "2026-06-06T11:33:46.094023+00:00",
+  "tuning": {
+    "method": "per_label_max_f1",
+    "grid": "0.05..0.95 step 0.05",
+    "val_size": 0.2,
+    "test_size": 0.2,
+    "random_state": 42
+  },
+  "per_label_thresholds": {
+    "safe": 0.55,
+    "hate_speech": 0.5,
+    "violence": 0.65,
+    "vulgarity": 0.65
+  },
+  "default_threshold_baseline": 0.5,
+  "evaluation_test": {
+    "baseline_uniform_0.5": {
+      "hamming_loss": 0.1395142797581822,
+      "f1_macro": 0.6365711516494066,
+      "f1_micro": 0.7408267983347856,
+      "precision_macro": 0.5878459173888534,
+      "precision_micro": 0.6916124367317426,
+      "recall_macro": 0.6999693597252918,
+      "recall_micro": 0.7975818219720658,
+      "per_label": [
+        {
+          "label": "safe",
+          "precision": 0.8592251630226314,
+          "recall": 0.9345014601585315,
+          "f1": 0.8952837729816147,
+          "support": 2397
+        },
+        {
+          "label": "hate_speech",
+          "precision": 0.6841018582243634,
+          "recall": 0.7362962962962963,
+          "f1": 0.7092400998929718,
+          "support": 1350
+        },
+        {
+          "label": "violence",
+          "precision": 0.3690322580645161,
+          "recall": 0.5325884543761639,
+          "f1": 0.43597560975609756,
+          "support": 537
+        },
+        {
+          "label": "vulgarity",
+          "precision": 0.43902439024390244,
+          "recall": 0.5964912280701754,
+          "f1": 0.5057851239669422,
+          "support": 513
+        }
+      ],
+      "classification_report": "              precision    recall  f1-score   support\n\n        safe       0.86      0.93      0.90      2397\n hate_speech       0.68      0.74      0.71      1350\n    violence       0.37      0.53      0.44       537\n   vulgarity       0.44      0.60      0.51       513\n\n   micro avg       0.69      0.80      0.74      4797\n   macro avg       0.59      0.70      0.64      4797\nweighted avg       0.71      0.80      0.75      4797\n samples avg       0.71      0.80      0.74      4797\n",
+      "thresholds": {
+        "uniform": 0.5
+      }
+    },
+    "tuned_per_label": {
+      "hamming_loss": 0.12565144882218052,
+      "f1_macro": 0.617266976295279,
+      "f1_micro": 0.74929811791619,
+      "precision_macro": 0.6272587660550524,
+      "precision_micro": 0.7475103734439834,
+      "recall_macro": 0.6119237997369843,
+      "recall_micro": 0.7510944340212633,
+      "per_label": [
+        {
+          "label": "safe",
+          "precision": 0.8817377312952535,
+          "recall": 0.9144764288694202,
+          "f1": 0.8978087241449928,
+          "support": 2397
+        },
+        {
+          "label": "hate_speech",
+          "precision": 0.6841018582243634,
+          "recall": 0.7362962962962963,
+          "f1": 0.7092400998929718,
+          "support": 1350
+        },
+        {
+          "label": "violence",
+          "precision": 0.4474327628361858,
+          "recall": 0.3407821229050279,
+          "f1": 0.386892177589852,
+          "support": 537
+        },
+        {
+          "label": "vulgarity",
+          "precision": 0.4957627118644068,
+          "recall": 0.45614035087719296,
+          "f1": 0.4751269035532995,
+          "support": 513
+        }
+      ],
+      "classification_report": "              precision    recall  f1-score   support\n\n        safe       0.88      0.91      0.90      2397\n hate_speech       0.68      0.74      0.71      1350\n    violence       0.45      0.34      0.39       537\n   vulgarity       0.50      0.46      0.48       513\n\n   micro avg       0.75      0.75      0.75      4797\n   macro avg       0.63      0.61      0.62      4797\nweighted avg       0.74      0.75      0.74      4797\n samples avg       0.71      0.75      0.72      4797\n",
+      "thresholds": {
+        "per_label": {
+          "safe": 0.55,
+          "hate_speech": 0.5,
+          "violence": 0.65,
+          "vulgarity": 0.65
+        }
+      }
+    },
+    "comparison": {
+      "f1_macro_delta": -0.01930417535412754,
+      "f1_micro_delta": 0.008471319581404457,
+      "precision_macro_delta": 0.039412848666198985,
+      "recall_macro_delta": -0.08804555998830754,
+      "hamming_loss_delta": -0.013862830936001685,
+      "baseline_f1_macro": 0.6365711516494066,
+      "tuned_f1_macro": 0.617266976295279,
+      "baseline_f1_micro": 0.7408267983347856,
+      "tuned_f1_micro": 0.74929811791619
+    }
+  }
+}

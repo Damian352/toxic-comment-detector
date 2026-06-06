@@ -27,6 +27,26 @@ def preprocess_text(text: str) -> str:
     return WHITESPACE_PATTERN.sub(" ", text).strip()
 
 
+def preprocess_text_pl(text: str) -> str:
+    """
+    Normalize Polish comment text before vectorization or transformer input.
+    """
+    if not isinstance(text, str):
+        return ""
+    text = text.replace("\n", " ")
+    text = re.sub(r"{USERNAME}", "", text)
+    text = re.sub(r"{URL}", "", text)
+    text = re.sub(r"&gt;", "", text)
+    text = re.sub(r"http\S+", "", text)
+    text = re.sub(r"\s+", " ", text)
+    return text.strip()
+
+
 def preprocess_batch(texts: Iterable[str]) -> list[str]:
     """Apply ``preprocess_text`` to an iterable of comments (sklearn-compatible)."""
     return [preprocess_text(text) for text in texts]
+
+
+def preprocess_batch_pl(texts: Iterable[str]) -> list[str]:
+    """Apply ``preprocess_text_pl`` to an iterable of comments (sklearn-compatible)."""
+    return [preprocess_text_pl(text) for text in texts]

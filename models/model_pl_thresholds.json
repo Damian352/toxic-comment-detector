@@ -1,0 +1,6 @@
+{
+  "safe": 0.55,
+  "hate_speech": 0.5,
+  "violence": 0.65,
+  "vulgarity": 0.65
+}

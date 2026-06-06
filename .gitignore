@@ -49,13 +49,19 @@ pip-log.txt
 .ipynb_checkpoints/
 
 # ML / data (keep structure, ignore heavy artifacts)
-models/*.pkl
+# Allow baseline sklearn models (they are small: ~16MB and ~6.4MB)
+!models/*.pkl
 models/*.joblib
 models/*.pt
 models/*.onnx
 models/*.bin
 models/bert/**
 !models/bert/.gitkeep
+models/bert_pl/**
+!models/bert_pl/.gitkeep
+# Exclude heavy model weights (>100MB) from normal Git to prevent push failures
+*.safetensors
+*.bin
 !models/.gitkeep
 data/raw/**
 data/processed/**

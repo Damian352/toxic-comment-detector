@@ -5,7 +5,8 @@ from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel, Field
 
 from app.core.config import settings
-from app.services.inference import LABELS
+from app.services.inference import LABELS, PL_LABELS
+from ml.labels import active_labels_from_probs, get_per_label_thresholds
 from app.services.registry import InferenceRegistry, ModelId
 
 _REPO_ROOT = Path(__file__).resolve().parents[3]
@@ -17,6 +18,10 @@ class PredictRequest(BaseModel):
     model: ModelId = Field(
         default=ModelId.TFIDF_LR,
         description="Inference backend: tfidf_lr (sklearn baseline) or bert (transformer).",
+    )
+    lang: str = Field(
+        default="en",
+        description="Language of comment: 'en' for English, 'pl' for Polish."
     )
 
 
@@ -32,7 +37,7 @@ class ProjectionPoint(BaseModel):
 
 class PredictResponse(BaseModel):
     probabilities: dict[str, float]
-    labels: list[str] = Field(default_factory=lambda: list(LABELS))
+    labels: list[str]
     model: ModelId
     similarity_projection: list[ProjectionPoint] = Field(default_factory=list)
     
@@ -215,34 +220,140 @@ ANCHORS = [
     }
 ]
 
+PL_ANCHORS = [
+    {
+        "id": "pl_anchor_1",
+        "text": "Dziękuję bardzo za pomoc! Świetna robota.",
+        "labels": ["safe"],
+        "vector": [0.99, 0.01, 0.01, 0.01],
+        "x": -80.0,
+        "y": 0.0
+    },
+    {
+        "id": "pl_anchor_2",
+        "text": "Moim zdaniem ten artykuł jest bardzo ciekawy i dobrze napisany.",
+        "labels": ["safe"],
+        "vector": [0.98, 0.01, 0.0, 0.01],
+        "x": -60.0,
+        "y": 20.0
+    },
+    {
+        "id": "pl_anchor_3",
+        "text": "Czy możemy sprawdzić to źródło jeszcze raz? Wydaje mi się trochę stare.",
+        "labels": ["safe"],
+        "vector": [0.95, 0.02, 0.01, 0.02],
+        "x": -45.0,
+        "y": -10.0
+    },
+    {
+        "id": "pl_anchor_4",
+        "text": "Ty kompletny idioto, zamknij się wreszcie i nie pisz bzdur.",
+        "labels": ["hate_speech"],
+        "vector": [0.05, 0.95, 0.10, 0.40],
+        "x": 50.0,
+        "y": -20.0
+    },
+    {
+        "id": "pl_anchor_5",
+        "text": "Wracaj skąd przyszedłeś, nie chcemy tu takich pasożytów!",
+        "labels": ["hate_speech"],
+        "vector": [0.02, 0.98, 0.20, 0.15],
+        "x": 75.0,
+        "y": 45.0
+    },
+    {
+        "id": "pl_anchor_6",
+        "text": "Twoja religia to żart, a wszyscy wy jesteście nienormalni.",
+        "labels": ["hate_speech"],
+        "vector": [0.04, 0.92, 0.15, 0.10],
+        "x": 70.0,
+        "y": 35.0
+    },
+    {
+        "id": "pl_anchor_7",
+        "text": "Znajdę cię i połamię ci nogi, pożałujesz tego.",
+        "labels": ["violence"],
+        "vector": [0.01, 0.40, 0.95, 0.10],
+        "x": 80.0,
+        "y": 70.0
+    },
+    {
+        "id": "pl_anchor_8",
+        "text": "Zabiję cię, wiem gdzie mieszkasz i cię dopadnę.",
+        "labels": ["violence"],
+        "vector": [0.01, 0.50, 0.99, 0.05],
+        "x": 95.0,
+        "y": 85.0
+    },
+    {
+        "id": "pl_anchor_9",
+        "text": "Co to za g***o? Co ty p***dolisz człowieku?!",
+        "labels": ["vulgarity"],
+        "vector": [0.10, 0.20, 0.05, 0.95],
+        "x": 30.0,
+        "y": -65.0
+    },
+    {
+        "id": "pl_anchor_10",
+        "text": "Wyp***dalaj stąd ty głupi ch***u!",
+        "labels": ["vulgarity", "hate_speech"],
+        "vector": [0.01, 0.85, 0.15, 0.99],
+        "x": 65.0,
+        "y": -75.0
+    }
+]
 
-def get_similarity_projection(text: str, probs: dict[str, float]) -> list[ProjectionPoint]:
-    user_vector = [probs.get(l, 0.0) for l in LABELS]
-    p_max = max(user_vector)
+
+def get_similarity_projection(
+    text: str,
+    probs: dict[str, float],
+    lang: str = "en",
+    model_id: ModelId = ModelId.BERT,
+) -> list[ProjectionPoint]:
+    labels = PL_LABELS if lang == "pl" else LABELS
+    anchors = PL_ANCHORS if lang == "pl" else ANCHORS
+    backend_model = "tfidf_lr" if model_id == ModelId.TFIDF_LR else "bert"
+    thresholds = get_per_label_thresholds(lang, backend_model, labels)
+    user_vector = [probs.get(l, 0.0) for l in labels]
+    p_max = max(user_vector) if user_vector else 0.0
     
     # Calculate user coords
-    if p_max < 0.15:
-        user_x = -80.0 + (p_max * 50.0)
-        user_y = 0.0
+    if lang == "pl":
+        p_safe = probs.get("safe", 0.0)
+        p_hate = probs.get("hate_speech", 0.0)
+        p_violence = probs.get("violence", 0.0)
+        p_vulgarity = probs.get("vulgarity", 0.0)
+        
+        if p_safe >= thresholds.get("safe", 0.5):
+            user_x = -80.0 + ((1.0 - p_safe) * 40.0)
+            user_y = 0.0
+        else:
+            user_x = -30.0 + (120.0 * max(p_hate, p_violence, p_vulgarity))
+            w_total = p_hate + p_violence + p_vulgarity + 0.001
+            user_y = (p_violence * 80.0 + p_hate * 40.0 + p_vulgarity * -70.0) / w_total
     else:
-        user_x = -30.0 + (120.0 * p_max)
-        w_threat = user_vector[3]
-        w_hate = user_vector[5]
-        w_obscene = user_vector[2]
-        w_insult = user_vector[4]
-        w_total = w_threat + w_hate + w_obscene + w_insult + 0.001
-        user_y = (w_threat * 80.0 + w_hate * 40.0 + w_obscene * -70.0 + w_insult * -30.0) / w_total
+        if p_max < 0.15:
+            user_x = -80.0 + (p_max * 50.0)
+            user_y = 0.0
+        else:
+            user_x = -30.0 + (120.0 * p_max)
+            w_threat = user_vector[3]
+            w_hate = user_vector[5]
+            w_obscene = user_vector[2]
+            w_insult = user_vector[4]
+            w_total = w_threat + w_hate + w_obscene + w_insult + 0.001
+            user_y = (w_threat * 80.0 + w_hate * 40.0 + w_obscene * -70.0 + w_insult * -30.0) / w_total
 
     user_words = set(w.strip(".,!?\"'()[]") for w in text.lower().split() if len(w) >= 3)
     points = []
     
     # Process anchors
-    for anchor in ANCHORS:
+    for anchor in anchors:
         anchor_vector = anchor["vector"]
         
         # Profile similarity (Euclidean distance based)
         dist = math.sqrt(sum((u - a)**2 for u, a in zip(user_vector, anchor_vector)))
-        profile_sim = 1.0 - (dist / math.sqrt(6))
+        profile_sim = 1.0 - (dist / math.sqrt(len(labels)))
         
         # Lexical similarity
         anchor_words = set(w.strip(".,!?\"'()[]") for w in anchor["text"].lower().split() if len(w) >= 3)
@@ -263,9 +374,7 @@ def get_similarity_projection(text: str, probs: dict[str, float]) -> list[Projec
             is_active=False
         ))
         
-    user_labels = [l for l in LABELS if probs.get(l, 0.0) >= 0.5]
-    if not user_labels:
-        user_labels = ["safe"]
+    user_labels = active_labels_from_probs(probs, thresholds, lang)
         
     points.append(ProjectionPoint(
         id="active_user",
@@ -295,18 +404,26 @@ def health() -> dict[str, str]:
 @router.get("/ready")
 def ready() -> dict[str, bool | dict[str, bool]]:
     registry = get_registry()
-    loaded = {m.id.value: m.loaded for m in registry.list_models()}
+    loaded_en = {m.id.value: registry.is_loaded(m.id, "en") for m in registry.list_models("en")}
+    loaded_pl = {m.id.value: registry.is_loaded(m.id, "pl") for m in registry.list_models("pl")}
     return {
-        "model_loaded": registry.any_loaded,
-        "models": loaded,
-        "tfidf_path": str(settings.model_path),
-        "bert_dir": str(settings.bert_model_dir),
+        "model_loaded_en": any(loaded_en.values()),
+        "model_loaded_pl": any(loaded_pl.values()),
+        "models_en": loaded_en,
+        "models_pl": loaded_pl,
+        "tfidf_path_en": str(settings.model_path),
+        "bert_dir_en": str(settings.bert_model_dir),
+        "tfidf_path_pl": str(settings.model_path_pl),
+        "bert_dir_pl": str(settings.bert_model_dir_pl),
     }
 
 
 @router.get("/models", response_model=list[ModelInfoResponse])
-def list_models() -> list[ModelInfoResponse]:
+def list_models(lang: str = "en") -> list[ModelInfoResponse]:
     registry = get_registry()
+    l = lang.lower() if lang else "en"
+    if l not in ("en", "pl"):
+        l = "en"
     return [
         ModelInfoResponse(
             id=m.id,
@@ -315,26 +432,36 @@ def list_models() -> list[ModelInfoResponse]:
             loaded=m.loaded,
             artifact_path=m.artifact_path,
         )
-        for m in registry.list_models()
+        for m in registry.list_models(l)
     ]
 
 
 @router.post("/predict", response_model=PredictResponse)
 def predict(body: PredictRequest) -> PredictResponse:
     registry = get_registry()
+    lang = body.lang.lower() if body.lang else "en"
+    if lang not in ("en", "pl"):
+        lang = "en"
+        
     try:
         text_stripped = body.text.strip()
+        labels_list = list(PL_LABELS) if lang == "pl" else list(LABELS)
+        
         if body.model == ModelId.BOTH:
             # Run both models
-            probs_tfidf = registry.predict_proba(text_stripped, ModelId.TFIDF_LR)
-            probs_bert = registry.predict_proba(text_stripped, ModelId.BERT)
+            probs_tfidf = registry.predict_proba(text_stripped, ModelId.TFIDF_LR, lang)
+            probs_bert = registry.predict_proba(text_stripped, ModelId.BERT, lang)
             
-            projection_tfidf = get_similarity_projection(text_stripped, probs_tfidf)
-            projection_bert = get_similarity_projection(text_stripped, probs_bert)
+            projection_tfidf = get_similarity_projection(
+                text_stripped, probs_tfidf, lang, ModelId.TFIDF_LR
+            )
+            projection_bert = get_similarity_projection(
+                text_stripped, probs_bert, lang, ModelId.BERT
+            )
             
-            # Return both with BERT as primary fallback in 'probabilities' and 'similarity_projection'
             return PredictResponse(
                 probabilities=probs_bert,
+                labels=labels_list,
                 model=ModelId.BOTH,
                 similarity_projection=projection_bert,
                 is_dual=True,
@@ -344,13 +471,32 @@ def predict(body: PredictRequest) -> PredictResponse:
                 similarity_projection_bert=projection_bert
             )
         else:
-            probs = registry.predict_proba(text_stripped, body.model)
-            projection = get_similarity_projection(text_stripped, probs)
-            return PredictResponse(probabilities=probs, model=body.model, similarity_projection=projection)
+            probs = registry.predict_proba(text_stripped, body.model, lang)
+            projection = get_similarity_projection(text_stripped, probs, lang, body.model)
+            return PredictResponse(
+                probabilities=probs,
+                labels=labels_list,
+                model=body.model,
+                similarity_projection=projection
+            )
     except FileNotFoundError as e:
-        raise HTTPException(status_code=503, detail=str(e)) from e
+        raise HTTPException(
+            status_code=503,
+            detail=f"Model files not found or loaded for {body.model.value} in {lang}: {str(e)}"
+        ) from e
     except ValueError as e:
-        raise HTTPException(status_code=500, detail=str(e)) from e
+        raise HTTPException(
+            status_code=500,
+            detail=f"Model error or invalid input for {body.model.value} in {lang}: {str(e)}"
+        ) from e
+    except Exception as e:
+        import traceback
+        tb = traceback.format_exc()
+        print(f"ERROR during predict request: {str(e)}\n{tb}")
+        raise HTTPException(
+            status_code=500,
+            detail=f"Unexpected server-side error during inference: {str(e)}\n{tb}"
+        ) from e
 
 
 @router.get("/metrics")
@@ -358,6 +504,8 @@ def get_metrics() -> dict[str, dict]:
     # Paths to metrics
     tfidf_path = _REPO_ROOT / "ml" / "experiments" / "baseline_tfidf_lr" / "metrics.json"
     bert_path = _REPO_ROOT / "ml" / "experiments" / "bert_multilabel" / "metrics.json"
+    tfidf_pl_path = _REPO_ROOT / "ml" / "experiments" / "baseline_tfidf_lr_pl" / "metrics.json"
+    bert_pl_path = _REPO_ROOT / "ml" / "experiments" / "bert_multilabel_pl" / "metrics.json"
 
     # Default/fallback values in case metrics.json are missing/inaccessible
     fallback_tfidf = {
@@ -398,9 +546,43 @@ def get_metrics() -> dict[str, dict]:
         "dataset": {"n_samples": 159571, "n_train": 127656, "n_test": 31915}
     }
 
+    fallback_tfidf_pl = {
+        "hamming_loss": 0.1395142797581822,
+        "f1_macro": 0.6365711516494066,
+        "f1_micro": 0.7408267983347856,
+        "precision_macro": 0.5878459173888534,
+        "precision_micro": 0.6916124367317426,
+        "recall_macro": 0.6999693597252918,
+        "recall_micro": 0.7975818219720658,
+        "per_label": [
+            {"label": "safe", "precision": 0.8592251630226314, "recall": 0.9345014601585315, "f1": 0.8952837729816147, "support": 2397},
+            {"label": "hate_speech", "precision": 0.6841018582243634, "recall": 0.7362962962962963, "f1": 0.7092400998929718, "support": 1350},
+            {"label": "violence", "precision": 0.3690322580645161, "recall": 0.5325884543761639, "f1": 0.43597560975609756, "support": 537},
+            {"label": "vulgarity", "precision": 0.43902439024390244, "recall": 0.5964912280701754, "f1": 0.5057851239669422, "support": 513}
+        ],
+        "dataset": {"n_samples": 23985, "n_train": 19188, "n_test": 4797}
+    }
+
+    fallback_bert_pl = {
+        "hamming_loss": 0.25,
+        "f1_macro": 0.16666666666666666,
+        "f1_micro": 0.5,
+        "precision_macro": 0.125,
+        "precision_micro": 0.5,
+        "recall_macro": 0.25,
+        "recall_micro": 0.5,
+        "per_label": [
+            {"label": "safe", "precision": 0.5, "recall": 1.0, "f1": 0.6666666666666666, "support": 5},
+            {"label": "hate_speech", "precision": 0.0, "recall": 0.0, "f1": 0.0, "support": 4},
+            {"label": "violence", "precision": 0.0, "recall": 0.0, "f1": 0.0, "support": 1},
+            {"label": "vulgarity", "precision": 0.0, "recall": 0.0, "f1": 0.0, "support": 0}
+        ],
+        "dataset": {"n_samples": 50, "n_train": 40, "n_test": 10}
+    }
+
     metrics = {}
 
-    # Load TF-IDF metrics
+    # Load English TF-IDF metrics
     if tfidf_path.is_file():
         try:
             with tfidf_path.open("r", encoding="utf-8") as f:
@@ -410,7 +592,7 @@ def get_metrics() -> dict[str, dict]:
     else:
         metrics["tfidf_lr"] = fallback_tfidf
 
-    # Load BERT metrics
+    # Load English BERT metrics
     if bert_path.is_file():
         try:
             with bert_path.open("r", encoding="utf-8") as f:
@@ -419,6 +601,26 @@ def get_metrics() -> dict[str, dict]:
             metrics["bert"] = fallback_bert
     else:
         metrics["bert"] = fallback_bert
+
+    # Load Polish TF-IDF metrics
+    if tfidf_pl_path.is_file():
+        try:
+            with tfidf_pl_path.open("r", encoding="utf-8") as f:
+                metrics["tfidf_lr_pl"] = json.load(f)
+        except Exception:
+            metrics["tfidf_lr_pl"] = fallback_tfidf_pl
+    else:
+        metrics["tfidf_lr_pl"] = fallback_tfidf_pl
+
+    # Load Polish BERT metrics
+    if bert_pl_path.is_file():
+        try:
+            with bert_pl_path.open("r", encoding="utf-8") as f:
+                metrics["bert_pl"] = json.load(f)
+        except Exception:
+            metrics["bert_pl"] = fallback_bert_pl
+    else:
+        metrics["bert_pl"] = fallback_bert_pl
 
     return metrics
 

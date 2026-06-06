@@ -1,4 +1,4 @@
-"""Registry of inference backends (TF-IDF+LR and BERT)."""
+"""Registry of inference backends (TF-IDF+LR and BERT) for English and Polish."""
 
 from __future__ import annotations
 
@@ -34,7 +34,7 @@ class ModelInfo:
 
 
 class InferenceRegistry:
-    """Loads available models at startup and routes predictions by model id."""
+    """Loads available models at startup and routes predictions by model id and language."""
 
     MODEL_CATALOG: dict[ModelId, tuple[str, str]] = {
         ModelId.TFIDF_LR: (
@@ -51,58 +51,93 @@ class InferenceRegistry:
         ),
     }
 
-    def __init__(self, tfidf_path: Path, bert_dir: Path) -> None:
-        self._tfidf = ToxicInferenceService(tfidf_path)
-        self._bert = BertInferenceService(bert_dir)
-        self._loaded: dict[ModelId, bool] = {
-            ModelId.TFIDF_LR: False,
-            ModelId.BERT: False,
-            ModelId.BOTH: False,
+    def __init__(self, tfidf_path: Path, bert_dir: Path, tfidf_path_pl: Path, bert_dir_pl: Path) -> None:
+        self._tfidf = ToxicInferenceService(tfidf_path, lang="en")
+        self._bert = BertInferenceService(bert_dir, lang="en")
+        self._tfidf_pl = ToxicInferenceService(tfidf_path_pl, lang="pl")
+        self._bert_pl = BertInferenceService(bert_dir_pl, lang="pl")
+
+        self._loaded: dict[tuple[ModelId, str], bool] = {
+            (ModelId.TFIDF_LR, "en"): False,
+            (ModelId.BERT, "en"): False,
+            (ModelId.BOTH, "en"): False,
+            (ModelId.TFIDF_LR, "pl"): False,
+            (ModelId.BERT, "pl"): False,
+            (ModelId.BOTH, "pl"): False,
         }
         self._paths = {
             ModelId.TFIDF_LR: tfidf_path,
             ModelId.BERT: bert_dir,
-            ModelId.BOTH: tfidf_path, # just a placeholder
+            ModelId.BOTH: tfidf_path,
+        }
+        self._paths_pl = {
+            ModelId.TFIDF_LR: tfidf_path_pl,
+            ModelId.BERT: bert_dir_pl,
+            ModelId.BOTH: tfidf_path_pl,
         }
 
     def load_all(self) -> None:
+        # Load English models
         for model_id, service in (
             (ModelId.TFIDF_LR, self._tfidf),
             (ModelId.BERT, self._bert),
         ):
             try:
                 service.load()
-                self._loaded[model_id] = True
+                self._loaded[(model_id, "en")] = True
             except FileNotFoundError:
-                self._loaded[model_id] = False
+                self._loaded[(model_id, "en")] = False
         
-        self._loaded[ModelId.BOTH] = self._loaded[ModelId.TFIDF_LR] and self._loaded[ModelId.BERT]
+        self._loaded[(ModelId.BOTH, "en")] = self._loaded[(ModelId.TFIDF_LR, "en")] and self._loaded[(ModelId.BERT, "en")]
 
-    def get_service(self, model_id: ModelId) -> Predictor:
-        if not self._loaded.get(model_id, False):
+        # Load Polish models
+        for model_id, service in (
+            (ModelId.TFIDF_LR, self._tfidf_pl),
+            (ModelId.BERT, self._bert_pl),
+        ):
+            try:
+                service.load()
+                self._loaded[(model_id, "pl")] = True
+            except FileNotFoundError:
+                self._loaded[(model_id, "pl")] = False
+
+        self._loaded[(ModelId.BOTH, "pl")] = self._loaded[(ModelId.TFIDF_LR, "pl")] and self._loaded[(ModelId.BERT, "pl")]
+
+    def get_service(self, model_id: ModelId, lang: str = "en") -> Predictor:
+        if not self._loaded.get((model_id, lang), False):
+            path = self._paths_pl[model_id] if lang == "pl" else self._paths[model_id]
             raise FileNotFoundError(
-                f"Model '{model_id.value}' is not loaded. Artifact: {self._paths[model_id]}"
+                f"Model '{model_id.value}' ({lang}) is not loaded. Artifact: {path}"
             )
-        if model_id is ModelId.TFIDF_LR:
-            return self._tfidf
-        return self._bert
+        if lang == "pl":
+            if model_id is ModelId.TFIDF_LR:
+                return self._tfidf_pl
+            return self._bert_pl
+        else:
+            if model_id is ModelId.TFIDF_LR:
+                return self._tfidf
+            return self._bert
 
-    def predict_proba(self, text: str, model_id: ModelId) -> dict[str, float]:
-        return self.get_service(model_id).predict_proba(text)
+    def predict_proba(self, text: str, model_id: ModelId, lang: str = "en") -> dict[str, float]:
+        return self.get_service(model_id, lang).predict_proba(text)
 
-    def list_models(self) -> list[ModelInfo]:
+    def list_models(self, lang: str = "en") -> list[ModelInfo]:
         out: list[ModelInfo] = []
         for model_id, (name, description) in self.MODEL_CATALOG.items():
+            path = self._paths_pl[model_id] if lang == "pl" else self._paths[model_id]
             out.append(
                 ModelInfo(
                     id=model_id,
                     name=name,
                     description=description,
-                    loaded=self._loaded.get(model_id, False),
-                    artifact_path=str(self._paths[model_id]),
+                    loaded=self._loaded.get((model_id, lang), False),
+                    artifact_path=str(path),
                 )
             )
         return out
+
+    def is_loaded(self, model_id: ModelId, lang: str = "en") -> bool:
+        return self._loaded.get((model_id, lang), False)
 
     @property
     def any_loaded(self) -> bool:
