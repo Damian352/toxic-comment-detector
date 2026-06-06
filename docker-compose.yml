@@ -8,6 +8,7 @@ services:
     environment:
       MODEL_PATH: /models/model.pkl
       BERT_MODEL_DIR: /models/bert
+      ML_EXPERIMENTS_DIR: /ml/experiments
     volumes:
       - ./backend/app:/app/app:ro
       - ./ml:/ml:ro

@@ -34,7 +34,12 @@ class ModelInfo:
 
 
 class InferenceRegistry:
-    """Loads available models at startup and routes predictions by model id and language."""
+    """
+    Central inference model registry.
+
+    Holds two TF-IDF and two BERT instances (EN + PL), tracks loaded flags,
+    and routes predict_proba by (ModelId, lang).
+    """
 
     MODEL_CATALOG: dict[ModelId, tuple[str, str]] = {
         ModelId.TFIDF_LR: (
@@ -77,7 +82,8 @@ class InferenceRegistry:
         }
 
     def load_all(self) -> None:
-        # Load English models
+        """Try to load all artifacts; FileNotFoundError → loaded=False."""
+        # English
         for model_id, service in (
             (ModelId.TFIDF_LR, self._tfidf),
             (ModelId.BERT, self._bert),
@@ -90,7 +96,7 @@ class InferenceRegistry:
         
         self._loaded[(ModelId.BOTH, "en")] = self._loaded[(ModelId.TFIDF_LR, "en")] and self._loaded[(ModelId.BERT, "en")]
 
-        # Load Polish models
+        # Polish — BOTH is available only when both backends are loaded
         for model_id, service in (
             (ModelId.TFIDF_LR, self._tfidf_pl),
             (ModelId.BERT, self._bert_pl),

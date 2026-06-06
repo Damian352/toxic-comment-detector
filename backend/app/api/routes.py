@@ -1,3 +1,15 @@
+"""
+HTTP API for inference and visualization helpers.
+
+Endpoints:
+  GET  /api/health, /api/ready, /api/models, /api/metrics
+  POST /api/predict, /api/detect-lang
+
+This module also contains:
+  - anchor comments (ANCHORS / PL_ANCHORS) for 2D projection;
+  - get_similarity_projection() — heuristic similarity map to reference points.
+"""
+
 import json
 import math
 from pathlib import Path
@@ -6,11 +18,17 @@ from pydantic import BaseModel, Field
 
 from app.core.config import settings
 from app.services.inference import LABELS, PL_LABELS
+from app.services.lang_detect import detect_language, resolve_analysis_lang
 from ml.labels import active_labels_from_probs, get_per_label_thresholds
 from app.services.registry import InferenceRegistry, ModelId
 
 _REPO_ROOT = Path(__file__).resolve().parents[3]
 router = APIRouter(prefix="/api", tags=["inference"])
+
+
+# ---------------------------------------------------------------------------
+# Pydantic request/response schemas
+# ---------------------------------------------------------------------------
 
 
 class PredictRequest(BaseModel):
@@ -20,8 +38,8 @@ class PredictRequest(BaseModel):
         description="Inference backend: tfidf_lr (sklearn baseline) or bert (transformer).",
     )
     lang: str = Field(
-        default="en",
-        description="Language of comment: 'en' for English, 'pl' for Polish."
+        default="auto",
+        description="Analysis language: 'auto' (detect), 'en', or 'pl'. Forced values skip detection.",
     )
 
 
@@ -35,12 +53,25 @@ class ProjectionPoint(BaseModel):
     is_active: bool
 
 
+class LangDetectResponse(BaseModel):
+    analysis_lang: str
+    confidence: float
+    is_reliable: bool
+    source: str
+    detected_code: str | None = None
+
+
 class PredictResponse(BaseModel):
     probabilities: dict[str, float]
     labels: list[str]
     model: ModelId
     similarity_projection: list[ProjectionPoint] = Field(default_factory=list)
-    
+
+    requested_lang: str = "auto"
+    analysis_lang: str = "en"
+    lang_confidence: float | None = None
+    lang_source: str | None = None
+
     # Dual comparison extensions
     is_dual: bool = False
     probabilities_tfidf: dict[str, float] | None = None
@@ -56,6 +87,11 @@ class ModelInfoResponse(BaseModel):
     loaded: bool
     artifact_path: str
 
+
+# ---------------------------------------------------------------------------
+# Reference comments for 2D projection (English Jigsaw context).
+# vector — fixed probability profile; x/y — coordinates on the UI map.
+# ---------------------------------------------------------------------------
 
 ANCHORS = [
     {
@@ -220,6 +256,7 @@ ANCHORS = [
     }
 ]
 
+# Anchors for Polish BAN-PL corpus (4 labels: safe + 3 violation types).
 PL_ANCHORS = [
     {
         "id": "pl_anchor_1",
@@ -310,6 +347,12 @@ def get_similarity_projection(
     lang: str = "en",
     model_id: ModelId = ModelId.BERT,
 ) -> list[ProjectionPoint]:
+    """
+    Build points for 2D visualization: anchors + the active user comment.
+
+    Coordinates (x, y) are a heuristic from dominant probabilities, not UMAP/t-SNE.
+    similarity — blend of probability profile (80%) and lexical Jaccard (20%).
+    """
     labels = PL_LABELS if lang == "pl" else LABELS
     anchors = PL_ANCHORS if lang == "pl" else ANCHORS
     backend_model = "tfidf_lr" if model_id == ModelId.TFIDF_LR else "bert"
@@ -317,7 +360,7 @@ def get_similarity_projection(
     user_vector = [probs.get(l, 0.0) for l in labels]
     p_max = max(user_vector) if user_vector else 0.0
     
-    # Calculate user coords
+    # Active comment position on the plane (different geometry for PL vs EN)
     if lang == "pl":
         p_safe = probs.get("safe", 0.0)
         p_hate = probs.get("hate_speech", 0.0)
@@ -436,29 +479,52 @@ def list_models(lang: str = "en") -> list[ModelInfoResponse]:
     ]
 
 
+class DetectLangRequest(BaseModel):
+    text: str = Field(..., min_length=1, max_length=8000)
+
+
+@router.post("/detect-lang", response_model=LangDetectResponse)
+def detect_lang(body: DetectLangRequest) -> LangDetectResponse:
+    result = detect_language(body.text.strip())
+    return LangDetectResponse(
+        analysis_lang=result.lang,
+        confidence=result.confidence,
+        is_reliable=result.is_reliable,
+        source=result.source,
+        detected_code=result.detected_code,
+    )
+
+
 @router.post("/predict", response_model=PredictResponse)
 def predict(body: PredictRequest) -> PredictResponse:
+    """Main inference: optionally detect language, then run TF-IDF and/or BERT."""
     registry = get_registry()
-    lang = body.lang.lower() if body.lang else "en"
-    if lang not in ("en", "pl"):
-        lang = "en"
-        
+    requested = (body.lang or "auto").lower()
+    if requested not in ("auto", "en", "pl"):
+        requested = "auto"
+
     try:
         text_stripped = body.text.strip()
+        lang, detect_result = resolve_analysis_lang(text_stripped, requested)
         labels_list = list(PL_LABELS) if lang == "pl" else list(LABELS)
-        
+        lang_meta = {
+            "requested_lang": requested,
+            "analysis_lang": lang,
+            "lang_confidence": detect_result.confidence,
+            "lang_source": detect_result.source,
+        }
+
         if body.model == ModelId.BOTH:
-            # Run both models
             probs_tfidf = registry.predict_proba(text_stripped, ModelId.TFIDF_LR, lang)
             probs_bert = registry.predict_proba(text_stripped, ModelId.BERT, lang)
-            
+
             projection_tfidf = get_similarity_projection(
                 text_stripped, probs_tfidf, lang, ModelId.TFIDF_LR
             )
             projection_bert = get_similarity_projection(
                 text_stripped, probs_bert, lang, ModelId.BERT
             )
-            
+
             return PredictResponse(
                 probabilities=probs_bert,
                 labels=labels_list,
@@ -468,7 +534,8 @@ def predict(body: PredictRequest) -> PredictResponse:
                 probabilities_tfidf=probs_tfidf,
                 probabilities_bert=probs_bert,
                 similarity_projection_tfidf=projection_tfidf,
-                similarity_projection_bert=projection_bert
+                similarity_projection_bert=projection_bert,
+                **lang_meta,
             )
         else:
             probs = registry.predict_proba(text_stripped, body.model, lang)
@@ -477,17 +544,18 @@ def predict(body: PredictRequest) -> PredictResponse:
                 probabilities=probs,
                 labels=labels_list,
                 model=body.model,
-                similarity_projection=projection
+                similarity_projection=projection,
+                **lang_meta,
             )
     except FileNotFoundError as e:
         raise HTTPException(
             status_code=503,
-            detail=f"Model files not found or loaded for {body.model.value} in {lang}: {str(e)}"
+            detail=f"Model files not found or loaded for {body.model.value} (lang={requested}): {str(e)}"
         ) from e
     except ValueError as e:
         raise HTTPException(
             status_code=500,
-            detail=f"Model error or invalid input for {body.model.value} in {lang}: {str(e)}"
+            detail=f"Model error or invalid input for {body.model.value} (lang={requested}): {str(e)}"
         ) from e
     except Exception as e:
         import traceback
@@ -499,13 +567,36 @@ def predict(body: PredictRequest) -> PredictResponse:
         ) from e
 
 
+def _normalize_metrics_block(raw: dict) -> dict:
+    """Ensure fields expected by the frontend are always present."""
+    dataset = raw.get("dataset") if isinstance(raw.get("dataset"), dict) else {}
+    n_test = int(dataset.get("n_test", 0))
+    return {
+        **raw,
+        "hamming_loss": float(raw.get("hamming_loss", 0.0)),
+        "f1_macro": float(raw.get("f1_macro", 0.0)),
+        "f1_micro": float(raw.get("f1_micro", 0.0)),
+        "precision_macro": float(raw.get("precision_macro", 0.0)),
+        "precision_micro": float(raw.get("precision_micro", 0.0)),
+        "recall_macro": float(raw.get("recall_macro", 0.0)),
+        "recall_micro": float(raw.get("recall_micro", 0.0)),
+        "per_label": raw.get("per_label") if isinstance(raw.get("per_label"), list) else [],
+        "dataset": {
+            "n_samples": int(dataset.get("n_samples", n_test)),
+            "n_train": int(dataset.get("n_train", 0)),
+            "n_test": n_test,
+        },
+    }
+
+
 @router.get("/metrics")
 def get_metrics() -> dict[str, dict]:
-    # Paths to metrics
-    tfidf_path = _REPO_ROOT / "ml" / "experiments" / "baseline_tfidf_lr" / "metrics.json"
-    bert_path = _REPO_ROOT / "ml" / "experiments" / "bert_multilabel" / "metrics.json"
-    tfidf_pl_path = _REPO_ROOT / "ml" / "experiments" / "baseline_tfidf_lr_pl" / "metrics.json"
-    bert_pl_path = _REPO_ROOT / "ml" / "experiments" / "bert_multilabel_pl" / "metrics.json"
+    """Aggregate metrics.json from all four models for the UI Metrics tab."""
+    experiments_dir = settings.ml_experiments_dir
+    tfidf_path = experiments_dir / "baseline_tfidf_lr" / "metrics.json"
+    bert_path = experiments_dir / "bert_multilabel" / "metrics.json"
+    tfidf_pl_path = experiments_dir / "baseline_tfidf_lr_pl" / "metrics.json"
+    bert_pl_path = experiments_dir / "bert_multilabel_pl" / "metrics.json"
 
     # Default/fallback values in case metrics.json are missing/inaccessible
     fallback_tfidf = {
@@ -583,44 +674,19 @@ def get_metrics() -> dict[str, dict]:
     metrics = {}
 
     # Load English TF-IDF metrics
-    if tfidf_path.is_file():
-        try:
-            with tfidf_path.open("r", encoding="utf-8") as f:
-                metrics["tfidf_lr"] = json.load(f)
-        except Exception:
-            metrics["tfidf_lr"] = fallback_tfidf
-    else:
-        metrics["tfidf_lr"] = fallback_tfidf
+    def _load_metrics(path: Path, fallback: dict) -> dict:
+        if path.is_file():
+            try:
+                with path.open("r", encoding="utf-8") as f:
+                    return _normalize_metrics_block(json.load(f))
+            except Exception:
+                pass
+        return _normalize_metrics_block(fallback)
 
-    # Load English BERT metrics
-    if bert_path.is_file():
-        try:
-            with bert_path.open("r", encoding="utf-8") as f:
-                metrics["bert"] = json.load(f)
-        except Exception:
-            metrics["bert"] = fallback_bert
-    else:
-        metrics["bert"] = fallback_bert
-
-    # Load Polish TF-IDF metrics
-    if tfidf_pl_path.is_file():
-        try:
-            with tfidf_pl_path.open("r", encoding="utf-8") as f:
-                metrics["tfidf_lr_pl"] = json.load(f)
-        except Exception:
-            metrics["tfidf_lr_pl"] = fallback_tfidf_pl
-    else:
-        metrics["tfidf_lr_pl"] = fallback_tfidf_pl
-
-    # Load Polish BERT metrics
-    if bert_pl_path.is_file():
-        try:
-            with bert_pl_path.open("r", encoding="utf-8") as f:
-                metrics["bert_pl"] = json.load(f)
-        except Exception:
-            metrics["bert_pl"] = fallback_bert_pl
-    else:
-        metrics["bert_pl"] = fallback_bert_pl
+    metrics["tfidf_lr"] = _load_metrics(tfidf_path, fallback_tfidf)
+    metrics["bert"] = _load_metrics(bert_path, fallback_bert)
+    metrics["tfidf_lr_pl"] = _load_metrics(tfidf_pl_path, fallback_tfidf_pl)
+    metrics["bert_pl"] = _load_metrics(bert_pl_path, fallback_bert_pl)
 
     return metrics
 

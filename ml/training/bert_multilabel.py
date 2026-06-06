@@ -85,7 +85,7 @@ def save_bert_artifact(
 
 
 def logits_to_probabilities(logits: np.ndarray) -> np.ndarray:
-    """Apply sigmoid to raw logits (shape n_samples × n_labels or n_labels)."""
+    """Sigmoid per logit (multi-label, not mutually exclusive)."""
     arr = np.asarray(logits, dtype=np.float64)
     return 1.0 / (1.0 + np.exp(-arr))
 

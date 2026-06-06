@@ -1,3 +1,10 @@
+"""
+Sklearn pipeline inference service (TF-IDF + Logistic Regression).
+
+Loads pickle from `models/model.pkl` or `models/model_pl.pkl`,
+normalizes OneVsRestClassifier `predict_proba` output to label → probability dict.
+"""
+
 import pickle
 import sys
 from pathlib import Path
@@ -5,6 +12,7 @@ from typing import Any
 
 import numpy as np
 
+# Access ml.labels from repo root (backend and Docker mount ml/)
 _REPO_ROOT = Path(__file__).resolve().parents[3]
 
 if str(_REPO_ROOT) not in sys.path:
@@ -36,7 +44,11 @@ def _scores_from_predict_proba(proba: Any, n_labels: int) -> np.ndarray:
 
 
 class ToxicInferenceService:
-    """Loads a serialized sklearn Pipeline (or compatible) and runs predict_proba."""
+    """
+    Wrapper around a serialized sklearn Pipeline.
+
+    Expected format: preprocess → TF-IDF → OneVsRestClassifier(LR).
+    """
 
     def __init__(self, model_path: Path, lang: str = "en") -> None:
         self._model_path = model_path

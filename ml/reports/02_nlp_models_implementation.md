@@ -1,239 +1,239 @@
-# NLP в Toxic Comment Detector: TF-IDF + LR и BERT
+# NLP in Toxic Comment Detector: TF-IDF + LR and BERT
 
-**Дата:** 2026-06-04  
-**Датасет:** [Jigsaw Toxic Comment Classification Challenge](https://www.kaggle.com/c/jigsaw-toxic-comment-classification-challenge) (`data/raw/train.csv`)  
-**Артефакты:** `models/model.pkl` (baseline), `models/bert/` (transformer)  
-**Метрики:** `ml/experiments/baseline_tfidf_lr/metrics.json`, `ml/experiments/bert_multilabel/metrics.json`
+**Date:** 2026-06-04  
+**Dataset:** [Jigsaw Toxic Comment Classification Challenge](https://www.kaggle.com/c/jigsaw-toxic-comment-classification-challenge) (`data/raw/train.csv`)  
+**Artifacts:** `models/model.pkl` (baseline), `models/bert/` (transformer)  
+**Metrics:** `ml/experiments/baseline_tfidf_lr/metrics.json`, `ml/experiments/bert_multilabel/metrics.json`
 
 ---
 
-## 1. Постановка задачи (NLP)
+## 1. Problem Statement (NLP)
 
-**Multi-label классификация** текста комментария: для каждого из шести бинарных признаков модель выдаёт вероятность \(P(y_i = 1 \mid \text{text})\). Один комментарий может одновременно иметь несколько меток (например, `toxic` + `insult` + `obscene`).
+**Multi-label text classification** of comments: for each of six binary attributes, the model outputs a probability \(P(y_i = 1 \mid \text{text})\). A single comment can have multiple labels at once (for example, `toxic` + `insult` + `obscene`).
 
-Фиксированный порядок меток (Jigsaw):
+Fixed label order (Jigsaw):
 
-| # | Метка | Смысл (кратко) |
+| # | Label | Meaning (brief) |
 |---|--------|----------------|
-| 1 | `toxic` | Общая токсичность |
-| 2 | `severe_toxic` | Выраженная токсичность |
-| 3 | `obscene` | Нецензурная лексика |
-| 4 | `threat` | Угрозы |
-| 5 | `insult` | Оскорбления |
-| 6 | `identity_hate` | Враждебность к социальной группе |
+| 1 | `toxic` | General toxicity |
+| 2 | `severe_toxic` | Severe toxicity |
+| 3 | `obscene` | Profane language |
+| 4 | `threat` | Threats |
+| 5 | `insult` | Insults |
+| 6 | `identity_hate` | Hostility toward a social group |
 
-Источник истины для порядка меток: `ml/labels.py` (используется в обучении, оценке и API).
+Source of truth for label order: `ml/labels.py` (used in training, evaluation, and the API).
 
 ---
 
-## 2. Общая схема двух подходов
+## 2. Overview of Both Approaches
 
 ```mermaid
 flowchart TB
-    subgraph input [Вход]
+    subgraph input [Input]
         T[comment_text]
     end
 
-    subgraph classic [Подход 1: TF-IDF + LR]
+    subgraph classic [Approach 1: TF-IDF + LR]
         T --> P1[preprocess_text]
         P1 --> W[Word TF-IDF 1-2]
         P1 --> C[Char TF-IDF 3-5]
         W --> F[Sparse matrix]
         C --> F
         F --> OVR[6 × Logistic Regression OvR]
-        OVR --> S1[6 вероятностей]
+        OVR --> S1[6 probabilities]
     end
 
-    subgraph neural [Подход 2: BERT]
+    subgraph neural [Approach 2: BERT]
         T --> TOK[BERT WordPiece tokenizer]
         TOK --> ENC[768-d contextual embeddings]
         ENC --> HEAD[Linear head + sigmoid]
-        HEAD --> S2[6 вероятностей]
+        HEAD --> S2[6 probabilities]
     end
 
     S1 --> API[FastAPI /api/predict]
     S2 --> API
-    API --> UI[React: выбор модели]
+    API --> UI[React: model selection]
 ```
 
-| Аспект | TF-IDF + LR | BERT |
+| Aspect | TF-IDF + LR | BERT |
 |--------|-------------|------|
-| Представление текста | Разреженные частотные n-gram | Контекстные эмбеддинги подслов (WordPiece) |
-| Модель | Линейная (OvR) | Transformer encoder + линейная голова |
-| Обучение | `sklearn` Pipeline, CPU | `transformers` Trainer, GPU опционально |
-| Артефакт | `model.pkl` | `models/bert/` (HF format) |
-| ID в API/UI | `tfidf_lr` | `bert` |
+| Text representation | Sparse frequency n-grams | Contextual subword embeddings (WordPiece) |
+| Model | Linear (OvR) | Transformer encoder + linear head |
+| Training | `sklearn` Pipeline, CPU | `transformers` Trainer, GPU optional |
+| Artifact | `model.pkl` | `models/bert/` (HF format) |
+| API/UI ID | `tfidf_lr` | `bert` |
 
 ---
 
-## 3. Подход 1: TF-IDF + Logistic Regression
+## 3. Approach 1: TF-IDF + Logistic Regression
 
-Подробный отчёт: `ml/reports/01_tfidf_logistic_regression_baseline.md`.
+Detailed report: `ml/reports/01_tfidf_logistic_regression_baseline.md`.
 
-### 3.1. Препроцессинг (`ml/preprocessing/text.py`)
+### 3.1. Preprocessing (`ml/preprocessing/text.py`)
 
-Перед векторизацией применяется **лёгкая нормализация** (без лемматизации и стемминга):
+Before vectorization, **light normalization** is applied (no lemmatization or stemming):
 
 1. HTML unescape (`&amp;` → `&`)
 2. Lowercasing
-3. Удаление URL и HTML-тегов
-4. Схлопывание пробелов
+3. URL and HTML tag removal
+4. Whitespace collapsing
 
-Это снижает шум и дублирование признаков, сохраняя обфусцированные написания для char n-grams.
+This reduces noise and feature duplication while preserving obfuscated spellings for char n-grams.
 
-### 3.2. Признаки
+### 3.2. Features
 
-**Word TF-IDF:** `analyzer="word"`, n-grams (1, 2), `max_features=100_000`, `sublinear_tf=True` — ловит лексику и короткие фразы («shut up»).
+**Word TF-IDF:** `analyzer="word"`, n-grams (1, 2), `max_features=100_000`, `sublinear_tf=True` — captures lexicon and short phrases («shut up»).
 
-**Char TF-IDF:** `analyzer="char_wb"`, n-grams (3, 5) — устойчив к `1diot`, `id!ot`.
+**Char TF-IDF:** `analyzer="char_wb"`, n-grams (3, 5) — robust to `1diot`, `id!ot`.
 
-Оба потока объединяются через `FeatureUnion`.
+Both streams are combined via `FeatureUnion`.
 
-### 3.3. Классификатор
+### 3.3. Classifier
 
-`OneVsRestClassifier(LogisticRegression)` — шесть независимых бинарных LR с `class_weight="balanced"`. На инференсе: `predict_proba` → \(P(y=1)\) для каждой метки.
+`OneVsRestClassifier(LogisticRegression)` — six independent binary LRs with `class_weight="balanced"`. At inference: `predict_proba` → \(P(y=1)\) for each label.
 
-### 3.4. Обучение
+### 3.4. Training
 
 ```bash
 python -m ml.training.train_baseline
 ```
 
-Экспорт: `models/model.pkl`. Метрики: Hamming loss, macro/micro F1, per-label P/R/F1 (`ml/evaluation/metrics.py`).
+Export: `models/model.pkl`. Metrics: Hamming loss, macro/micro F1, per-label P/R/F1 (`ml/evaluation/metrics.py`).
 
 ---
 
-## 4. Подход 2: BERT (multi-label)
+## 4. Approach 2: BERT (Multi-Label)
 
-### 4.1. Почему BERT для toxic detection
+### 4.1. Why BERT for Toxic Detection
 
-- **Контекст:** слово «kill» в «kill the lights» vs угроза — контекстные эмбеддинги учитывают окружение.
-- **Синонимы и перефразирование:** не нужна точная совпадающая n-gram в обучающей выборке.
-- **Перенос знаний:** `bert-base-uncased` предобучен на большом корпусе английского текста.
+- **Context:** the word «kill» in «kill the lights» vs a threat — contextual embeddings account for surrounding text.
+- **Synonyms and paraphrasing:** no need for an exact matching n-gram in the training set.
+- **Transfer learning:** `bert-base-uncased` is pretrained on a large English corpus.
 
-Компромиссы: больше памяти, медленнее инференс, нужны `torch` и `transformers`.
+Trade-offs: more memory, slower inference, requires `torch` and `transformers`.
 
-### 4.2. Архитектура
+### 4.2. Architecture
 
-- Базовая модель: **`bert-base-uncased`** (12 слоёв, 768 hidden, WordPiece, max 512 токенов; в проекте **256** на инференсе/обучении для скорости).
-- Голова: `AutoModelForSequenceClassification` с `problem_type="multi_label_classification"`, `num_labels=6`.
-- Функция потерь (внутри HF): **BCEWithLogitsLoss** по всем меткам.
-- Вероятности на выходе: **sigmoid** по каждому логиту (независимые метки).
+- Base model: **`bert-base-uncased`** (12 layers, 768 hidden, WordPiece, max 512 tokens; **256** in this project for inference/training speed).
+- Head: `AutoModelForSequenceClassification` with `problem_type="multi_label_classification"`, `num_labels=6`.
+- Loss function (inside HF): **BCEWithLogitsLoss** across all labels.
+- Output probabilities: **sigmoid** per logit (independent labels).
 
-Код сборки модели: `ml/training/bert_multilabel.py` → `build_bert_model()`.
+Model assembly code: `ml/training/bert_multilabel.py` → `build_bert_model()`.
 
-### 4.3. Препроцессинг для BERT
+### 4.3. Preprocessing for BERT
 
-Текст подаётся в **`AutoTokenizer`** почти **без** sklearn-препроцессинга: токенизатор сам режет на subwords, добавляет `[CLS]` / `[SEP]`, truncation/padding до `max_length`.
+Text is fed to **`AutoTokenizer`** with almost **no** sklearn preprocessing: the tokenizer splits into subwords, adds `[CLS]` / `[SEP]`, and applies truncation/padding up to `max_length`.
 
-Для baseline TF-IDF препроцессинг остаётся обязательным; для BERT это осознанное различие пайплайнов (типичная практика для трансформеров).
+For the TF-IDF baseline, preprocessing remains mandatory; for BERT this is an intentional pipeline difference (typical practice for transformers).
 
-### 4.4. Обучение
+### 4.4. Training
 
 ```bash
-# Быстрая проверка на demo-корпусе (~10 примеров)
+# Quick check on demo corpus (~10 examples)
 python -m ml.training.train_bert --demo --epochs 3
 
-# Полный Jigsaw (долго; на CPU — субсэмпл)
+# Full Jigsaw (slow; subsample on CPU)
 python -m ml.training.train_bert --max-samples 5000 --epochs 1
 
-# Полное обучение (рекомендуется GPU)
+# Full training (GPU recommended)
 python -m ml.training.train_bert --epochs 2 --batch-size 16
 ```
 
-Скрипт: `ml/training/train_bert.py`
+Script: `ml/training/train_bert.py`
 
-- Загрузка данных: та же схема, что у baseline (`load_jigsaw_dataset` из `train_baseline.py`).
-- Split: `train_test_split`, stratify по колонке `toxic`.
-- `Trainer` (Hugging Face): AdamW, `learning_rate=2e-5`, `weight_decay=0.01`, eval каждую эпоху.
-- Метрики hold-out: те же `multilabel_report`, порог по умолчанию **0.5**.
-- Экспорт: `models/bert/` (`config.json`, веса, tokenizer, `labels.json` с порядком меток).
+- Data loading: same scheme as baseline (`load_jigsaw_dataset` from `train_baseline.py`).
+- Split: `train_test_split`, stratify on `toxic` column.
+- `Trainer` (Hugging Face): AdamW, `learning_rate=2e-5`, `weight_decay=0.01`, eval every epoch.
+- Hold-out metrics: same `multilabel_report`, default threshold **0.5**.
+- Export: `models/bert/` (`config.json`, weights, tokenizer, `labels.json` with label order).
 
-### 4.5. Инференс (backend)
+### 4.5. Inference (Backend)
 
 `backend/app/services/bert_inference.py`:
 
-1. Загрузка `AutoModelForSequenceClassification` и tokenizer из `BERT_MODEL_DIR`.
-2. Токенизация одного комментария, `max_length` из `labels.json` (или 256).
-3. Forward pass, sigmoid над logits → словарь `{label: probability}`.
+1. Load `AutoModelForSequenceClassification` and tokenizer from `BERT_MODEL_DIR`.
+2. Tokenize a single comment, `max_length` from `labels.json` (or 256).
+3. Forward pass, sigmoid over logits → dictionary `{label: probability}`.
 
 ---
 
-## 5. API и интерфейс
+## 5. API and UI
 
-### 5.1. Выбор модели
+### 5.1. Model Selection
 
-| Endpoint | Назначение |
+| Endpoint | Purpose |
 |----------|------------|
-| `GET /api/models` | Список моделей, описание, флаг `loaded` |
-| `POST /api/predict` | Тело: `{ "text": "...", "model": "tfidf_lr" \| "bert" }` |
-| `GET /api/ready` | Статус загрузки обеих моделей |
+| `GET /api/models` | List models, description, `loaded` flag |
+| `POST /api/predict` | Body: `{ "text": "...", "model": "tfidf_lr" \| "bert" }` |
+| `GET /api/ready` | Load status for both models |
 
-Реестр: `backend/app/services/registry.py` — при старте пытается загрузить оба артефакта; отсутствующий файл не падает, а помечается `loaded: false`.
+Registry: `backend/app/services/registry.py` — on startup, attempts to load both artifacts; a missing file does not crash the app but is marked `loaded: false`.
 
-Переменные окружения:
+Environment variables:
 
-- `MODEL_PATH` — путь к `model.pkl`
-- `BERT_MODEL_DIR` — каталог `models/bert`
+- `MODEL_PATH` — path to `model.pkl`
+- `BERT_MODEL_DIR` — `models/bert` directory
 
 ### 5.2. Frontend
 
-`frontend/src/App.tsx`: радиокнопки для `tfidf_lr` / `bert`, запрос `GET /api/models` при монтировании, в `POST /api/predict` передаётся поле `model`. Недоступные модели отображаются как «not loaded».
+`frontend/src/App.tsx`: radio buttons for `tfidf_lr` / `bert`, `GET /api/models` on mount, `model` field passed in `POST /api/predict`. Unavailable models are shown as «not loaded».
 
 ---
 
-## 6. Сравнение подходов с точки зрения NLP
+## 6. Approach Comparison from an NLP Perspective
 
-| Критерий | TF-IDF + LR | BERT |
+| Criterion | TF-IDF + LR | BERT |
 |----------|-------------|------|
-| Индуктивное смещение | Линейные комбинации n-gram | Нелинейные контекстные представления |
-| OOV / редкие слова | Зависит от n-gram в train | Subword (WordPiece) |
-| Обфускация (`id!ot`) | Char n-grams | Subwords + контекст |
-| Ирония / negation | Слабо | Сильнее (но не гарантировано) |
-| Скорость обучения | Минуты на CPU | Часы без GPU / минуты с GPU |
-| Скорость инференса | Миллисекунды | Десятки–сотни мс на CPU |
-| Интерпретируемость | Веса по n-gram | Низкая (attention не выводится в API) |
+| Inductive bias | Linear combinations of n-grams | Nonlinear contextual representations |
+| OOV / rare words | Depends on n-grams in train | Subword (WordPiece) |
+| Obfuscation (`id!ot`) | Char n-grams | Subwords + context |
+| Irony / negation | Weak | Stronger (not guaranteed) |
+| Training speed | Minutes on CPU | Hours without GPU / minutes with GPU |
+| Inference speed | Milliseconds | Tens–hundreds of ms on CPU |
+| Interpretability | Weights per n-gram | Low (attention not exposed in API) |
 
-На hold-out Jigsaw baseline TF-IDF+LR даёт ориентир **F1 macro ≈ 0.62** (см. `baseline_tfidf_lr/metrics.json`). BERT после полноценного fine-tune обычно даёт **прирост macro-F1**, особенно на редких классах (`threat`, `identity_hate`), но точные цифры зависят от числа эпох, `max_samples` и железа — их нужно смотреть в `bert_multilabel/metrics.json` после вашего прогона.
+On Jigsaw hold-out, the TF-IDF+LR baseline gives a reference **F1 macro ≈ 0.62** (see `baseline_tfidf_lr/metrics.json`). BERT after full fine-tuning typically yields a **macro-F1 gain**, especially on rare classes (`threat`, `identity_hate`), but exact numbers depend on epochs, `max_samples`, and hardware — check `bert_multilabel/metrics.json` after your run.
 
 ---
 
-## 7. Структура NLP-кода в репозитории
+## 7. NLP Code Structure in the Repository
 
 ```text
 ml/
-├── labels.py                      # 6 меток Jigsaw
-├── preprocessing/text.py          # Препроцессинг для TF-IDF
+├── labels.py                      # 6 Jigsaw labels
+├── preprocessing/text.py          # Preprocessing for TF-IDF
 ├── training/
 │   ├── baseline_pipeline.py       # sklearn Pipeline
-│   ├── train_baseline.py          # Обучение TF-IDF+LR
+│   ├── train_baseline.py          # TF-IDF+LR training
 │   ├── bert_multilabel.py         # Dataset, sigmoid, save artifact
 │   └── train_bert.py              # Fine-tune BERT
-├── evaluation/metrics.py          # Multilabel метрики
+├── evaluation/metrics.py          # Multilabel metrics
 └── reports/
     ├── 01_tfidf_logistic_regression_baseline.md
-    └── 02_nlp_models_implementation.md   # этот документ
+    └── 02_nlp_models_implementation.md   # this document
 
 backend/app/services/
 ├── inference.py                   # sklearn predict_proba
 ├── bert_inference.py              # HF BERT predict
-└── registry.py                    # маршрутизация по model id
+└── registry.py                    # routing by model id
 ```
 
 ---
 
-## 8. Рекомендуемый порядок запуска
+## 8. Recommended Startup Order
 
 ```bash
-# 1. Зависимости ML (из корня репозитория)
+# 1. ML dependencies (from repository root)
 pip install -r ml/requirements.txt
 
-# 2. Baseline (если ещё нет model.pkl)
+# 2. Baseline (if model.pkl does not exist yet)
 python -m ml.training.train_baseline
 
-# 3. BERT (сначала demo, затем полный датасет)
+# 3. BERT (demo first, then full dataset)
 python -m ml.training.train_bert --demo --epochs 3
-# python -m ml.training.train_bert   # полный Jigsaw
+# python -m ml.training.train_bert   # full Jigsaw
 
 # 4. Backend + frontend
 pip install -r backend/requirements.txt
@@ -241,18 +241,18 @@ cd backend && python -m uvicorn app.main:app --reload --host 127.0.0.1 --port 80
 cd frontend && npm run dev
 ```
 
-В UI выберите модель и отправьте комментарий — ответ содержит `probabilities` и поле `model`, подтверждающее использованный backend.
+In the UI, select a model and submit a comment — the response includes `probabilities` and a `model` field confirming which backend was used.
 
 ---
 
-## 9. Возможные улучшения (NLP)
+## 9. Possible NLP Improvements
 
-- **Единый препроцессинг-эксперимент** для BERT (лёгкая нормализация до tokenizer).
-- Модели **`unitary/toxic-bert`** или **`roberta-base`** как альтернативный `--pretrained`.
-- **Focal loss** / взвешивание редких классов для BERT.
-- Калибровка вероятностей (temperature scaling) для сопоставимости порога 0.5 между моделями.
-- Экспорт BERT в **ONNX** для ускорения CPU-инференса.
+- **Unified preprocessing experiment** for BERT (light normalization before the tokenizer).
+- Models **`unitary/toxic-bert`** or **`roberta-base`** as an alternative `--pretrained`.
+- **Focal loss** / rare-class weighting for BERT.
+- Probability calibration (temperature scaling) for comparable 0.5 thresholds across models.
+- Export BERT to **ONNX** for faster CPU inference.
 
 ---
 
-*Документ описывает реализацию двух NLP-пайплайнов в проекте toxic-comment-detector и их интеграцию в API/UI.*
+*This document describes the implementation of two NLP pipelines in the toxic-comment-detector project and their integration into the API/UI.*

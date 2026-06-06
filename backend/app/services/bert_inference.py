@@ -21,7 +21,12 @@ from ml.training.bert_multilabel import DEFAULT_MAX_LENGTH, logits_to_probabilit
 
 
 class BertInferenceService:
-    """Loads a fine-tuned BERT directory and returns sigmoid probabilities per label."""
+    """
+    Fine-tuned BERT/HerBERT inference from a Hugging Face directory.
+
+    - Reads `labels.json` for label order and max_length.
+    - Output: sigmoid(logits), one probability per label (multi-label).
+    """
 
     def __init__(self, model_dir: Path, lang: str = "en") -> None:
         self._model_dir = model_dir
@@ -42,6 +47,7 @@ class BertInferenceService:
                 f"BERT model directory not found: {self._model_dir}. "
                 "Train with: python -m ml.training.train_bert"
             )
+        # Training metadata (label order may differ from ml.labels defaults)
         config_path = self._model_dir / "labels.json"
         if config_path.is_file():
             meta = json.loads(config_path.read_text(encoding="utf-8"))
@@ -75,6 +81,7 @@ class BertInferenceService:
             outputs = self._model(**encoding)
             logits = outputs.logits.cpu().numpy()
 
+        # multi_label_classification → independent sigmoid per logit
         scores = logits_to_probabilities(logits)[0]
         if scores.shape[0] != len(self.labels):
             raise ValueError(

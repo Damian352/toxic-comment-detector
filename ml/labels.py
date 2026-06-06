@@ -1,10 +1,16 @@
-"""Shared multi-label taxonomy (Jigsaw and Polish BAN-PL)."""
+"""
+Shared label taxonomy for EN (Jigsaw) and PL (BAN-PL).
+
+Used in ml/training, backend inference, and API projection.
+Decision thresholds live in models/thresholds.json (after tune_thresholds).
+"""
 
 from __future__ import annotations
 
 import json
 from pathlib import Path
 
+# English: each label is a separate toxicity type (multi-label)
 LABELS: tuple[str, ...] = (
     "toxic",
     "severe_toxic",
@@ -14,6 +20,7 @@ LABELS: tuple[str, ...] = (
     "identity_hate",
 )
 
+# Polish: safe competes with violation classes (different UI semantics)
 PL_LABELS: tuple[str, ...] = (
     "safe",
     "hate_speech",
@@ -73,13 +80,15 @@ def active_labels_from_probs(
 ) -> list[str]:
     """Derive human-readable active labels using per-label thresholds."""
     if lang == "pl":
+        # Check violations first; if none — comment is considered safe
         active = [l for l, p in probs.items() if l != "safe" and p >= thresholds.get(l, DEFAULT_THRESHOLD)]
         if not active and probs.get("safe", 0.0) >= thresholds.get("safe", DEFAULT_THRESHOLD):
             return ["safe"]
         if not active:
-            return ["safe"]
+            return ["safe"]  # low scores on all labels → conservative fallback
         return active
 
+    # English: any toxic label above threshold; empty → safe for UI
     active = [l for l, p in probs.items() if p >= thresholds.get(l, DEFAULT_THRESHOLD)]
     if not active:
         return ["safe"]

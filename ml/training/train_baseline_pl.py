@@ -37,10 +37,10 @@ def load_polish_dataset(path: Path) -> tuple[list[str], np.ndarray]:
     df = pd.read_csv(path)
     df = df.drop(columns=[col for col in df.columns if "Unnamed" in col], errors="ignore")
     
-    # Preprocess
+    # One comment may have multiple Reason values — collapse to multi-hot row
     df["CleanText"] = df["Text"].fillna("").apply(lambda t: " ".join(preprocess_batch_pl([str(t)])))
-    
-    # Pivot
+
+    # pivot: row = unique text, columns 1..4 = BAN-PL violation types
     df["value"] = 1
     df_multi = df.pivot_table(
         index="CleanText",

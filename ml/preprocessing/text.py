@@ -6,6 +6,7 @@ import html
 import re
 from typing import Iterable
 
+# Compiled once at import time
 URL_PATTERN = re.compile(r"https?://\S+|www\.\S+", re.IGNORECASE)
 HTML_TAG_PATTERN = re.compile(r"<[^>]+>")
 WHITESPACE_PATTERN = re.compile(r"\s+")
@@ -29,7 +30,10 @@ def preprocess_text(text: str) -> str:
 
 def preprocess_text_pl(text: str) -> str:
     """
-    Normalize Polish comment text before vectorization or transformer input.
+    Normalize Polish comments (BAN-PL / Wykop).
+
+    Strips dataset placeholders ({USERNAME}, {URL}) and markup without
+    removing diacritics or word forms — important for vulgarity detection.
     """
     if not isinstance(text, str):
         return ""

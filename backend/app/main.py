@@ -1,3 +1,12 @@
+"""
+FastAPI application entry point.
+
+Responsibilities:
+- app creation and CORS;
+- lifespan: load all inference models on startup;
+- mount the `/api/*` router.
+"""
+
 from contextlib import asynccontextmanager
 
 from fastapi import FastAPI
@@ -10,6 +19,7 @@ from app.services.registry import InferenceRegistry
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
+    # Models load synchronously before the first request; missing artifacts do not crash startup.
     registry = InferenceRegistry(
         settings.model_path,
         settings.bert_model_dir,

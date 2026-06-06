@@ -64,7 +64,7 @@ def _tiny_demo_corpus() -> tuple[list[str], np.ndarray]:
 
 
 def load_jigsaw_dataset(path: Path) -> tuple[list[str], np.ndarray]:
-    """Load Kaggle Jigsaw train.csv into texts and a multi-label binary matrix."""
+    """Load Kaggle Jigsaw train.csv → (texts, n×6 label matrix)."""
     df = pd.read_csv(path)
     missing_labels = [label for label in LABELS if label not in df.columns]
     if missing_labels:
@@ -106,6 +106,7 @@ def train_and_evaluate(
     threshold: float,
 ) -> tuple[object, dict]:
     """Fit baseline pipeline and return the model plus evaluation metrics."""
+    # Stratify by first label (toxic) for balanced hold-out
     stratify = y[:, 0]
     x_train, x_test, y_train, y_test = train_test_split(
         texts,

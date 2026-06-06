@@ -1,67 +1,67 @@
-# Подход 1: TF-IDF + Logistic Regression — baseline для токсичных комментариев
+# Approach 1: TF-IDF + Logistic Regression — Baseline for Toxic Comments
 
-**Дата:** 2026-05-27  
-**Датасет:** [Jigsaw Toxic Comment Classification Challenge](https://www.kaggle.com/c/jigsaw-toxic-comment-classification-challenge) (`data/raw/train.csv`)  
-**Артефакт модели:** `models/model.pkl`  
-**Метрики эксперимента:** `ml/experiments/baseline_tfidf_lr/metrics.json`
-
----
-
-## 1. Цель и контекст
-
-Задача — **multi-label классификация** комментариев: один текст может одновременно относиться к нескольким категориям токсичности (например, `toxic` + `insult` + `obscene`).
-
-Первый подход — классический baseline:
-
-> **Препроцессинг → Word TF-IDF + Character TF-IDF → OneVsRest(Logistic Regression)**
-
-Это сильная отправная точка для toxic detection, потому что:
-
-- короткие тексты хорошо описываются частотными n-gram признаками;
-- токсичность часто выражается **конкретными словами и фразами** («idiot», «shut up», «go to hell»);
-- character n-grams ловят **намеренно искажённые** слова (`1diot`, `id!ot`, `i.d.i.o.t`);
-- Logistic Regression хорошо работает на **разреженных** TF-IDF-векторах, быстро обучается и даёт **вероятности** для UI/API.
+**Date:** 2026-05-27  
+**Dataset:** [Jigsaw Toxic Comment Classification Challenge](https://www.kaggle.com/c/jigsaw-toxic-comment-classification-challenge) (`data/raw/train.csv`)  
+**Model artifact:** `models/model.pkl`  
+**Experiment metrics:** `ml/experiments/baseline_tfidf_lr/metrics.json`
 
 ---
 
-## 2. Почему именно TF-IDF + Logistic Regression
+## 1. Goal and Context
 
-### 2.1. TF-IDF на toxic-текстах
+The task is **multi-label classification** of comments: a single text can belong to several toxicity categories at once (for example, `toxic` + `insult` + `obscene`).
 
-TF-IDF (Term Frequency — Inverse Document Frequency) повышает вес редких, но характерных для класса токенов:
+The first approach is a classic baseline:
 
-| Пример | Что видит TF-IDF |
+> **Preprocessing → Word TF-IDF + Character TF-IDF → OneVsRest(Logistic Regression)**
+
+This is a strong starting point for toxic detection because:
+
+- short texts are well described by frequency-based n-gram features;
+- toxicity is often expressed through **specific words and phrases** («idiot», «shut up», «go to hell»);
+- character n-grams catch **intentionally distorted** words (`1diot`, `id!ot`, `i.d.i.o.t`);
+- Logistic Regression works well on **sparse** TF-IDF vectors, trains quickly, and provides **probabilities** for the UI/API.
+
+---
+
+## 2. Why TF-IDF + Logistic Regression
+
+### 2.1. TF-IDF on Toxic Texts
+
+TF-IDF (Term Frequency — Inverse Document Frequency) increases the weight of rare but class-characteristic tokens:
+
+| Example | What TF-IDF sees |
 |--------|------------------|
-| «you idiot» | высокий вес unigram `idiot` |
-| «shut up» | высокий вес bigram `shut up` |
-| «id!ot» (char 3–5) | паттерны `idi`, `dio`, `iot` |
+| «you idiot» | high weight for unigram `idiot` |
+| «shut up» | high weight for bigram `shut up` |
+| «id!ot» (char 3–5) | patterns `idi`, `dio`, `iot` |
 
-**Word n-grams (1–2):** ловят ругательства, offensive vocabulary, типичные toxic-паттерны.  
-**Character n-grams (3–5, `char_wb`):** устойчивы к обфускации и пунктуации внутри слова.
+**Word n-grams (1–2):** capture profanity, offensive vocabulary, and typical toxic patterns.  
+**Character n-grams (3–5, `char_wb`):** robust to obfuscation and punctuation within a word.
 
-### 2.2. Почему Logistic Regression, а не Random Forest
+### 2.2. Why Logistic Regression, Not Random Forest
 
-| Модель | Проблема для текста |
+| Model | Problem for text |
 |--------|---------------------|
-| **Random Forest** | плохо на sparse TF-IDF, огромная размерность, медленно, слабый signal |
-| **Linear SVM** | силён на sparse vectors, но probabilities менее удобны |
-| **Logistic Regression** | линейная модель на sparse features, быстрая, интерпретируемая, `predict_proba` из коробки |
+| **Random Forest** | poor on sparse TF-IDF, huge dimensionality, slow, weak signal |
+| **Linear SVM** | strong on sparse vectors, but probabilities are less convenient |
+| **Logistic Regression** | linear model on sparse features, fast, interpretable, `predict_proba` out of the box |
 
-**Вывод:** для baseline оптимален **TF-IDF + Logistic Regression**.
+**Conclusion:** for a baseline, **TF-IDF + Logistic Regression** is optimal.
 
-### 2.3. Почему multi-label, а не multiclass
+### 2.3. Why Multi-Label, Not Multiclass
 
-Комментарий вроде *«You stupid disgusting idiot»* может быть одновременно:
+A comment like *«You stupid disgusting idiot»* can simultaneously be:
 
 - `toxic`
 - `insult`
 - `obscene`
 
-Поэтому используется **multi-label binary classification**: отдельный бинарный классификатор на каждую метку через `OneVsRestClassifier`.
+Therefore **multi-label binary classification** is used: a separate binary classifier per label via `OneVsRestClassifier`.
 
 ---
 
-## 3. Архитектура Pipeline
+## 3. Pipeline Architecture
 
 ```mermaid
 flowchart LR
@@ -86,7 +86,7 @@ flowchart LR
     H6 --> I
 ```
 
-### 3.1. Схема sklearn Pipeline
+### 3.1. sklearn Pipeline Schema
 
 ```
 Pipeline([
@@ -99,155 +99,155 @@ Pipeline([
 ])
 ```
 
-На inference backend вызывает только:
+At inference, the backend calls only:
 
 ```python
-model.predict_proba([text])  # → вероятности по 6 меткам
+model.predict_proba([text])  # → probabilities for 6 labels
 ```
 
 ---
 
-## 4. Файлы и функции проекта
+## 4. Project Files and Functions
 
-### 4.1. Структура ML-кода
+### 4.1. ML Code Structure
 
-| Файл | Назначение |
+| File | Purpose |
 |------|------------|
-| `ml/preprocessing/text.py` | Функции препроцессинга текста |
-| `ml/training/baseline_pipeline.py` | Сборка sklearn Pipeline |
-| `ml/training/train_baseline.py` | CLI: загрузка данных, обучение, метрики, export |
-| `ml/evaluation/metrics.py` | Multi-label метрики (F1, Hamming loss, per-label report) |
-| `ml/experiments/baseline_tfidf_lr/metrics.json` | JSON с результатами hold-out оценки |
-| `models/model.pkl` | Сериализованный Pipeline для FastAPI |
-| `backend/app/services/inference.py` | Загрузка pickle и `predict_proba` в API |
+| `ml/preprocessing/text.py` | Text preprocessing functions |
+| `ml/training/baseline_pipeline.py` | sklearn Pipeline assembly |
+| `ml/training/train_baseline.py` | CLI: data loading, training, metrics, export |
+| `ml/evaluation/metrics.py` | Multi-label metrics (F1, Hamming loss, per-label report) |
+| `ml/experiments/baseline_tfidf_lr/metrics.json` | JSON with hold-out evaluation results |
+| `models/model.pkl` | Serialized Pipeline for FastAPI |
+| `backend/app/services/inference.py` | Pickle loading and `predict_proba` in the API |
 
 ### 4.2. `ml/preprocessing/text.py`
 
 **`preprocess_text(text: str) -> str`**
 
-Применяемые шаги:
+Applied steps:
 
 1. HTML unescape (`&amp;` → `&`)
 2. **lowercase**
-3. удаление **URL** (`http://...`, `www....`)
-4. удаление **HTML-тегов**
-5. **нормализация пробелов**
+3. **URL** removal (`http://...`, `www....`)
+4. **HTML tag** removal
+5. **whitespace** normalization
 
-**Что намеренно НЕ делаем:**
+**What we intentionally do NOT do:**
 
-| Действие | Причина |
+| Action | Reason |
 |----------|---------|
-| Полное удаление пунктуации | `!!!` может быть сигналом агрессии |
-| Удаление stopwords | «go to **hell**» — stopwords важны для токсичности |
-| Aggressive stemming | можно потерять toxic-паттерны |
+| Full punctuation removal | `!!!` can signal aggression |
+| Stopword removal | «go to **hell**» — stopwords matter for toxicity |
+| Aggressive stemming | toxic patterns can be lost |
 
-**`preprocess_batch(texts)`** — обёртка для sklearn `FunctionTransformer`, принимает iterable строк.
+**`preprocess_batch(texts)`** — wrapper for sklearn `FunctionTransformer`, accepts an iterable of strings.
 
 ### 4.3. `ml/training/baseline_pipeline.py`
 
 **`build_baseline_pipeline(...) -> Pipeline`**
 
-Ключевые гиперпараметры по умолчанию:
+Default hyperparameters:
 
-| Компонент | Параметр | Значение | Смысл |
+| Component | Parameter | Value | Meaning |
 |-----------|----------|----------|-------|
 | Word TF-IDF | `ngram_range` | `(1, 2)` | unigrams + bigrams |
-| Word TF-IDF | `max_features` | `100_000` | ограничение словаря |
-| Char TF-IDF | `analyzer` | `char_wb` | char n-grams с учётом границ слов |
-| Char TF-IDF | `ngram_range` | `(3, 5)` | устойчивость к obfuscation |
-| Оба TF-IDF | `min_df` | `5` | отсечение редкого шума |
-| Оба TF-IDF | `max_df` | `0.95` | отсечение слишком частых токенов |
-| Оба TF-IDF | `sublinear_tf` | `True` | `1 + log(tf)` — смягчает частые повторы |
-| Logistic Regression | `solver` | `liblinear` | быстро и стабильно на sparse TF-IDF |
-| Logistic Regression | `class_weight` | `balanced` | компенсация дисбаланса классов |
-| Logistic Regression | `C` | `1.0` | стандартная L2-регуляризация |
-| Logistic Regression | `max_iter` | `2000` | лимит итераций оптимизации |
+| Word TF-IDF | `max_features` | `100_000` | vocabulary size limit |
+| Char TF-IDF | `analyzer` | `char_wb` | char n-grams with word boundaries |
+| Char TF-IDF | `ngram_range` | `(3, 5)` | robustness to obfuscation |
+| Both TF-IDF | `min_df` | `5` | filter rare noise |
+| Both TF-IDF | `max_df` | `0.95` | filter overly frequent tokens |
+| Both TF-IDF | `sublinear_tf` | `True` | `1 + log(tf)` — softens frequent repeats |
+| Logistic Regression | `solver` | `liblinear` | fast and stable on sparse TF-IDF |
+| Logistic Regression | `class_weight` | `balanced` | compensates for class imbalance |
+| Logistic Regression | `C` | `1.0` | standard L2 regularization |
+| Logistic Regression | `max_iter` | `2000` | optimization iteration limit |
 
-**Метки (порядок фиксирован, совпадает с backend):**
+**Labels (fixed order, matches backend):**
 
 `toxic`, `severe_toxic`, `obscene`, `threat`, `insult`, `identity_hate`
 
 ### 4.4. `ml/training/train_baseline.py`
 
-**`load_jigsaw_dataset(path)`** — читает CSV, возвращает `(texts, y)` где `y` shape `(n_samples, 6)`.
+**`load_jigsaw_dataset(path)`** — reads CSV, returns `(texts, y)` where `y` has shape `(n_samples, 6)`.
 
-**`train_and_evaluate(...)`** — train/test split, fit, hold-out метрики.
+**`train_and_evaluate(...)`** — train/test split, fit, hold-out metrics.
 
 **CLI:**
 
 ```bash
-# Полное обучение на Jigsaw train.csv
+# Full training on Jigsaw train.csv
 python -m ml.training.train_baseline --data data/raw/train.csv
 
-# Быстрый smoke-test на demo-корпусе (без Kaggle-данных)
+# Quick smoke test on demo corpus (no Kaggle data)
 python -m ml.training.train_baseline --demo
 ```
 
-Аргументы:
+Arguments:
 
-| Флаг | По умолчанию | Описание |
+| Flag | Default | Description |
 |------|--------------|----------|
-| `--data` | `data/raw/train.csv` | Путь к CSV |
-| `--out` | `models/model.pkl` | Куда сохранить модель |
-| `--metrics-out` | `ml/experiments/baseline_tfidf_lr/metrics.json` | JSON с метриками |
-| `--test-size` | `0.2` | Доля hold-out |
-| `--threshold` | `0.5` | Порог для бинарных предсказаний при оценке |
-| `--demo` | — | Принудительно demo-корпус |
+| `--data` | `data/raw/train.csv` | Path to CSV |
+| `--out` | `models/model.pkl` | Where to save the model |
+| `--metrics-out` | `ml/experiments/baseline_tfidf_lr/metrics.json` | JSON with metrics |
+| `--test-size` | `0.2` | Hold-out fraction |
+| `--threshold` | `0.5` | Threshold for binary predictions during evaluation |
+| `--demo` | — | Force demo corpus |
 
 ### 4.5. `ml/evaluation/metrics.py`
 
-**`multilabel_report(y_true, y_pred, label_names)`** возвращает:
+**`multilabel_report(y_true, y_pred, label_names)`** returns:
 
 - `hamming_loss`
 - `f1_macro`, `f1_micro`
 - `precision_macro`, `precision_micro`
 - `recall_macro`, `recall_micro`
-- `per_label` — precision/recall/F1/support по каждой метке
-- `classification_report` — текстовый sklearn-отчёт
+- `per_label` — precision/recall/F1/support per label
+- `classification_report` — sklearn text report
 
-### 4.6. Интеграция с backend
+### 4.6. Backend Integration
 
 `backend/app/services/inference.py`:
 
-- **`ToxicInferenceService`** загружает `model.pkl` при старте FastAPI;
-- **`predict_proba(text)`** возвращает `dict[label, float]`;
-- **`_scores_from_predict_proba`** нормализует разные форматы sklearn-выхода (list vs ndarray).
+- **`ToxicInferenceService`** loads `model.pkl` at FastAPI startup;
+- **`predict_proba(text)`** returns `dict[label, float]`;
+- **`_scores_from_predict_proba`** normalizes different sklearn output formats (list vs ndarray).
 
-API endpoint: `POST /api/predict` с телом `{"text": "..."}`.
+API endpoint: `POST /api/predict` with body `{"text": "..."}`.
 
 ---
 
-## 5. Процесс обучения (фактический прогон)
+## 5. Training Process (Actual Run)
 
-### 5.1. Данные
+### 5.1. Data
 
-| Параметр | Значение |
+| Parameter | Value |
 |----------|----------|
-| Источник | `data/raw/train.csv` |
-| Число комментариев | **159 571** |
+| Source | `data/raw/train.csv` |
+| Number of comments | **159 571** |
 | Train split | **127 656** (80%) |
 | Test split | **31 915** (20%) |
-| Stratify | по колонке `toxic` |
-| Доля комментариев с ≥1 меткой | **~10.2%** |
+| Stratify | on `toxic` column |
+| Share of comments with ≥1 label | **~10.2%** |
 
-### 5.2. Время обучения
+### 5.2. Training Time
 
-На локальной машине (Windows, scikit-learn + liblinear): **~3.3 минуты** на полном датасете.
+On a local machine (Windows, scikit-learn + liblinear): **~3.3 minutes** on the full dataset.
 
-> Примечание: solver `saga` на этом объёме оказался слишком медленным; `liblinear` — стандартный и практичный выбор для sparse TF-IDF + OvR.
+> Note: the `saga` solver was too slow at this scale; `liblinear` is the standard, practical choice for sparse TF-IDF + OvR.
 
-### 5.3. Порог и метрики
+### 5.3. Threshold and Metrics
 
-Для offline-оценки бинарные предсказания получаются порогом **0.5** по `predict_proba`.  
-Для production/UI порог можно калибровать отдельно по каждой метке (особенно для редких классов).
+For offline evaluation, binary predictions use a **0.5** threshold on `predict_proba`.  
+For production/UI, the threshold can be calibrated separately per label (especially for rare classes).
 
 ---
 
-## 6. Результаты hold-out evaluation (test 20%)
+## 6. Hold-Out Evaluation Results (test 20%)
 
-### 6.1. Общие метрики
+### 6.1. Overall Metrics
 
-| Метрика | Значение |
+| Metric | Value |
 |---------|----------|
 | **Hamming loss** | **0.0232** |
 | **F1 macro** | **0.6162** |
@@ -257,15 +257,15 @@ API endpoint: `POST /api/predict` с телом `{"text": "..."}`.
 | Recall macro | 0.8025 |
 | Recall micro | 0.8632 |
 
-**Интерпретация:**
+**Interpretation:**
 
-- **F1 micro ≈ 0.73** — хороший baseline на Jigsaw; модель уверенно ловит явную токсичность.
-- **Recall > Precision** (особенно на редких классах) — модель склонна **перестраховываться** (много false positives), что типично при `class_weight="balanced"` и пороге 0.5.
-- **Hamming loss ≈ 0.023** — в среднем ~2.3% меток ошибочны на комментарий.
+- **F1 micro ≈ 0.73** — a solid baseline on Jigsaw; the model confidently catches obvious toxicity.
+- **Recall > Precision** (especially on rare classes) — the model tends to **over-predict** (many false positives), which is typical with `class_weight="balanced"` and a 0.5 threshold.
+- **Hamming loss ≈ 0.023** — on average ~2.3% of labels are wrong per comment.
 
-### 6.2. Per-label F1
+### 6.2. Per-Label F1
 
-| Метка | Precision | Recall | F1 | Support (test) |
+| Label | Precision | Recall | F1 | Support (test) |
 |-------|-----------|--------|-----|----------------|
 | **toxic** | 0.717 | 0.873 | **0.787** | 3059 |
 | **obscene** | 0.753 | 0.890 | **0.816** | 1710 |
@@ -274,74 +274,74 @@ API endpoint: `POST /api/predict` с телом `{"text": "..."}`.
 | **severe_toxic** | 0.319 | 0.794 | **0.455** | 311 |
 | **threat** | 0.351 | 0.629 | **0.450** | 97 |
 
-**Наблюдения:**
+**Observations:**
 
-- Лучше всего модель работает на **`obscene`** и **`toxic`** — много лексических маркеров.
-- **`insult`** — уверенный средний результат (F1 ≈ 0.72).
-- **`severe_toxic`**, **`threat`**, **`identity_hate`** — редкие классы с низкой precision; модель их находит (высокий recall), но часто «стреляет» ложно.
+- Best performance on **`obscene`** and **`toxic`** — many lexical markers.
+- **`insult`** — solid mid-tier result (F1 ≈ 0.72).
+- **`severe_toxic`**, **`threat`**, **`identity_hate`** — rare classes with low precision; the model finds them (high recall) but often fires false positives.
 
-### 6.3. Качественные примеры (inference)
+### 6.3. Qualitative Examples (Inference)
 
-После обучения модель корректно отдаёт вероятности через backend-сервис:
+After training, the model correctly returns probabilities through the backend service:
 
-- *«You are an idiot, shut up!»* → высокие scores для `toxic`, `insult`, `obscene`
-- *«Thank you for the helpful article.»* → низкие scores по всем меткам
+- *«You are an idiot, shut up!»* → high scores for `toxic`, `insult`, `obscene`
+- *«Thank you for the helpful article.»* → low scores across all labels
 
 ---
 
-## 7. Как это работает end-to-end
+## 7. How It Works End-to-End
 
 ```
-1. Пользователь вводит текст в React UI (frontend/)
+1. User enters text in the React UI (frontend/)
 2. POST /api/predict → FastAPI (backend/)
 3. ToxicInferenceService.predict_proba(text)
 4. Pipeline:
      preprocess_batch → FeatureUnion(word+char TF-IDF) → 6× LogisticRegression
-5. Ответ JSON: { "probabilities": { "toxic": 0.92, ... }, "labels": [...] }
-6. UI рисует bar chart по каждой метке
+5. JSON response: { "probabilities": { "toxic": 0.92, ... }, "labels": [...] }
+6. UI renders a bar chart per label
 ```
 
-Модель сериализуется через **pickle** — тот же объект Pipeline, что обучался в `ml/training/`, без отдельного conversion step.
+The model is serialized via **pickle** — the same Pipeline object trained in `ml/training/`, with no separate conversion step.
 
 ---
 
-## 8. Ограничения baseline и следующие шаги
+## 8. Baseline Limitations and Next Steps
 
-### 8.1. Ограничения TF-IDF
+### 8.1. TF-IDF Limitations
 
-TF-IDF **не понимает семантику**:
+TF-IDF **does not understand semantics**:
 
-| Текст A | Текст B | TF-IDF |
+| Text A | Text B | TF-IDF |
 |---------|---------|--------|
-| «You are dumb» | «You are stupid» | разные векторы, хотя смысл один |
+| «You are dumb» | «You are stupid» | different vectors, same meaning |
 
-Не ловит:
+It does not catch:
 
-- сарказм без toxic-лексики;
-- завуалированную агрессию («I hope you have a *very* special day»);
-- cross-lingual / code-switching без char-паттернов.
+- sarcasm without toxic lexicon;
+- veiled aggression («I hope you have a *very* special day»);
+- cross-lingual / code-switching without char patterns.
 
-### 8.2. Возможные улучшения (Подход 2+)
+### 8.2. Possible Improvements (Approach 2+)
 
-1. **Калибровка порогов** per-label на validation set (повысит precision на редких классах).
-2. **Linear SVM** как альтернативный linear baseline для сравнения.
+1. **Per-label threshold calibration** on a validation set (improves precision on rare classes).
+2. **Linear SVM** as an alternative linear baseline for comparison.
 3. **Embeddings / Transformers** (BERT, DistilBERT) — semantic understanding.
-4. **Ensemble** TF-IDF + transformer scores.
-5. **Cross-validation** вместо одного hold-out split для более стабильных метрик.
+4. **Ensemble** of TF-IDF + transformer scores.
+5. **Cross-validation** instead of a single hold-out split for more stable metrics.
 
 ---
 
-## 9. Быстрый старт (повторить эксперимент)
+## 9. Quick Start (Reproduce the Experiment)
 
 ```bash
-# из корня репозитория
+# from repository root
 python -m pip install -r ml/requirements.txt
 
-# положить train.csv в data/raw/ (Kaggle Jigsaw)
+# place train.csv in data/raw/ (Kaggle Jigsaw)
 
 python -m ml.training.train_baseline --data data/raw/train.csv
 
-# запустить API
+# start the API
 cd backend
 python -m pip install -r requirements.txt
 python -m uvicorn app.main:app --reload --host 127.0.0.1 --port 8000
@@ -349,17 +349,17 @@ python -m uvicorn app.main:app --reload --host 127.0.0.1 --port 8000
 
 ---
 
-## 10. Резюме
+## 10. Summary
 
-| Компонент | Решение |
+| Component | Solution |
 |-----------|---------|
-| Признаки | Word TF-IDF (1–2) + Char TF-IDF (3–5, `char_wb`) |
-| Классификатор | `OneVsRestClassifier(LogisticRegression)` |
-| Multi-label | 6 независимых бинарных LR |
-| Препроцессинг | lowercase, URL/HTML removal, whitespace; пунктуация сохранена |
-| Датасет | Jigsaw, 159 571 комментарий |
-| Лучший F1 | `obscene` (0.82), `toxic` (0.79) |
-| Общий F1 micro | **0.73** |
-| Артефакт | `models/model.pkl` |
+| Features | Word TF-IDF (1–2) + Char TF-IDF (3–5, `char_wb`) |
+| Classifier | `OneVsRestClassifier(LogisticRegression)` |
+| Multi-label | 6 independent binary LRs |
+| Preprocessing | lowercase, URL/HTML removal, whitespace; punctuation preserved |
+| Dataset | Jigsaw, 159 571 comments |
+| Best F1 | `obscene` (0.82), `toxic` (0.79) |
+| Overall F1 micro | **0.73** |
+| Artifact | `models/model.pkl` |
 
-Baseline реализован, обучен на реальных данных, интегрирован с FastAPI backend и готов как **сильная отправная точка** перед embedding/transformer-подходами.
+The baseline is implemented, trained on real data, integrated with the FastAPI backend, and ready as a **strong starting point** before embedding/transformer approaches.

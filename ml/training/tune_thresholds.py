@@ -131,6 +131,7 @@ def _tune_sklearn_model(
     thresholds_out: Path,
     metrics_out: Path,
 ) -> dict:
+    """Tune thresholds for a pickle sklearn model; saves thresholds + metrics JSON."""
     print(f"\n=== {name} ===", flush=True)
     if not model_path.is_file():
         raise FileNotFoundError(f"Model not found: {model_path}")

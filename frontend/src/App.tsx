@@ -20,12 +20,19 @@ type ProjectionPoint = {
   is_active: boolean;
 };
 
+type AnalysisLang = "auto" | "en" | "pl";
+
 type PredictResponse = {
   probabilities: Record<string, number>;
   labels: string[];
   model: ModelId;
   similarity_projection: ProjectionPoint[];
-  
+
+  requested_lang?: AnalysisLang;
+  analysis_lang?: "en" | "pl";
+  lang_confidence?: number | null;
+  lang_source?: string | null;
+
   is_dual?: boolean;
   probabilities_tfidf?: Record<string, number>;
   probabilities_bert?: Record<string, number>;
@@ -63,6 +70,39 @@ type MetricsResponse = {
   tfidf_lr_pl: ModelMetrics;
   bert_pl: ModelMetrics;
 };
+
+function isMetricsResponse(data: unknown): data is MetricsResponse {
+  if (!data || typeof data !== "object") return false;
+  const record = data as Record<string, unknown>;
+  const required = ["tfidf_lr", "bert", "tfidf_lr_pl", "bert_pl"] as const;
+  return required.every((key) => {
+    const block = record[key];
+    return (
+      !!block &&
+      typeof block === "object" &&
+      typeof (block as ModelMetrics).f1_macro === "number" &&
+      Array.isArray((block as ModelMetrics).per_label)
+    );
+  });
+}
+
+async function fetchMetricsFromApi(): Promise<MetricsResponse | null> {
+  const res = await fetch("/api/metrics");
+  if (!res.ok) return null;
+  const data: unknown = await res.json();
+  return isMetricsResponse(data) ? data : null;
+}
+
+async function fetchMetricsWithRetry(attempts = 3, delayMs = 1500): Promise<MetricsResponse | null> {
+  for (let attempt = 0; attempt < attempts; attempt += 1) {
+    const data = await fetchMetricsFromApi();
+    if (data) return data;
+    if (attempt < attempts - 1) {
+      await new Promise((resolve) => setTimeout(resolve, delayMs));
+    }
+  }
+  return null;
+}
 
 const MODEL_LABELS: Record<ModelId, string> = {
   tfidf_lr: "TF-IDF + Logistic Regression",
@@ -105,6 +145,40 @@ const EN_SAMPLES = [
   },
 ];
 
+const DEFAULT_THRESHOLD = 0.5;
+
+type RowVariant = "violation" | "safe" | "neutral";
+
+function isLabelActive(label: string, probability: number, lang: "en" | "pl", threshold = DEFAULT_THRESHOLD): boolean {
+  return probability >= threshold;
+}
+
+function isCommentSafe(probs: Record<string, number>, lang: "en" | "pl", threshold = DEFAULT_THRESHOLD): boolean {
+  if (lang === "pl") {
+    const hasViolation = Object.entries(probs).some(([label, p]) => label !== "safe" && p >= threshold);
+    if (hasViolation) return false;
+    return (probs.safe ?? 0) >= threshold || !hasViolation;
+  }
+  return !Object.values(probs).some((p) => p >= threshold);
+}
+
+function getLabelRowVariant(
+  label: string,
+  lang: "en" | "pl",
+  ...probs: number[]
+): RowVariant {
+  const active = probs.some((p) => isLabelActive(label, p, lang));
+  if (!active) return "neutral";
+  if (label === "safe") return "safe";
+  return "violation";
+}
+
+function getBarColor(label: string, probability: number, lang: "en" | "pl", modelHue: string): string {
+  if (!isLabelActive(label, probability, lang)) return modelHue;
+  if (label === "safe") return "#10b981";
+  return "#ef4444";
+}
+
 const PL_SAMPLES = [
   {
     label: "Pozytywny (Safe)",
@@ -127,7 +201,7 @@ const PL_SAMPLES = [
 export default function App() {
   const [activeTab, setActiveTab] = useState<"analysis" | "metrics">("analysis");
   const [uiLang, setUiLang] = useState<"en" | "pl">("en");
-  const [analysisLang, setAnalysisLang] = useState<"en" | "pl">("en");
+  const [analysisLang, setAnalysisLang] = useState<AnalysisLang>("auto");
   const [text, setText] = useState("");
   const [model, setModel] = useState<ModelId>("both");
   const [models, setModels] = useState<ModelInfo[] | null>(null);
@@ -138,6 +212,7 @@ export default function App() {
   // Metrics Dashboard State
   const [metrics, setMetrics] = useState<MetricsResponse | null>(null);
   const [loadingMetrics, setLoadingMetrics] = useState(false);
+  const [metricsError, setMetricsError] = useState<string | null>(null);
   const [selectedMetric, setSelectedMetric] = useState<"f1" | "precision" | "recall">("f1");
 
   // Interaction Tooltip States - Radar
@@ -174,9 +249,18 @@ export default function App() {
   // Nearest Neighbor Toggled Model in Dual Mode
   const [closestMatchesModel, setClosestMatchesModel] = useState<"tfidf" | "bert">("bert");
 
+  const effectiveAnalysisLang = useMemo((): "en" | "pl" => {
+    if (result?.analysis_lang === "en" || result?.analysis_lang === "pl") {
+      return result.analysis_lang;
+    }
+    return analysisLang === "auto" ? "en" : analysisLang;
+  }, [result, analysisLang]);
+
+  const modelsLangParam = analysisLang === "auto" ? "en" : analysisLang;
+
   // Load models on startup and when analysis language changes
   useEffect(() => {
-    void fetch(`/api/models?lang=${analysisLang}`)
+    void fetch(`/api/models?lang=${modelsLangParam}`)
       .then((res) => (res.ok ? res.json() : []))
       .then((data: ModelInfo[]) => {
         if (Array.isArray(data) && data.length > 0) {
@@ -188,25 +272,47 @@ export default function App() {
       .catch(() => {
         /* backend may be offline */
       });
-  }, [analysisLang]);
+  }, [modelsLangParam]);
 
-  // Load metrics from backend
-  useEffect(() => {
+  const loadMetrics = async (force = false) => {
+    if (loadingMetrics) return;
+    if (metrics && !force) return;
     setLoadingMetrics(true);
-    fetch("/api/metrics")
-      .then((res) => (res.ok ? res.json() : null))
-      .then((data: MetricsResponse | null) => {
-        if (data) setMetrics(data);
-      })
-      .catch((err) => {
-        console.error("Failed to fetch metrics", err);
-      })
-      .finally(() => {
-        setLoadingMetrics(false);
-      });
+    setMetricsError(null);
+    try {
+      const data = await fetchMetricsWithRetry();
+      if (data) {
+        setMetrics(data);
+      } else {
+        setMetricsError(
+          uiLang === "pl"
+            ? "Nie udało się pobrać statystyk z API."
+            : "Could not fetch metrics from the API.",
+        );
+      }
+    } catch (err) {
+      console.error("Failed to fetch metrics", err);
+      setMetricsError(
+        uiLang === "pl"
+          ? "Błąd połączenia podczas pobierania statystyk."
+          : "Connection error while fetching metrics.",
+      );
+    } finally {
+      setLoadingMetrics(false);
+    }
+  };
+
+  useEffect(() => {
+    void loadMetrics();
   }, []);
 
-  const handleAnalysisLangChange = (newLang: "en" | "pl") => {
+  useEffect(() => {
+    if (activeTab === "metrics" && !metrics && !loadingMetrics) {
+      void loadMetrics(true);
+    }
+  }, [activeTab]);
+
+  const handleAnalysisLangChange = (newLang: AnalysisLang) => {
     setAnalysisLang(newLang);
     setResult(null);
     setText("");
@@ -214,20 +320,30 @@ export default function App() {
   };
 
   const activeSamples = useMemo(() => {
-    return analysisLang === "pl" ? PL_SAMPLES : EN_SAMPLES;
-  }, [analysisLang]);
+    return effectiveAnalysisLang === "pl" ? PL_SAMPLES : EN_SAMPLES;
+  }, [effectiveAnalysisLang]);
 
   const activeMetrics = useMemo(() => {
     if (!metrics) return null;
-    return analysisLang === "pl" 
-      ? { tfidf_lr: metrics.tfidf_lr_pl, bert: metrics.bert_pl } 
+    return effectiveAnalysisLang === "pl"
+      ? { tfidf_lr: metrics.tfidf_lr_pl, bert: metrics.bert_pl }
       : { tfidf_lr: metrics.tfidf_lr, bert: metrics.bert };
-  }, [metrics, analysisLang]);
+  }, [metrics, effectiveAnalysisLang]);
 
   const sortedResult = useMemo(() => {
     if (!result) return [];
     return Object.entries(result.probabilities).sort((a, b) => b[1] - a[1]);
   }, [result]);
+
+  const commentIsSafe = useMemo(() => {
+    if (!result) return null;
+    const projection = result.is_dual ? result.similarity_projection_bert : result.similarity_projection;
+    const activePoint = projection?.find((pt) => pt.is_active);
+    if (activePoint?.labels?.length) {
+      return activePoint.labels.length === 1 && activePoint.labels[0] === "safe";
+    }
+    return isCommentSafe(result.probabilities, effectiveAnalysisLang);
+  }, [result, effectiveAnalysisLang]);
 
   const selectedModelInfo = models?.find((m) => m.id === model);
 
@@ -287,6 +403,9 @@ export default function App() {
         throw new Error(detail || `Request failed (${res.status})`);
       }
       setResult(body as PredictResponse);
+      if (!metrics) {
+        void loadMetrics(true);
+      }
     } catch (e) {
       setError(e instanceof Error ? e.message : "Unknown error");
     } finally {
@@ -299,10 +418,10 @@ export default function App() {
     if (result) {
       return Object.keys(result.probabilities);
     }
-    return analysisLang === "pl" 
+    return effectiveAnalysisLang === "pl"
       ? ["safe", "hate_speech", "violence", "vulgarity"]
       : ["toxic", "severe_toxic", "obscene", "threat", "insult", "identity_hate"];
-  }, [result, analysisLang]);
+  }, [result, effectiveAnalysisLang]);
 
   const numVertices = radarLabels.length;
 
@@ -397,8 +516,14 @@ export default function App() {
     };
   };
 
+  const isProjectionPointSafe = (pt: ProjectionPoint) =>
+    pt.labels.length === 1 && pt.labels[0] === "safe";
+
+  const getActiveUserColor = (pt: ProjectionPoint) =>
+    isProjectionPointSafe(pt) ? "#10b981" : "#ef4444";
+
   const getPointColor = (pt: ProjectionPoint) => {
-    if (pt.is_active) return "#eab308";
+    if (pt.is_active) return getActiveUserColor(pt);
     const primaryLabel = pt.labels[0] || "safe";
     switch (primaryLabel) {
       case "safe":
@@ -526,14 +651,14 @@ export default function App() {
       gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
       gap: 24,
     },
-    probabilityRow: (isPositive: boolean) => ({
+    probabilityRow: (variant: RowVariant) => ({
       display: "flex",
       flexDirection: "column" as const,
       gap: 6,
       padding: "10px 12px",
       borderRadius: 8,
-      backgroundColor: isPositive ? "#fff5f5" : "#f8fafc",
-      border: `1px solid ${isPositive ? "#fee2e2" : "#f1f5f9"}`,
+      backgroundColor: variant === "violation" ? "#fff5f5" : variant === "safe" ? "#f0fdf4" : "#f8fafc",
+      border: `1px solid ${variant === "violation" ? "#fee2e2" : variant === "safe" ? "#bbf7d0" : "#f1f5f9"}`,
       transition: "all 0.2s ease",
     }),
     metricToggle: (isActive: boolean) => ({
@@ -627,6 +752,22 @@ export default function App() {
                     border: "none",
                     cursor: "pointer",
                     transition: "all 0.2s ease",
+                    backgroundColor: analysisLang === "auto" ? "#2563eb" : "transparent",
+                    color: analysisLang === "auto" ? "#fff" : "#475569",
+                  }}
+                  onClick={() => handleAnalysisLangChange("auto")}
+                >
+                  {uiLang === "pl" ? "🔍 Auto" : "🔍 Auto"}
+                </button>
+                <button
+                  style={{
+                    padding: "6px 12px",
+                    borderRadius: 999,
+                    fontSize: 12,
+                    fontWeight: 700,
+                    border: "none",
+                    cursor: "pointer",
+                    transition: "all 0.2s ease",
                     backgroundColor: analysisLang === "en" ? "#2563eb" : "transparent",
                     color: analysisLang === "en" ? "#fff" : "#475569",
                   }}
@@ -682,7 +823,15 @@ export default function App() {
             {/* Input Form Column */}
             <div>
               <div style={styles.card}>
-                <h2 style={styles.sectionTitle}>{uiLang === "pl" ? "Konfiguracja Modelu" : "Model Configuration"} ({analysisLang.toUpperCase()})</h2>
+                <h2 style={styles.sectionTitle}>
+                  {uiLang === "pl" ? "Konfiguracja Modelu" : "Model Configuration"} (
+                  {analysisLang === "auto"
+                    ? uiLang === "pl"
+                      ? "AUTO"
+                      : "AUTO"
+                    : analysisLang.toUpperCase()}
+                  )
+                </h2>
                 <div style={{ display: "flex", flexDirection: "column", gap: 12, marginBottom: 20 }}>
                   {(models ?? (Object.keys(MODEL_LABELS) as ModelId[]).map((id) => ({ id, name: MODEL_LABELS[id], loaded: true, description: "", artifact_path: "" }))).map(
                     (m) => (
@@ -722,7 +871,7 @@ export default function App() {
                           <span style={{ display: "block", color: "#64748b", fontSize: 13, marginTop: 4 }}>
                             {m.description || (
                               m.id === "tfidf_lr" ? (uiLang === "pl" ? "Cechy n-gramów słów i znaków z regresją logistyczną One-vs-Rest" : "Word and character n-grams with One-vs-Rest Logistic Regression") : 
-                              m.id === "bert" ? (analysisLang === "pl" ? (uiLang === "pl" ? "Dostrojony HerBERT dla polskiego kontekstu" : "Fine-tuned HerBERT for Polish context") : (uiLang === "pl" ? "Dostrojony model BERT reprezentacji kontekstowych" : "Fine-tuned BERT with context-aware representations")) :
+                              m.id === "bert" ? (effectiveAnalysisLang === "pl" ? (uiLang === "pl" ? "Dostrojony HerBERT dla polskiego kontekstu" : "Fine-tuned HerBERT for Polish context") : (uiLang === "pl" ? "Dostrojony model BERT reprezentacji kontekstowych" : "Fine-tuned BERT with context-aware representations")) :
                               (uiLang === "pl" ? "Uruchom oba modele obok siebie, aby porównać ich prognozy" : "Run both models side-by-side to visually inspect the difference in predictions")
                             )}
                           </span>
@@ -733,7 +882,17 @@ export default function App() {
                 </div>
 
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 8 }}>
-                  <label style={styles.label}>{uiLang === "pl" ? "Treść komentarza" : "Comment text"} ({analysisLang === "en" ? "English" : "Polish"})</label>
+                  <label style={styles.label}>
+                    {uiLang === "pl" ? "Treść komentarza" : "Comment text"} (
+                    {analysisLang === "auto"
+                      ? uiLang === "pl"
+                        ? "język wykrywany automatycznie"
+                        : "language auto-detected"
+                      : analysisLang === "en"
+                        ? "English"
+                        : "Polish"}
+                    )
+                  </label>
                   <span style={{ fontSize: 12, color: "#64748b" }}>{text.length} / 8000 chars</span>
                 </div>
 
@@ -742,7 +901,19 @@ export default function App() {
                   onChange={(e) => setText(e.target.value)}
                   rows={6}
                   style={styles.textarea}
-                  placeholder={analysisLang === "pl" ? (uiLang === "pl" ? "Wpisz polski komentarz do analizy..." : "Paste a Polish comment to analyze...") : (uiLang === "pl" ? "Wpisz angielski komentarz do analizy..." : "Paste an English comment to analyze or click a sample below…")}
+                  placeholder={
+                    analysisLang === "auto"
+                      ? uiLang === "pl"
+                        ? "Wpisz komentarz w dowolnym języku (EN/PL) — język zostanie wykryty automatycznie..."
+                        : "Paste a comment in English or Polish — language will be detected automatically..."
+                      : analysisLang === "pl"
+                        ? uiLang === "pl"
+                          ? "Wpisz polski komentarz do analizy..."
+                          : "Paste a Polish comment to analyze..."
+                        : uiLang === "pl"
+                          ? "Wpisz angielski komentarz do analizy..."
+                          : "Paste an English comment to analyze or click a sample below…"
+                  }
                 />
 
                 {/* Samples */}
@@ -834,17 +1005,43 @@ export default function App() {
                     <div
                       style={{
                         padding: "8px 12px",
-                        backgroundColor: "#f8fafc",
+                        backgroundColor: commentIsSafe ? "#f0fdf4" : "#fef2f2",
                         borderRadius: 8,
                         marginBottom: 16,
-                        borderLeft: "4px solid #3b82f6",
+                        borderLeft: `4px solid ${commentIsSafe ? "#10b981" : "#ef4444"}`,
                         fontSize: 13,
                         color: "#475569",
                         display: "flex",
+                        flexWrap: "wrap",
+                        gap: 8,
                         justifyContent: "space-between",
                       }}
                     >
+                      <span>
+                        {uiLang === "pl" ? "Werdykt:" : "Verdict:"}{" "}
+                        <strong style={{ color: commentIsSafe ? "#059669" : "#dc2626" }}>
+                          {commentIsSafe
+                            ? uiLang === "pl"
+                              ? "🟢 Bezpieczny komentarz"
+                              : "🟢 Safe comment"
+                            : uiLang === "pl"
+                              ? "🔴 Wykryto naruszenie"
+                              : "🔴 Toxic content detected"}
+                        </strong>
+                      </span>
                       <span>{uiLang === "pl" ? "Tryb modelu:" : "Model Mode:"} <strong>{MODEL_LABELS[result.model]}</strong></span>
+                      {result.requested_lang === "auto" && result.analysis_lang && (
+                        <span>
+                          {uiLang === "pl" ? "Wykryty język:" : "Detected language:"}{" "}
+                          <strong>
+                            {result.analysis_lang === "pl" ? "Polski" : "English"}
+                            {result.lang_confidence != null ? ` (${(result.lang_confidence * 100).toFixed(0)}%)` : ""}
+                          </strong>
+                          {result.lang_source && result.lang_source !== "forced" && (
+                            <span style={{ fontSize: 11, color: "#94a3b8", marginLeft: 4 }}>({result.lang_source})</span>
+                          )}
+                        </span>
+                      )}
                       <span>{uiLang === "pl" ? "Maks. wynik:" : "Max score:"} <strong>{(Math.max(...Object.values(result.probabilities)) * 100).toFixed(1)}%</strong></span>
                     </div>
 
@@ -857,7 +1054,7 @@ export default function App() {
                         </div>
                         <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
                           <div style={{ width: 12, height: 12, backgroundColor: "#8b5cf6", borderRadius: "50%" }} />
-                          <span style={{ fontSize: 12, fontWeight: "bold", color: "#8b5cf6" }}>{analysisLang === "pl" ? "HerBERT" : "BERT"}</span>
+                          <span style={{ fontSize: 12, fontWeight: "bold", color: "#8b5cf6" }}>{effectiveAnalysisLang === "pl" ? "HerBERT" : "BERT"}</span>
                         </div>
                       </div>
                     )}
@@ -920,16 +1117,16 @@ export default function App() {
                           const angleRad = (idx * Math.PI * 2) / numVertices - Math.PI / 2;
                           const cosA = Math.cos(angleRad);
                           const textAnchor = Math.abs(cosA) < 0.1 ? "middle" : cosA > 0 ? "start" : "end";
-                          
-                          const isHigh = result.is_dual 
-                            ? (result.probabilities_bert?.[label] ?? 0) >= 0.5 || (result.probabilities_tfidf?.[label] ?? 0) >= 0.5
-                            : (result.probabilities[label] ?? 0) >= 0.5;
-                          
-                          // Custom rules for "safe" label in Polish (it's safe if probability is HIGH)
-                          const isHighlight = label === "safe" ? (p_val?: number) => (p_val ?? 0) < 0.5 : (p_val?: number) => (p_val ?? 0) >= 0.5;
-                          const isHighlighted = result.is_dual
-                            ? isHighlight(result.probabilities_bert?.[label]) || isHighlight(result.probabilities_tfidf?.[label])
-                            : isHighlight(result.probabilities[label]);
+
+                          const labelVariant = result.is_dual
+                            ? getLabelRowVariant(
+                                label,
+                                effectiveAnalysisLang,
+                                result.probabilities_bert?.[label] ?? 0,
+                                result.probabilities_tfidf?.[label] ?? 0,
+                              )
+                            : getLabelRowVariant(label, effectiveAnalysisLang, result.probabilities[label] ?? 0);
+                          const isHighlighted = labelVariant !== "neutral";
 
                           return (
                             <text
@@ -937,9 +1134,15 @@ export default function App() {
                               x={textCoords.x}
                               y={textCoords.y + 4}
                               textAnchor={textAnchor}
-                              fill={isHighlighted && label !== "safe" ? "#ef4444" : "#475569"}
+                              fill={
+                                labelVariant === "safe"
+                                  ? "#10b981"
+                                  : labelVariant === "violation"
+                                    ? "#ef4444"
+                                    : "#475569"
+                              }
                               fontSize="11"
-                              fontWeight={isHighlighted && label !== "safe" ? "bold" : "600"}
+                              fontWeight={isHighlighted ? "bold" : "600"}
                               style={{ transition: "all 0.2s ease" }}
                             >
                               {label.replace("_", " ")}
@@ -972,8 +1175,8 @@ export default function App() {
                           radarPolygons.predictionPath && (
                             <polygon
                               points={radarPolygons.predictionPath}
-                              fill={Math.max(...Object.values(result.probabilities)) >= 0.5 ? "#fca5a577" : "#7dd3fc77"}
-                              stroke={Math.max(...Object.values(result.probabilities)) >= 0.5 ? "#ef4444" : "#0284c7"}
+                              fill={commentIsSafe ? "#86efac77" : "#fca5a577"}
+                              stroke={commentIsSafe ? "#10b981" : "#ef4444"}
                               strokeWidth="2.5"
                               style={{ transition: "all 0.3s ease" }}
                             />
@@ -1042,14 +1245,16 @@ export default function App() {
                           /* Standard Single Dots */
                           radarPolygons.points.map((pt) => {
                             const isHovered = predictionHoveredIdx === pt.idx;
-                            const isHigh = pt.value >= 0.5;
+                            const variant = getLabelRowVariant(pt.label, effectiveAnalysisLang, pt.value);
+                            const dotFill =
+                              variant === "safe" ? "#10b981" : variant === "violation" ? "#ef4444" : "#0284c7";
                             return (
                               <circle
                                 key={pt.label}
                                 cx={pt.x}
                                 cy={pt.y}
                                 r={isHovered ? 8 : 5}
-                                fill={isHigh ? "#ef4444" : "#0284c7"}
+                                fill={dotFill}
                                 stroke="#fff"
                                 strokeWidth="2"
                                 style={{ cursor: "pointer", transition: "all 0.15s ease" }}
@@ -1098,7 +1303,7 @@ export default function App() {
                                 </strong>
                               </div>
                               <div style={{ display: "flex", justifyContent: "space-between" }}>
-                                <span style={{ color: "#c084fc", fontWeight: 600 }}>🟣 {analysisLang === "pl" ? "HerBERT" : "BERT"}:</span>
+                                <span style={{ color: "#c084fc", fontWeight: 600 }}>🟣 {effectiveAnalysisLang === "pl" ? "HerBERT" : "BERT"}:</span>
                                 <strong>
                                   {(predictionTooltip.valueBert * 100).toFixed(1)}%
                                 </strong>
@@ -1106,20 +1311,50 @@ export default function App() {
                             </div>
                           ) : (
                             // Single Model Tooltip Info
-                            <>
-                              <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 4 }}>
-                                <span>{uiLang === "pl" ? "Prawdopodobieństwo:" : "Score probability:"}</span>
-                                <strong style={{ color: predictionTooltip.value >= 0.5 ? "#fca5a5" : "#38bdf8" }}>
-                                  {(predictionTooltip.value * 100).toFixed(1)}%
-                                </strong>
-                              </div>
-                              <div style={{ marginBottom: 6 }}>
-                                <strong>Status: </strong>
-                                <span style={{ color: predictionTooltip.value >= 0.5 ? "#ef4444" : "#10b981", fontWeight: "bold" }}>
-                                  {predictionTooltip.value >= 0.5 ? (uiLang === "pl" ? "🔴 NARUSZENIE" : "🔴 TOXIC") : (uiLang === "pl" ? "🟢 BEZPIECZNY" : "🟢 SAFE")}
-                                </span>
-                              </div>
-                            </>
+                            (() => {
+                              const tooltipVariant = getLabelRowVariant(
+                                predictionTooltip.label,
+                                effectiveAnalysisLang,
+                                predictionTooltip.value,
+                              );
+                              const isViolation = tooltipVariant === "violation";
+                              const isSafe = tooltipVariant === "safe";
+                              return (
+                                <>
+                                  <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 4 }}>
+                                    <span>{uiLang === "pl" ? "Prawdopodobieństwo:" : "Score probability:"}</span>
+                                    <strong
+                                      style={{
+                                        color: isViolation ? "#fca5a5" : isSafe ? "#86efac" : "#38bdf8",
+                                      }}
+                                    >
+                                      {(predictionTooltip.value * 100).toFixed(1)}%
+                                    </strong>
+                                  </div>
+                                  <div style={{ marginBottom: 6 }}>
+                                    <strong>Status: </strong>
+                                    <span
+                                      style={{
+                                        color: isViolation ? "#ef4444" : isSafe ? "#10b981" : "#94a3b8",
+                                        fontWeight: "bold",
+                                      }}
+                                    >
+                                      {isViolation
+                                        ? uiLang === "pl"
+                                          ? "🔴 NARUSZENIE"
+                                          : "🔴 TOXIC"
+                                        : isSafe
+                                          ? uiLang === "pl"
+                                            ? "🟢 BEZPIECZNY"
+                                            : "🟢 SAFE"
+                                          : uiLang === "pl"
+                                            ? "⚪ NISKI"
+                                            : "⚪ LOW"}
+                                    </span>
+                                  </div>
+                                </>
+                              );
+                            })()
                           )}
                           <p style={{ margin: 0, color: "#cbd5e1", fontSize: 11 }}>
                             {LABEL_DESCRIPTIONS[predictionTooltip.label] ?? ""}
@@ -1142,15 +1377,22 @@ export default function App() {
                         if (result.is_dual && result.probabilities_tfidf && result.probabilities_bert) {
                           const pTfidf = result.probabilities_tfidf[label] ?? 0;
                           const pBert = result.probabilities_bert[label] ?? 0;
-                          const isHigh = pTfidf >= 0.5 || pBert >= 0.5;
+                          const rowVariant = getLabelRowVariant(label, effectiveAnalysisLang, pBert, pTfidf);
 
                           return (
                             <div
                               key={label}
                               style={{
-                                ...styles.probabilityRow(isHigh),
+                                ...styles.probabilityRow(rowVariant),
                                 boxShadow: isHovered ? "0 0 8px rgba(139, 92, 246, 0.2)" : "none",
-                                borderColor: isHovered ? "#8b5cf6" : isHigh ? "#fee2e2" : "#f1f5f9",
+                                borderColor:
+                                  isHovered
+                                    ? "#8b5cf6"
+                                    : rowVariant === "violation"
+                                      ? "#fee2e2"
+                                      : rowVariant === "safe"
+                                        ? "#bbf7d0"
+                                        : "#f1f5f9",
                               }}
                               onMouseEnter={() => setPredictionHoveredIdx(labelIdx)}
                               onMouseLeave={() => setPredictionHoveredIdx(null)}
@@ -1168,7 +1410,7 @@ export default function App() {
                                       height: "100%",
                                       width: `${pTfidf * 100}%`,
                                       borderRadius: 999,
-                                      backgroundColor: pTfidf >= 0.5 ? "#f87171" : "#3b82f6",
+                                      backgroundColor: getBarColor(label, pTfidf, effectiveAnalysisLang, "#3b82f6"),
                                     }}
                                   />
                                 </div>
@@ -1177,14 +1419,14 @@ export default function App() {
 
                               {/* Progress bar for BERT */}
                               <div style={{ display: "grid", gridTemplateColumns: "100px 1fr 40px", gap: 8, alignItems: "center" }}>
-                                <span style={{ fontSize: 11, color: "#475569" }}>🟣 {analysisLang === "pl" ? "HerBERT" : "BERT"}</span>
+                                <span style={{ fontSize: 11, color: "#475569" }}>🟣 {effectiveAnalysisLang === "pl" ? "HerBERT" : "BERT"}</span>
                                 <div style={{ height: 6, background: "#e2e8f0", borderRadius: 999, overflow: "hidden" }}>
                                   <div
                                     style={{
                                       height: "100%",
                                       width: `${pBert * 100}%`,
                                       borderRadius: 999,
-                                      backgroundColor: pBert >= 0.5 ? "#ef4444" : "#8b5cf6",
+                                      backgroundColor: getBarColor(label, pBert, effectiveAnalysisLang, "#8b5cf6"),
                                     }}
                                   />
                                 </div>
@@ -1195,14 +1437,23 @@ export default function App() {
                         } else {
                           // Standard Single progress bar
                           const p = result.probabilities[label] ?? 0;
-                          const isHigh = p >= 0.5;
+                          const rowVariant = getLabelRowVariant(label, effectiveAnalysisLang, p);
+                          const isViolation = rowVariant === "violation";
+                          const isSafe = rowVariant === "safe";
                           return (
                             <div
                               key={label}
                               style={{
-                                ...styles.probabilityRow(isHigh),
+                                ...styles.probabilityRow(rowVariant),
                                 boxShadow: isHovered ? "0 0 8px rgba(59, 130, 246, 0.2)" : "none",
-                                borderColor: isHovered ? "#3b82f6" : isHigh ? "#fee2e2" : "#f1f5f9",
+                                borderColor:
+                                  isHovered
+                                    ? "#3b82f6"
+                                    : isViolation
+                                      ? "#fee2e2"
+                                      : isSafe
+                                        ? "#bbf7d0"
+                                        : "#f1f5f9",
                               }}
                               onMouseEnter={() => setPredictionHoveredIdx(labelIdx)}
                               onMouseLeave={() => setPredictionHoveredIdx(null)}
@@ -1211,7 +1462,13 @@ export default function App() {
                                 <span style={{ fontWeight: 700, fontSize: 15, textTransform: "capitalize" }}>
                                   {label.replace("_", " ")}
                                 </span>
-                                <span style={{ fontWeight: "bold", color: isHigh ? "#ef4444" : "#475569", fontSize: 15 }}>
+                                <span
+                                  style={{
+                                    fontWeight: "bold",
+                                    color: isViolation ? "#ef4444" : isSafe ? "#10b981" : "#475569",
+                                    fontSize: 15,
+                                  }}
+                                >
                                   {(p * 100).toFixed(1)}%
                                 </span>
                               </div>
@@ -1221,9 +1478,11 @@ export default function App() {
                                     height: "100%",
                                     width: `${p * 100}%`,
                                     borderRadius: 999,
-                                    background: isHigh
+                                    background: isViolation
                                       ? "linear-gradient(90deg, #f87171, #ef4444)"
-                                      : "linear-gradient(90deg, #38bdf8, #0284c7)",
+                                      : isSafe
+                                        ? "linear-gradient(90deg, #86efac, #10b981)"
+                                        : "linear-gradient(90deg, #38bdf8, #0284c7)",
                                     transition: "width 0.6s ease",
                                   }}
                                 />
@@ -1342,16 +1601,17 @@ export default function App() {
                             const tfActive = result.similarity_projection_tfidf?.find(p => p.is_active);
                             if (!tfActive) return null;
                             const { cx, cy } = getProjectionSVGCoords(tfActive.x, tfActive.y);
+                            const tfColor = getActiveUserColor(tfActive);
                             return (
                               <g key="active_user_tfidf">
-                                <circle cx={cx} cy={cy} r="12" fill="none" stroke="#3b82f6" strokeWidth="1.5" opacity="0.5">
+                                <circle cx={cx} cy={cy} r="12" fill="none" stroke={tfColor} strokeWidth="1.5" opacity="0.5">
                                   <animate attributeName="r" values="6;14;6" dur="2.5s" repeatCount="indefinite" />
                                 </circle>
                                 <circle
                                   cx={cx}
                                   cy={cy}
                                   r="7"
-                                  fill="#3b82f6"
+                                  fill={tfColor}
                                   stroke="#fff"
                                   strokeWidth="2"
                                   style={{ cursor: "pointer" }}
@@ -1382,16 +1642,17 @@ export default function App() {
                             const bertActive = result.similarity_projection_bert?.find(p => p.is_active);
                             if (!bertActive) return null;
                             const { cx, cy } = getProjectionSVGCoords(bertActive.x, bertActive.y);
+                            const bertColor = getActiveUserColor(bertActive);
                             return (
                               <g key="active_user_bert">
-                                <circle cx={cx} cy={cy} r="14" fill="none" stroke="#8b5cf6" strokeWidth="1.5" opacity="0.6">
+                                <circle cx={cx} cy={cy} r="14" fill="none" stroke={bertColor} strokeWidth="1.5" opacity="0.6">
                                   <animate attributeName="r" values="7;16;7" dur="2s" repeatCount="indefinite" />
                                 </circle>
                                 <circle
                                   cx={cx}
                                   cy={cy}
                                   r="8"
-                                  fill="#8b5cf6"
+                                  fill={bertColor}
                                   stroke="#fff"
                                   strokeWidth="2"
                                   style={{ cursor: "pointer" }}
@@ -1423,9 +1684,10 @@ export default function App() {
                           const activePt = result.similarity_projection?.find(p => p.is_active);
                           if (!activePt) return null;
                           const { cx, cy } = getProjectionSVGCoords(activePt.x, activePt.y);
+                          const activeColor = getActiveUserColor(activePt);
                           return (
                             <g key="active_user_single">
-                              <circle cx={cx} cy={cy} r="16" fill="none" stroke="#eab308" strokeWidth="2" opacity="0.4">
+                              <circle cx={cx} cy={cy} r="16" fill="none" stroke={activeColor} strokeWidth="2" opacity="0.4">
                                 <animate attributeName="r" values="8;18;8" dur="2s" repeatCount="indefinite" />
                                 <animate attributeName="opacity" values="0.7;0.1;0.7" dur="2s" repeatCount="indefinite" />
                               </circle>
@@ -1433,7 +1695,7 @@ export default function App() {
                                 cx={cx}
                                 cy={cy}
                                 r="8"
-                                fill="#eab308"
+                                fill={activeColor}
                                 stroke="#fff"
                                 strokeWidth="2.5"
                                 style={{ cursor: "pointer" }}
@@ -1528,12 +1790,19 @@ export default function App() {
                         </div>
                         <div style={{ display: "flex", alignItems: "center", gap: 4 }}>
                           <div style={{ width: 10, height: 10, borderRadius: "50%", backgroundColor: "#8b5cf6" }} />
-                          <span>{uiLang === "pl" ? "Ty" : "You"} ({analysisLang === "pl" ? "HerBERT" : "BERT"})</span>
+                          <span>{uiLang === "pl" ? "Ty" : "You"} ({effectiveAnalysisLang === "pl" ? "HerBERT" : "BERT"})</span>
                         </div>
                       </>
                     ) : (
                       <div style={{ display: "flex", alignItems: "center", gap: 4 }}>
-                        <div style={{ width: 10, height: 10, borderRadius: "50%", backgroundColor: "#eab308" }} />
+                        <div
+                          style={{
+                            width: 10,
+                            height: 10,
+                            borderRadius: "50%",
+                            backgroundColor: commentIsSafe ? "#10b981" : "#ef4444",
+                          }}
+                        />
                         <span>{uiLang === "pl" ? "Ty" : "You"}</span>
                       </div>
                     )}
@@ -1592,7 +1861,7 @@ export default function App() {
                           }}
                           onClick={() => setClosestMatchesModel("bert")}
                         >
-                          {analysisLang === "pl" ? "HerBERT" : "BERT"}
+                          {effectiveAnalysisLang === "pl" ? "HerBERT" : "BERT"}
                         </button>
                       </div>
                     )}
@@ -1657,7 +1926,7 @@ export default function App() {
                     })}
                   </div>
                   <div style={{ textAlign: "center", fontSize: 12, color: "#64748b", marginTop: 12 }}>
-                    💡 <em>{uiLang === "pl" ? (analysisLang === "pl" ? "Kliknięcie w kartę wzorca automatycznie skopiuje polski tekst do analizatora." : "Kliknięcie w kartę wzorca skopiuje angielski tekst do analizatora.") : "Clicking any reference card above copies it to the analyzer, helping you observe how different models respond to it."}</em>
+                    💡 <em>{uiLang === "pl" ? (effectiveAnalysisLang === "pl" ? "Kliknięcie w kartę wzorca automatycznie skopiuje polski tekst do analizatora." : "Kliknięcie w kartę wzorca skopiuje angielski tekst do analizatora.") : "Clicking any reference card above copies it to the analyzer, helping you observe how different models respond to it."}</em>
                   </div>
                 </div>
               </div>
@@ -1677,7 +1946,28 @@ export default function App() {
 
           {!loadingMetrics && !activeMetrics && (
             <div style={{ textAlign: "center", padding: "48px 16px", color: "#ef4444" }}>
-              ⚠️ {uiLang === "pl" ? "Nie udało się załadować statystyk z serwera. Upewnij się, że bękend działa." : "Failed to load model metrics from backend. Make sure the backend is running."}
+              <p style={{ margin: "0 0 12px" }}>
+                ⚠️{" "}
+                {metricsError ??
+                  (uiLang === "pl"
+                    ? "Nie udało się załadować statystyk z serwera."
+                    : "Failed to load model metrics from backend.")}
+              </p>
+              <button
+                type="button"
+                onClick={() => void loadMetrics(true)}
+                style={{
+                  padding: "8px 16px",
+                  borderRadius: 8,
+                  border: "none",
+                  backgroundColor: "#2563eb",
+                  color: "#fff",
+                  fontWeight: 600,
+                  cursor: "pointer",
+                }}
+              >
+                {uiLang === "pl" ? "🔄 Spróbuj ponownie" : "🔄 Retry"}
+              </button>
             </div>
           )}
 
@@ -1693,7 +1983,7 @@ export default function App() {
                   }}
                 >
                   <h3 style={{ margin: "0 0 12px", fontSize: 18, fontWeight: 700, color: "#1e3050" }}>
-                    🔵 TF-IDF + Logistic Regression ({analysisLang.toUpperCase()})
+                    🔵 TF-IDF + Logistic Regression ({effectiveAnalysisLang.toUpperCase()})
                   </h3>
                   <p style={{ fontSize: 14, color: "#64748b", margin: "0 0 16px" }}>
                     {uiLang === "pl" 
@@ -1736,7 +2026,7 @@ export default function App() {
                   }}
                 >
                   <h3 style={{ margin: "0 0 12px", fontSize: 18, fontWeight: 700, color: "#311042" }}>
-                    🟣 {analysisLang === "pl" ? "HerBERT" : "BERT"} (Transformer) Model ({analysisLang.toUpperCase()})
+                    🟣 {effectiveAnalysisLang === "pl" ? "HerBERT" : "BERT"} (Transformer) Model ({effectiveAnalysisLang.toUpperCase()})
                   </h3>
                   <p style={{ fontSize: 14, color: "#64748b", margin: "0 0 16px" }}>
                     {uiLang === "pl"
@@ -1952,7 +2242,7 @@ export default function App() {
                       </div>
                       <div style={{ marginBottom: 4 }}>
                         <strong>Model: </strong>
-                        {metricsHoveredBar.modelId === "bert" ? (analysisLang === "pl" ? "HerBERT" : "BERT") : "TF-IDF + LR"}
+                        {metricsHoveredBar.modelId === "bert" ? (effectiveAnalysisLang === "pl" ? "HerBERT" : "BERT") : "TF-IDF + LR"}
                       </div>
                       <div style={{ marginBottom: 4 }}>
                         <strong>Metric: </strong>
@@ -1974,7 +2264,7 @@ export default function App() {
                   </div>
                   <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
                     <div style={{ width: 14, height: 14, backgroundColor: "#8b5cf6", borderRadius: 3 }} />
-                    <span style={{ fontSize: 13, fontWeight: 600, color: "#475569" }}>{analysisLang === "pl" ? "HerBERT (Fine-tuned Transformer)" : "BERT (Fine-tuned Transformer)"}</span>
+                    <span style={{ fontSize: 13, fontWeight: 600, color: "#475569" }}>{effectiveAnalysisLang === "pl" ? "HerBERT (Fine-tuned Transformer)" : "BERT (Fine-tuned Transformer)"}</span>
                   </div>
                 </div>
               </div>
@@ -1983,7 +2273,7 @@ export default function App() {
               <div style={styles.card}>
                 <h3 style={{ margin: "0 0 12px", fontSize: 18, fontWeight: 700 }}>🔍 {uiLang === "pl" ? "Kluczowe spostrzeżenia" : "Key Evaluation Insights"}</h3>
                 {uiLang === "pl" ? (
-                  analysisLang === "pl" ? (
+                  effectiveAnalysisLang === "pl" ? (
                     <ul style={{ margin: 0, paddingLeft: 20, display: "grid", gap: 10, fontSize: 14, color: "#475569" }}>
                       <li>
                         <strong>Model TF-IDF:</strong> Na polskim korpusie BAN-PL, TF-IDF osiąga silne i zbalansowane wyniki (Macro F1: <strong>{(activeMetrics.tfidf_lr.f1_macro * 100).toFixed(1)}%</strong>), wykazując wyjątkowo wysoką precyzję dla klasy <code>safe</code> (<strong>85.9%</strong>) oraz zadowalające wykrywanie dla trudniejszych klas agresywnych.
@@ -2009,7 +2299,7 @@ export default function App() {
                     </ul>
                   )
                 ) : (
-                  analysisLang === "pl" ? (
+                  effectiveAnalysisLang === "pl" ? (
                     <ul style={{ margin: 0, paddingLeft: 20, display: "grid", gap: 10, fontSize: 14, color: "#475569" }}>
                       <li>
                         <strong>TF-IDF Model:</strong> On the Polish BAN-PL corpus, TF-IDF achieves strong and balanced results (Macro F1: <strong>{(activeMetrics.tfidf_lr.f1_macro * 100).toFixed(1)}%</strong>), showing exceptionally high precision for the <code>safe</code> class (<strong>85.9%</strong>) and satisfactory detection for aggressive classes.

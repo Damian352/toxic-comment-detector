@@ -14,7 +14,12 @@ from sklearn.metrics import (
 
 
 def multilabel_report(y_true: np.ndarray, y_pred: np.ndarray, label_names: list[str]) -> dict:
-    """Return macro/micro metrics plus per-label precision/recall/F1."""
+    """
+    Standard report for multi-label classification.
+
+    y_true, y_pred — (n_samples × n_labels) matrices of 0/1.
+    Returns macro/micro F1, Hamming loss, and per_label breakdown.
+    """
     y_true = np.asarray(y_true)
     y_pred = np.asarray(y_pred)
     out: dict = {
