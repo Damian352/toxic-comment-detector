@@ -47,6 +47,15 @@ class BertInferenceService:
                 f"BERT model directory not found: {self._model_dir}. "
                 "Train with: python -m ml.training.train_bert"
             )
+        # Check for required model files (vocab.txt or tokenizer.json)
+        has_vocab = (self._model_dir / "vocab.txt").is_file()
+        has_tokenizer = (self._model_dir / "tokenizer.json").is_file()
+        if not (has_vocab or has_tokenizer):
+            raise FileNotFoundError(
+                f"BERT model files not found in {self._model_dir}. "
+                "Expected vocab.txt or tokenizer.json. "
+                "Train with: python -m ml.training.train_bert"
+            )
         # Training metadata (label order may differ from ml.labels defaults)
         config_path = self._model_dir / "labels.json"
         if config_path.is_file():
