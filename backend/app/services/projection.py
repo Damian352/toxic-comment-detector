@@ -4,11 +4,13 @@ Load precomputed validation-set PCA projections and project live user comments.
 Artifacts live under `models/projections/{lang}/{model}/`:
   - reducer.joblib — fitted TruncatedSVD+PCA or PCA + display normalization meta
   - corpus.json    — validation points with error_type for scatter plots
+  - corpus_embeddings.npz — precomputed embeddings for fast similarity lookup
 """
 
 from __future__ import annotations
 
 import json
+import math
 import pickle
 import sys
 from pathlib import Path
@@ -17,6 +19,7 @@ from typing import Any
 import numpy as np
 from scipy import sparse
 
+from app.services.bert_inference import BertInferenceService
 from app.services.inference import ToxicInferenceService
 from app.services.registry import InferenceRegistry, ModelId
 
@@ -27,7 +30,7 @@ if str(_REPO_ROOT) not in sys.path:
 from ml.labels import active_labels_from_probs, get_per_label_thresholds  # noqa: E402
 from ml.visualization.embedding_projection import (  # noqa: E402
     cosine_similarity,
-    extract_bert_cls_embeddings,
+    load_corpus_embeddings,
     project_embedding,
 )
 
@@ -39,6 +42,7 @@ class ProjectionService:
         self._dir = projections_dir
         self._corpus_cache: dict[tuple[str, str], dict[str, Any]] = {}
         self._reducer_cache: dict[tuple[str, str], dict[str, Any]] = {}
+        self._corpus_embeddings_cache: dict[tuple[str, str], list[np.ndarray | sparse.csr_matrix]] = {}
 
     def is_available(self, lang: str, model_kind: str) -> bool:
         return (self._dir / lang / model_kind / "corpus.json").is_file()
@@ -90,8 +94,15 @@ class ProjectionService:
             "points": points,
         }
 
-    def _bert_dir(self, registry: InferenceRegistry, lang: str) -> Path:
-        return registry._paths_pl[ModelId.BERT] if lang == "pl" else registry._paths[ModelId.BERT]
+    def _load_corpus_embeddings(self, lang: str, model_kind: str) -> list[np.ndarray | sparse.csr_matrix] | None:
+        key = (lang, model_kind)
+        if key not in self._corpus_embeddings_cache:
+            path = self._dir / lang / model_kind / "corpus_embeddings.npz"
+            if not path.is_file():
+                return None
+            _ids, vectors = load_corpus_embeddings(path)
+            self._corpus_embeddings_cache[key] = vectors
+        return self._corpus_embeddings_cache[key]
 
     def _embed_text(
         self,
@@ -106,32 +117,76 @@ class ProjectionService:
             if not isinstance(service, ToxicInferenceService):
                 raise RuntimeError("Expected ToxicInferenceService")
             return service.embed(text)
-        bert_dir = self._bert_dir(registry, lang)
-        return extract_bert_cls_embeddings(bert_dir, [text])
+        service = registry.get_service(model_id, lang)
+        if not isinstance(service, BertInferenceService):
+            raise RuntimeError("Expected BertInferenceService")
+        return service.extract_cls_embedding(text)
 
-    def _embed_texts_batch(
+    @staticmethod
+    def _coords_similarity(
+        user_coords: tuple[float, float, float],
+        point: dict[str, Any],
+        *,
+        sigma: float = 45.0,
+    ) -> float:
+        """Fallback similarity from PCA display coordinates (1.0 when positions coincide)."""
+        ux, uy, uz = user_coords
+        px, py = float(point["x"]), float(point["y"])
+        pz = float(point.get("z", 0.0))
+        dist_sq = (ux - px) ** 2 + (uy - py) ** 2 + (uz - pz) ** 2
+        return float(math.exp(-dist_sq / (2.0 * sigma**2)))
+
+    def _similarity_neighbors(
         self,
-        texts: list[str],
+        user_embedding: np.ndarray | sparse.csr_matrix,
+        corpus_points: list[dict[str, Any]],
         lang: str,
         model_kind: str,
         registry: InferenceRegistry,
-    ) -> list[np.ndarray | sparse.csr_matrix]:
-        if not texts:
-            return []
-        model_id = ModelId.TFIDF_LR if model_kind == "tfidf_lr" else ModelId.BERT
-        if model_kind == "tfidf_lr":
-            service = registry.get_service(model_id, lang)
-            if not isinstance(service, ToxicInferenceService):
-                raise RuntimeError("Expected ToxicInferenceService")
-            service.ensure_loaded()
-            assert service._model is not None
-            from ml.visualization.embedding_projection import extract_tfidf_embeddings
+        *,
+        user_coords: tuple[float, float, float],
+        user_text: str,
+    ) -> list[dict[str, Any]]:
+        """Attach cosine similarity to corpus points (embeddings, else PCA coordinate distance)."""
+        user_text_norm = " ".join(user_text.split()).casefold()
+        corpus_embs = self._load_corpus_embeddings(lang, model_kind)
+        use_embeddings = corpus_embs is not None and len(corpus_embs) == len(corpus_points)
 
-            mat = extract_tfidf_embeddings(service._model, texts)
-            return [mat[i] for i in range(mat.shape[0])]
-        bert_dir = self._bert_dir(registry, lang)
-        mat = extract_bert_cls_embeddings(bert_dir, texts)
-        return [mat[i] for i in range(mat.shape[0])]
+        user_vec: np.ndarray | None = None
+        if use_embeddings:
+            user_vec = (
+                user_embedding.toarray().ravel()
+                if sparse.issparse(user_embedding)
+                else np.asarray(user_embedding).ravel()
+            )
+
+        def _preview_prefix(raw: str) -> str:
+            cleaned = " ".join(raw.split()).casefold()
+            if cleaned.endswith("..."):
+                cleaned = cleaned[:-3].rstrip()
+            return cleaned
+
+        user_preview = _preview_prefix(user_text)
+
+        enriched: list[dict[str, Any]] = []
+        for idx, point in enumerate(corpus_points):
+            point_preview = _preview_prefix(str(point.get("text", "")))
+            if user_preview and point_preview and (
+                user_preview == point_preview
+                or user_preview.startswith(point_preview)
+                or point_preview.startswith(user_preview)
+            ):
+                enriched.append({**point, "similarity": 1.0})
+                continue
+
+            if use_embeddings and user_vec is not None:
+                c_emb = corpus_embs[idx]
+                c_vec = c_emb.toarray().ravel() if sparse.issparse(c_emb) else np.asarray(c_emb).ravel()
+                sim = cosine_similarity(user_vec, c_vec)
+            else:
+                sim = self._coords_similarity(user_coords, point)
+            enriched.append({**point, "similarity": sim})
+        return enriched
 
     def build_user_projection(
         self,
@@ -140,10 +195,8 @@ class ProjectionService:
         lang: str,
         model_kind: str,
         registry: InferenceRegistry,
-        *,
-        top_k: int = 5,
     ) -> tuple[dict[str, Any], list[dict[str, Any]]]:
-        """Project user text and return (active_point, nearest_validation_neighbors)."""
+        """Project user text and return (active_point, corpus_points_with_similarity)."""
         reducer = self._load_reducer(lang, model_kind)
         corpus = self._load_corpus(lang, model_kind)
         labels = tuple(reducer.get("labels", []))
@@ -171,26 +224,14 @@ class ProjectionService:
         }
 
         corpus_points = list(corpus["points"])
-        try:
-            corpus_embs = self._embed_texts_batch(
-                [p["text"] for p in corpus_points],
-                lang,
-                model_kind,
-                registry,
-            )
-            user_vec = embedding.toarray().ravel() if sparse.issparse(embedding) else np.asarray(embedding).ravel()
-            for idx, c_emb in enumerate(corpus_embs):
-                c_vec = c_emb.toarray().ravel() if sparse.issparse(c_emb) else np.asarray(c_emb).ravel()
-                corpus_points[idx] = {
-                    **corpus_points[idx],
-                    "similarity": cosine_similarity(user_vec, c_vec),
-                }
-        except Exception:
-            pass
-
-        neighbors = sorted(
-            [p for p in corpus_points if not p.get("is_active")],
-            key=lambda p: p.get("similarity", 0.0),
-            reverse=True,
-        )[:top_k]
-        return active, neighbors
+        user_coords = (x, y, z)
+        corpus_points = self._similarity_neighbors(
+            embedding,
+            corpus_points,
+            lang,
+            model_kind,
+            registry,
+            user_coords=user_coords,
+            user_text=text,
+        )
+        return active, corpus_points

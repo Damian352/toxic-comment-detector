@@ -18,6 +18,7 @@ from pathlib import Path
 from typing import Any, Literal
 
 import numpy as np
+from numpy.typing import NDArray
 from scipy import sparse
 from sklearn.decomposition import PCA, TruncatedSVD
 from sklearn.model_selection import train_test_split
@@ -251,24 +252,17 @@ def extract_tfidf_embeddings(pipeline: Any, texts: list[str]) -> sparse.csr_matr
     return pipeline.named_steps["features"].transform(preprocessed)
 
 
-def extract_bert_cls_embeddings(model_dir: Path, texts: list[str], batch_size: int = 32) -> np.ndarray:
-    """Extract [CLS] token embeddings from a fine-tuned Hugging Face classifier."""
+def _bert_cls_from_loaded_model(
+    model: Any,
+    tokenizer: Any,
+    texts: list[str],
+    *,
+    max_length: int,
+    device: Any,
+    batch_size: int = 32,
+) -> NDArray[np.float32]:
+    """Extract [CLS] vectors from an already-loaded Hugging Face classifier."""
     import torch
-    from transformers import AutoModelForSequenceClassification, AutoTokenizer
-
-    from ml.training.bert_multilabel import DEFAULT_MAX_LENGTH
-
-    tokenizer = AutoTokenizer.from_pretrained(model_dir)
-    model = AutoModelForSequenceClassification.from_pretrained(model_dir)
-    model.eval()
-    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    model.to(device)
-
-    max_length = DEFAULT_MAX_LENGTH
-    meta_path = model_dir / "labels.json"
-    if meta_path.is_file():
-        meta = json.loads(meta_path.read_text(encoding="utf-8"))
-        max_length = int(meta.get("max_length", max_length))
 
     encoder = getattr(model, "bert", None) or getattr(model, "roberta", None) or getattr(model, "base_model", model)
 
@@ -290,6 +284,84 @@ def extract_bert_cls_embeddings(model_dir: Path, texts: list[str], batch_size: i
                 hidden = model(**enc, output_hidden_states=True).hidden_states[-1][:, 0, :].cpu().numpy()
         out.append(hidden.astype(np.float32))
     return np.vstack(out)
+
+
+def extract_bert_cls_embeddings(
+    model_dir: Path,
+    texts: list[str],
+    batch_size: int = 32,
+    *,
+    model: Any | None = None,
+    tokenizer: Any | None = None,
+    max_length: int | None = None,
+    device: Any | None = None,
+) -> np.ndarray:
+    """Extract [CLS] token embeddings from a fine-tuned Hugging Face classifier."""
+    import torch
+    from transformers import AutoModelForSequenceClassification, AutoTokenizer
+
+    from ml.training.bert_multilabel import DEFAULT_MAX_LENGTH
+
+    resolved_max_length = max_length or DEFAULT_MAX_LENGTH
+    if max_length is None:
+        meta_path = model_dir / "labels.json"
+        if meta_path.is_file():
+            meta = json.loads(meta_path.read_text(encoding="utf-8"))
+            resolved_max_length = int(meta.get("max_length", resolved_max_length))
+
+    if model is None or tokenizer is None:
+        tokenizer = AutoTokenizer.from_pretrained(model_dir)
+        model = AutoModelForSequenceClassification.from_pretrained(model_dir)
+        model.eval()
+        device = device or torch.device("cuda" if torch.cuda.is_available() else "cpu")
+        model.to(device)
+    else:
+        device = device or next(model.parameters()).device
+
+    return _bert_cls_from_loaded_model(
+        model,
+        tokenizer,
+        texts,
+        max_length=resolved_max_length,
+        device=device,
+        batch_size=batch_size,
+    )
+
+
+def save_corpus_embeddings(path: Path, embeddings: np.ndarray | sparse.csr_matrix, point_ids: list[str]) -> None:
+    """Persist validation-point embeddings for fast live PCA similarity lookup."""
+    path.parent.mkdir(parents=True, exist_ok=True)
+    payload: dict[str, Any] = {"point_ids": np.asarray(point_ids, dtype=object)}
+    if sparse.issparse(embeddings):
+        emb = embeddings.tocsr()
+        payload.update(
+            {
+                "format": np.array("csr"),
+                "data": emb.data.astype(np.float32),
+                "indices": emb.indices,
+                "indptr": emb.indptr,
+                "shape": np.asarray(emb.shape, dtype=np.int64),
+            }
+        )
+    else:
+        payload["format"] = np.array("dense")
+        payload["embeddings"] = np.asarray(embeddings, dtype=np.float32)
+    np.savez_compressed(path, **payload)
+
+
+def load_corpus_embeddings(path: Path) -> tuple[list[str], list[np.ndarray | sparse.csr_matrix]]:
+    """Load precomputed validation embeddings aligned with corpus.json point order."""
+    with np.load(path, allow_pickle=True) as data:
+        point_ids = [str(x) for x in data["point_ids"].tolist()]
+        fmt = str(data["format"].item()) if "format" in data else "dense"
+        if fmt == "csr":
+            matrix = sparse.csr_matrix(
+                (data["data"], data["indices"], data["indptr"]),
+                shape=tuple(int(x) for x in data["shape"]),
+            )
+            return point_ids, [matrix[i] for i in range(matrix.shape[0])]
+        dense = data["embeddings"]
+        return point_ids, [dense[i] for i in range(dense.shape[0])]
 
 
 def fit_reducer(
@@ -496,6 +568,9 @@ def build_projection_bundle(
         )
 
     out_dir.mkdir(parents=True, exist_ok=True)
+    display_embeddings = embeddings[sample_idx]
+    embeddings_path = out_dir / "corpus_embeddings.npz"
+    save_corpus_embeddings(embeddings_path, display_embeddings, [p["id"] for p in points])
     reducer_payload = {
         "reducer": reducer,
         "method": method,
@@ -538,6 +613,7 @@ def build_projection_bundle(
         "method": method,
         "reducer_path": str(reducer_path),
         "corpus_path": str(corpus_path),
+        "embeddings_path": str(embeddings_path),
         "n_total_test": len(split.texts),
         "n_displayed": len(points),
     }

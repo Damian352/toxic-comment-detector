@@ -97,3 +97,19 @@ class BertInferenceService:
                 f"Model output size {scores.shape[0]} does not match labels ({len(self.labels)})."
             )
         return {label: float(score) for label, score in zip(self.labels, scores, strict=True)}
+
+    def extract_cls_embedding(self, text: str) -> np.ndarray:
+        """Return the [CLS] vector for one comment (for PCA projection)."""
+        self.ensure_loaded()
+        assert self._model is not None and self._tokenizer is not None
+
+        from ml.visualization.embedding_projection import _bert_cls_from_loaded_model
+
+        return _bert_cls_from_loaded_model(
+            self._model,
+            self._tokenizer,
+            [text],
+            max_length=self._max_length,
+            device=self._device,
+            batch_size=1,
+        )[0]

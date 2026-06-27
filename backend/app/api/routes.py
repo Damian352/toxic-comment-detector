@@ -177,15 +177,15 @@ def _build_projection_points(
         )
         return [active], {}
 
-    active, _neighbors = projection.build_user_projection(
-        text, probs, lang, kind, registry, top_k=5
+    active, enriched_corpus = projection.build_user_projection(
+        text, probs, lang, kind, registry
     )
     try:
         corpus = projection.get_corpus(lang, kind)
     except FileNotFoundError:
         corpus = {"points": [], "method": "PCA", "axes": {}, "explained_variance_ratio": []}
 
-    corpus_points = [_point_from_dict(p) for p in corpus.get("points", [])]
+    corpus_points = [_point_from_dict(p) for p in enriched_corpus]
     active_pt = _point_from_dict(active)
     meta = {
         "projection_method": corpus.get("method"),
